@@ -3,7 +3,7 @@ import { Flexbox } from "../misc/MUIComponents"
 
 import GithubIcon from "../assets/github.png"
 import GoogleIcon from "../assets/google.png"
-import LinkedinIcon from "../assets/linkedin.png"
+import SteamIcon from "../assets/steam.png"
 
 const Login = () => {
 
@@ -15,9 +15,8 @@ const Login = () => {
         window.open("http://localhost:8000/auth/google", "_self");
     };
 
-    const linkedin = () => {
-        console.log("open linked in ");
-        // window.open("http://localhost:8000/auth/linkedin", "_self");
+    const steam = () => {
+        window.open("http://localhost:8000/auth/steam", "_self");
     };
 
 
@@ -37,9 +36,9 @@ const Login = () => {
                         <Box component="img" src={GoogleIcon} sx={{ width: "3%" }} />
                         <Typography>Google</Typography>
                     </Flexbox>
-                    <Flexbox onClick={linkedin} >
-                        <Box component="img" src={LinkedinIcon} sx={{ width: "3%" }} />
-                        <Typography>Linkedin</Typography>
+                    <Flexbox onClick={steam} >
+                        <Box component="img" src={SteamIcon} sx={{ width: "3%" }} />
+                        <Typography>Steam</Typography>
                     </Flexbox>
                 </Box>
             </Flexbox>

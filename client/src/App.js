@@ -1,39 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom"
+import { useDispatch } from "react-redux"
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import { getUser } from "./store/authActions";
+
 
 function App() {
 
-  const [user, setUser] = useState(null);
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const getUser = () => {
-      fetch("http://localhost:8000/auth/login/success", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          setUser(resObject.user);
-          console.log(resObject.user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getUser();
-  }, []);
+    dispatch(getUser())
+  }, [dispatch])
 
   return (
 
