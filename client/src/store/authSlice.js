@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getUser } from "./authActions"
 
 const initialState = {
-    user: {},
+    user: { id: null, name: null, photos: [], provider: null },
     status: false,
     error: null,
 }
@@ -15,17 +15,17 @@ const authSlice = createSlice({
     },
     extraReducers: {
         [getUser.pending]: (state, action) => {
-            state.status = false;
+            state = initialState;
         },
         [getUser.rejected]: (state, action) => {
-            state.error = action.payload
-            state.status = false
-            state.user = []
+            state.error = action.payload;
         },
         [getUser.fulfilled]: (state, action) => {
+            // const { id, displayName, photos, provider } = action.payload;
+            // const newUser = { id, name: displayName, photos, provider }
+            // state.user = newUser;
             state.user = { ...action.payload }
-            state.status = true
-            state.error = ""
+            state.status = true;
         },
     }
 })
