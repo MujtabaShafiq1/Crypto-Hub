@@ -1,14 +1,15 @@
-import { useSelector } from 'react-redux'
-import { Outlet, Navigate, useLocation } from 'react-router-dom'
+import { Navigate, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux"
 
 const ProtectedRoute = () => {
 
-    const location = useLocation()
-    const user = useSelector((state) => state.auth.user)
+    const userStatus = useSelector(state => state.auth.status)
+
+    if (userStatus === null) return <h1>Loading</h1>
 
     return (
-        user.status ? <Outlet /> : <Navigate to="/" state={{ from: location }} replace />
+        userStatus ? <Outlet /> : <Navigate to="/login" replace />
     )
 }
 
-export default ProtectedRoute;
+export default ProtectedRoute

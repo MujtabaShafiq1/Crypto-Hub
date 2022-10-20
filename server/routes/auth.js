@@ -1,24 +1,17 @@
 const router = require("express").Router();
 const passport = require("passport");
+const { login } = require("../controllers/auth");
 
 const CLIENT_URL = "http://localhost:3000/";
 
-router.get("/login/success", (req, res) => {
-    if (req.user) {
-        res.status(200).json({
-            success: true,
-            message: "successfull",
-            user: req.user,
-            // cookies: req.cookies
-        });
-    }
-});
+router.get("/login/success", login);
 
 router.get("/login/failed", (req, res) => {
     res.status(401).json({ success: false, message: "failure" });
 });
 
 router.get("/logout", (req, res) => {
+    req.session = null
     req.logout();
     res.redirect(CLIENT_URL);
 });

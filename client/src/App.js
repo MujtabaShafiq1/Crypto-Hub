@@ -20,9 +20,9 @@ function App() {
   return (
 
     <Routes>
-      {/* <Route element={<ProtectedRoute />}><Route path="/" exact element={<Home />} /></Route> */}
-      <Route path="/login" exact element={<Login />} />
-      <Route path="/*" exact element={<NotFound />} />
+      <Route element={<ProtectedRoute />}><Route exact path="/" element={<Home />} /></Route>
+      <Route exact path="/login" element={<Login />} />
+      <Route path="/*" element={<NotFound />} />
     </Routes>
 
   );

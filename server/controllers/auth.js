@@ -1,13 +1,10 @@
 const login = (req, res, next) => {
     try {
-        res.status(200).json({
-            success: true,
-            message: "successfull",
-            user: req.user,
-            // cookies: req.cookies
-        });
+        const { id, displayName, photos, provider } = req.user;
+        const user = { id, name: displayName, photos, provider }
+        res.status(200).json(user);
     } catch (e) {
-        res.status(404).send(e)
+        res.status(404).send("Authentication Failed")
     }
 }
 

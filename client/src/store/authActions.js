@@ -5,9 +5,9 @@ export const getUser = createAsyncThunk("user/login", async (arg, { rejectWithVa
     try {
         const response = await axios.get("http://localhost:8000/auth/login/success", { withCredentials: true })
         if (response.status !== 200) throw new Error(response.message)
-        return response.data.user;
+        return response.data;
 
     } catch (e) {
-        return rejectWithValue(e.message)
+        return rejectWithValue(e.response.data)
     }
 })
