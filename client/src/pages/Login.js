@@ -1,9 +1,11 @@
-import { Box, Divider, Typography } from "@mui/material"
-import { Flexbox } from "../misc/MUIComponents"
+import { Box, Divider, Typography, Grid, Container } from "@mui/material"
+import LoginForm from "../components/Forms/LoginForm"
+import { Flexbox, SocialButton } from "../misc/MUIComponents"
 
 import GithubIcon from "../assets/github.png"
 import GoogleIcon from "../assets/google.png"
 import SteamIcon from "../assets/steam.png"
+
 
 const Login = () => {
 
@@ -21,28 +23,45 @@ const Login = () => {
 
 
     return (
-        <Flexbox sx={{ minHeight: "100vh" }}>
-            <Flexbox sx={{ minWidth: "50%", minHeight: "50vh", bgcolor: "gray" }}>
-                <Box>
-                    Hello
-                </Box>
-                <Divider orientation='vertical' sx={{ height: "35vh", marginRight: "6%", bgcolor: "black", opacity: "0.1" }} />
-                <Box>
-                    <Flexbox onClick={github} >
-                        <Box component="img" src={GithubIcon} sx={{ width: "3%" }} />
+
+        <Grid
+            container
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            style={{ height: "100vh" }}
+        >
+
+            <Container
+                sx={{
+                    bgcolor: "white",
+                    minHeight: '55vh',
+                    width: { lg: "25%", md: "40%", xs: "60%" },
+                    borderRadius: "10px",
+                    boxShadow: "10px 10px 5px rgba(180, 180, 180, 0.5)"
+                }}
+            >
+
+                <LoginForm />
+                <Divider orientation='horizontal' sx={{ bgcolor: "black", opacity: "0.1" }} />
+                <Flexbox sx={{ flexDirection: "column", gap: 1.5, m: "5%" }}>
+                    <SocialButton onClick={github} sx={{ bgcolor: "black" }}>
+                        <Box component="img" src={GithubIcon} sx={{ width: "8%" }} />
                         <Typography>Github</Typography>
-                    </Flexbox>
-                    <Flexbox onClick={google} >
-                        <Box component="img" src={GoogleIcon} sx={{ width: "3%" }} />
+                    </SocialButton>
+                    <SocialButton onClick={google} sx={{ bgcolor: "red" }}>
+                        <Box component="img" src={GoogleIcon} sx={{ width: "8%" }} />
                         <Typography>Google</Typography>
-                    </Flexbox>
-                    <Flexbox onClick={steam} >
-                        <Box component="img" src={SteamIcon} sx={{ width: "3%" }} />
+                    </SocialButton>
+                    <SocialButton onClick={steam} sx={{ bgcolor: "black" }}>
+                        <Box component="img" src={SteamIcon} sx={{ width: "8%" }} />
                         <Typography>Steam</Typography>
-                    </Flexbox>
-                </Box>
-            </Flexbox>
-        </Flexbox >
+                    </SocialButton>
+                </Flexbox>
+
+            </Container>
+        </Grid >
+
     )
 }
 
