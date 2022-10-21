@@ -12,9 +12,9 @@ const Home = () => {
         <>
             <button onClick={logoutHandler}>logout</button>
             <h1>{user.name}</h1>
-            <h2>{user.id}</h2>
+            <h2>{user.userId}</h2>
             <h2>{user.provider}</h2>
-            <h2>{user.photos.map(photo => photo.value)}</h2>
+            <img src={user.photo} alt="" />
         </>
     )
 }

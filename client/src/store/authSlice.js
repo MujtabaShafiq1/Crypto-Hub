@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getUser } from "./authActions"
 
 const initialState = {
-    user: { id: null, name: null, photos: [], provider: null },
+    user: { userId: null, name: null, photo: null, provider: null },
     status: null,
     error: null,
 }

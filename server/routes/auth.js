@@ -13,7 +13,7 @@ router.get("/login/failed", (req, res) => {
 router.get("/logout", (req, res) => {
     req.session = null
     req.logout();
-    res.redirect(CLIENT_URL);
+    res.redirect(`${CLIENT_URL}login`);
 });
 
 router.get("/github", passport.authenticate("github", { scope: ["profile"] }));

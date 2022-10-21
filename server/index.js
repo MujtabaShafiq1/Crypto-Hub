@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const cookieSession = require("cookie-session")
 const passport = require("passport");
+const db = require('./models')
 require("dotenv").config()
 
 const authRouter = require("./routes/auth")
@@ -19,6 +20,8 @@ require("./passport");
 app.use("/auth", authRouter)
 
 const PORT = process.env.PORT || 3001
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`Listening to PORT: ${PORT}`);
+    await db.sequelize.sync()
+    console.log("Database Synced");
 })
