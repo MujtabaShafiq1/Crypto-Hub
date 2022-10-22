@@ -6,13 +6,13 @@ import axios from "axios"
 
 import { loginSchema } from '../../utils/validationSchema';
 
-import { Box, InputAdornment, TextField, Button, styled } from "@mui/material"
+import { Box, InputAdornment, Button, styled } from "@mui/material"
 import Visibility from "../../assets/visibility.png";
 import VisibilityOff from "../../assets/visible.png";
 import { Flexbox, StyledField } from '../../misc/MUIComponents';
 
 
-const LoginForm = () => {
+const SignupForm = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -56,6 +56,7 @@ const LoginForm = () => {
 
                 <Flexbox sx={{ flexDirection: "column", gap: 2 }}>
 
+
                     <StyledField
                         variant="outlined"
                         placeholder="Enter Password"
@@ -68,8 +69,71 @@ const LoginForm = () => {
                         onChange={formik.handleChange}
                         helperText={formik.touched.password && formik.errors.password}
                         error={formik.touched.password && Boolean(formik.errors.password)}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end" >
+                                    <Box
+                                        component="img"
+                                        src={showPassword ? VisibilityOff : Visibility}
+                                        onClick={() => setShowPassword((prev) => !prev)}
+                                        style={{ width: "20px", height: "auto" }}
+                                    />
+                                </InputAdornment>
+                            ),
+                        }}
                     />
 
+                    <StyledField
+                        variant="outlined"
+                        placeholder="Enter Password"
+                        id="password"
+                        name="password"
+                        type={showPassword ? "text" : "password"}
+                        size="small"
+                        hiddenLabel
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        helperText={formik.touched.password && formik.errors.password}
+                        error={formik.touched.password && Boolean(formik.errors.password)}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end" >
+                                    <Box
+                                        component="img"
+                                        src={showPassword ? VisibilityOff : Visibility}
+                                        onClick={() => setShowPassword((prev) => !prev)}
+                                        style={{ width: "20px", height: "auto" }}
+                                    />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+
+                    <StyledField
+                        variant="outlined"
+                        placeholder="Enter Password"
+                        id="password"
+                        name="password"
+                        type={showPassword ? "text" : "password"}
+                        size="small"
+                        hiddenLabel
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        helperText={formik.touched.password && formik.errors.password}
+                        error={formik.touched.password && Boolean(formik.errors.password)}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end" >
+                                    <Box
+                                        component="img"
+                                        src={showPassword ? VisibilityOff : Visibility}
+                                        onClick={() => setShowPassword((prev) => !prev)}
+                                        style={{ width: "20px", height: "auto" }}
+                                    />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
 
                     <StyledField
                         variant="outlined"
@@ -100,18 +164,17 @@ const LoginForm = () => {
                     <Button
                         type="submit"
                         sx={{
-                            backgroundColor: "black",
-                            opacity: "0.7",
                             width: "80%",
+                            backgroundColor: "rgba( 76,76,163, 1 )",
                             color: "white",
                             padding: "10px",
                             borderRadius: "20px",
                             "&:hover": {
-                                cursor: "pointer",
-                                opacity: 1
+                                backgroundColor: "blue",
+                                opacity: "0.5"
                             }
                         }}>
-                        login
+                        Signup
                     </Button>
 
                 </Flexbox>
@@ -121,4 +184,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default SignupForm

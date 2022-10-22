@@ -23,7 +23,7 @@ function App() {
     <Routes>
       <Route element={<ProtectedRoute />}><Route exact path="/" element={<Home />} /></Route>
       <Route exact path="/login" element={<Login />} />
-      <Route exact path="/signuip" element={<Signup />} />
+      <Route exact path="/signup" element={<Signup />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
 
