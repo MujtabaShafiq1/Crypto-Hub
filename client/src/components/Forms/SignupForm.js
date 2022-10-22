@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFormik } from "formik";
 import axios from "axios"
 
-import { loginSchema } from '../../utils/validationSchema';
+import { signupSchema } from '../../utils/validationSchema';
 
-import { Box, InputAdornment, Button, styled } from "@mui/material"
+import { Box, InputAdornment, Button } from "@mui/material"
 import Visibility from "../../assets/visibility.png";
 import VisibilityOff from "../../assets/visible.png";
 import { Flexbox, StyledField } from '../../misc/MUIComponents';
@@ -14,7 +14,6 @@ import { Flexbox, StyledField } from '../../misc/MUIComponents';
 
 const SignupForm = () => {
 
-    const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -23,27 +22,29 @@ const SignupForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            email: location.state?.email || "",
-            password: location.state?.password || "",
+            name: "",
+            email: "",
+            password: "",
+            confirmedPassword: "",
         },
-        validationSchema: loginSchema,
+        validationSchema: signupSchema,
         onSubmit: (values) => {
-            loginHandler(values)
+            signupHandler(values)
         },
     });
 
-    const loginHandler = async (data) => {
+    const signupHandler = async (data) => {
         try {
-            const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/login`, data)
-            const user = response.data.details;
+            const { confirmedPassword, ...otherDetails } = data;
+            await axios.post(`http://localhost:8000/auth/register`, otherDetails)
             // dispatch(userActions.login(user))
-            navigate("/")
+            // navigate("/")
         } catch (e) {
-            console.clear()
-            setSnackbar({ open: true, details: e.response.data.message })
-            setTimeout(() => {
-                setSnackbar({ open: false, details: "" })
-            }, 2000)
+            // console.clear()
+            // setSnackbar({ open: true, details: e.response.data.message })
+            // setTimeout(() => {
+            //     setSnackbar({ open: false, details: "" })
+            // }, 2000)
         }
     }
 
@@ -56,31 +57,30 @@ const SignupForm = () => {
 
                 <Flexbox sx={{ flexDirection: "column", gap: 2 }}>
 
+                    <StyledField
+                        variant="outlined"
+                        placeholder="Enter Name"
+                        name="name"
+                        type="text"
+                        size="small"
+                        hiddenLabel
+                        value={formik.values.name}
+                        onChange={formik.handleChange}
+                        helperText={formik.touched.name && formik.errors.name}
+                        error={formik.touched.name && Boolean(formik.errors.name)}
+                    />
 
                     <StyledField
                         variant="outlined"
-                        placeholder="Enter Password"
-                        id="password"
-                        name="password"
-                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter Email"
+                        name="email"
+                        type="text"
                         size="small"
                         hiddenLabel
-                        value={formik.values.password}
+                        value={formik.values.email}
                         onChange={formik.handleChange}
-                        helperText={formik.touched.password && formik.errors.password}
-                        error={formik.touched.password && Boolean(formik.errors.password)}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end" >
-                                    <Box
-                                        component="img"
-                                        src={showPassword ? VisibilityOff : Visibility}
-                                        onClick={() => setShowPassword((prev) => !prev)}
-                                        style={{ width: "20px", height: "auto" }}
-                                    />
-                                </InputAdornment>
-                            ),
-                        }}
+                        helperText={formik.touched.email && formik.errors.email}
+                        error={formik.touched.email && Boolean(formik.errors.email)}
                     />
 
                     <StyledField
@@ -102,7 +102,7 @@ const SignupForm = () => {
                                         component="img"
                                         src={showPassword ? VisibilityOff : Visibility}
                                         onClick={() => setShowPassword((prev) => !prev)}
-                                        style={{ width: "20px", height: "auto" }}
+                                        style={{ width: "20px", height: "auto", cursor: "pointer" }}
                                     />
                                 </InputAdornment>
                             ),
@@ -111,16 +111,15 @@ const SignupForm = () => {
 
                     <StyledField
                         variant="outlined"
-                        placeholder="Enter Password"
-                        id="password"
-                        name="password"
+                        placeholder="Confirm Password"
+                        name="confirmedPassword"
                         type={showPassword ? "text" : "password"}
                         size="small"
                         hiddenLabel
-                        value={formik.values.password}
+                        value={formik.values.confirmedPassword}
                         onChange={formik.handleChange}
-                        helperText={formik.touched.password && formik.errors.password}
-                        error={formik.touched.password && Boolean(formik.errors.password)}
+                        helperText={formik.touched.confirmedPassword && formik.errors.confirmedPassword}
+                        error={formik.touched.confirmedPassword && Boolean(formik.errors.confirmedPassword)}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end" >
@@ -128,33 +127,7 @@ const SignupForm = () => {
                                         component="img"
                                         src={showPassword ? VisibilityOff : Visibility}
                                         onClick={() => setShowPassword((prev) => !prev)}
-                                        style={{ width: "20px", height: "auto" }}
-                                    />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-
-                    <StyledField
-                        variant="outlined"
-                        placeholder="Enter Password"
-                        id="password"
-                        name="password"
-                        type={showPassword ? "text" : "password"}
-                        size="small"
-                        hiddenLabel
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
-                        helperText={formik.touched.password && formik.errors.password}
-                        error={formik.touched.password && Boolean(formik.errors.password)}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end" >
-                                    <Box
-                                        component="img"
-                                        src={showPassword ? VisibilityOff : Visibility}
-                                        onClick={() => setShowPassword((prev) => !prev)}
-                                        style={{ width: "20px", height: "auto" }}
+                                        style={{ width: "20px", height: "auto", cursor: "pointer" }}
                                     />
                                 </InputAdornment>
                             ),
@@ -164,14 +137,15 @@ const SignupForm = () => {
                     <Button
                         type="submit"
                         sx={{
+                            backgroundColor: "black",
+                            opacity: "0.7",
                             width: "80%",
-                            backgroundColor: "rgba( 76,76,163, 1 )",
                             color: "white",
                             padding: "10px",
                             borderRadius: "20px",
                             "&:hover": {
-                                backgroundColor: "blue",
-                                opacity: "0.5"
+                                cursor: "pointer",
+                                opacity: 1
                             }
                         }}>
                         Signup

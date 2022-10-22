@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const passport = require("passport");
-const { login } = require("../controllers/auth");
+const { login, register } = require("../controllers/auth");
 
 const CLIENT_URL = "http://localhost:3000/";
 
+router.post("/register", register);
 router.get("/login/success", login);
 
 router.get("/login/failed", (req, res) => {

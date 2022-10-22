@@ -25,14 +25,14 @@ const SocialButton = styled(Box)({
 
 const StyledField = styled(TextField)(({ error }) => ({
     width: "100%",
-    background: "rgb(180, 180, 180, 0.2)",
     input: { color: 'black' },
     "& .MuiOutlinedInput-notchedOutline": {
         border: "0.5px solid black",
+        background: "rgb(180, 180, 180, 0.2)",
     },
     "&.Mui-focused": {
         "& .MuiOutlinedInput-notchedOutline": {
-            border: !error && "0.5px solid #red",
+            border: error && "0.5px solid #red",
         }
     },
 }))
