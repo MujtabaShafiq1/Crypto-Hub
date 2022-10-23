@@ -1,29 +1,29 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const GithubStrategy = require("passport-github2").Strategy;
-const JwtStrategy = require('passport-jwt').Strategy;
 const SteamStrategy = require("passport-steam").Strategy;
+const LocalStrategy = require('passport-local').Strategy;
+
+const bcrypt = require("bcryptjs")
+
+const { Users } = require("./models")
 const passport = require("passport")
 
-ExtractJwt = require('passport-jwt').ExtractJwt;
-let opts = {}
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = process.env.JWT_KEY;
-opts.issuer = 'accounts.examplesoft.com';
-opts.audience = 'yoursite.net';
 
-passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
-    User.findOne({ id: jwt_payload.sub }, function (err, user) {
-        if (err) {
-            return done(err, false);
-        }
-        if (user) {
-            return done(null, user);
-        } else {
-            return done(null, false);
-            // or you could create a new account
-        }
-    });
+passport.use(new LocalStrategy(function (email, password, done) {
+    console.log(email, password)
+    // Users.findOne({ where: { userId: userId } }).then(user => {
+
+    //     const { password, ...otherDetails } = user.dataValues
+    //     if (!user) return done(null, false);
+
+    //     const correctPass = bcrypt.compareSync(userPass, password);
+    //     if (correctPass) return done(null, false);
+
+    //     return done(null, otherDetails);
+
+    // }).catch(err => done(err, false))
 }));
+
 
 passport.use(
     new GithubStrategy(

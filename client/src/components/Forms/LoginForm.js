@@ -6,7 +6,7 @@ import axios from "axios"
 
 import { loginSchema } from '../../utils/validationSchema';
 
-import { Box, InputAdornment, TextField, Button, styled } from "@mui/material"
+import { Box, InputAdornment, Button } from "@mui/material"
 import Visibility from "../../assets/visibility.png";
 import VisibilityOff from "../../assets/visible.png";
 import { Flexbox, StyledField } from '../../misc/MUIComponents';
@@ -23,8 +23,8 @@ const LoginForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            email: location.state?.email || "",
-            password: location.state?.password || "",
+            email: "",
+            password: ""
         },
         validationSchema: loginSchema,
         onSubmit: (values) => {
@@ -34,12 +34,13 @@ const LoginForm = () => {
 
     const loginHandler = async (data) => {
         try {
-            const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/login`, data)
-            const user = response.data.details;
+            const response = await axios.post(`http://localhost:8000/auth/login`, data)
+            console.log(response.data)
             // dispatch(userActions.login(user))
-            navigate("/")
+            // navigate("/")
         } catch (e) {
-            console.clear()
+            // console.clear()
+            console.log(e.response.data.message);
             setSnackbar({ open: true, details: e.response.data.message })
             setTimeout(() => {
                 setSnackbar({ open: false, details: "" })
@@ -58,23 +59,21 @@ const LoginForm = () => {
 
                     <StyledField
                         variant="outlined"
-                        placeholder="Enter Password"
-                        id="password"
-                        name="password"
-                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter Email"
+                        name="email"
+                        type="text"
                         size="small"
                         hiddenLabel
-                        value={formik.values.password}
+                        value={formik.values.email}
                         onChange={formik.handleChange}
-                        helperText={formik.touched.password && formik.errors.password}
-                        error={formik.touched.password && Boolean(formik.errors.password)}
+                        helperText={formik.touched.email && formik.errors.email}
+                        error={formik.touched.email && Boolean(formik.errors.email)}
                     />
 
 
                     <StyledField
                         variant="outlined"
                         placeholder="Enter Password"
-                        id="password"
                         name="password"
                         type={showPassword ? "text" : "password"}
                         size="small"
