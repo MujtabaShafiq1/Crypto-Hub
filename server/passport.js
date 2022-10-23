@@ -9,20 +9,26 @@ const { Users } = require("./models")
 const passport = require("passport")
 
 
-passport.use(new LocalStrategy(function (email, password, done) {
-    console.log(email, password)
-    // Users.findOne({ where: { userId: userId } }).then(user => {
+passport.use(
+    new LocalStrategy(
+        { usernameField: 'email', passwordField: 'password' },
+        function (email, userPassword, done) {
 
-    //     const { password, ...otherDetails } = user.dataValues
-    //     if (!user) return done(null, false);
+            Users.findOne({ where: { userId: email } }).then(user => {
 
-    //     const correctPass = bcrypt.compareSync(userPass, password);
-    //     if (correctPass) return done(null, false);
+                const { password, ...otherDetails } = user.dataValues
 
-    //     return done(null, otherDetails);
+                if (!user) return done(null, false);
+                const correctPass = bcrypt.compareSync(userPassword, password);
 
-    // }).catch(err => done(err, false))
-}));
+                if (!correctPass) return done(null, false);
+                return done(null, otherDetails);
+
+            }).catch(err => done(err, false))
+
+        }
+    )
+);
 
 
 passport.use(

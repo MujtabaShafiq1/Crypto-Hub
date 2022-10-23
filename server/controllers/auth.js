@@ -2,12 +2,12 @@ const { Users } = require("../models")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
-const socialLogin = async (req, res, next) => {
+const login = async (req, res, next) => {
     try {
 
         if (!req.user) throw new Error()
 
-        console.log(req.user);
+        if (req.user.provider === "local") return res.status(200).json(req.user);
 
         const foundUser = await Users.findOne({ where: { userId: req.user.id } })
         if (foundUser) {
@@ -21,6 +21,7 @@ const socialLogin = async (req, res, next) => {
         res.status(200).json(user);
 
     } catch (e) {
+        console.log(e)
         res.status(404).json({ message: "Authentication Failed" })
     }
 }
@@ -42,4 +43,4 @@ const register = async (req, res, next) => {
     }
 }
 
-module.exports = { socialLogin, register };
+module.exports = { login, register };

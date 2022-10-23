@@ -35,7 +35,7 @@ const LoginForm = () => {
     const loginHandler = async (data) => {
         try {
             const response = await axios.post(`http://localhost:8000/auth/login`, data)
-            console.log(response.data)
+            // console.log(response.data)
             // dispatch(userActions.login(user))
             // navigate("/")
         } catch (e) {
