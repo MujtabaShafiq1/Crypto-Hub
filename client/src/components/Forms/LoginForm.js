@@ -1,23 +1,25 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Box, InputAdornment, Typography } from "@mui/material"
+import { Box, InputAdornment } from "@mui/material"
 import { useFormik } from "formik";
 import { authActions } from '../../store/authSlice';
 import axios from "axios"
 
 import { Flexbox, StyledButton, StyledField } from '../../misc/MUIComponents';
 import { loginSchema } from '../../utils/validationSchema';
+import CustomSnackbar from '../UI/CustonSnackbar';
 import Visibility from "../../assets/visibility.png";
 import VisibilityOff from "../../assets/visible.png";
 
 
-const LoginForm = ({ snackbarHandler }) => {
+const LoginForm = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const [showPassword, setShowPassword] = useState(false)
+    const [snackbar, setSnackbar] = useState({ open: false, details: "", type: "" })
 
     const formik = useFormik({
         initialValues: {
@@ -37,13 +39,18 @@ const LoginForm = ({ snackbarHandler }) => {
             dispatch(authActions.login(otherDetails))
             navigate("/")
         } catch (e) {
-            snackbarHandler(true, e.response.data.message, "error")
+            setSnackbar({ open: true, details: e.response.data.message, type: "error" })
+            setTimeout(() => {
+                setSnackbar({ open: false, details: "", type: "" })
+            }, 2000)
         }
     }
 
     return (
 
         <>
+
+            {snackbar.open && <CustomSnackbar type={snackbar.type} details={snackbar.details} />}
 
             <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }} >
 
@@ -89,7 +96,7 @@ const LoginForm = ({ snackbarHandler }) => {
                     />
 
                     <StyledButton type="submit" sx={{ padding: "10px" }}>
-                        <Typography>Login</Typography>
+                        Login
                     </StyledButton>
 
                 </Flexbox>

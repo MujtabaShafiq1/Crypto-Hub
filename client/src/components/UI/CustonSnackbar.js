@@ -6,14 +6,13 @@ const CustomSnackbar = ({ type, details }) => {
         <Snackbar
             open={true}
             sx={{
-                // position: "absolute",
-                marginRight: "32%",
+                fontSize: "18px",
                 color: "white",
-                width: '100%',
-                height: "40%",
                 zIndex: 1,
+                height: "12%",
+                width: "90%"
             }}
-            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
         >
             <Alert severity={type}>{details}</Alert>
         </Snackbar>

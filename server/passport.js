@@ -16,9 +16,9 @@ passport.use(
 
             Users.findOne({ where: { userId: email } }).then(user => {
 
-                const { password, ...otherDetails } = user.dataValues
-
                 if (!user) return done(null, false);
+
+                const { password, ...otherDetails } = user.dataValues
                 const correctPass = bcrypt.compareSync(userPassword, password);
 
                 if (!correctPass) return done(null, false);

@@ -1,24 +1,22 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Box, InputAdornment } from "@mui/material"
 import { useFormik } from "formik";
 import axios from "axios"
 
-import { signupSchema } from '../../utils/validationSchema';
 
-import { Box, InputAdornment, Button } from "@mui/material"
+import { Flexbox, StyledButton, StyledField } from '../../misc/MUIComponents';
+import { signupSchema } from '../../utils/validationSchema';
+import CustomSnackbar from '../UI/CustonSnackbar';
 import Visibility from "../../assets/visibility.png";
 import VisibilityOff from "../../assets/visible.png";
-import { Flexbox, StyledField } from '../../misc/MUIComponents';
-
 
 const SignupForm = () => {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const [showPassword, setShowPassword] = useState(false)
-    const [snackbar, setSnackbar] = useState({ open: false, details: "" })
+    const [snackbar, setSnackbar] = useState({ open: false, details: "", type: "" })
 
     const formik = useFormik({
         initialValues: {
@@ -37,21 +35,20 @@ const SignupForm = () => {
         try {
             const { confirmedPassword, ...otherDetails } = data;
             await axios.post(`http://localhost:8000/auth/register`, otherDetails)
-            // dispatch(userActions.login(user))
-            // navigate("/")
+            navigate("/login")
+            // navigate("/login", { state: data })
         } catch (e) {
-            // console.clear()
-            // setSnackbar({ open: true, details: e.response.data.message })
-            // setTimeout(() => {
-            //     setSnackbar({ open: false, details: "" })
-            // }, 2000)
+            setSnackbar({ open: true, details: e.response.data.message, type: "error" })
+            setTimeout(() => {
+                setSnackbar({ open: false, details: "", type: "" })
+            }, 2000)
         }
     }
 
     return (
 
         <>
-            {/* {snackbar.open && < CustomSnackbar type="error" details={snackbar.details} />} */}
+            {snackbar.open && <CustomSnackbar type={snackbar.type} details={snackbar.details} />}
 
             <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }} >
 
@@ -134,22 +131,9 @@ const SignupForm = () => {
                         }}
                     />
 
-                    <Button
-                        type="submit"
-                        sx={{
-                            backgroundColor: "black",
-                            opacity: "0.7",
-                            width: "80%",
-                            color: "white",
-                            padding: "10px",
-                            borderRadius: "20px",
-                            "&:hover": {
-                                cursor: "pointer",
-                                opacity: 1
-                            }
-                        }}>
-                        Signup
-                    </Button>
+                    <StyledButton type="submit">
+                        Sign up
+                    </StyledButton>
 
                 </Flexbox>
             </form >

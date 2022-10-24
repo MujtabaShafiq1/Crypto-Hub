@@ -1,4 +1,6 @@
 import { useSelector } from "react-redux"
+import { Box, Typography } from "@mui/material";
+import { Flexbox, StyledButton } from "../misc/MUIComponents";
 
 const Home = () => {
 
@@ -9,13 +11,13 @@ const Home = () => {
     }
 
     return (
-        <>
-            <button onClick={logoutHandler}>logout</button>
-            <h1>{user.name}</h1>
-            <h2>{user.userId}</h2>
-            <h2>{user.provider}</h2>
-            <img src={user.photo} alt="" />
-        </>
+        <Flexbox sx={{ flexDirection: "column", height: "100vh", gap: 3 }}>
+            <StyledButton onClick={logoutHandler} sx={{ width: "10%" }}>logout</StyledButton>
+            <Typography variant="h5">{user.name}</Typography>
+            <Typography variant="h5">{user.userId}</Typography>
+            <Typography variant="h5">{user.provider}</Typography>
+            <Box component="img" src={user.photo} alt="" />
+        </Flexbox>
     )
 }
 

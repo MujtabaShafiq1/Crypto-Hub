@@ -9,14 +9,15 @@ const login = async (req, res, next) => {
 
         if (req.user.provider === "local") return res.status(200).json(req.user);
 
-        const foundUser = await Users.findOne({ where: { userId: req.user.id } })
+        const foundUser = await Users.findOne({ where: { userId: (req.user._json.email || req.user.id) } })
+
         if (foundUser) {
             const { password, ...details } = foundUser.dataValues
             return res.status(200).json(details);
         }
 
         const { id, displayName, photos, provider } = req.user;
-        const user = { userId: id, name: displayName, photo: (provider === "steam" ? photos[2].value : photos[0].value), provider }
+        const user = { userId: (req.user._json.email || req.user.id), name: displayName, photo: (provider === "steam" ? photos[2].value : photos[0].value), provider }
         await Users.create(user)
         res.status(200).json(user);
 
@@ -37,7 +38,7 @@ const register = async (req, res, next) => {
         res.status(200).send("registered")
 
     } catch (e) {
-        // console.log(e);
+        console.log(e);
         res.status(404).json({ message: "Email is already taken" })
     }
 }
