@@ -21,7 +21,6 @@ const login = async (req, res, next) => {
         res.status(200).json(user);
 
     } catch (e) {
-        console.log(e)
         res.status(404).json({ message: "Authentication Failed" })
     }
 }

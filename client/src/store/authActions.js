@@ -3,7 +3,6 @@ import axios from "axios"
 
 export const getUser = createAsyncThunk("user/login", async (arg, { rejectWithValue }) => {
     try {
-        console.log("fetching")
         const response = await axios.get("http://localhost:8000/auth/login/success", { withCredentials: true })
         if (response.status !== 200) throw new Error(response.message)
         return response.data;

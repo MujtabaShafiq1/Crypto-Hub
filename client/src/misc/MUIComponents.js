@@ -1,4 +1,4 @@
-import { Box, Container, styled, TextField } from "@mui/material"
+import { Box, Button, Container, styled, TextField } from "@mui/material"
 
 const Flexbox = styled(Box)({
     display: "flex",
@@ -6,7 +6,7 @@ const Flexbox = styled(Box)({
     alignItems: "center"
 })
 
-const SocialButton = styled(Box)({
+const StyledButton = styled(Button)({
     backgroundColor: "black",
     opacity: "0.7",
     color: "white",
@@ -18,6 +18,7 @@ const SocialButton = styled(Box)({
     borderRadius: "5px",
     gap: 10,
     ":hover": {
+        backgroundColor: "black",
         cursor: "pointer",
         opacity: 1
     }
@@ -53,4 +54,4 @@ const FormContainer = styled(Container)(({ theme }) => ({
     backdropFilter: "blur(50px)",
 }))
 
-export { Flexbox, SocialButton, FormContainer, StyledField }
+export { Flexbox, StyledButton, FormContainer, StyledField }

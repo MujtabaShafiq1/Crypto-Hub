@@ -9,7 +9,7 @@ router.post("/register", register);
 router.get("/login/success", login);
 
 router.get("/login/failed", (req, res) => {
-    res.status(401).json({ success: false, message: "failure" });
+    res.status(401).json({ success: false, message: "Invalid Credentials" });
 });
 
 

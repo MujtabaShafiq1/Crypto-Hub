@@ -11,7 +11,11 @@ const authSlice = createSlice({
     name: "auth",
     initialState: initialState,
     reducers: {
-        // non async functions here
+        login(state, action) {
+            state.user = action.payload;
+            state.status = true;
+        },
+        logout: () => initialState,
     },
     extraReducers: {
         [getUser.pending]: (state, action) => {
