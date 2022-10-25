@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Box, InputAdornment } from "@mui/material"
 import { useFormik } from "formik";
@@ -15,6 +15,7 @@ import VisibilityOff from "../../assets/visible.png";
 
 const LoginForm = () => {
 
+    const location = useLocation()
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -23,8 +24,8 @@ const LoginForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            email: "",
-            password: ""
+            email: (location?.state?.email || ""),
+            password: (location?.state?.password || "")
         },
         validationSchema: loginSchema,
         onSubmit: (values) => {
@@ -39,7 +40,7 @@ const LoginForm = () => {
             dispatch(authActions.login(otherDetails))
             navigate("/")
         } catch (e) {
-            setSnackbar({ open: true, details: e.response.data.message, type: "error" })
+            setSnackbar({ open: true, details: (e.response?.data?.message || "Server is down , please try again later"), type: "error" })
             setTimeout(() => {
                 setSnackbar({ open: false, details: "", type: "" })
             }, 2000)

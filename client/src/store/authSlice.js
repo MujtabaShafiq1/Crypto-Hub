@@ -22,7 +22,7 @@ const authSlice = createSlice({
             state = initialState;
         },
         [getUser.rejected]: (state, action) => {
-            state.error = action.payload.message;
+            state.error = action.payload;
             state.status = false;
         },
         [getUser.fulfilled]: (state, action) => {

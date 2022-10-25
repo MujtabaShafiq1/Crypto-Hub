@@ -8,6 +8,6 @@ export const getUser = createAsyncThunk("user/login", async (arg, { rejectWithVa
         return response.data;
 
     } catch (e) {
-        return rejectWithValue(e.response.data)
+        return rejectWithValue((e.response?.data?.message || "Server is down , please try again later"))
     }
 })

@@ -20,10 +20,10 @@ const SignupForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            name: "",
-            email: "",
-            password: "",
-            confirmedPassword: "",
+            name: "Mujtaba" || "",
+            email: "mujtaba.shafiq213@gmail.com" || "",
+            password: "123123123" || "",
+            confirmedPassword: "123123123" || "",
         },
         validationSchema: signupSchema,
         onSubmit: (values) => {
@@ -34,14 +34,23 @@ const SignupForm = () => {
     const signupHandler = async (data) => {
         try {
             const { confirmedPassword, ...otherDetails } = data;
-            await axios.post(`http://localhost:8000/auth/register`, otherDetails)
-            navigate("/login")
-            // navigate("/login", { state: data })
+            // const response = await axios.post(`http://localhost:8000/auth/register`, otherDetails)
+            const response = await axios.post(`http://localhost:8000/token`, otherDetails)
+            console.log(response)
+
+            setSnackbar({ open: true, details: "Email verification sent", type: "success" })
+            setTimeout(() => {
+                setSnackbar({ open: false, details: "", type: "" })
+                // navigate("/login", { state: { email: otherDetails.email, password: otherDetails.password } })
+            }, 2000)
+
         } catch (e) {
-            setSnackbar({ open: true, details: e.response.data.message, type: "error" })
+
+            setSnackbar({ open: true, details: (e.response?.data?.message || "Server is down , please try again later"), type: "error" })
             setTimeout(() => {
                 setSnackbar({ open: false, details: "", type: "" })
             }, 2000)
+
         }
     }
 

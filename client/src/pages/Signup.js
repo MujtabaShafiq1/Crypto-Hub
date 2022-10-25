@@ -39,7 +39,7 @@ const Signup = () => {
                     <SignupForm />
 
                     <Flexbox display="flex" gap={2} flexDirection={{ xs: "column", md: "row", marginBottom: "5%" }}>
-                        <Typography sx={{ color: "gray", fontSize: "16px", textAlign: "center" }}>Already a user? </Typography>
+                        <Typography sx={{ color: "white", fontSize: "16px", textAlign: "center" }}>Already a user? </Typography>
                         <Typography
                             sx={{ color: "white", cursor: "pointer", fontSize: "16px", fontWeight: 600, textAlign: "center" }}
                             onClick={() => navigate("/login")}

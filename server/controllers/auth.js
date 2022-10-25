@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken")
 const login = async (req, res, next) => {
     try {
 
-        if (!req.user) throw new Error()
+        if (!req.user) return res.status(404).json({ message: "Authentication Failed" })
 
         if (req.user.provider === "local") return res.status(200).json(req.user);
 
@@ -17,12 +17,12 @@ const login = async (req, res, next) => {
         }
 
         const { id, displayName, photos, provider } = req.user;
-        const user = { userId: (req.user._json.email || req.user.id), name: displayName, photo: (provider === "steam" ? photos[2].value : photos[0].value), provider }
+        const user = { userId: (req.user._json.email || id), name: displayName, photo: (provider === "steam" ? photos[2].value : photos[0].value), provider }
         await Users.create(user)
         res.status(200).json(user);
 
     } catch (e) {
-        res.status(404).json({ message: "Authentication Failed" })
+        res.status(500).json({ message: "Please try again later" })
     }
 }
 
@@ -31,15 +31,17 @@ const register = async (req, res, next) => {
     try {
         const { name, email, password } = req.body;
         const user = await Users.findOne({ where: { userId: email } })
-        if (user) throw new Error("Email is already taken")
+
+        if (user) return res.status(404).json({ message: "Email is already taken" })
 
         const hashedPassword = await bcrypt.hash(password, 10)
+
+        // add photo option later
         await Users.create({ userId: email, name: name, password: hashedPassword })
         res.status(200).send("registered")
 
     } catch (e) {
-        console.log(e);
-        res.status(404).json({ message: "Email is already taken" })
+        res.status(500).json({ message: "Please try again later" })
     }
 }
 
