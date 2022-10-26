@@ -34,9 +34,7 @@ const SignupForm = () => {
     const signupHandler = async (data) => {
         try {
             const { confirmedPassword, ...otherDetails } = data;
-            // const response = await axios.post(`http://localhost:8000/auth/register`, otherDetails)
-            const response = await axios.post(`http://localhost:8000/token`, otherDetails)
-            console.log(response)
+            await axios.post(`http://localhost:8000/token`, otherDetails)
 
             setSnackbar({ open: true, details: "Email verification sent", type: "success" })
             setTimeout(() => {

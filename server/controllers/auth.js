@@ -1,4 +1,4 @@
-const { Users } = require("../models")
+const { Users, Tokens } = require("../models")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
@@ -27,22 +27,20 @@ const login = async (req, res, next) => {
 }
 
 const register = async (req, res, next) => {
-
     try {
-        const { name, email, password } = req.body;
-        const user = await Users.findOne({ where: { userId: email } })
+        const decodedToken = jwt.verify(req.body.token, process.env.JWT_EMAIL_KEY)
 
-        if (user) return res.status(404).json({ message: "Email is already taken" })
+        const user = await Tokens.findOne({ token: req.body.token })
 
-        const hashedPassword = await bcrypt.hash(password, 10)
+        const { token, ...otherDetails } = user
+        await Users.create(otherDetails)
 
-        // add photo option later
-        await Users.create({ userId: email, name: name, password: hashedPassword })
-        res.status(200).send("registered")
+        res.status(201).json({ email: email, password: decodedToken.data })
 
     } catch (e) {
         res.status(500).json({ message: "Please try again later" })
     }
 }
+
 
 module.exports = { login, register };
