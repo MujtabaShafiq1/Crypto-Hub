@@ -7,6 +7,7 @@ require("dotenv").config()
 
 const authRouter = require("./routes/auth")
 const tokenRouter = require("./routes/token")
+const userRouter = require("./routes/user")
 
 const app = express();
 app.use(express.json())
@@ -20,6 +21,7 @@ require("./passport");
 
 app.use("/auth", authRouter)
 app.use("/token", tokenRouter)
+app.use("/user", userRouter)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, async () => {

@@ -21,6 +21,9 @@ const StyledButton = styled(Button)({
         backgroundColor: "black",
         cursor: "pointer",
         opacity: 1
+    },
+    ":disabled": {
+        color: "white",
     }
 })
 

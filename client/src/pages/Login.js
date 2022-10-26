@@ -6,7 +6,7 @@ import LoginForm from "../components/Forms/LoginForm"
 import GithubIcon from "../assets/github.png"
 import GoogleIcon from "../assets/google.png"
 import SteamIcon from "../assets/steam.png"
-import background from "../assets/login.jpg"
+import background from "../assets/background.jpg"
 
 const styles = {
     PaperStyles: {

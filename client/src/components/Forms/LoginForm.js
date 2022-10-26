@@ -25,7 +25,7 @@ const LoginForm = () => {
     const formik = useFormik({
         initialValues: {
             email: (location?.state?.email || ""),
-            password: (location?.state?.password || "")
+            password: ""
         },
         validationSchema: loginSchema,
         onSubmit: (values) => {
@@ -96,7 +96,7 @@ const LoginForm = () => {
                         }}
                     />
 
-                    <StyledButton type="submit" sx={{ padding: "10px" }}>
+                    <StyledButton type="submit" disabled={snackbar.open} sx={{ padding: "10px" }}>
                         Login
                     </StyledButton>
 

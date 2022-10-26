@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { Typography, Grid } from "@mui/material"
 import { Flexbox, FormContainer } from "../misc/MUIComponents"
 
-import background from "../assets/login.jpg"
+import background from "../assets/background.jpg"
 import SignupForm from "../components/Forms/SignupForm"
 
 const styles = {

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Box, InputAdornment } from "@mui/material"
+import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material"
 import { useFormik } from "formik";
 import axios from "axios"
 
@@ -16,6 +16,7 @@ const SignupForm = () => {
     const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false)
+    const [disableButton, setDisableButton] = useState(false)
     const [snackbar, setSnackbar] = useState({ open: false, details: "", type: "" })
 
     const formik = useFormik({
@@ -34,16 +35,13 @@ const SignupForm = () => {
     const signupHandler = async (data) => {
         try {
             const { confirmedPassword, ...otherDetails } = data;
+            setDisableButton(true)
             await axios.post(`http://localhost:8000/token`, otherDetails)
-
-            setSnackbar({ open: true, details: "Email verification sent", type: "success" })
-            setTimeout(() => {
-                setSnackbar({ open: false, details: "", type: "" })
-                // navigate("/login", { state: { email: otherDetails.email, password: otherDetails.password } })
-            }, 2000)
+            navigate("/verify", { state: { email: otherDetails.email } })
 
         } catch (e) {
 
+            setDisableButton(false)
             setSnackbar({ open: true, details: (e.response?.data?.message || "Server is down , please try again later"), type: "error" })
             setTimeout(() => {
                 setSnackbar({ open: false, details: "", type: "" })
@@ -138,8 +136,8 @@ const SignupForm = () => {
                         }}
                     />
 
-                    <StyledButton type="submit">
-                        Sign up
+                    <StyledButton type="submit" disabled={disableButton}>
+                        {disableButton ? <CircularProgress size="3.5vh" sx={{ color: "white" }} /> : <Typography>Sign up</Typography>}
                     </StyledButton>
 
                 </Flexbox>
