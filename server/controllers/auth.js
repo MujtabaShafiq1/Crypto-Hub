@@ -29,14 +29,13 @@ const login = async (req, res, next) => {
 const register = async (req, res, next) => {
     try {
 
-        const decoded = jwt.verify(req.body.token, process.env.JWT_EMAIL_KEY)
-        console.log(decoded)
+        jwt.verify(req.body.token, process.env.JWT_EMAIL_KEY)
 
         const user = await Tokens.findOne({ where: { token: req.body.token } })
         const { id, token, ...otherDetails } = user.dataValues
-        // await Users.create(otherDetails)
-        res.status(201).json(user)
-        // res.status(201).json("Success")
+        await Tokens.destroy({ where: { userId: otherDetails.userId } })
+        await Users.create(otherDetails)
+        res.status(201).json("Success")
 
     } catch (e) {
         res.status(500).json({ message: (e.message || "Please try again later") })

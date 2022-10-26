@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react"
+import { useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Typography, Grid } from "@mui/material"
 import { Flexbox } from "../misc/MUIComponents"
@@ -21,18 +21,19 @@ const Confirmation = () => {
     const { token } = useParams();
     const navigate = useNavigate();
 
-    const verifyUser = useCallback(async () => {
-        try {
-            const response = await axios.post(`http://localhost:8000/auth/register`, token)
-            navigate("/login", { state: { email: response.data.email } })
-        } catch (e) {
-            console.log(e);
-        }
-    }, [navigate, token])
-
     useEffect(() => {
+        const verifyUser = async () => {
+            try {
+                await axios.post(`http://localhost:8000/auth/register`, { token: token })
+                setTimeout(() => {
+                    navigate("/login")
+                }, 2000)
+            } catch (e) {
+                console.log(e);     // add snackbar here
+            }
+        }
         verifyUser();
-    }, [verifyUser])
+    })
 
     return (
         <Grid style={styles.PaperStyles}>

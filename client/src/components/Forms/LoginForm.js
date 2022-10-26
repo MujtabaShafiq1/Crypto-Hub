@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Box, InputAdornment } from "@mui/material"
+import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material"
 import { useFormik } from "formik";
 import { authActions } from '../../store/authSlice';
 import axios from "axios"
@@ -15,16 +15,16 @@ import VisibilityOff from "../../assets/visible.png";
 
 const LoginForm = () => {
 
-    const location = useLocation()
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const [showPassword, setShowPassword] = useState(false)
+    const [disableButton, setDisableButton] = useState(false)
     const [snackbar, setSnackbar] = useState({ open: false, details: "", type: "" })
 
     const formik = useFormik({
         initialValues: {
-            email: (location?.state?.email || ""),
+            email: "",
             password: ""
         },
         validationSchema: loginSchema,
@@ -35,11 +35,16 @@ const LoginForm = () => {
 
     const loginHandler = async (data) => {
         try {
+
+            setDisableButton(true)
             const response = await axios.post(`http://localhost:8000/auth/login`, data, { withCredentials: true })
             const { id, createdAt, updatedAt, ...otherDetails } = response.data
             dispatch(authActions.login(otherDetails))
             navigate("/")
+
         } catch (e) {
+
+            setDisableButton(false)
             setSnackbar({ open: true, details: (e.response?.data?.message || "Server is down , please try again later"), type: "error" })
             setTimeout(() => {
                 setSnackbar({ open: false, details: "", type: "" })
@@ -96,8 +101,8 @@ const LoginForm = () => {
                         }}
                     />
 
-                    <StyledButton type="submit" disabled={snackbar.open} sx={{ padding: "10px" }}>
-                        Login
+                    <StyledButton type="submit" disabled={disableButton}>
+                        {disableButton ? <CircularProgress size="3.5vh" sx={{ color: "white" }} /> : <Typography>Login</Typography>}
                     </StyledButton>
 
                 </Flexbox>
