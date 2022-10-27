@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import VerifyEmail from "./pages/VerifyEmail";
 import Confirmation from "./pages/Confirmation";
+import UpdatePassword from "./pages/UpdatePassword";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/HOC/ProtectedRoute"
 import { getUser } from "./store/authActions";
@@ -26,8 +27,9 @@ function App() {
       <Route element={<ProtectedRoute />}><Route exact path="/" element={<Home />} /></Route>
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<Signup />} />
-      <Route path="/verify" element={<VerifyEmail />} />
-      <Route path="/confirmation/:token" element={<Confirmation />} />
+      <Route exact path="/verify" element={<VerifyEmail />} />
+      <Route exact path="/confirmation/:token" element={<Confirmation />} />
+      <Route exact path="/reset/:token" element={<UpdatePassword />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
 

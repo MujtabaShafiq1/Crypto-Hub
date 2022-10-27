@@ -11,3 +11,13 @@ export const signupSchema = yup.object().shape({
     password: yup.string().trim().required("Password is required").min(8, 'Minimum characters: 8').max(15, 'Maximum characters: 15'),
     confirmedPassword: yup.string().trim().required("Please Confirm Password").oneOf([yup.ref('password'), null], 'Passwords must match')
 })
+
+export const emailSchema = yup.object().shape({
+    email: yup.string().email('Invalid email format').required('Email is required'),
+})
+
+export const updatePasswordSchema = yup.object().shape({
+    password: yup.string().trim().required("Password is required").min(8, 'Minimum characters: 8').max(15, 'Maximum characters: 15'),
+    confirmedPassword: yup.string().trim().required("Please Confirm Password").oneOf([yup.ref('password'), null], 'Passwords must match')
+})
+

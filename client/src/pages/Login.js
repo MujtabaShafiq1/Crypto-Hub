@@ -43,9 +43,9 @@ const Login = () => {
             justifyContent="center"
             style={styles.PaperStyles}
         >
-
             <FormContainer>
-                <Flexbox sx={{ flexDirection: "column", gap: { xs: 2, lg: 4 } }}>
+
+                <Flexbox sx={{ flexDirection: "column", gap: { xs: 2, lg: 3 } }}>
 
                     <Flexbox sx={{ flexDirection: "column" }}>
                         <Typography sx={{ fontSize: "30px" }} fontWeight={500}>Welcome</Typography>

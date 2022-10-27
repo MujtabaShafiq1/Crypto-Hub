@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Typography, Grid } from "@mui/material"
-import { Flexbox } from "../misc/MUIComponents"
+import { Typography, Grid, Container } from "@mui/material"
 import background from "../assets/background.jpg"
+import { Flexbox } from "../misc/MUIComponents";
 
 const styles = {
     PaperStyles: {
@@ -25,9 +25,12 @@ const VerifyEmail = () => {
 
     return (
         <Grid style={styles.PaperStyles}>
-            <Flexbox sx={{ minHeight: "80vh", gap: 2 }}>
-                <Typography sx={{ fontSize: "20px" }}>Verify Email that have been sent on </Typography>
-                <Typography sx={{ fontSize: "22px", fontWeight: 700, color: "gray" }} >{location.state?.email}</Typography>
+            <Flexbox sx={{ minHeight: "80vh" }}>
+                <Container sx={{ width: { xs: "95%", md: "40%" } }}>
+                    <Typography sx={{ fontSize: "20px", textAlign: "center" }}>
+                        We have sent email to:  <span style={{ fontSize: "22px", fontWeight: 700, color: "gray", overflowWrap: "break-word" }}> {location.state?.email} </span> to confirm the validity of your email address. After receiving follow the link provided to complete the registration
+                    </Typography>
+                </Container>
             </Flexbox>
         </Grid >
 

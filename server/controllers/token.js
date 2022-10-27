@@ -14,12 +14,12 @@ const tempUser = async (req, res, next) => {
         await Tokens.destroy({ where: { createdAt: { [Op.lt]: new Date(Date.now() - (60 * 5 * 1000)) } } });      // expires in 5 minutes
 
         const user = await Users.findOne({ where: { userId: email } })
-        if (user) return res.status(404).json({ message: "Email is already taken" })
+        if (user) return res.status(400).json({ message: "Email is already taken" })
 
         const verificationToken = jwt.sign({ name, email }, process.env.JWT_EMAIL_KEY, { expiresIn: "5m" });
         const tempUser = { userId: email, name, password: hashedPassword, token: verificationToken }
 
-        await sendMail(req.body.email, "Verify Email on localhost", verificationToken)
+        await sendMail(req.body.email, "Verify Email on localhost", verificationToken, "verification")
 
         // add photo option later
         await Tokens.create(tempUser)

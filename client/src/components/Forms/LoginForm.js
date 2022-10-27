@@ -30,7 +30,7 @@ const LoginForm = () => {
         validationSchema: loginSchema,
         onSubmit: (values) => {
             loginHandler(values)
-        },
+        }
     });
 
     const loginHandler = async (data) => {
@@ -51,6 +51,21 @@ const LoginForm = () => {
             }, 2000)
         }
     }
+
+    const forgotPasswordHandler = async () => {
+        try {
+            if (formik.values.email.length > 0 && !Boolean(formik.errors.email)) {
+                setSnackbar({ open: true, details: `Password reset request sent`, type: "info" })
+                await axios.post(`http://localhost:8000/user/reset/password`, { userId: formik.values.email })
+            }
+        } catch (e) {
+            setSnackbar({ open: true, details: (e.response.data?.message || `Please try again later`), type: "error" })
+        }
+        setTimeout(() => {
+            setSnackbar({ open: false, details: "", type: "" })
+        }, 2000)
+    }
+
 
     return (
 
@@ -106,7 +121,13 @@ const LoginForm = () => {
                     </StyledButton>
 
                 </Flexbox>
+
             </form >
+
+            <Typography sx={{ fontSize: "16px", textAlign: "center", color: "gray", fontWeight: 600, cursor: "pointer" }} onClick={forgotPasswordHandler}>
+                Forgot Password?
+            </Typography>
+
         </>
 
     )
