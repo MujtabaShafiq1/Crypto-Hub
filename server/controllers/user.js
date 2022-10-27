@@ -5,11 +5,13 @@ const jwt = require("jsonwebtoken")
 
 const resetPassword = async (req, res, next) => {
     try {
-        const verificationToken = jwt.sign({ userId: req.body.userId }, process.env.JWT_RESET_PASSWORD_KEY, { expiresIn: "5m" });
 
         const user = await Users.findOne({ where: { userId: req.body.userId } })
         if (!user) return res.status(400).json({ message: "User doesnt exist" })
 
+        if (user.provider !== "local") return res.status(401).json({ message: "Un-Authorized" })
+
+        const verificationToken = jwt.sign({ userId: req.body.userId }, process.env.JWT_RESET_PASSWORD_KEY, { expiresIn: "5m" });
         await sendMail(req.body.userId, "Reset Password on localhost", verificationToken, "reset")
         res.status(200).json("Success")
 
