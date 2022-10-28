@@ -32,7 +32,7 @@ const Confirmation = () => {
                     navigate("/login")
                 }, 2000)
             } catch (e) {
-                setError({ status: true, details: e.response.data.message })
+                setError({ status: true, details: (e.response?.data?.message || "Server is down , please try again later") })
             }
         }
         verifyUser();

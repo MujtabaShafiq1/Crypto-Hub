@@ -7,7 +7,8 @@ const jwt = require("jsonwebtoken")
 const tempUser = async (req, res, next) => {
 
     try {
-        const { name, email, password } = req.body;
+
+        const { name, email, password, file } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10)
 
         // await Tokens.Destroy({ where: { createdAt: { [Op.lt]: new Date(Date.now() - (60 * 60 * 24 * 1000)) } } });   //expire in 24 hrs
@@ -17,11 +18,10 @@ const tempUser = async (req, res, next) => {
         if (user) return res.status(400).json({ message: "Email is already taken" })
 
         const verificationToken = jwt.sign({ name, email }, process.env.JWT_EMAIL_KEY, { expiresIn: "5m" });
-        const tempUser = { userId: email, name, password: hashedPassword, token: verificationToken }
+        const tempUser = { userId: email, name, password: hashedPassword, token: verificationToken, photo: file }
 
         await sendMail(req.body.email, "Verify Email on localhost", verificationToken, "verification")
 
-        // add photo option later
         await Tokens.create(tempUser)
         res.status(200).send(tempUser)
 

@@ -55,13 +55,13 @@ const LoginForm = () => {
     const forgotPasswordHandler = async () => {
         try {
             if (formik.values.email.length > 0 && !Boolean(formik.errors.email)) {
-                setSnackbar({ open: true, details: `Password reset request sent`, type: "info" })
                 await axios.post(`http://localhost:8000/user/reset/password`, { userId: formik.values.email })
+                setSnackbar({ open: true, details: `Password reset request sent`, type: "info" })
                 return;
             }
             setSnackbar({ open: true, details: `Please provide email`, type: "error" })
         } catch (e) {
-            setSnackbar({ open: true, details: (e.response.data?.message || `Please try again later`), type: "error" })
+            setSnackbar({ open: true, details: (e.response?.data?.message || `Please try again later`), type: "error" })
         }
         setTimeout(() => {
             setSnackbar({ open: false, details: "", type: "" })
