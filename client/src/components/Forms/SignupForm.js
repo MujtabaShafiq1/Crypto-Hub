@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material"
+import { Box, InputAdornment, CircularProgress, Typography, Avatar } from "@mui/material"
 import { useFormik } from "formik";
 import axios from "axios"
 
@@ -10,13 +10,13 @@ import { signupSchema } from '../../utils/validationSchema';
 import CustomSnackbar from '../UI/CustonSnackbar';
 import Visibility from "../../assets/visibility.png";
 import VisibilityOff from "../../assets/visible.png";
+import DeleteIcon from "../../assets/denied.png"
 
 const SignupForm = () => {
 
     const navigate = useNavigate();
 
     const [file, setFile] = useState(null)
-    const [image, setImage] = useState(null)
     const [showPassword, setShowPassword] = useState(false)
     const [disableButton, setDisableButton] = useState(false)
     const [snackbar, setSnackbar] = useState({ open: false, details: "", type: "" })
@@ -62,7 +62,6 @@ const SignupForm = () => {
             data.append("cloud_name", "dkai1pma6");
             const response = await axios.post(`https://api.cloudinary.com/v1_1/dkai1pma6/image/upload`, data)
             setFile(response.data.url.toString());
-            setImage(value)
             return;
         }
 
@@ -70,11 +69,6 @@ const SignupForm = () => {
         setTimeout(() => {
             setSnackbar({ open: false, details: "", type: "" })
         }, 2000)
-    }
-
-    const imageDeletHandler = () => {
-        setFile(null)
-        setImage(null)
     }
 
     return (
@@ -162,21 +156,31 @@ const SignupForm = () => {
                             ),
                         }}
                     />
-                    <Box sx={{ display: "flex", gap: 2, width: "100%", }}>
-                        <StyledButton variant="contained" component="label" sx={{ width: "100%", bgcolor: "gray", flexDirection: "column" }}>
-                            <Typography>Upload Image</Typography>
-                            <input type="file" hidden onChange={(e) => imageHandler(e.target.files[0])} />
-                            {image?.name &&
-                                <Flexbox sx={{ width: "80%", gap: 2 }}>
-                                    <Typography sx={{ fontSize: "12px", wordBreak: "break-all" }}>Selected Image: {image.name}</Typography>
-                                </Flexbox>
-                            }
-                        </StyledButton>
-                        <Box>
-                            {image?.name && <Typography sx={{ color: "red", cursor: "pointer" }} onClick={imageDeletHandler}>X</Typography>}
-                        </Box>
-                    </Box>
 
+                    <StyledButton variant="contained" component="label" sx={{ width: "100%", bgcolor: "gray", flexDirection: "column" }}>
+                        <Typography>Upload Image</Typography>
+                        <input type="file" hidden onChange={(e) => imageHandler(e.target.files[0])} />
+                    </StyledButton>
+
+
+                    {file &&
+                        <Box display="flex" justifyContent="center">
+                            <Avatar src={file} sx={{ width: { xs: 50, md: 150 }, height: { xs: 50, md: 150 } }} />
+                            <Avatar src={DeleteIcon} onClick={() => setFile(null)}
+                                sx={{
+                                    width: { xs: 10, md: 20 },
+                                    height: { xs: 10, md: 20 },
+                                    position: "absolute",
+                                    left: "60%",
+                                    padding: "2px",
+                                    backgroundColor: "white",
+                                    borderRadius: "50px",
+                                    opacity: 0.4,
+                                    cursor: "pointer"
+                                }}
+                            />
+                        </Box>
+                    }
 
                     <StyledButton type="submit" disabled={disableButton}>
                         {disableButton ? <CircularProgress size="3.5vh" sx={{ color: "white" }} /> : <Typography>Sign up</Typography>}

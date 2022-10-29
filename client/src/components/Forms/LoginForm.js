@@ -77,7 +77,7 @@ const LoginForm = () => {
 
             <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }} >
 
-                <Flexbox sx={{ flexDirection: "column", gap: 2.5 }}>
+                <Flexbox sx={{ flexDirection: "column", gap: { xs: 1, md: 2.5 } }}>
 
                     <StyledField
                         variant="outlined"

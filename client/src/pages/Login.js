@@ -45,16 +45,16 @@ const Login = () => {
         >
             <FormContainer>
 
-                <Flexbox sx={{ flexDirection: "column", gap: { xs: 2, lg: 3 } }}>
+                <Flexbox sx={{ flexDirection: "column", gap: { xs: 1.5, lg: 3 } }}>
 
                     <Flexbox sx={{ flexDirection: "column" }}>
-                        <Typography sx={{ fontSize: "30px" }} fontWeight={500}>Welcome</Typography>
-                        <Typography sx={{ fontSize: "20px", textAlign: "center" }} variant="h6" color="gray" fontWeight={300}>login to continue</Typography>
+                        <Typography sx={{ fontSize: { xs: "26px", lg: "30px" } }} fontWeight={500}>Welcome</Typography>
+                        <Typography sx={{ fontSize: { xs: "18px", lg: "20px" }, textAlign: "center" }} variant="h6" color="gray" fontWeight={300}>login to continue</Typography>
                     </Flexbox>
 
                     <LoginForm />
 
-                    <Flexbox display="flex" gap={2} flexDirection={{ xs: "column", md: "row" }}>
+                    <Flexbox display="flex" gap={1} flexDirection={{ xs: "column", md: "row" }}>
                         <Typography sx={{ fontSize: "16px", textAlign: "center" }}>Dont have an account? </Typography>
                         <Typography
                             sx={{ color: { xs: "white", lg: "gray" }, cursor: "pointer", fontSize: "16px", fontWeight: 600, textAlign: "center" }}

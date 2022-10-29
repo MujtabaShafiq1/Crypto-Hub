@@ -129,6 +129,8 @@ const UpdatePassword = () => {
                                 }}
                             />
 
+                            <Typography sx={{ color: "gray", fontWeight: 700 }}>Go back to Login</Typography>
+
                             <StyledButton type="submit" disabled={disableButton}>
                                 {disableButton ? <CircularProgress size="3.5vh" sx={{ color: "white" }} /> : <Typography>Update Password</Typography>}
                             </StyledButton>

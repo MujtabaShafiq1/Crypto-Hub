@@ -20,6 +20,8 @@ const styles = {
 
 const Confirmation = () => {
 
+    // add navigate to login / signup
+
     const { token } = useParams();
     const navigate = useNavigate();
     const [error, setError] = useState({ status: false, details: "" })
