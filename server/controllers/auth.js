@@ -1,5 +1,4 @@
 const { Users, Tokens } = require("../models")
-const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 const login = async (req, res, next) => {
@@ -33,11 +32,14 @@ const register = async (req, res, next) => {
 
         const user = await Tokens.findOne({ where: { token: req.body.token } })
         const { id, token, ...otherDetails } = user.dataValues
+
         await Tokens.destroy({ where: { userId: otherDetails.userId } })
         await Users.create(otherDetails)
+
         res.status(201).json("Success")
 
     } catch (e) {
+        console.log(e);
         res.status(500).json({ message: (e.message || "Please try again later") })
     }
 }

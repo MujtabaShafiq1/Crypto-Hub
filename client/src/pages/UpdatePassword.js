@@ -59,6 +59,8 @@ const UpdatePassword = () => {
 
     return (
 
+        // add navigate to login
+
         <Grid
             container
             direction="column"
@@ -73,7 +75,7 @@ const UpdatePassword = () => {
                 <Flexbox sx={{ flexDirection: "column", gap: { xs: 2, lg: 3 } }}>
 
 
-                    <Typography sx={{ fontSize: "30px", mt: "5%" }} fontWeight={500}>Reset Password</Typography>
+                    <Typography sx={{ fontSize: { xs: "26px", lg: "30px" }, mt: "5%", textAlign: "center" }} fontWeight={500}>Reset Password</Typography>
 
                     <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }} >
 
@@ -129,7 +131,9 @@ const UpdatePassword = () => {
                                 }}
                             />
 
-                            <Typography sx={{ color: "gray", fontWeight: 700 }}>Go back to Login</Typography>
+                            <Typography sx={{ color: { xs: "white", lg: "gray" }, fontWeight: 700, cursor: "pointer" }} onClick={() => navigate("/login")}>
+                                Go back to Login
+                            </Typography>
 
                             <StyledButton type="submit" disabled={disableButton}>
                                 {disableButton ? <CircularProgress size="3.5vh" sx={{ color: "white" }} /> : <Typography>Update Password</Typography>}

@@ -20,8 +20,6 @@ const styles = {
 
 const Confirmation = () => {
 
-    // add navigate to login / signup
-
     const { token } = useParams();
     const navigate = useNavigate();
     const [error, setError] = useState({ status: false, details: "" })
@@ -30,9 +28,7 @@ const Confirmation = () => {
         const verifyUser = async () => {
             try {
                 await axios.post(`http://localhost:8000/auth/register`, { token: token })
-                setTimeout(() => {
-                    navigate("/login")
-                }, 2000)
+                setTimeout(() => { navigate("/login") }, 2000)
             } catch (e) {
                 setError({ status: true, details: (e.response?.data?.message || "Server is down , please try again later") })
             }

@@ -1,9 +1,22 @@
-import { Box, Button, Container, styled, TextField } from "@mui/material"
+import { Box, Button, Container, styled, TextField, Toolbar, Avatar, Typography } from "@mui/material"
 
 const Flexbox = styled(Box)({
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
+})
+
+
+const StyledLink = styled(Typography)({
+    borderRadius: "8px",
+    padding: "8px 20px",
+    color: "white",
+    fontSize: "16px",
+    "&:hover": {
+        backgroundColor: "skyblue",
+        cursor: "pointer"
+    },
+    textTransform: "none",
 })
 
 const StyledButton = styled(Button)({
@@ -60,4 +73,5 @@ const FormContainer = styled(Container)(({ theme }) => ({
     backdropFilter: "blur(50px)",
 }))
 
-export { Flexbox, StyledButton, FormContainer, StyledField }
+
+export { Flexbox, StyledButton, FormContainer, StyledField, StyledLink }
