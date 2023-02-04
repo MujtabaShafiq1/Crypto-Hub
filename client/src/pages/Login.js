@@ -54,7 +54,7 @@ const Login = () => {
 
                     <LoginForm />
 
-                    <Flexbox display="flex" gap={1} flexDirection={{ xs: "column", md: "row" }}>
+                    <Flexbox gap={1} flexDirection={{ xs: "column", md: "row" }}>
                         <Typography sx={{ fontSize: "16px", textAlign: "center" }}>Dont have an account? </Typography>
                         <Typography
                             sx={{ color: { xs: "white", lg: "gray" }, cursor: "pointer", fontSize: "16px", fontWeight: 600, textAlign: "center" }}
