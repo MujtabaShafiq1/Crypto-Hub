@@ -1,27 +1,21 @@
 const router = require("express").Router();
 const passport = require("passport");
-const { login, register } = require("../controllers/auth");
+const { login, register, socialLogin } = require("../controllers/auth");
 
 router.post("/register", register);
+router.post("/login", login);
 
-router.get("/login/success", login);
+router.get("/login/success", socialLogin);
 
 router.get("/login/failed", (req, res) => {
-    res.status(401).json({ success: false, message: "Invalid Credentials" });
+    res.status(401).json({ success: false, message: "Please try again later" });
 });
-
 
 router.get("/logout", (req, res) => {
     req.session = null
     req.logout();
     res.redirect(`${process.env.CLIENT_URL}login`);
 });
-
-
-router.post('/login', passport.authenticate("local", {
-    successRedirect: "login/success",
-    failureRedirect: "login/failed",
-}))
 
 
 router.get("/github", passport.authenticate("github", { scope: ["profile"] }));

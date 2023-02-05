@@ -1,35 +1,7 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const GithubStrategy = require("passport-github2").Strategy;
 const SteamStrategy = require("passport-steam").Strategy;
-const LocalStrategy = require('passport-local').Strategy;
-
-const bcrypt = require("bcryptjs")
-
-const { Users } = require("./models")
 const passport = require("passport")
-
-
-passport.use(
-    new LocalStrategy(
-        { usernameField: 'email', passwordField: 'password' },
-        function (email, userPassword, done) {
-
-            Users.findOne({ where: { userId: email } }).then(user => {
-
-                if (!user) return done(null, false);
-
-                const { password, ...otherDetails } = user.dataValues
-                const correctPass = bcrypt.compareSync(userPassword, password);
-
-                if (!correctPass) return done(null, false);
-                return done(null, otherDetails);
-
-            }).catch(err => done(err, false))
-
-        }
-    )
-);
-
 
 passport.use(
     new GithubStrategy(
