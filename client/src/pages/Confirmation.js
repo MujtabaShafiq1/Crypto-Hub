@@ -30,7 +30,7 @@ const Confirmation = () => {
                 await axios.post(`http://localhost:8000/auth/register`, { token: token })
                 setTimeout(() => { navigate("/login") }, 2000)
             } catch (e) {
-                setError({ status: true, details: (e.response?.data?.message || "Server is down , please try again later") })
+                setError({ status: true, details: (e.response.data.message) })
             }
         }
         verifyUser();

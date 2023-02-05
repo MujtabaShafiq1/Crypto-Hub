@@ -11,6 +11,7 @@ import { loginSchema } from '../../utils/validationSchema';
 import CustomSnackbar from '../UI/CustonSnackbar';
 import Visibility from "../../assets/visibility.png";
 import VisibilityOff from "../../assets/visible.png";
+import { convertLength } from '@mui/material/styles/cssUtils';
 
 
 const LoginForm = () => {
@@ -35,17 +36,16 @@ const LoginForm = () => {
 
     const loginHandler = async (data) => {
         try {
-
             setDisableButton(true)
-            const response = await axios.post(`http://localhost:8000/auth/login`, data, { withCredentials: true })
-            const { id, createdAt, updatedAt, ...otherDetails } = response.data
+            const response = await axios.post(`http://localhost:8000/auth/login`, data)
+            const { token, ...otherDetails } = response.data
             dispatch(authActions.login(otherDetails))
+            localStorage.setItem("accessToken", token)
             navigate("/")
 
         } catch (e) {
-
             setDisableButton(false)
-            setSnackbar({ open: true, details: (e.response?.data?.message || "Server is down , please try again later"), type: "error" })
+            setSnackbar({ open: true, details: (e.response.data.message), type: "error" })
             setTimeout(() => {
                 setSnackbar({ open: false, details: "", type: "" })
             }, 2000)
@@ -61,6 +61,7 @@ const LoginForm = () => {
             }
             setSnackbar({ open: true, details: `Please provide email`, type: "error" })
         } catch (e) {
+            console.log(e)
             setSnackbar({ open: true, details: (e.response?.data?.message || `Please try again later`), type: "error" })
         }
         setTimeout(() => {
