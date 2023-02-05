@@ -3,7 +3,7 @@ const cors = require("cors")
 const cookieSession = require("cookie-session")
 const passport = require("passport");
 const db = require('./models')
-const { errorMiddleware } = require("./middlewares/error")
+const { errorMiddleware } = require("./middlewares/Error")
 require("dotenv").config()
 
 const authRouter = require("./routes/auth")

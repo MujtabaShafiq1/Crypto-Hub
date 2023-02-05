@@ -1,5 +1,5 @@
 const { Users, Tokens } = require("../models")
-const { createError } = require("../middlewares/error")
+const { createError } = require("../middlewares/Error")
 const asyncHandler = require('express-async-handler')
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
@@ -9,12 +9,12 @@ const login = asyncHandler(async (req, res, next) => {
     const user = await Users.findOne({ where: { userId: req.body.email } })
     if (!user) return next(createError(404, "User not found"))
 
-    const { password, userId, name, photo } = user.dataValues
+    const { id, password, userId, name, photo } = user.dataValues
 
     const validPassword = await bcrypt.compare(req.body.password, password)
     if (!validPassword) return next(createError(400, "Incorrect Password"));
 
-    const token = jwt.sign({ id: user._id, userId }, process.env.JWT_KEY, { expiresIn: "1d" })
+    const token = jwt.sign({ id, userId }, process.env.JWT_KEY, { expiresIn: "1d" })
     res.status(200).json({ token, userId, name, photo })
 })
 
@@ -30,7 +30,6 @@ const register = asyncHandler(async (req, res, next) => {
     await Users.create(otherDetails)
 
     res.status(201).json("Success")
-
 })
 
 const socialLogin = asyncHandler(async (req, res, next) => {

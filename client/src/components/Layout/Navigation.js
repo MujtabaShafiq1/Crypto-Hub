@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useSelector } from "react-redux"
 
 import { AppBar, Typography, Box, Toolbar, Avatar } from '@mui/material'

@@ -1,7 +1,13 @@
 const { Users } = require("../models")
-const { sendMail } = require("../utils/sendMail")
+const { sendMail } = require("../utils/SendMail")
+const asyncHandler = require('express-async-handler')
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+
+// just for test
+const getMyDetails = asyncHandler(async (req, res, next) => {
+    res.json(req.user)
+})
 
 const resetPassword = async (req, res, next) => {
     try {
@@ -38,4 +44,4 @@ const updatePassword = async (req, res, next) => {
     }
 }
 
-module.exports = { resetPassword, updatePassword }
+module.exports = { getMyDetails, resetPassword, updatePassword }
