@@ -4,7 +4,7 @@ const { getMyDetails, resetPassword, updatePassword } = require("../controllers/
 const { validateToken } = require("../middlewares/ValidateToken");
 
 router.get("/me", validateToken, getMyDetails)
-router.post("/reset/password", validateToken, resetPassword)
+router.post("/reset/password", resetPassword)
 router.post("/reset/update", updatePassword)
 
 module.exports = router

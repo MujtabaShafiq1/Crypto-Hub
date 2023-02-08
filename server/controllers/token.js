@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 const tempUser = async (req, res, next) => {
-
+    
     const { name, email, password, file } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10)
 

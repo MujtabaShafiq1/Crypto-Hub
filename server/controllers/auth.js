@@ -33,22 +33,20 @@ const register = asyncHandler(async (req, res, next) => {
 })
 
 const socialLogin = asyncHandler(async (req, res, next) => {
-    console.log("hello")
+    console.log(req.user)
+    // if (!req.user) return next(createError(404, "Authentication Failed"))
+    
+    // const foundUser = await Users.findOne({ where: { userId: (req.user._json.email || req.user.id) } })
 
-    if (!req.user) return next(createError(404, "Authentication Failed"))
+    // if (foundUser) {
+    //     const { password, ...details } = foundUser.dataValues
+    //     return res.status(200).json(details);
+    // }
 
-    const foundUser = await Users.findOne({ where: { userId: (req.user._json.email || req.user.id) } })
-
-    if (foundUser) {
-        const { password, ...details } = foundUser.dataValues
-        return res.status(200).json(details);
-    }
-
-    const { id, displayName, photos, provider } = req.user;
-    const user = { userId: (req.user._json.email || id), name: displayName, photo: (provider === "steam" ? photos[2].value : photos[0].value), provider }
-    await Users.create(user)
-    res.status(200).json(user);
-
+    // const { id, displayName, photos, provider } = req.user;
+    // const user = { userId: (req.user._json.email || id), name: displayName, photo: (provider === "steam" ? photos[2].value : photos[0].value), provider }
+    // await Users.create(user)
+    // res.status(200).json(user);
 })
 
 module.exports = { login, register, socialLogin };

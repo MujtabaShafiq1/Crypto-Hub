@@ -5,7 +5,6 @@ const passport = require("passport");
 require("dotenv").config()
 
 const { errorMiddleware } = require("./middlewares/Error")
-const { PassportStorageToken } = require("./middlewares/PassportStorageToken");
 
 const db = require('./models')
 
@@ -27,9 +26,6 @@ app.use(cors({ origin: "http://localhost:3000", methods: "GET,POST,PUT,DELETE", 
 app.use(passport.initialize());
 app.use(passport.session());
 require("./passport");
-
-// set token in local storage
-// app.use(PassportStorageToken);
 
 // routes
 app.use("/auth", authRouter)
