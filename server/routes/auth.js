@@ -2,10 +2,9 @@ const router = require("express").Router();
 const passport = require("passport");
 const { login, register, socialLogin } = require("../controllers/auth");
 
-router.post("/register", register);
 router.post("/login", login);
-
-router.get("/login/success", socialLogin);
+router.post("/register", register);
+router.post("/login/success", socialLogin)
 
 router.get("/login/failed", (req, res) => {
     res.status(401).json({ success: false, message: "Please try again later" });

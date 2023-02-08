@@ -28,6 +28,7 @@ const Navigation = () => {
     const logoutHandler = async () => {
         localStorage.removeItem("accessToken")
         window.open(`http://localhost:8000/auth/logout`, "_self");
+        navigate("/login")
     }
 
     return (

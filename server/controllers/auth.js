@@ -33,10 +33,9 @@ const register = asyncHandler(async (req, res, next) => {
 })
 
 const socialLogin = asyncHandler(async (req, res, next) => {
+    console.log("hello")
 
-    if (!req.user) return res.status(404).json({ message: "Authentication Failed" })
-
-    if (req.user.provider === "local") return res.status(200).json(req.user);
+    if (!req.user) return next(createError(404, "Authentication Failed"))
 
     const foundUser = await Users.findOne({ where: { userId: (req.user._json.email || req.user.id) } })
 
