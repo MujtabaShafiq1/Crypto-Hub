@@ -18,9 +18,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        provider: {
-            type: DataTypes.STRING,
-            default: "local"
+        uuid: {
+            type: DataTypes.INTEGER,
+            unique: true,
+            allowNull: true,
         }
     })
 

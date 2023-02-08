@@ -19,8 +19,8 @@ const authSlice = createSlice({
     },
     extraReducers: {
         [getUser.pending]: (state, action) => {
-            state = initialState 
-            state.status = null;   
+            state.user = initialState.user;
+            state.status = null;
         },
         [getUser.rejected]: (state, action) => {
             state.error = action.payload;

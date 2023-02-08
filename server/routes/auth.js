@@ -3,8 +3,7 @@ const passport = require("passport");
 const { login, register, socialLogin } = require("../controllers/auth");
 
 // router.post("/login", login);
-// router.post("/register", register);
-
+router.post("/register", register);
 router.get("/login/success", socialLogin)
 
 router.get("/login/failed", (req, res) => {
