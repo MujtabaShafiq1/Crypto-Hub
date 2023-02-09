@@ -18,7 +18,6 @@ const login = asyncHandler(async (req, res, next) => {
     res.status(200).json({ token, userId, name, photo })
 })
 
-
 const register = asyncHandler(async (req, res, next) => {
 
     jwt.verify(req.body.token, process.env.JWT_EMAIL_KEY)

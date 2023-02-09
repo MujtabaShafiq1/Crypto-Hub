@@ -14,7 +14,7 @@ const tempUser = async (req, res, next) => {
     const user = await Users.findOne({ where: { userId: email } })
     if (user) return res.status(400).json({ message: "Email is already taken" })
 
-    const verificationToken = jwt.sign({ name, email }, process.env.JWT_EMAIL_KEY, { expiresIn: "5m" });
+    const verificationToken = jwt.sign({ name, email }, process.env.JWT_EMAIL_KEY, { expiresIn: "10m" });
     const tempUser = { userId: email, name, password: hashedPassword, token: verificationToken, photo: file }
 
     await sendMail(req.body.email, "Verify Email on localhost", verificationToken, "verification")
