@@ -14,9 +14,11 @@ const login = asyncHandler(async (req, res, next) => {
     const validPassword = await bcrypt.compare(req.body.password, password)
     if (!validPassword) return next(createError(400, "Incorrect Password"));
 
-    const token = jwt.sign({ id, userId }, process.env.JWT_KEY, { expiresIn: "1d" })
-    res.status(200).json({ token, userId, name, photo })
+    const token = jwt.sign({ id, userId }, process.env.JWT_KEY, { expiresIn: "3d" })
+    req.session.user = { token };
+    res.status(200).json({  userId, name, photo })
 })
+
 
 const register = asyncHandler(async (req, res, next) => {
 
@@ -31,13 +33,14 @@ const register = asyncHandler(async (req, res, next) => {
     res.status(201).json("Success")
 })
 
+
 const socialLogin = asyncHandler(async (req, res, next) => {
-      
-        if (!req.user) return next(createError(404, "Authentication Failed"))
+        console.log(req.user)
+        if (!req.user) return next(createError(204, "Token not present"))
         
         const { id, displayName, username, photos } = req.user;
         const foundUser = await Users.findOne({ where: { userId: (req.user._json.email || username), uuid: req.user.id } })
-        
+       
         if (foundUser) {
             const { password, ...details } = foundUser.dataValues
             return res.status(200).json(details);

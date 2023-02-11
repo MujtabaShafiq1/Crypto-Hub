@@ -3,11 +3,7 @@ const { createError } = require("../middlewares/Error")
 
 const validateToken = (req, res, next) => {
 
-    const bearerToken = req.headers.authorization;
-    if (!bearerToken || !bearerToken.startsWith("Bearer ")) {
-        return next(createError(401, "Unauthorized"))
-    }
-    const token = bearerToken.split(' ')[1];
+    // console.log(req)
 
     try {
         const validToken = verify(token, process.env.JWT_KEY);
