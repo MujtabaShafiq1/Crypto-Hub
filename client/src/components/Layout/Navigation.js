@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppBar, Typography, Box, Toolbar, Avatar } from "@mui/material";
@@ -18,15 +17,12 @@ const styles = {
 
 const Navigation = () => {
 
-    
     const navigate = useNavigate();
-    const [open, setOpen] = useState(false);
     const user = useSelector((state) => state.auth.user);
     const status = useSelector((state) => state.auth.status);
 
     const logoutHandler = async () => {
         window.open(`http://localhost:8000/auth/logout`, "_self");
-        navigate("/login");
     };
 
     return (
@@ -86,7 +82,7 @@ const Navigation = () => {
                         <StyledButton onClick={() => navigate("/login")}>Login Now</StyledButton>
                     )}
                     <Box sx={{ display: { xs: "flex", lg: "none" }, paddingRight: "10px" }}>
-                        <Box component="img" src={MenuIcon} onClick={() => setOpen(true)} width={50} />
+                        <Box component="img" src={MenuIcon} width={50} />
                     </Box>
                 </Flexbox>
             </Toolbar>

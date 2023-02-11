@@ -18,11 +18,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        uuid: {
-            type: DataTypes.INTEGER,
-            unique: true,
-            allowNull: true,
-        }
     })
 
     return Users;

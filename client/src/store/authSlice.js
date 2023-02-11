@@ -3,7 +3,7 @@ import { getUser } from "./authActions"
 
 const initialState = {
     user: { userId: null, name: null, photo: null },
-    status: false,
+    status: null,
     error: null,
 }
 
@@ -19,7 +19,7 @@ const authSlice = createSlice({
     },
     extraReducers: {
         [getUser.pending]: (state, action) => {
-            state = initialState;
+            state = initialState
         },
         [getUser.rejected]: (state, action) => {
             state.error = action.payload;
