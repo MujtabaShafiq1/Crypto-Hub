@@ -16,7 +16,6 @@ const userRouter = require("./routes/user");
 // express
 const app = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname,'./public')));
 
 // session creation
 app.use(cookieSession({ name: "session", keys: [process.env.COOKIE_KEY], maxAge: 3 * 24 * 60 * 60 * 1000, secure: false }));

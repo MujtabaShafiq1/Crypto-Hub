@@ -4,7 +4,8 @@ const fs = require("fs");
 const path = require("path");
 const asyncHandler = require("express-async-handler");
 
-const sendMail = asyncHandler(async (email, token, type) => {
+const sendMail = asyncHandler(async (email, token, type, subject) => {
+    
     const transporter = nodemailer.createTransport({
         host: process.env.CLIENT,
         service: process.env.SERVICE,
@@ -17,10 +18,10 @@ const sendMail = asyncHandler(async (email, token, type) => {
     const emailTemplate = handlebars.compile(emailTemplateSource);
     const html = emailTemplate({ url: process.env.CLIENT_URL, token: token });
 
-    await transporter.sendMail({
+    transporter.sendMail({
         from: process.env.USER,
         to: email,
-        subject: ("verification" ? "Verify Email on LocalHost" : "Update Password on LocalHost"),
+        subject: subject,
         html: html,
     });
 

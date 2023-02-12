@@ -5,17 +5,17 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const resetPassword = asyncHandler(async (req, res, next) => {
+    
     const user = await Users.findOne({ where: { userId: req.body.userId } });
     if (!user) return res.status(400).json({ message: "User doesnt exist" });
 
-    if (user.provider !== "local") return res.status(401).json({ message: "Un-Authorized" });
-
     const verificationToken = jwt.sign({ userId: req.body.userId }, process.env.JWT_RESET_PASSWORD_KEY, { expiresIn: "5m" });
-    sendMail(req.body.userId, "Reset Password on localhost", verificationToken, "reset");
+    sendMail(req.body.userId, verificationToken, "passwordReset", "Update Password on LocalHost");
     res.status(200).json("Success");
 });
 
 const updatePassword = asyncHandler(async (req, res, next) => {
+
     const decodedToken = jwt.verify(req.body.token, process.env.JWT_RESET_PASSWORD_KEY);
 
     const user = await Users.findOne({ where: { userId: decodedToken.userId } });
