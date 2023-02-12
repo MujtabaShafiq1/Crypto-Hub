@@ -1,10 +1,9 @@
 const router = require("express").Router();
 
-const { getMyDetails, resetPassword, updatePassword } = require("../controllers/user");
+const { resetPassword, updatePassword } = require("../controllers/user");
 const { validateToken } = require("../middlewares/ValidateToken");
 
-router.get("/me", validateToken, getMyDetails)
-router.post("/reset/password", resetPassword)
-router.post("/reset/update", updatePassword)
+router.post("/reset/password", resetPassword);
+router.post("/reset/update", updatePassword);
 
-module.exports = router
+module.exports = router;
