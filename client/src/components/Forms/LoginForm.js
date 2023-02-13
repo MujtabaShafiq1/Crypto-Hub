@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material";
 import { useFormik } from "formik";
@@ -13,6 +13,8 @@ import Visibility from "../../assets/ViewToggle/visible.png";
 import VisibilityOff from "../../assets/ViewToggle/invisible.png";
 
 const LoginForm = () => {
+
+    const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -21,7 +23,10 @@ const LoginForm = () => {
     const [snackbar, setSnackbar] = useState({ open: false, details: "", type: "" });
 
     const formik = useFormik({
-        initialValues: { email: "", password: "" },
+        initialValues: {
+            email: location.state.email || "",
+            password: "",
+        },
         validationSchema: loginSchema,
         onSubmit: (values) => {
             loginHandler(values);

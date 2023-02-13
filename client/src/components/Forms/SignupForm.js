@@ -9,7 +9,7 @@ import { signupSchema } from "../../utils/validationSchema";
 import CustomSnackbar from "../UI/CustomSnackbar";
 import Visibility from "../../assets/ViewToggle/visible.png";
 import VisibilityOff from "../../assets/ViewToggle/invisible.png";
-import DeleteIcon from "../../assets/denied.png";
+import DeleteIcon from "../../assets/ActionIcons/denied.png";
 
 const SignupForm = () => {
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ const SignupForm = () => {
     const formik = useFormik({
         initialValues: {
             name: "Mujtaba" || "",
-            email: "mujtaba.shafiq213@gmail.com" || "",
+            email: "libawiy840@aosod.com" || "",
             password: "123123123" || "",
             confirmedPassword: "123123123" || "",
         },
@@ -38,9 +38,9 @@ const SignupForm = () => {
             const user = { file, ...otherDetails };
             setDisableButton(true);
             await axios.post(`http://localhost:8000/token`, user);
-            setSnackbar({ open: true, details: "Please verify email address", type: "success" });
+            setSnackbar({ open: true, details: `Verify email at ${data.email}`, type: "success" });
             setTimeout(() => {
-                navigate("/verify", { state: { email: otherDetails.email } });
+                navigate("/login", { state: { email: data.email } });
             }, 5000);
         } catch (e) {
             setDisableButton(false);

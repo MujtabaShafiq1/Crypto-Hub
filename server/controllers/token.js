@@ -20,7 +20,7 @@ const tempUser = asyncHandler(async (req, res, next) => {
     const verificationToken = jwt.sign({ name, email }, process.env.JWT_EMAIL_KEY, { expiresIn: "10m" });
     const tempUser = { userId: email, name, password: hashedPassword, token: verificationToken, photo: file };
 
-    sendMail(req.body.email, verificationToken, "update", "Verify Email on LocalHost");
+    sendMail(req.body.email, verificationToken, "verification", "Verify Email on LocalHost");
 
     await Tokens.create(tempUser);
     res.status(200).send(tempUser);

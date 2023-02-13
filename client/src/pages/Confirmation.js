@@ -4,8 +4,8 @@ import { Typography, Box } from "@mui/material";
 import { Flexbox, MainContainer } from "../misc/MUIComponents";
 import axios from "axios";
 
-import success from "../assets/success.png";
-import denied from "../assets/denied.png";
+import success from "../assets/ActionIcons/success.png";
+import denied from "../assets/ActionIcons/denied.png";
 
 const Confirmation = () => {
     const { token } = useParams();
