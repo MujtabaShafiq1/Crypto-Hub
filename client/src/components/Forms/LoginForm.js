@@ -9,8 +9,8 @@ import axios from "axios";
 import { Flexbox, StyledButton, StyledField } from "../../misc/MUIComponents";
 import { loginSchema } from "../../utils/validationSchema";
 import CustomSnackbar from "../UI/CustonSnackbar";
-import Visibility from "../../assets/visibility.png";
-import VisibilityOff from "../../assets/visible.png";
+import Visibility from "../../assets/ViewToggle/visible.png";
+import VisibilityOff from "../../assets/ViewToggle/invisible.png";
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -115,7 +115,8 @@ const LoginForm = () => {
             </form>
 
             <Typography
-                sx={{ fontSize: "16px", textAlign: "center", color: "gray", fontWeight: 600, cursor: "pointer" }}
+                variant="subBody"
+                sx={{ textAlign: "center", color: "gray", fontWeight: 600, cursor: "pointer" }}
                 onClick={forgotPasswordHandler}>
                 Forgot Password?
             </Typography>

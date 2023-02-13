@@ -8,8 +8,8 @@ import axios from "axios"
 import { Flexbox, StyledButton, StyledField } from '../../misc/MUIComponents';
 import { signupSchema } from '../../utils/validationSchema';
 import CustomSnackbar from '../UI/CustonSnackbar';
-import Visibility from "../../assets/visibility.png";
-import VisibilityOff from "../../assets/visible.png";
+import Visibility from "../../assets/ViewToggle/visible.png";
+import VisibilityOff from "../../assets/ViewToggle/invisible.png";
 import DeleteIcon from "../../assets/denied.png"
 
 const SignupForm = () => {

@@ -7,8 +7,8 @@ import axios from "axios"
 import { Flexbox, StyledButton, StyledField, FormContainer } from '../misc/MUIComponents';
 import { updatePasswordSchema } from '../utils/validationSchema';
 import CustomSnackbar from '../components/UI/CustonSnackbar';
-import Visibility from "../assets/visibility.png";
-import VisibilityOff from "../assets/visible.png";
+import Visibility from "../assets/ViewToggle/visible.png";
+import VisibilityOff from "../assets/ViewToggle/invisible.png";
 
 
 import background from "../assets/background.jpg"
