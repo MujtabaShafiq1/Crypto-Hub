@@ -30,7 +30,7 @@ const StyledLink = styled(Typography)({
     textTransform: "none",
 });
 
-const StyledButton = styled(Button)({
+const StyledButton = styled(Button)(({ theme }) => ({
     backgroundColor: "black",
     opacity: "0.7",
     color: "white",
@@ -49,7 +49,10 @@ const StyledButton = styled(Button)({
     ":disabled": {
         color: "white",
     },
-});
+    [theme.breakpoints.down("md")]: {
+        width: "40%",
+    },
+}));
 
 const StyledField = styled(TextField)(({ error }) => ({
     width: "100%",

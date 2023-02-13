@@ -26,7 +26,7 @@ const Login = () => {
         <MainContainer container>
             <FormContainer>
                 <Flexbox sx={{ flexDirection: "column", gap: { xs: 1.5, lg: 3 } }}>
-                    <Flexbox sx={{ flexDirection: "column" }}>
+                    <Flexbox sx={{ flexDirection: "column" , padding: "5px" }}>
                         <Typography variant="header" sx={{ fontWeight: 500 }}>
                             Welcome
                         </Typography>
@@ -38,7 +38,7 @@ const Login = () => {
                     <LoginForm />
 
                     <Flexbox gap={1} flexDirection={{ xs: "column", lg: "row" }}>
-                        <Typography variant="body">Dont have an account? </Typography>
+                        <Typography variant="body" sx={{display: {xs: "none" , md: "block"}}}>Dont have an account? </Typography>
                         <Typography
                             variant="subBody"
                             sx={{ color: { xs: "white", lg: "gray" }, cursor: "pointer", fontWeight: 500 }}
@@ -59,17 +59,17 @@ const Login = () => {
                 <Flexbox sx={{ flexDirection: "column", gap: 1.5, m: "5%", display: { xs: "none", lg: "flex" } }}>
                     <StyledButton onClick={github}>
                         <Box component="img" src={GithubIcon} sx={{ width: "8%" }} />
-                        <Typography>Github</Typography>
+                        <Typography variant="helper">Github</Typography>
                     </StyledButton>
 
                     <StyledButton onClick={google}>
                         <Box component="img" src={GoogleIcon} sx={{ width: "8%" }} />
-                        <Typography>Google</Typography>
+                        <Typography variant="helper">Google</Typography>
                     </StyledButton>
 
                     <StyledButton onClick={steam}>
                         <Box component="img" src={SteamIcon} sx={{ width: "8%" }} />
-                        <Typography>Steam</Typography>
+                        <Typography variant="helper">Steam</Typography>
                     </StyledButton>
                 </Flexbox>
 

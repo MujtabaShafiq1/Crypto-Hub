@@ -7,25 +7,25 @@ const theme = createTheme({
     typography: {
         header: {
             fontSize: 30,
-            [breakpoints.down("md")]: {
+            [breakpoints.down("sm")]: {
                 fontSize: 24,
             },
         },
         body: {
             fontSize: 18,
-            [breakpoints.down("md")]: {
+            [breakpoints.down("sm")]: {
                 fontSize: 16,
             },
         },
         subBody: {
             fontSize: 16,
-            [breakpoints.down("md")]: {
+            [breakpoints.down("sm")]: {
                 fontSize: 14,
             },
         },
         helper: {
             fontSize: 14,
-            [breakpoints.down("md")]: {
+            [breakpoints.down("sm")]: {
                 fontSize: 12,
             },
         },

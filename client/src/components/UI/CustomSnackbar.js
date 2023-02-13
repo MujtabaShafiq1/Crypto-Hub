@@ -1,22 +1,25 @@
-import { Snackbar, Alert } from "@mui/material"
+import { Snackbar, Alert } from "@mui/material";
 
-const CustomSnackbar = ({ type, details }) => {
+const CustomSnackbar = ({snackbar, reset}) => {
 
     return (
         <Snackbar
-            open={true}
+            open={snackbar.open}
+            autoHideDuration={2000}
             sx={{
                 fontSize: "18px",
                 color: "white",
                 zIndex: 1,
                 height: "12%",
-                width: "90%"
+                width: "90%",
             }}
-            anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        >
-            <Alert severity={type}>{details}</Alert>
+            onClose={reset}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}>
+            <Alert severity={snackbar.type}>
+                {snackbar.details}
+            </Alert>
         </Snackbar>
-    )
-}
+    );
+};
 
 export default CustomSnackbar;

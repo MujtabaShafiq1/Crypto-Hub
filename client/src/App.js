@@ -18,7 +18,6 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // if (localStorage.getItem("accessToken")) dispatch(getUser())
     dispatch(getUser())
   }, [dispatch])
 

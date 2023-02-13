@@ -37,9 +37,6 @@ const LoginForm = () => {
         } catch (e) {
             setDisableButton(false);
             setSnackbar({ open: true, details: e.response.data.message, type: "error" });
-            setTimeout(() => {
-                setSnackbar({ open: false, details: "", type: "" });
-            }, 2000);
         }
     };
 
@@ -52,20 +49,20 @@ const LoginForm = () => {
             }
             setSnackbar({ open: true, details: `Please provide email`, type: "error" });
         } catch (e) {
-            console.log(e);
             setSnackbar({ open: true, details: e.response?.data?.message || `Please try again later`, type: "error" });
         }
-        setTimeout(() => {
-            setSnackbar({ open: false, details: "", type: "" });
-        }, 2000);
+    };
+
+    const resetSnackbar = () => {
+        setSnackbar({ open: false, details: "", type: "" });
     };
 
     return (
         <>
-            {snackbar.open && <CustomSnackbar type={snackbar.type} details={snackbar.details} />}
+            {snackbar.open && <CustomSnackbar snackbar={snackbar} reset={resetSnackbar} />}
 
-            <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }}>
-                <Flexbox sx={{ flexDirection: "column", gap: { xs: 1, md: 2.5 } }}>
+            <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "90%" }}>
+                <Flexbox sx={{ flexDirection: "column", gap: 2.5 }}>
                     <StyledField
                         variant="outlined"
                         placeholder="Enter Email"
@@ -108,7 +105,7 @@ const LoginForm = () => {
                         {disableButton ? (
                             <CircularProgress size="3.5vh" sx={{ color: "white" }} />
                         ) : (
-                            <Typography>Login</Typography>
+                            <Typography variant="helper">Login</Typography>
                         )}
                     </StyledButton>
                 </Flexbox>

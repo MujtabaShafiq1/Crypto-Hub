@@ -1,84 +1,54 @@
-import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
-import { Box, InputAdornment, CircularProgress, Typography, Grid } from "@mui/material"
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material";
 import { useFormik } from "formik";
-import axios from "axios"
+import axios from "axios";
 
-import { Flexbox, StyledButton, StyledField, FormContainer } from '../misc/MUIComponents';
-import { updatePasswordSchema } from '../utils/validationSchema';
-import CustomSnackbar from '../components/UI/CustomSnackbar';
+import { Flexbox, MainContainer, StyledButton, StyledField, FormContainer } from "../misc/MUIComponents";
+import { updatePasswordSchema } from "../utils/validationSchema";
+import CustomSnackbar from "../components/UI/CustomSnackbar";
 import Visibility from "../assets/ViewToggle/visible.png";
 import VisibilityOff from "../assets/ViewToggle/invisible.png";
 
-
-import background from "../assets/background.jpg"
-
-const styles = {
-    PaperStyles: {
-        backgroundImage: `url(${background})`,
-        backgroundSize: 'cover',
-        backgroundPosition: '0% 65%',
-        height: "100vh",
-        width: "100vw",
-    },
-};
-
 const UpdatePassword = () => {
-
     const { token } = useParams();
     const navigate = useNavigate();
-    const [showPassword, setShowPassword] = useState(false)
-    const [disableButton, setDisableButton] = useState(false)
-    const [snackbar, setSnackbar] = useState({ open: false, details: "", type: "" })
+    const [showPassword, setShowPassword] = useState(false);
+    const [disableButton, setDisableButton] = useState(false);
+    const [snackbar, setSnackbar] = useState({ open: false, details: "", type: "" });
 
     const formik = useFormik({
-        initialValues: {
-            password: "",
-            confirmedPassword: ""
-        },
+        initialValues: { password: "", confirmedPassword: "" },
         validationSchema: updatePasswordSchema,
         onSubmit: (values) => {
-            updatePasswordHandler(values)
+            updatePasswordHandler(values);
         },
     });
 
-
     const updatePasswordHandler = async (values) => {
         try {
-            setDisableButton(true)
-            await axios.post(`http://localhost:8000/user/reset/update`, { password: values.password, token: token })
-            navigate("/login")
+            setDisableButton(true);
+            await axios.post(`http://localhost:8000/user/reset/update`, { password: values.password, token: token });
+            navigate("/login");
         } catch (e) {
-            setDisableButton(false)
-            setSnackbar({ open: true, details: (e.response?.data?.message || "Server is down , please try again later"), type: "error" })
-            setTimeout(() => {
-                setSnackbar({ open: false, details: "", type: "" })
-            }, 2000)
+            setDisableButton(false);
+            setSnackbar({ open: true, details: e.response?.data?.message || "Server is down , please try again later", type: "error" });
         }
-    }
+    };
 
     return (
-
         // add navigate to login
 
-        <Grid
-            container
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            style={styles.PaperStyles}
-        >
+        <MainContainer container>
             {snackbar.open && <CustomSnackbar type={snackbar.type} details={snackbar.details} />}
 
             <FormContainer sx={{ minHeight: "20vh" }}>
-
                 <Flexbox sx={{ flexDirection: "column", gap: { xs: 2, lg: 3 } }}>
+                    <Typography sx={{ fontSize: { xs: "26px", lg: "30px" }, mt: "5%", textAlign: "center" }} fontWeight={500}>
+                        Reset Password
+                    </Typography>
 
-
-                    <Typography sx={{ fontSize: { xs: "26px", lg: "30px" }, mt: "5%", textAlign: "center" }} fontWeight={500}>Reset Password</Typography>
-
-                    <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }} >
-
+                    <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }}>
                         <Flexbox sx={{ flexDirection: "column", gap: 2.5, minHeight: "25vh" }}>
                             <StyledField
                                 variant="outlined"
@@ -94,7 +64,7 @@ const UpdatePassword = () => {
                                 error={formik.touched.password && Boolean(formik.errors.password)}
                                 InputProps={{
                                     endAdornment: (
-                                        <InputAdornment position="end" >
+                                        <InputAdornment position="end">
                                             <Box
                                                 component="img"
                                                 src={showPassword ? VisibilityOff : Visibility}
@@ -119,7 +89,7 @@ const UpdatePassword = () => {
                                 error={formik.touched.confirmedPassword && Boolean(formik.errors.confirmedPassword)}
                                 InputProps={{
                                     endAdornment: (
-                                        <InputAdornment position="end" >
+                                        <InputAdornment position="end">
                                             <Box
                                                 component="img"
                                                 src={showPassword ? VisibilityOff : Visibility}
@@ -131,23 +101,25 @@ const UpdatePassword = () => {
                                 }}
                             />
 
-                            <Typography sx={{ color: { xs: "white", lg: "gray" }, fontWeight: 700, cursor: "pointer" }} onClick={() => navigate("/login")}>
+                            <Typography
+                                sx={{ color: { xs: "white", lg: "gray" }, fontWeight: 700, cursor: "pointer" }}
+                                onClick={() => navigate("/login")}>
                                 Go back to Login
                             </Typography>
 
                             <StyledButton type="submit" disabled={disableButton}>
-                                {disableButton ? <CircularProgress size="3.5vh" sx={{ color: "white" }} /> : <Typography>Update Password</Typography>}
+                                {disableButton ? (
+                                    <CircularProgress size="3.5vh" sx={{ color: "white" }} />
+                                ) : (
+                                    <Typography>Update Password</Typography>
+                                )}
                             </StyledButton>
                         </Flexbox>
-
-                    </form >
-
-                </Flexbox >
-
+                    </form>
+                </Flexbox>
             </FormContainer>
-        </Grid >
+        </MainContainer>
+    );
+};
 
-    )
-}
-
-export default UpdatePassword
+export default UpdatePassword;
