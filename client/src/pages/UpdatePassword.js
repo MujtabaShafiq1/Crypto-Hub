@@ -37,8 +37,7 @@ const UpdatePassword = () => {
     };
 
     return (
-        // add navigate to login
-
+      
         <MainContainer container>
             {snackbar.open && <CustomSnackbar type={snackbar.type} details={snackbar.details} />}
 

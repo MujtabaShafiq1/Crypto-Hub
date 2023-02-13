@@ -26,7 +26,7 @@ const Login = () => {
         <MainContainer container>
             <FormContainer>
                 <Flexbox sx={{ flexDirection: "column", gap: { xs: 1.5, lg: 3 } }}>
-                    <Flexbox sx={{ flexDirection: "column" , padding: "5px" }}>
+                    <Flexbox sx={{ flexDirection: "column", padding: "5px" }}>
                         <Typography variant="header" sx={{ fontWeight: 500 }}>
                             Welcome
                         </Typography>
@@ -37,8 +37,10 @@ const Login = () => {
 
                     <LoginForm />
 
-                    <Flexbox gap={1} flexDirection={{ xs: "column", lg: "row" }}>
-                        <Typography variant="body" sx={{display: {xs: "none" , md: "block"}}}>Dont have an account? </Typography>
+                    <Flexbox sx={{ gap: 1, flexDirection: { xs: "column", lg: "row" } }}>
+                        <Typography variant="subBody" sx={{ display: { xs: "none", md: "block" } }}>
+                            Dont have an account?{" "}
+                        </Typography>
                         <Typography
                             variant="subBody"
                             sx={{ color: { xs: "white", lg: "gray" }, cursor: "pointer", fontWeight: 500 }}
@@ -47,7 +49,7 @@ const Login = () => {
                         </Typography>
                     </Flexbox>
 
-                    <Flexbox sx={{ flexDirection: "column", gap: 1, width: "70%" }}>
+                    <Flexbox sx={{ gap: 1, flexDirection: "column", width: "70%" }}>
                         <Divider orientation="horizontal" sx={{ bgcolor: { xs: "white", lg: "black" }, opacity: "0.3", width: "100%" }} />
                         <Typography variant="helper" sx={{ color: { xs: "white", lg: "black" } }}>
                             OR
@@ -59,17 +61,17 @@ const Login = () => {
                 <Flexbox sx={{ flexDirection: "column", gap: 1.5, m: "5%", display: { xs: "none", lg: "flex" } }}>
                     <StyledButton onClick={github}>
                         <Box component="img" src={GithubIcon} sx={{ width: "8%" }} />
-                        <Typography variant="helper">Github</Typography>
+                        <Typography variant="subBody">Github</Typography>
                     </StyledButton>
 
                     <StyledButton onClick={google}>
                         <Box component="img" src={GoogleIcon} sx={{ width: "8%" }} />
-                        <Typography variant="helper">Google</Typography>
+                        <Typography variant="subBody">Google</Typography>
                     </StyledButton>
 
                     <StyledButton onClick={steam}>
                         <Box component="img" src={SteamIcon} sx={{ width: "8%" }} />
-                        <Typography variant="helper">Steam</Typography>
+                        <Typography variant="subBody">Steam</Typography>
                     </StyledButton>
                 </Flexbox>
 

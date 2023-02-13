@@ -1,11 +1,12 @@
-import { Container, Typography } from "@mui/material"
+import { MainContainer } from "../misc/MUIComponents"
+import { Typography } from "@mui/material";
 
 const NotFound = () => {
     return (
-        <Container maxWidth="md">
-            <Typography variant="h1">Page not found</Typography>
-        </Container>
-    )
-}
+        <MainContainer container>
+            <Typography variant="header">Page not found</Typography>
+        </MainContainer>
+    );
+};
 
-export default NotFound
+export default NotFound;

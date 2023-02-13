@@ -49,9 +49,6 @@ const StyledButton = styled(Button)(({ theme }) => ({
     ":disabled": {
         color: "white",
     },
-    [theme.breakpoints.down("md")]: {
-        width: "40%",
-    },
 }));
 
 const StyledField = styled(TextField)(({ error }) => ({

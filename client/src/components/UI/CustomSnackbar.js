@@ -7,7 +7,7 @@ const CustomSnackbar = ({snackbar, reset}) => {
             open={snackbar.open}
             autoHideDuration={2000}
             sx={{
-                fontSize: "18px",
+                fontSize: "17px",
                 color: "white",
                 zIndex: 1,
                 height: "12%",

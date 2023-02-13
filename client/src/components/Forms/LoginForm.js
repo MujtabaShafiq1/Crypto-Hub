@@ -105,7 +105,7 @@ const LoginForm = () => {
                         {disableButton ? (
                             <CircularProgress size="3.5vh" sx={{ color: "white" }} />
                         ) : (
-                            <Typography variant="helper">Login</Typography>
+                            <Typography variant="subBody">Login</Typography>
                         )}
                     </StyledButton>
                 </Flexbox>

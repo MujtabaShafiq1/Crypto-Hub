@@ -1,36 +1,34 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { Box, InputAdornment, CircularProgress, Typography, Avatar } from "@mui/material"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Box, InputAdornment, CircularProgress, Typography, Avatar } from "@mui/material";
 import { useFormik } from "formik";
-import axios from "axios"
+import axios from "axios";
 
-
-import { Flexbox, StyledButton, StyledField } from '../../misc/MUIComponents';
-import { signupSchema } from '../../utils/validationSchema';
-import CustomSnackbar from '../UI/CustomSnackbar';
+import { Flexbox, StyledButton, StyledField } from "../../misc/MUIComponents";
+import { signupSchema } from "../../utils/validationSchema";
+import CustomSnackbar from "../UI/CustomSnackbar";
 import Visibility from "../../assets/ViewToggle/visible.png";
 import VisibilityOff from "../../assets/ViewToggle/invisible.png";
-import DeleteIcon from "../../assets/denied.png"
+import DeleteIcon from "../../assets/denied.png";
 
 const SignupForm = () => {
-
     const navigate = useNavigate();
 
-    const [file, setFile] = useState(null)
-    const [showPassword, setShowPassword] = useState(false)
-    const [disableButton, setDisableButton] = useState(false)
-    const [snackbar, setSnackbar] = useState({ open: false, details: "", type: "" })
+    const [file, setFile] = useState(null);
+    const [showPassword, setShowPassword] = useState(false);
+    const [disableButton, setDisableButton] = useState(false);
+    const [snackbar, setSnackbar] = useState({ open: false, details: "", type: "" });
 
     const formik = useFormik({
         initialValues: {
-            name: "Mujtaba" || "",
-            email: "mujtaba.shafiq213@gmail.com" || "",
-            password: "123123123" || "",
-            confirmedPassword: "123123123" || "",
+            name: "",
+            email: "",
+            password: "",
+            confirmedPassword: "",
         },
         validationSchema: signupSchema,
         onSubmit: (values) => {
-            signupHandler(values)
+            signupHandler(values);
         },
     });
 
@@ -38,48 +36,38 @@ const SignupForm = () => {
         try {
             const { confirmedPassword, ...otherDetails } = data;
             const user = { file, ...otherDetails };
-            setDisableButton(true)
-            await axios.post(`http://localhost:8000/token`, user)
-            navigate("/verify", { state: { email: otherDetails.email } })
-
+            setDisableButton(true);
+            await axios.post(`http://localhost:8000/token`, user);
+            navigate("/verify", { state: { email: otherDetails.email } });
         } catch (e) {
-
-            setDisableButton(false)
-            setSnackbar({ open: true, details: (e.response?.data?.message || "Server is down , please try again later"), type: "error" })
-            setTimeout(() => {
-                setSnackbar({ open: false, details: "", type: "" })
-            }, 2000)
-
+            setDisableButton(false);
+            setSnackbar({ open: true, details: e.response?.data?.message || "Server is down , please try again later", type: "error" });
         }
-    }
+    };
 
     const imageHandler = async (value) => {
-
         if (value?.type === "image/jpeg" || value?.type === "image/png") {
             const data = new FormData();
             data.append("file", value);
             data.append("upload_preset", "social-media");
             data.append("cloud_name", "dkai1pma6");
-            const response = await axios.post(`https://api.cloudinary.com/v1_1/dkai1pma6/image/upload`, data)
+            const response = await axios.post(`https://api.cloudinary.com/v1_1/dkai1pma6/image/upload`, data);
             setFile(response.data.url.toString());
             return;
         }
+        setSnackbar({ open: true, details: "Invalid Image Type", type: "error" });
+    };
 
-        setSnackbar({ open: true, details: "Invalid Image Type", type: "error" })
-        setTimeout(() => {
-            setSnackbar({ open: false, details: "", type: "" })
-        }, 2000)
-    }
+    const resetSnackbar = () => {
+        setSnackbar({ open: false, details: "", type: "" });
+    };
 
     return (
-
         <>
-            {snackbar.open && <CustomSnackbar type={snackbar.type} details={snackbar.details} />}
+            {snackbar.open && <CustomSnackbar snackbar={snackbar} reset={resetSnackbar} />}
 
-            <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }} >
-
+            <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }}>
                 <Flexbox sx={{ flexDirection: "column", gap: 2 }}>
-
                     <StyledField
                         variant="outlined"
                         placeholder="Enter Name"
@@ -120,7 +108,7 @@ const SignupForm = () => {
                         error={formik.touched.password && Boolean(formik.errors.password)}
                         InputProps={{
                             endAdornment: (
-                                <InputAdornment position="end" >
+                                <InputAdornment position="end">
                                     <Box
                                         component="img"
                                         src={showPassword ? VisibilityOff : Visibility}
@@ -145,7 +133,7 @@ const SignupForm = () => {
                         error={formik.touched.confirmedPassword && Boolean(formik.errors.confirmedPassword)}
                         InputProps={{
                             endAdornment: (
-                                <InputAdornment position="end" >
+                                <InputAdornment position="end">
                                     <Box
                                         component="img"
                                         src={showPassword ? VisibilityOff : Visibility}
@@ -158,15 +146,16 @@ const SignupForm = () => {
                     />
 
                     <StyledButton variant="contained" component="label" sx={{ width: "100%", bgcolor: "gray", flexDirection: "column" }}>
-                        <Typography>Upload Image</Typography>
+                        <Typography variant="subBody">Upload Image</Typography>
                         <input type="file" hidden onChange={(e) => imageHandler(e.target.files[0])} />
                     </StyledButton>
 
-
-                    {file &&
+                    {file && (
                         <Box display="flex" justifyContent="center">
                             <Avatar src={file} sx={{ width: { xs: 50, md: 150 }, height: { xs: 50, md: 150 } }} />
-                            <Avatar src={DeleteIcon} onClick={() => setFile(null)}
+                            <Avatar
+                                src={DeleteIcon}
+                                onClick={() => setFile(null)}
                                 sx={{
                                     width: { xs: 10, md: 20 },
                                     height: { xs: 10, md: 20 },
@@ -176,21 +165,23 @@ const SignupForm = () => {
                                     backgroundColor: "white",
                                     borderRadius: "50px",
                                     opacity: 0.4,
-                                    cursor: "pointer"
+                                    cursor: "pointer",
                                 }}
                             />
                         </Box>
-                    }
+                    )}
 
                     <StyledButton type="submit" disabled={disableButton}>
-                        {disableButton ? <CircularProgress size="3.5vh" sx={{ color: "white" }} /> : <Typography>Sign up</Typography>}
+                        {disableButton ? (
+                            <CircularProgress size="3.5vh" sx={{ color: "white" }} />
+                        ) : (
+                            <Typography variant="subBody">Sign up</Typography>
+                        )}
                     </StyledButton>
-
                 </Flexbox>
-            </form >
+            </form>
         </>
+    );
+};
 
-    )
-}
-
-export default SignupForm
+export default SignupForm;

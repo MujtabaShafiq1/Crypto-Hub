@@ -29,6 +29,10 @@ const theme = createTheme({
                 fontSize: 12,
             },
         },
+        allVariants: {
+            fontFamily: '"Open Sans", sans-serif',
+            textTransform: 'none',
+        },
     },
 });
 
