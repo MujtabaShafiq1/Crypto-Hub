@@ -8,7 +8,7 @@ import axios from "axios";
 
 import { Flexbox, StyledButton, StyledField } from "../../misc/MUIComponents";
 import { loginSchema } from "../../utils/validationSchema";
-import CustomSnackbar from "../UI/CustonSnackbar";
+import CustomSnackbar from "../UI/CustomSnackbar";
 import Visibility from "../../assets/ViewToggle/visible.png";
 import VisibilityOff from "../../assets/ViewToggle/invisible.png";
 
