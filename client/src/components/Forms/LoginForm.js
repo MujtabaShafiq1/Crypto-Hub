@@ -49,7 +49,7 @@ const LoginForm = () => {
             }
             setSnackbar({ open: true, details: `Please provide email`, type: "error" });
         } catch (e) {
-            setSnackbar({ open: true, details: e.response?.data?.message || `Please try again later`, type: "error" });
+            setSnackbar({ open: true, details: e.response?.data?.message, type: "error" });
         }
     };
 

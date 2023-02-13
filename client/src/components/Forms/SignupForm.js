@@ -21,10 +21,10 @@ const SignupForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            name: "",
-            email: "",
-            password: "",
-            confirmedPassword: "",
+            name: "Mujtaba" || "",
+            email: "mujtaba.shafiq213@gmail.com" || "",
+            password: "123123123" || "",
+            confirmedPassword: "123123123" || "",
         },
         validationSchema: signupSchema,
         onSubmit: (values) => {
@@ -38,10 +38,13 @@ const SignupForm = () => {
             const user = { file, ...otherDetails };
             setDisableButton(true);
             await axios.post(`http://localhost:8000/token`, user);
-            navigate("/verify", { state: { email: otherDetails.email } });
+            setSnackbar({ open: true, details: "Please verify email address", type: "success" });
+            setTimeout(() => {
+                navigate("/verify", { state: { email: otherDetails.email } });
+            }, 5000);
         } catch (e) {
             setDisableButton(false);
-            setSnackbar({ open: true, details: e.response?.data?.message || "Server is down , please try again later", type: "error" });
+            setSnackbar({ open: true, details: e.response?.data?.message, type: "error" });
         }
     };
 

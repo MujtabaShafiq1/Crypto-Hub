@@ -32,23 +32,26 @@ const UpdatePassword = () => {
             navigate("/login");
         } catch (e) {
             setDisableButton(false);
-            setSnackbar({ open: true, details: e.response?.data?.message || "Server is down , please try again later", type: "error" });
+            setSnackbar({ open: true, details: e.response?.data?.message, type: "error" });
         }
     };
 
-    return (
-      
-        <MainContainer container>
-            {snackbar.open && <CustomSnackbar type={snackbar.type} details={snackbar.details} />}
+    const resetSnackbar = () => {
+        setSnackbar({ open: false, details: "", type: "" });
+    };
 
-            <FormContainer sx={{ minHeight: "20vh" }}>
+    return (
+        <MainContainer container>
+            {snackbar.open && <CustomSnackbar snackbar={snackbar} reset={resetSnackbar} />}
+
+            <FormContainer sx={{ minHeight: "40%" }}>
                 <Flexbox sx={{ flexDirection: "column", gap: { xs: 2, lg: 3 } }}>
-                    <Typography sx={{ fontSize: { xs: "26px", lg: "30px" }, mt: "5%", textAlign: "center" }} fontWeight={500}>
+                    <Typography variant="header" sx={{ fontWeight: 500, mt: "5%", textAlign: "center" }}>
                         Reset Password
                     </Typography>
 
                     <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }}>
-                        <Flexbox sx={{ flexDirection: "column", gap: 2.5, minHeight: "25vh" }}>
+                        <Flexbox sx={{ flexDirection: "column", gap: 2.5, mb: "5%" }}>
                             <StyledField
                                 variant="outlined"
                                 placeholder="Enter Password"
@@ -101,6 +104,7 @@ const UpdatePassword = () => {
                             />
 
                             <Typography
+                                variant="subBody"
                                 sx={{ color: { xs: "white", lg: "gray" }, fontWeight: 700, cursor: "pointer" }}
                                 onClick={() => navigate("/login")}>
                                 Go back to Login
@@ -110,7 +114,7 @@ const UpdatePassword = () => {
                                 {disableButton ? (
                                     <CircularProgress size="3.5vh" sx={{ color: "white" }} />
                                 ) : (
-                                    <Typography>Update Password</Typography>
+                                    <Typography variant="subBody">Reset</Typography>
                                 )}
                             </StyledButton>
                         </Flexbox>
