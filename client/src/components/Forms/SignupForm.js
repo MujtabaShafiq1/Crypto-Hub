@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Visibility, VisibilityOff, CancelOutlined } from "@mui/icons-material";
 import { Box, InputAdornment, CircularProgress, Typography, Avatar } from "@mui/material";
-import { useFormik } from "formik";
-import axios from "axios";
-
 import { Flexbox, StyledButton, StyledField } from "../../misc/MUIComponents";
 import { signupSchema } from "../../utils/validationSchema";
 import CustomSnackbar from "../UI/CustomSnackbar";
-import Visibility from "../../assets/ViewToggle/visible.png";
-import VisibilityOff from "../../assets/ViewToggle/invisible.png";
-import DeleteIcon from "../../assets/ActionIcons/denied.png";
+import { useFormik } from "formik";
+import axios from "axios";
 
 const SignupForm = () => {
     const navigate = useNavigate();
@@ -41,7 +38,7 @@ const SignupForm = () => {
             setSnackbar({ open: true, details: `Verify email at ${data.email}`, type: "success" });
             setTimeout(() => {
                 navigate("/login", { state: { email: data.email } });
-            }, 5000);
+            }, 3000);
         } catch (e) {
             setDisableButton(false);
             setSnackbar({ open: true, details: e.response?.data?.message, type: "error" });
@@ -112,12 +109,9 @@ const SignupForm = () => {
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <Box
-                                        component="img"
-                                        src={showPassword ? VisibilityOff : Visibility}
-                                        onClick={() => setShowPassword((prev) => !prev)}
-                                        style={{ width: "20px", height: "auto", cursor: "pointer" }}
-                                    />
+                                    <Box sx={{ height: 25, width: 25, cursor: "pointer" }} onClick={() => setShowPassword((prev) => !prev)}>
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </Box>
                                 </InputAdornment>
                             ),
                         }}
@@ -137,12 +131,9 @@ const SignupForm = () => {
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <Box
-                                        component="img"
-                                        src={showPassword ? VisibilityOff : Visibility}
-                                        onClick={() => setShowPassword((prev) => !prev)}
-                                        style={{ width: "20px", height: "auto", cursor: "pointer" }}
-                                    />
+                                    <Box sx={{ height: 25, width: 25, cursor: "pointer" }} onClick={() => setShowPassword((prev) => !prev)}>
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </Box>
                                 </InputAdornment>
                             ),
                         }}
@@ -156,16 +147,13 @@ const SignupForm = () => {
                     {file && (
                         <Box display="flex" justifyContent="center">
                             <Avatar src={file} sx={{ width: { xs: 50, md: 150 }, height: { xs: 50, md: 150 } }} />
-                            <Avatar
-                                src={DeleteIcon}
+                            <CancelOutlined
                                 onClick={() => setFile(null)}
                                 sx={{
-                                    width: { xs: 10, md: 20 },
-                                    height: { xs: 10, md: 20 },
+                                    color: "red",
                                     position: "absolute",
                                     left: "60%",
                                     padding: "2px",
-                                    backgroundColor: "white",
                                     borderRadius: "50px",
                                     opacity: 0.4,
                                     cursor: "pointer",

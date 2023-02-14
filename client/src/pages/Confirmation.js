@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Typography, Box } from "@mui/material";
+import { Typography } from "@mui/material";
+import { CancelOutlined, CheckCircleOutlined } from "@mui/icons-material";
 import { Flexbox, MainContainer } from "../misc/MUIComponents";
 import axios from "axios";
-
-import success from "../assets/ActionIcons/success.png";
-import denied from "../assets/ActionIcons/denied.png";
 
 const Confirmation = () => {
     const { token } = useParams();
@@ -31,9 +29,9 @@ const Confirmation = () => {
             <Flexbox gap={2}>
                 {error.status ? (
                     <Typography variant="header" sx={{ textAlign: "center", fontWeight: 500 }}>
-                        Unable to verify account , Reason:{' '}
+                        Unable to verify account , Reason:{" "}
                         <Typography variant="header" sx={{ fontWeight: 700, color: "gray" }}>
-                             { error.details}
+                            {error.details}
                         </Typography>
                     </Typography>
                 ) : (
@@ -41,7 +39,11 @@ const Confirmation = () => {
                         Account Verified Successfully
                     </Typography>
                 )}
-                <Box component="img" src={error.status ? denied : success} sx={{ width: { xs: "20%", sm: "10%", md: "5%" } }} />
+                {error.status ? (
+                    <CancelOutlined fontSize="large" sx={{ fill: "red" }} />
+                ) : (
+                    <CheckCircleOutlined fontSize="large" sx={{ fill: "green" }} />
+                )}
             </Flexbox>
         </MainContainer>
     );

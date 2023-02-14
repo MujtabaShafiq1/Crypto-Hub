@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material";
+import { Flexbox, MainContainer, StyledButton, StyledField, FormContainer } from "../misc/MUIComponents";
+import CustomSnackbar from "../components/UI/CustomSnackbar";
+import { updatePasswordSchema } from "../utils/validationSchema";
 import { useFormik } from "formik";
 import axios from "axios";
-
-import { Flexbox, MainContainer, StyledButton, StyledField, FormContainer } from "../misc/MUIComponents";
-import { updatePasswordSchema } from "../utils/validationSchema";
-import CustomSnackbar from "../components/UI/CustomSnackbar";
-import Visibility from "../assets/ViewToggle/visible.png";
-import VisibilityOff from "../assets/ViewToggle/invisible.png";
 
 const UpdatePassword = () => {
     const { token } = useParams();
@@ -67,12 +65,9 @@ const UpdatePassword = () => {
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
-                                            <Box
-                                                component="img"
-                                                src={showPassword ? VisibilityOff : Visibility}
-                                                onClick={() => setShowPassword((prev) => !prev)}
-                                                style={{ width: "20px", height: "auto", cursor: "pointer" }}
-                                            />
+                                            <Box sx={{ height: 25, width: 25, cursor: "pointer" }} onClick={() => setShowPassword((prev) => !prev)}>
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </Box>
                                         </InputAdornment>
                                     ),
                                 }}
@@ -92,12 +87,9 @@ const UpdatePassword = () => {
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
-                                            <Box
-                                                component="img"
-                                                src={showPassword ? VisibilityOff : Visibility}
-                                                onClick={() => setShowPassword((prev) => !prev)}
-                                                style={{ width: "20px", height: "auto", cursor: "pointer" }}
-                                            />
+                                            <Box sx={{ height: 25, width: 25, cursor: "pointer" }} onClick={() => setShowPassword((prev) => !prev)}>
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </Box>
                                         </InputAdornment>
                                     ),
                                 }}

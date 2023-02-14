@@ -1,19 +1,16 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material";
-import { useFormik } from "formik";
+import { Flexbox, StyledButton, StyledField } from "../../misc/MUIComponents";
+import CustomSnackbar from "../UI/CustomSnackbar";
+import { loginSchema } from "../../utils/validationSchema";
 import { authActions } from "../../store/authSlice";
+import { useFormik } from "formik";
 import axios from "axios";
 
-import { Flexbox, StyledButton, StyledField } from "../../misc/MUIComponents";
-import { loginSchema } from "../../utils/validationSchema";
-import CustomSnackbar from "../UI/CustomSnackbar";
-import Visibility from "../../assets/ViewToggle/visible.png";
-import VisibilityOff from "../../assets/ViewToggle/invisible.png";
-
 const LoginForm = () => {
-
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -24,7 +21,7 @@ const LoginForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            email: location.state.email || "",
+            email: location.state?.email || "",
             password: "",
         },
         validationSchema: loginSchema,
@@ -95,12 +92,9 @@ const LoginForm = () => {
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <Box
-                                        component="img"
-                                        src={showPassword ? VisibilityOff : Visibility}
-                                        onClick={() => setShowPassword((prev) => !prev)}
-                                        style={{ width: "20px", height: "auto" }}
-                                    />
+                                    <Box sx={{ height: 25, width: 25, cursor: "pointer" }} onClick={() => setShowPassword((prev) => !prev)}>
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </Box>
                                 </InputAdornment>
                             ),
                         }}
