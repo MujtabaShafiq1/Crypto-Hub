@@ -40,19 +40,21 @@ const theme = (mode) => ({
                   // palette values for light mode
                   primary: {
                       main: "rgb(255, 255, 255)",
+                      light: "rgb(0, 0, 0)",
                   },
                   text: {
-                      primary: "rgb(0, 0, 0)",
-                      secondary:  "rgb(255, 255, 255)",
+                      main: "rgb(0, 0, 0)",
+                      light: "rgb(255, 255, 255)",
                   },
               }
             : {
                   // palette values for dark mode
                   primary: {
                       main: "rgb(0, 0, 0)",
+                      secondary: "rgb(255, 255, 255)",
                   },
                   text: {
-                      primary:  "rgb(255, 255, 255)",
+                      primary: "rgb(255, 255, 255)",
                       secondary: "rgb(0, 0, 0)",
                   },
               }),
