@@ -21,9 +21,6 @@ const Rightbar = () => {
 
     return (
         <List
-            sx={{ backgroundColor: "black" }}
-            component="nav"
-            aria-labelledby="nested-list-subheader"
             subheader={
                 <ListSubheader component="div" id="nested-list-subheader">
                     Nested List Items

@@ -6,14 +6,14 @@ const Home = () => {
     // grid 1 - 12
     return (
         <Grid container>
-            <Grid item md={2.2} xs={1.5}>
+            <Grid item md={2} xs={1.5}>
                 <Leftbar />
             </Grid>
-            <Grid item md={7.3} xs={10.5}>
-                <Box sx={{ height: "500vh", backgroundColor: "lightblue" }} />
+            <Grid item md={7.5} xs={10.5}>
+                <Box sx={{ height: "300vh", backgroundColor: "lightblue" }} />
             </Grid>
             <Grid item md={2.5} sx={{ display: { xs: "none", md: "flex" } }}>
-                <Leftbar />
+                <Rightbar />
             </Grid>
         </Grid>
     );

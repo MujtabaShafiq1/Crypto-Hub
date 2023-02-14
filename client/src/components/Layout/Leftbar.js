@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useSelector } from "react-redux";
-import { List, ListItemButton, ListItemIcon, ListItemText, Avatar } from "@mui/material";
-import { StyledBadge } from "../../misc/MUIComponents";
+import { List, ListItemIcon, Avatar, Typography } from "@mui/material";
+import { StyledBadge, StyledListItem, StickyContainer } from "../../misc/MUIComponents";
+import { ThemeContext } from "../../context/ThemeProvider";
+import DiscoverTags from "../HashTags/DiscoverTags";
+
 import {
     SearchRounded,
     NotificationsNoneRounded,
@@ -14,77 +17,93 @@ import {
     LogoutRounded,
 } from "@mui/icons-material";
 
-const Lefbar = () => {
+const Leftbar = () => {
 
     const user = useSelector((state) => state.auth.user);
-    const [mode , setMode] = useState(false)
+    const { mode, toggleColorMode } = useContext(ThemeContext);
+    const [notifications, setNotifications] = useState(false);
+
+    const notificationHandler = () => {
+        setNotifications(true);
+    };
 
     const logoutHandler = async () => {
         window.open(`http://localhost:8000/auth/logout`, "_self");
     };
 
     return (
-        <List component="nav">
-            <ListItemButton>
-                <ListItemIcon>
-                    <Avatar src={user?.photo} />
-                </ListItemIcon>
-                <ListItemText primary={user.name} />
-            </ListItemButton>
-            <ListItemButton>
-                <ListItemIcon>
-                    <HomeRounded />
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-            </ListItemButton>
-            <ListItemButton>
-                <ListItemIcon>
-                    <SearchRounded />
-                </ListItemIcon>
-                <ListItemText primary="Search" />
-            </ListItemButton>
-            <ListItemButton>
-                <ListItemIcon>
-                    <HistoryRounded />
-                </ListItemIcon>
-                <ListItemText primary="Your Activity" />
-            </ListItemButton>
-            <ListItemButton>
-                <ListItemIcon>
-                    <BookmarkBorderRounded />
-                </ListItemIcon>
-                <ListItemText primary="Saved" />
-            </ListItemButton>
-            <ListItemButton>
-                <ListItemIcon>
-                    <StyledBadge color="error" badgeContent={5} max={999}>
-                        <NotificationsNoneRounded />
-                    </StyledBadge>
-                </ListItemIcon>
-                <ListItemText primary="Notifications" />
-            </ListItemButton>
-            <ListItemButton>
-                <ListItemIcon>
-                    <StyledBadge color="error" badgeContent={5} max={999}>
-                        <PeopleOutlineOutlined />
-                    </StyledBadge>
-                </ListItemIcon>
-                <ListItemText primary="Friend Requests" />
-            </ListItemButton>
-            <ListItemButton onClick={() => setMode(prev => !prev)}>
-                <ListItemIcon>
-                    {mode ? <DarkModeRounded /> : <LightModeRounded />}
-                </ListItemIcon>
-                <ListItemText primary="Switch Appearance" />
-            </ListItemButton>
-            <ListItemButton>
-                <ListItemIcon>
-                    <LogoutRounded />
-                </ListItemIcon>
-                <ListItemText primary="Logout" />
-            </ListItemButton>
-        </List>
+        <StickyContainer>
+            <List component="nav" spacing={10}>
+                <StyledListItem>
+                    <ListItemIcon>
+                        <Avatar src={user?.photo} />
+                    </ListItemIcon>
+                    <Typography variant="subBody">{user.name}</Typography>
+                </StyledListItem>
+
+                <StyledListItem>
+                    <ListItemIcon>
+                        <HomeRounded sx={{ fontSize: 30 }} />
+                    </ListItemIcon>
+                    <Typography variant="subBody">Home</Typography>
+                </StyledListItem>
+
+                <StyledListItem>
+                    <ListItemIcon>
+                        <SearchRounded sx={{ fontSize: 30 }} />
+                    </ListItemIcon>
+                    <Typography variant="subBody">Search</Typography>
+                </StyledListItem>
+
+                <StyledListItem>
+                    <ListItemIcon>
+                        <HistoryRounded sx={{ fontSize: 30 }} />
+                    </ListItemIcon>
+                    <Typography variant="subBody">Your Activity</Typography>
+                </StyledListItem>
+
+                <StyledListItem>
+                    <ListItemIcon>
+                        <BookmarkBorderRounded sx={{ fontSize: 30 }} />
+                    </ListItemIcon>
+                    <Typography variant="subBody">Saved</Typography>
+                </StyledListItem>
+
+                <StyledListItem onClick={notificationHandler}>
+                    <ListItemIcon>
+                        <StyledBadge color="error" badgeContent={5} max={999}>
+                            <NotificationsNoneRounded sx={{ fontSize: 30 }} />
+                        </StyledBadge>
+                    </ListItemIcon>
+                    <Typography variant="subBody">Notifications</Typography>
+                </StyledListItem>
+
+                <StyledListItem>
+                    <ListItemIcon>
+                        <StyledBadge color="error" badgeContent={5} max={999}>
+                            <PeopleOutlineOutlined sx={{ fontSize: 30 }} />
+                        </StyledBadge>
+                    </ListItemIcon>
+                    <Typography variant="subBody">Friend Requests</Typography>
+                </StyledListItem>
+
+                <StyledListItem onClick={toggleColorMode}>
+                    <ListItemIcon>
+                        {mode ? <DarkModeRounded sx={{ fontSize: 30 }} /> : <LightModeRounded sx={{ fontSize: 30 }} />}
+                    </ListItemIcon>
+                    <Typography variant="subBody">Switch Appearance</Typography>
+                </StyledListItem>
+
+                <StyledListItem>
+                    <ListItemIcon>
+                        <LogoutRounded sx={{ fontSize: 30 }} />
+                    </ListItemIcon>
+                    <Typography variant="subBody">Logout</Typography>
+                </StyledListItem>
+            </List>
+            <DiscoverTags />
+        </StickyContainer>
     );
 };
 
-export default Lefbar;
+export default Leftbar;

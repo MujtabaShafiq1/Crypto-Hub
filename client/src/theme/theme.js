@@ -1,9 +1,8 @@
-import { createTheme } from "@mui/material";
 import { createBreakpoints } from "@mui/system";
 
 const breakpoints = createBreakpoints({});
 
-const theme = createTheme({
+const theme = (mode) => ({
     typography: {
         header: {
             fontSize: 30,
@@ -31,8 +30,32 @@ const theme = createTheme({
         },
         allVariants: {
             fontFamily: '"Open Sans", sans-serif',
-            textTransform: 'none',
+            textTransform: "none",
         },
+    },
+    palette: {
+        mode,
+        ...(mode === "light"
+            ? {
+                  // palette values for light mode
+                  primary: {
+                      main: "rgb(255, 255, 255)",
+                  },
+                  text: {
+                      primary: "rgb(0, 0, 0)",
+                      secondary:  "rgb(255, 255, 255)",
+                  },
+              }
+            : {
+                  // palette values for dark mode
+                  primary: {
+                      main: "rgb(0, 0, 0)",
+                  },
+                  text: {
+                      primary:  "rgb(255, 255, 255)",
+                      secondary: "rgb(0, 0, 0)",
+                  },
+              }),
     },
 });
 

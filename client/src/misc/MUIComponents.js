@@ -1,4 +1,4 @@
-import { Box, Grid, Container, Button, Badge, TextField, Typography, styled } from "@mui/material";
+import { Box, Grid, Container, Button, Badge, TextField, Typography, ListItemButton, styled } from "@mui/material";
 import background from "../assets/background.jpg";
 
 const MainContainer = styled(Grid)({
@@ -11,6 +11,13 @@ const MainContainer = styled(Grid)({
     height: "100vh",
     width: "100vw",
 });
+
+const StickyContainer = styled(Box)(({ theme }) => ({
+    top: 0,
+    height: "100vh",
+    position: "sticky",
+    backgroundColor: theme.palette.primary.main,
+}));
 
 const Flexbox = styled(Box)({
     display: "flex",
@@ -75,6 +82,16 @@ const StyledField = styled(TextField)(({ error }) => ({
     },
 }));
 
+const StyledListItem = styled(ListItemButton)(({ theme }) => ({
+    margin: "10px 0",
+    padding: "10px",
+    "&:hover": {
+        opacity: 1,
+        borderRadius: "30px",
+        cursor: "pointer",
+    },
+}));
+
 const FormContainer = styled(Container)(({ theme }) => ({
     width: "27%",
     minHeight: "55%",
@@ -92,4 +109,4 @@ const FormContainer = styled(Container)(({ theme }) => ({
     backdropFilter: "blur(50px)",
 }));
 
-export { Flexbox, StyledBadge, MainContainer, StyledButton, FormContainer, StyledField, StyledLink };
+export { Flexbox, StickyContainer, StyledBadge, StyledListItem, MainContainer, StyledButton, FormContainer, StyledField, StyledLink };
