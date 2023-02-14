@@ -1,4 +1,4 @@
-import { Box, Grid, Container, Button, TextField, Typography, styled } from "@mui/material";
+import { Box, Grid, Container, Button, Badge, TextField, Typography, styled } from "@mui/material";
 import background from "../assets/background.jpg";
 
 const MainContainer = styled(Grid)({
@@ -29,6 +29,16 @@ const StyledLink = styled(Typography)({
     },
     textTransform: "none",
 });
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+        right: -3,
+        top: 3,
+        border: `2px solid ${theme.palette.background.paper}`,
+        padding: "0 4px",
+        fontSize: "11px",
+    },
+}));
 
 const StyledButton = styled(Button)({
     backgroundColor: "black",
@@ -82,4 +92,4 @@ const FormContainer = styled(Container)(({ theme }) => ({
     backdropFilter: "blur(50px)",
 }));
 
-export { Flexbox, MainContainer, StyledButton, FormContainer, StyledField, StyledLink };
+export { Flexbox, StyledBadge, MainContainer, StyledButton, FormContainer, StyledField, StyledLink };

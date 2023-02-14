@@ -1,27 +1,21 @@
-import { useSelector } from "react-redux";
-import { Box, Typography } from "@mui/material";
-import Navigation from "../components/Layout/Navigation";
+import { Box, Grid } from "@mui/material";
+import Leftbar from "../components/Layout/Leftbar";
+import Rightbar from "../components/Layout/Rightbar";
 
 const Home = () => {
-
-    const user = useSelector((state) => state.auth.user);
-
+    // grid 1 - 12
     return (
-        <>
-            <Navigation />
-            <Box sx={{ height: "100vh" }}>
-                <Typography variant="h5" sx={{ overflowWrap: "break-word", textAlign: "center" }}>
-                    {user.name}
-                </Typography>
-                <Typography variant="h5" sx={{ overflowWrap: "break-word", textAlign: "center" }}>
-                    {user.userId}
-                </Typography>
-                <Typography variant="h5" sx={{ overflowWrap: "break-word", textAlign: "center" }}>
-                    {user.provider}
-                </Typography>
-                <Box component="img" src={user.photo} alt="" />
-            </Box>
-        </>
+        <Grid container>
+            <Grid item md={2.2} xs={1.5}>
+                <Leftbar />
+            </Grid>
+            <Grid item md={7.3} xs={10.5}>
+                <Box sx={{ height: "500vh", backgroundColor: "lightblue" }} />
+            </Grid>
+            <Grid item md={2.5} sx={{ display: { xs: "none", md: "flex" } }}>
+                <Leftbar />
+            </Grid>
+        </Grid>
     );
 };
 
