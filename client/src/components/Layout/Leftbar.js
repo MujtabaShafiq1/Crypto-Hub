@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useSelector } from "react-redux";
-import { ListItemIcon, Avatar, Typography } from "@mui/material";
+import { ListItemIcon, Avatar, Typography, Collapse } from "@mui/material";
 import { StickyContainer, StyledBadge, StyledList, StyledListItem } from "../../misc/MUIComponents";
 import { ThemeContext } from "../../context/ThemeProvider";
 import Notifications from "../Drawers/Notifications";

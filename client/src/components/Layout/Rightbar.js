@@ -1,10 +1,11 @@
 import { StickyContainer } from "../../misc/MUIComponents";
-import FriendsActivity from "../FriendsActivity/FriendsActivity"
-import FriendsStatus from "../FriendsActivity/FriendsStatus"
+import FriendsActivity from "../FriendsActivity/FriendsActivity";
+import FriendsStatus from "../FriendsActivity/FriendsStatus";
+
 
 const Rightbar = () => {
     return (
-        <StickyContainer>
+        <StickyContainer sx={{ display: "flex", flexDirection: "column" }}>
             <FriendsActivity />
             <FriendsStatus />
         </StickyContainer>

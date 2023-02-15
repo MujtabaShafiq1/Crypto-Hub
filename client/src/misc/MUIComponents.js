@@ -94,6 +94,13 @@ const StyledListItem = styled(ListItemButton)(({ theme }) => ({
     },
 }));
 
+const StyledStatusBadge = styled(Badge)(({ show }) => ({
+    '& .MuiBadge-badge': {
+        backgroundColor: show ? '#44b700' : "gray",
+        color: '#44b700',
+    },
+}))
+
 const FormContainer = styled(Container)(({ theme }) => ({
     width: "27%",
     minHeight: "55%",
@@ -111,4 +118,4 @@ const FormContainer = styled(Container)(({ theme }) => ({
     backdropFilter: "blur(50px)",
 }));
 
-export { Flexbox, StickyContainer, StyledBadge, StyledList, StyledListItem, MainContainer, StyledButton, FormContainer, StyledField };
+export { Flexbox, StickyContainer, StyledBadge, StyledStatusBadge, StyledList, StyledListItem, MainContainer, StyledButton, FormContainer, StyledField };
