@@ -1,4 +1,4 @@
-import { Box, Grid, Container, Button, Badge, TextField, List, ListItemButton, styled } from "@mui/material";
+import { Box, Typography, Grid, Container, Button, Badge, TextField, Collapse, List, ListItemButton, styled } from "@mui/material";
 import background from "../assets/background.jpg";
 
 const MainContainer = styled(Grid)({
@@ -12,10 +12,19 @@ const MainContainer = styled(Grid)({
     width: "100vw",
 });
 
+const CollapseContainer = styled(Collapse)(({ theme }) => ({
+    top: 0,
+    height: "100vh",
+    position: "sticky",
+    borderRight: "1px solid rgba(128,128,128,0.9)",
+    backgroundColor: theme.palette.primary.main,
+}));
+
 const StickyContainer = styled(Box)(({ theme }) => ({
     top: 0,
     height: "100vh",
     position: "sticky",
+    borderLeft: "1px solid rgba(128,128,128,0.9)",
     backgroundColor: theme.palette.primary.main,
 }));
 
@@ -71,13 +80,14 @@ const StyledField = styled(TextField)(({ error }) => ({
 }));
 
 const StyledList = styled(List)({
+    width: "100%",
     "&& .Mui-selected, && .Mui-selected:hover": {
         "& .MuiListItemIcon-root": {
             color: "purple",
         },
         "&, .Typography-root": {
             fontWeight: 700,
-        }
+        },
     },
 });
 
@@ -94,12 +104,19 @@ const StyledListItem = styled(ListItemButton)(({ theme }) => ({
     },
 }));
 
+const LongTypography = styled(Typography)(({ theme }) => ({
+    color: theme.palette.text.primary,
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+}));
+
 const StyledStatusBadge = styled(Badge)(({ show }) => ({
-    '& .MuiBadge-badge': {
-        backgroundColor: show ? '#44b700' : "gray",
-        color: '#44b700',
+    "& .MuiBadge-badge": {
+        backgroundColor: show ? "#44b700" : "gray",
+        color: "#44b700",
     },
-}))
+}));
 
 const FormContainer = styled(Container)(({ theme }) => ({
     width: "27%",
@@ -118,4 +135,17 @@ const FormContainer = styled(Container)(({ theme }) => ({
     backdropFilter: "blur(50px)",
 }));
 
-export { Flexbox, StickyContainer, StyledBadge, StyledStatusBadge, StyledList, StyledListItem, MainContainer, StyledButton, FormContainer, StyledField };
+export {
+    Flexbox,
+    LongTypography,
+    CollapseContainer,
+    StickyContainer,
+    StyledBadge,
+    StyledStatusBadge,
+    StyledList,
+    StyledListItem,
+    MainContainer,
+    StyledButton,
+    FormContainer,
+    StyledField,
+};
