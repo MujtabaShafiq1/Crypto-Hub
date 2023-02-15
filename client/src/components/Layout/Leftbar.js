@@ -23,10 +23,19 @@ const Leftbar = () => {
     const user = useSelector((state) => state.auth.user);
     const { mode, toggleColorMode } = useContext(ThemeContext);
 
+    const [open, setOpen] = useState(true);
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const selection = (val) => {
-        if (val >= 0) setSelectedIndex(val);
+        if (val === 0 || val === 4 || val === 5) {
+            setSelectedIndex(val);
+            setOpen(false);
+            return;
+        }
+        if (val >= 0) {
+            setSelectedIndex(val);
+            setOpen(true);
+        }
         if (val === 6) return toggleColorMode();
         if (val === 7) return logoutHandler();
     };
@@ -46,37 +55,47 @@ const Leftbar = () => {
                         <ListItemIcon>
                             <Avatar src={user?.photo} />
                         </ListItemIcon>
-                        <Typography variant="subBody" sx={{ color: "text.primary" }}>
-                            {user.name}
-                        </Typography>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <Typography variant="subBody" sx={{ color: "text.primary" }}>
+                                {user.name}
+                            </Typography>
+                        </Collapse>
                     </StyledListItem>
 
                     <StyledListItem selected={selectedIndex === 0} onClick={() => selection(0)}>
                         <ListItemIcon>
                             <HomeRounded sx={{ fontSize: 30 }} />
                         </ListItemIcon>
-                        <Typography variant="subBody">Home</Typography>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <Typography variant="subBody">Home</Typography>
+                        </Collapse>
                     </StyledListItem>
 
                     <StyledListItem selected={selectedIndex === 1} onClick={() => selection(1)}>
                         <ListItemIcon>
                             <SearchRounded sx={{ fontSize: 30 }} />
                         </ListItemIcon>
-                        <Typography variant="subBody">Search</Typography>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <Typography variant="subBody">Search</Typography>
+                        </Collapse>
                     </StyledListItem>
 
                     <StyledListItem selected={selectedIndex === 2} onClick={() => selection(2)}>
                         <ListItemIcon>
                             <HistoryRounded sx={{ fontSize: 30 }} />
                         </ListItemIcon>
-                        <Typography variant="subBody">Your Activity</Typography>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <Typography variant="subBody">Your Activity</Typography>
+                        </Collapse>
                     </StyledListItem>
 
                     <StyledListItem selected={selectedIndex === 3} onClick={() => selection(3)}>
                         <ListItemIcon>
                             <BookmarkBorderRounded sx={{ fontSize: 30 }} />
                         </ListItemIcon>
-                        <Typography variant="subBody">Saved</Typography>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <Typography variant="subBody">Saved</Typography>
+                        </Collapse>
                     </StyledListItem>
 
                     <StyledListItem selected={selectedIndex === 4} onClick={() => selection(4)}>
@@ -85,7 +104,9 @@ const Leftbar = () => {
                                 <NotificationsNoneRounded sx={{ fontSize: 30 }} />
                             </StyledBadge>
                         </ListItemIcon>
-                        <Typography variant="subBody">Notifications</Typography>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <Typography variant="subBody">Notifications</Typography>
+                        </Collapse>
                     </StyledListItem>
 
                     <StyledListItem selected={selectedIndex === 5} onClick={() => selection(5)}>
@@ -94,21 +115,27 @@ const Leftbar = () => {
                                 <PeopleOutlineOutlined sx={{ fontSize: 30 }} />
                             </StyledBadge>
                         </ListItemIcon>
-                        <Typography variant="subBody">Friend Requests</Typography>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <Typography variant="subBody">Friend Requests</Typography>
+                        </Collapse>
                     </StyledListItem>
 
                     <StyledListItem selected={selectedIndex === 6} onClick={() => selection(6)}>
                         <ListItemIcon>
                             {mode ? <DarkModeRounded sx={{ fontSize: 30 }} /> : <LightModeRounded sx={{ fontSize: 30 }} />}
                         </ListItemIcon>
-                        <Typography variant="subBody">Switch Appearance</Typography>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <Typography variant="subBody">Switch Appearance</Typography>
+                        </Collapse>
                     </StyledListItem>
 
                     <StyledListItem selected={selectedIndex === 7} onClick={() => selection(7)}>
                         <ListItemIcon>
                             <LogoutRounded sx={{ fontSize: 30 }} />
                         </ListItemIcon>
-                        <Typography variant="subBody">Logout</Typography>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <Typography variant="subBody">Logout</Typography>
+                        </Collapse>
                     </StyledListItem>
                 </StyledList>
                 <DiscoverTags />
