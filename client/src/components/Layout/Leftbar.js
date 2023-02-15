@@ -1,9 +1,10 @@
 import { useState, useContext } from "react";
 import { useSelector } from "react-redux";
-import { List, ListItemIcon, Avatar, Typography } from "@mui/material";
-import { StyledBadge, StyledListItem, StickyContainer } from "../../misc/MUIComponents";
+import { ListItemIcon, Avatar, Typography } from "@mui/material";
+import { StickyContainer, StyledBadge, StyledList, StyledListItem } from "../../misc/MUIComponents";
 import { ThemeContext } from "../../context/ThemeProvider";
 import Notifications from "../Drawers/Notifications";
+import FriendRequests from "../Drawers/FriendRequests";
 import DiscoverTags from "../HashTags/DiscoverTags";
 
 import {
@@ -19,57 +20,66 @@ import {
 } from "@mui/icons-material";
 
 const Leftbar = () => {
-
     const user = useSelector((state) => state.auth.user);
     const { mode, toggleColorMode } = useContext(ThemeContext);
-    const [notifications, setNotifications] = useState(false);
+
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
+    const selection = (val) => {
+        if (val >= 0) setSelectedIndex(val);
+        if (val === 6) return toggleColorMode();
+        if (val === 7) return logoutHandler();
+    };
 
     const logoutHandler = async () => {
-        console.log("logging out")
+        console.log("logging out");
         // window.open(`http://localhost:8000/auth/logout`, "_self");
     };
 
     return (
         <>
-            {notifications && <Notifications close={() => setNotifications(false)}/>}
+            {/* {selectedIndex === 4 && <Notifications close={() => setSelectedIndex(0)}/>} */}
+            {/* {selectedIndex === 5 && <FriendRequests close={() => setSelectedIndex(0)}/>} */}
             <StickyContainer>
-                <List component="nav">
-                    <StyledListItem>
+                <StyledList component="nav">
+                    <StyledListItem selected={selectedIndex === -1} onClick={() => selection(-1)}>
                         <ListItemIcon>
                             <Avatar src={user?.photo} />
                         </ListItemIcon>
-                        <Typography variant="subBody">{user.name}</Typography>
+                        <Typography variant="subBody" sx={{ color: "text.primary" }}>
+                            {user.name}
+                        </Typography>
                     </StyledListItem>
 
-                    <StyledListItem>
+                    <StyledListItem selected={selectedIndex === 0} onClick={() => selection(0)}>
                         <ListItemIcon>
                             <HomeRounded sx={{ fontSize: 30 }} />
                         </ListItemIcon>
                         <Typography variant="subBody">Home</Typography>
                     </StyledListItem>
 
-                    <StyledListItem>
+                    <StyledListItem selected={selectedIndex === 1} onClick={() => selection(1)}>
                         <ListItemIcon>
                             <SearchRounded sx={{ fontSize: 30 }} />
                         </ListItemIcon>
                         <Typography variant="subBody">Search</Typography>
                     </StyledListItem>
 
-                    <StyledListItem>
+                    <StyledListItem selected={selectedIndex === 2} onClick={() => selection(2)}>
                         <ListItemIcon>
                             <HistoryRounded sx={{ fontSize: 30 }} />
                         </ListItemIcon>
                         <Typography variant="subBody">Your Activity</Typography>
                     </StyledListItem>
 
-                    <StyledListItem>
+                    <StyledListItem selected={selectedIndex === 3} onClick={() => selection(3)}>
                         <ListItemIcon>
                             <BookmarkBorderRounded sx={{ fontSize: 30 }} />
                         </ListItemIcon>
                         <Typography variant="subBody">Saved</Typography>
                     </StyledListItem>
 
-                    <StyledListItem onClick={() =>  setNotifications(true)}>
+                    <StyledListItem selected={selectedIndex === 4} onClick={() => selection(4)}>
                         <ListItemIcon>
                             <StyledBadge color="error" badgeContent={5} max={999}>
                                 <NotificationsNoneRounded sx={{ fontSize: 30 }} />
@@ -78,7 +88,7 @@ const Leftbar = () => {
                         <Typography variant="subBody">Notifications</Typography>
                     </StyledListItem>
 
-                    <StyledListItem>
+                    <StyledListItem selected={selectedIndex === 5} onClick={() => selection(5)}>
                         <ListItemIcon>
                             <StyledBadge color="error" badgeContent={5} max={999}>
                                 <PeopleOutlineOutlined sx={{ fontSize: 30 }} />
@@ -87,20 +97,20 @@ const Leftbar = () => {
                         <Typography variant="subBody">Friend Requests</Typography>
                     </StyledListItem>
 
-                    <StyledListItem onClick={toggleColorMode}>
+                    <StyledListItem selected={selectedIndex === 6} onClick={() => selection(6)}>
                         <ListItemIcon>
                             {mode ? <DarkModeRounded sx={{ fontSize: 30 }} /> : <LightModeRounded sx={{ fontSize: 30 }} />}
                         </ListItemIcon>
                         <Typography variant="subBody">Switch Appearance</Typography>
                     </StyledListItem>
 
-                    <StyledListItem onClick={logoutHandler}>
+                    <StyledListItem selected={selectedIndex === 7} onClick={() => selection(7)}>
                         <ListItemIcon>
                             <LogoutRounded sx={{ fontSize: 30 }} />
                         </ListItemIcon>
                         <Typography variant="subBody">Logout</Typography>
                     </StyledListItem>
-                </List>
+                </StyledList>
                 <DiscoverTags />
             </StickyContainer>
         </>

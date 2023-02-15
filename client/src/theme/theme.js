@@ -43,8 +43,8 @@ const theme = (mode) => ({
                       light: "rgb(0, 0, 0)",
                   },
                   text: {
-                      main: "rgb(0, 0, 0)",
-                      light: "rgb(255, 255, 255)",
+                      primary: "rgb(0, 0, 0)",
+                      secondary: "rgb(255, 255, 255)",
                   },
               }
             : {

@@ -30,7 +30,7 @@ const DiscoverTags = () => {
                     Discover Tags
                 </Typography>
             </Flexbox>
-            {data.map((item) => console.log(item))}
+            {/* {data.map((item) => console.log(item))} */}
         </>
     );
 };

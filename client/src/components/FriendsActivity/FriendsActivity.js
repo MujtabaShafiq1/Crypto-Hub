@@ -2,17 +2,17 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
-
 const FriendsActivity = () => {
-  return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    return (
+        <List subheader={<ListSubheader>Latest Activity</ListSubheader>}>
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    <Avatar src="/static/images/avatar/1.jpg" />
                 </ListItemAvatar>
                 <ListItemText
                     primary="Brunch this weekend?"
@@ -58,7 +58,7 @@ const FriendsActivity = () => {
                 />
             </ListItem>
         </List>
-  )
-}
+    );
+};
 
-export default FriendsActivity
+export default FriendsActivity;

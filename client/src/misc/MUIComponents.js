@@ -1,4 +1,4 @@
-import { Box, Grid, Container, Button, Badge, TextField, Typography, ListItemButton, styled } from "@mui/material";
+import { Box, Grid, Container, Button, Badge, TextField, List, ListItemButton, styled } from "@mui/material";
 import background from "../assets/background.jpg";
 
 const MainContainer = styled(Grid)({
@@ -25,21 +25,9 @@ const Flexbox = styled(Box)({
     alignItems: "center",
 });
 
-const StyledLink = styled(Typography)({
-    borderRadius: "8px",
-    padding: "8px 20px",
-    color: "white",
-    fontSize: "16px",
-    "&:hover": {
-        backgroundColor: "skyblue",
-        cursor: "pointer",
-    },
-    textTransform: "none",
-});
-
 const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
-        right: -3,
+        right: 4,
         top: 3,
         border: `2px solid ${theme.palette.background.paper}`,
         padding: "0 4px",
@@ -82,6 +70,17 @@ const StyledField = styled(TextField)(({ error }) => ({
     },
 }));
 
+const StyledList = styled(List)({
+    "&& .Mui-selected, && .Mui-selected:hover": {
+        "& .MuiListItemIcon-root": {
+            color: "purple",
+        },
+        "&, .Typography-root": {
+            fontWeight: 700,
+        }
+    },
+});
+
 const StyledListItem = styled(ListItemButton)(({ theme }) => ({
     margin: "10px 0",
     padding: "10px",
@@ -89,6 +88,9 @@ const StyledListItem = styled(ListItemButton)(({ theme }) => ({
         opacity: 1,
         borderRadius: "30px",
         cursor: "pointer",
+    },
+    "&, & .MuiListItemIcon-root": {
+        color: "black",
     },
 }));
 
@@ -109,4 +111,4 @@ const FormContainer = styled(Container)(({ theme }) => ({
     backdropFilter: "blur(50px)",
 }));
 
-export { Flexbox, StickyContainer, StyledBadge, StyledListItem, MainContainer, StyledButton, FormContainer, StyledField, StyledLink };
+export { Flexbox, StickyContainer, StyledBadge, StyledList, StyledListItem, MainContainer, StyledButton, FormContainer, StyledField };
