@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { ListItemIcon, Avatar } from "@mui/material";
 import { LongTypography, StickyContainer, StyledBadge, StyledList, StyledListItem } from "../../misc/MUIComponents";
 import { ThemeContext } from "../../context/ThemeProvider";
-import CustomCollapseTransition from "./CustomCollapseTransition";
+import CustomCollapseTransition from "../UI/CustomCollapseTransition";
 import Notifications from "../Drawers/Notifications";
 import FriendRequests from "../Drawers/FriendRequests";
 import DiscoverTags from "../HashTags/DiscoverTags";

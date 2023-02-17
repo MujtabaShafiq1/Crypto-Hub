@@ -81,6 +81,13 @@ const StyledList = styled(List)({
     },
 });
 
+const ListHeader = styled(Typography)(({ theme }) => ({
+    padding: "10px 0px 0px 10px",
+    color: theme.palette.text.primary,
+    fontWeight: "400",
+    paddingLeft: theme.spacing(2),
+}));
+
 const StyledListItem = styled(ListItemButton)(({ theme }) => ({
     margin: "10px 0",
     padding: "10px",
@@ -132,6 +139,7 @@ export {
     StyledBadge,
     StyledStatusBadge,
     StyledList,
+    ListHeader,
     StyledListItem,
     MainContainer,
     StyledButton,

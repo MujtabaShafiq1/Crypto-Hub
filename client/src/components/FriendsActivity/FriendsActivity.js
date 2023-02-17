@@ -1,63 +1,62 @@
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
-import ListItemText from "@mui/material/ListItemText";
-import ListSubheader from "@mui/material/ListSubheader";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
+import { Box, Avatar, Typography, Divider, ListItemText, ListItemAvatar } from "@mui/material";
+import { StyledList, ListHeader, StyledListItem } from "../../misc/MUIComponents";
+import moment from "moment";
 
 const FriendsActivity = () => {
+    const data = [
+        {
+            name: "Ali Connors",
+            text: " — I'll be in your neighborhood doing errands this…",
+            photo: "https://images.pexels.com/photos/14968378/pexels-photo-14968378.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+        },
+        {
+            name: "Sandra Adams",
+            text: " — Do you have Paris recommendations? Have you ever…",
+            photo: "https://images.pexels.com/photos/13131586/pexels-photo-13131586.png?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+        },
+        {
+            name: "Alex Collins",
+            text: " — Wish I could come, but I'm out of town this…",
+            photo: "https://images.pexels.com/photos/4823473/pexels-photo-4823473.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+        },
+        {
+            name: "Alex Collins",
+            text: " — Wish I could come, but I'm out of town this…",
+            photo: "https://images.pexels.com/photos/1087735/pexels-photo-1087735.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        },
+    ];
+
     return (
-        <List subheader={<ListSubheader>Latest Activity</ListSubheader>}>
-            <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                    <Avatar src="/static/images/avatar/1.jpg" />
-                </ListItemAvatar>
-                <ListItemText
-                    primary="Brunch this weekend?"
-                    secondary={
-                        <>
-                            <Typography sx={{ display: "inline" }} component="span" variant="body2" color="text.primary">
-                                Ali Connors
-                            </Typography>
-                            {" — I'll be in your neighborhood doing errands this…"}
-                        </>
-                    }
-                />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                    <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                </ListItemAvatar>
-                <ListItemText
-                    primary="Summer BBQ"
-                    secondary={
-                        <Typography sx={{ display: "helper" }} component="span" variant="body2" color="text.primary">
-                            Change her background picture
-                        </Typography>
-                    }
-                />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                    <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                </ListItemAvatar>
-                <ListItemText
-                    primary="Oui Oui"
-                    secondary={
-                        <>
-                            <Typography sx={{ display: "inline" }} component="span" variant="body2" color="text.primary">
-                                Sandra Adams
-                            </Typography>
-                            {" — Do you have Paris recommendations? Have you ever…"}
-                        </>
-                    }
-                />
-            </ListItem>
-        </List>
+        <>
+            <ListHeader variant="body">Friends Activity</ListHeader>
+            <StyledList  sx={{ overflow: "auto" }}>
+                {data.map((activity) => (
+                    <Box key={activity.text}>
+                        <StyledListItem>
+                            <ListItemAvatar>
+                                <Avatar src={activity.photo} />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={
+                                    <Typography variant="subBody" color="text.primary">
+                                        {activity.name}
+                                    </Typography>
+                                }
+                                secondary={
+                                    <>
+                                        <Typography variant="helper" color="text.primary">
+                                            {moment().fromNow()}
+                                            {activity.text}
+                                        </Typography>
+                                    </>
+                                }
+                            />
+                        </StyledListItem>
+                        <Divider variant="inset" component="li" />
+                    </Box>
+                ))}
+            </StyledList>
+        </>
     );
 };
 
