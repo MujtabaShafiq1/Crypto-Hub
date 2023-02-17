@@ -1,5 +1,5 @@
-import { Box, Avatar, Typography, Divider, ListItemText, ListItemAvatar } from "@mui/material";
-import { StyledList, ListHeader, StyledListItem } from "../../misc/MUIComponents";
+import { Box, Avatar, Typography, Divider, List, ListItemText, ListItemAvatar } from "@mui/material";
+import { ListHeader, StyledListItem } from "../../misc/MUIComponents";
 import moment from "moment";
 
 const FriendsActivity = () => {
@@ -20,7 +20,7 @@ const FriendsActivity = () => {
             photo: "https://images.pexels.com/photos/4823473/pexels-photo-4823473.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
         },
         {
-            name: "Alex Collins",
+            name: "Judy Myers",
             text: " — Wish I could come, but I'm out of town this…",
             photo: "https://images.pexels.com/photos/1087735/pexels-photo-1087735.jpeg?auto=compress&cs=tinysrgb&w=1600",
         },
@@ -29,9 +29,9 @@ const FriendsActivity = () => {
     return (
         <>
             <ListHeader variant="body">Friends Activity</ListHeader>
-            <StyledList  sx={{ overflow: "auto" }}>
+            <List sx={{ overflow: "auto", height: "50vh" }}>
                 {data.map((activity) => (
-                    <Box key={activity.text}>
+                    <Box key={activity.name}>
                         <StyledListItem>
                             <ListItemAvatar>
                                 <Avatar src={activity.photo} />
@@ -55,7 +55,7 @@ const FriendsActivity = () => {
                         <Divider variant="inset" component="li" />
                     </Box>
                 ))}
-            </StyledList>
+            </List>
         </>
     );
 };

@@ -71,14 +71,17 @@ const StyledField = styled(TextField)(({ error }) => ({
 }));
 
 const StyledList = styled(List)({
-    "&& .Mui-selected, && .Mui-selected:hover": {
-        "& .MuiListItemIcon-root": {
-            color: "purple",
+    "&& .Mui-selected": {
+        fontWeight: 700,
+        "& .MuiAvatar-root": {
+          border: "1px solid black",
         },
-        "&, .Typography-root": {
-            fontWeight: 700,
-        },
-    },
+      },
+      "& .MuiAvatar-root": {
+        backgroundColor: 'transparent',
+        color: "black",
+        overflow: "visible"
+      },
 });
 
 const ListHeader = styled(Typography)(({ theme }) => ({
@@ -95,9 +98,6 @@ const StyledListItem = styled(ListItemButton)(({ theme }) => ({
         opacity: 1,
         borderRadius: "30px",
         cursor: "pointer",
-    },
-    "&, & .MuiListItemIcon-root": {
-        color: "black",
     },
 }));
 

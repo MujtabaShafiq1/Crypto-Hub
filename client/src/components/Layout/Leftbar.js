@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useSelector } from "react-redux";
-import { ListItemIcon, Avatar } from "@mui/material";
+import { ListItemAvatar, Avatar } from "@mui/material";
 import { LongTypography, StickyContainer, StyledBadge, StyledList, StyledListItem } from "../../misc/MUIComponents";
 import { ThemeContext } from "../../context/ThemeProvider";
 import CustomCollapseTransition from "../UI/CustomCollapseTransition";
@@ -54,70 +54,86 @@ const Leftbar = () => {
                 <CustomCollapseTransition in={open}>
                     <StyledList component="nav">
                         <StyledListItem selected={selectedIndex === -1} onClick={() => selection(-1)}>
-                            <ListItemIcon>
+                            <ListItemAvatar>
                                 <Avatar src={user?.photo} />
-                            </ListItemIcon>
-                            { open && <LongTypography variant="subBody">{user.name}</LongTypography> }
+                            </ListItemAvatar>
+                            {open && <LongTypography variant="subBody">{user.name}</LongTypography>}
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 0} onClick={() => selection(0)}>
-                            <ListItemIcon>
-                                <HomeRounded sx={{ fontSize: 30 }} />
-                            </ListItemIcon>
-                            { open && <LongTypography variant="subBody">Home</LongTypography> }
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <HomeRounded sx={{ fontSize: 30 }} />
+                                </Avatar>
+                            </ListItemAvatar>
+                            {open && <LongTypography variant="subBody">Home</LongTypography>}
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 1} onClick={() => selection(1)}>
-                            <ListItemIcon>
-                                <SearchRounded sx={{ fontSize: 30 }} />
-                            </ListItemIcon>
-                            { open && <LongTypography variant="subBody">Search</LongTypography> }
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <SearchRounded sx={{ fontSize: 30 }} />
+                                </Avatar>
+                            </ListItemAvatar>
+                            {open && <LongTypography variant="subBody">Search</LongTypography>}
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 2} onClick={() => selection(2)}>
-                            <ListItemIcon>
-                                <HistoryRounded sx={{ fontSize: 30 }} />
-                            </ListItemIcon>
-                            { open && <LongTypography variant="subBody">Your Activity</LongTypography> }
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <HistoryRounded sx={{ fontSize: 30 }} />
+                                </Avatar>
+                            </ListItemAvatar>
+                            {open && <LongTypography variant="subBody">Your Activity</LongTypography>}
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 3} onClick={() => selection(3)}>
-                            <ListItemIcon>
-                                <BookmarkBorderRounded sx={{ fontSize: 30 }} />
-                            </ListItemIcon>
-                            { open && <LongTypography variant="subBody">Saved</LongTypography> }
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <BookmarkBorderRounded sx={{ fontSize: 30 }} />
+                                </Avatar>
+                            </ListItemAvatar>
+                            {open && <LongTypography variant="subBody">Saved</LongTypography>}
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 4} onClick={() => selection(4)}>
-                            <ListItemIcon>
-                                <StyledBadge color="error" badgeContent={5} max={999}>
-                                    <NotificationsNoneRounded sx={{ fontSize: 30 }} />
-                                </StyledBadge>
-                            </ListItemIcon>
-                            { open && <LongTypography variant="subBody">Notifications</LongTypography> }
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <StyledBadge color="error" badgeContent={5} max={999}>
+                                        <NotificationsNoneRounded sx={{ fontSize: 30 }} />
+                                    </StyledBadge>
+                                </Avatar>
+                            </ListItemAvatar>
+                            {open && <LongTypography variant="subBody">Notifications</LongTypography>}
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 5} onClick={() => selection(5)}>
-                            <ListItemIcon>
-                                <StyledBadge color="error" badgeContent={5} max={999}>
-                                    <PeopleOutlineOutlined sx={{ fontSize: 30 }} />
-                                </StyledBadge>
-                            </ListItemIcon>
-                            { open && <LongTypography variant="subBody">Friend Requests</LongTypography> }
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <StyledBadge color="error" badgeContent={5} max={999}>
+                                        <PeopleOutlineOutlined sx={{ fontSize: 30 }} />
+                                    </StyledBadge>
+                                </Avatar>
+                            </ListItemAvatar>
+                            {open && <LongTypography variant="subBody">Friend Requests</LongTypography>}
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 6} onClick={() => selection(6)}>
-                            <ListItemIcon>
-                                {mode ? <DarkModeRounded sx={{ fontSize: 30 }} /> : <LightModeRounded sx={{ fontSize: 30 }} />}
-                            </ListItemIcon>
-                            { open && <LongTypography variant="subBody">Switch Theme</LongTypography> }
+                            <ListItemAvatar>
+                                <Avatar>
+                                    {mode ? <DarkModeRounded sx={{ fontSize: 30 }} /> : <LightModeRounded sx={{ fontSize: 30 }} />}
+                                </Avatar>
+                            </ListItemAvatar>
+                            {open && <LongTypography variant="subBody">Switch Theme</LongTypography>}
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 7} onClick={() => selection(7)}>
-                            <ListItemIcon>
-                                <LogoutRounded sx={{ fontSize: 30 }} />
-                            </ListItemIcon>
-                            { open && <LongTypography variant="subBody">Logout</LongTypography> }
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <LogoutRounded sx={{ fontSize: 30 }} />
+                                </Avatar>
+                            </ListItemAvatar>
+                            {open && <LongTypography variant="subBody">Logout</LongTypography>}
                         </StyledListItem>
                     </StyledList>
                     {/* <DiscoverTags /> */}

@@ -1,5 +1,5 @@
-import { ListItemIcon, Avatar, Typography } from "@mui/material";
-import { StyledList, StyledListItem, StyledStatusBadge, ListHeader } from "../../misc/MUIComponents";
+import { Avatar, Typography, List, ListItemIcon } from "@mui/material";
+import { StyledListItem, StyledStatusBadge, ListHeader } from "../../misc/MUIComponents";
 
 const FriendsStatus = () => {
     const data = [
@@ -58,7 +58,7 @@ const FriendsStatus = () => {
     return (
         <>
             <ListHeader variant="body">Online Friends</ListHeader>
-            <StyledList sx={{ overflow: "auto" }}>
+            <List sx={{ overflow: "auto" }}>
                 {data.map((user) => {
                     return (
                         <StyledListItem key={Math.random()}>
@@ -77,7 +77,7 @@ const FriendsStatus = () => {
                         </StyledListItem>
                     );
                 })}
-            </StyledList>
+            </List>
         </>
     );
 };
