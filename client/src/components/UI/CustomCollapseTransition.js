@@ -1,7 +1,6 @@
 import { Transition } from "react-transition-group";
 
-const CustomCollapseTransition = ({ children, in: inProp }) => {
-    const duration = 200;
+const CustomCollapseTransition = ({ children, in: inProp, duration }) => {
 
     const defaultStyle = {
         transition: `width ${duration}ms ease-in-out`,
@@ -12,8 +11,8 @@ const CustomCollapseTransition = ({ children, in: inProp }) => {
     const transitionStyles = {
         entering: { height: "100vh", width: "100%" },
         entered: { height: "100vh", width: "100%" },
-        exiting: { height: "100vh", width: "20%" },
-        exited: { height: "100vh", width: "20%"  },
+        exiting: { height: "100vh", width: "60px" },
+        exited: { height: "100vh", width: "60px" },
     };
 
     return (

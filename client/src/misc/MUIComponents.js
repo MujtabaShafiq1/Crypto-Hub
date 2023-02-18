@@ -14,6 +14,7 @@ const MainContainer = styled(Grid)({
 
 const StickyContainer = styled(Box)(({ theme }) => ({
     top: 0,
+    display: "flex",
     height: "100vh",
     position: "sticky",
     backgroundColor: theme.palette.primary.main,
@@ -68,6 +69,24 @@ const StyledField = styled(TextField)(({ error }) => ({
             border: error && "0.5px solid #red",
         },
     },
+    // animation: "shake 500ms ease-in-out",
+    // "@keyframes shake": {
+    //     "0%": {
+    //         transform: "translateX(0)",
+    //     },
+    //     "25%": {
+    //         transform: "translateX(-5px)",
+    //     },
+    //     "50%": {
+    //         transform: "translateX(5px)",
+    //     },
+    //     "75%": {
+    //         transform: "translateX(-5px)",
+    //     },
+    //     "100%": {
+    //         transform: "translateX(0)",
+    //     },
+    // },
 }));
 
 const StyledList = styled(List)(({ theme }) => ({

@@ -1,11 +1,12 @@
 import { useState, useContext } from "react";
 import { useSelector } from "react-redux";
-import { ListItemAvatar, Avatar } from "@mui/material";
+import { ListItemAvatar, Avatar, Box } from "@mui/material";
 import { LongTypography, StickyContainer, StyledBadge, StyledList, StyledListItem } from "../../misc/MUIComponents";
 import { ThemeContext } from "../../context/ThemeProvider";
 import CustomCollapseTransition from "../UI/CustomCollapseTransition";
 import Notifications from "../Drawers/Notifications";
 import FriendRequests from "../Drawers/FriendRequests";
+import Search from "../Drawers/Search";
 import DiscoverTags from "../HashTags/DiscoverTags";
 
 import {
@@ -37,12 +38,9 @@ const Leftbar = () => {
     };
 
     return (
-        <>
-            {/* {selectedIndex === 4 && <Notifications close={() => setSelectedIndex(0)}/>} */}
-            {/* {selectedIndex === 5 && <FriendRequests close={() => setSelectedIndex(0)}/>} */}
-
+        <Box sx={{ width: { xs: "60px", lg: "30%" } }}>
             <StickyContainer>
-                <CustomCollapseTransition in={![1, 4, 5].includes(selectedIndex)}>
+                <CustomCollapseTransition in={![1, 4, 5].includes(selectedIndex)} duration={200}>
                     <StyledList component="nav">
                         <StyledListItem>
                             <ListItemAvatar>
@@ -127,8 +125,13 @@ const Leftbar = () => {
                     </StyledList>
                     {/* <DiscoverTags /> */}
                 </CustomCollapseTransition>
+                <Box sx={{ position: "relative" }}>
+                    <Search open={selectedIndex === 1} close={() => setSelectedIndex(0)} />
+                    {/* <Notifications open={selectedIndex === 4} close={() => setSelectedIndex(0)} />
+                    <FriendRequests open={selectedIndex === 5} close={() => setSelectedIndex(0)} /> */}
+                </Box>
             </StickyContainer>
-        </>
+        </Box>
     );
 };
 
