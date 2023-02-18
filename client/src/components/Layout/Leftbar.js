@@ -9,12 +9,12 @@ import FriendRequests from "../Drawers/FriendRequests";
 import DiscoverTags from "../HashTags/DiscoverTags";
 
 import {
-    SearchRounded,
-    NotificationsNoneRounded,
     HomeRounded,
-    BookmarkBorderRounded,
-    PeopleOutlineOutlined,
+    SearchRounded,
     HistoryRounded,
+    BookmarkRounded,
+    PersonAddAlt1Rounded,
+    NotificationsRounded,
     DarkModeRounded,
     LightModeRounded,
     LogoutRounded,
@@ -50,6 +50,7 @@ const Leftbar = () => {
         <>
             {/* {selectedIndex === 4 && <Notifications close={() => setSelectedIndex(0)}/>} */}
             {/* {selectedIndex === 5 && <FriendRequests close={() => setSelectedIndex(0)}/>} */}
+
             <StickyContainer>
                 <CustomCollapseTransition in={open}>
                     <StyledList component="nav">
@@ -63,7 +64,7 @@ const Leftbar = () => {
                         <StyledListItem selected={selectedIndex === 0} onClick={() => selection(0)}>
                             <ListItemAvatar>
                                 <Avatar>
-                                    <HomeRounded sx={{ fontSize: 30 }} />
+                                    <HomeRounded />
                                 </Avatar>
                             </ListItemAvatar>
                             {open && <LongTypography variant="subBody">Home</LongTypography>}
@@ -72,7 +73,7 @@ const Leftbar = () => {
                         <StyledListItem selected={selectedIndex === 1} onClick={() => selection(1)}>
                             <ListItemAvatar>
                                 <Avatar>
-                                    <SearchRounded sx={{ fontSize: 30 }} />
+                                    <SearchRounded />
                                 </Avatar>
                             </ListItemAvatar>
                             {open && <LongTypography variant="subBody">Search</LongTypography>}
@@ -81,7 +82,7 @@ const Leftbar = () => {
                         <StyledListItem selected={selectedIndex === 2} onClick={() => selection(2)}>
                             <ListItemAvatar>
                                 <Avatar>
-                                    <HistoryRounded sx={{ fontSize: 30 }} />
+                                    <HistoryRounded />
                                 </Avatar>
                             </ListItemAvatar>
                             {open && <LongTypography variant="subBody">Your Activity</LongTypography>}
@@ -90,7 +91,7 @@ const Leftbar = () => {
                         <StyledListItem selected={selectedIndex === 3} onClick={() => selection(3)}>
                             <ListItemAvatar>
                                 <Avatar>
-                                    <BookmarkBorderRounded sx={{ fontSize: 30 }} />
+                                    <BookmarkRounded />
                                 </Avatar>
                             </ListItemAvatar>
                             {open && <LongTypography variant="subBody">Saved</LongTypography>}
@@ -100,7 +101,7 @@ const Leftbar = () => {
                             <ListItemAvatar>
                                 <Avatar>
                                     <StyledBadge color="error" badgeContent={5} max={999}>
-                                        <NotificationsNoneRounded sx={{ fontSize: 30 }} />
+                                        <NotificationsRounded />
                                     </StyledBadge>
                                 </Avatar>
                             </ListItemAvatar>
@@ -111,7 +112,7 @@ const Leftbar = () => {
                             <ListItemAvatar>
                                 <Avatar>
                                     <StyledBadge color="error" badgeContent={5} max={999}>
-                                        <PeopleOutlineOutlined sx={{ fontSize: 30 }} />
+                                        <PersonAddAlt1Rounded />
                                     </StyledBadge>
                                 </Avatar>
                             </ListItemAvatar>
@@ -120,9 +121,7 @@ const Leftbar = () => {
 
                         <StyledListItem selected={selectedIndex === 6} onClick={() => selection(6)}>
                             <ListItemAvatar>
-                                <Avatar>
-                                    {mode ? <DarkModeRounded sx={{ fontSize: 30 }} /> : <LightModeRounded sx={{ fontSize: 30 }} />}
-                                </Avatar>
+                                <Avatar>{mode === "light"? <DarkModeRounded /> : <LightModeRounded />}</Avatar>
                             </ListItemAvatar>
                             {open && <LongTypography variant="subBody">Switch Theme</LongTypography>}
                         </StyledListItem>
@@ -130,7 +129,7 @@ const Leftbar = () => {
                         <StyledListItem selected={selectedIndex === 7} onClick={() => selection(7)}>
                             <ListItemAvatar>
                                 <Avatar>
-                                    <LogoutRounded sx={{ fontSize: 30 }} />
+                                    <LogoutRounded />
                                 </Avatar>
                             </ListItemAvatar>
                             {open && <LongTypography variant="subBody">Logout</LongTypography>}

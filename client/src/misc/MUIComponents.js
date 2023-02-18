@@ -70,19 +70,26 @@ const StyledField = styled(TextField)(({ error }) => ({
     },
 }));
 
-const StyledList = styled(List)({
+const StyledList = styled(List)(({ theme }) => ({
     "&& .Mui-selected": {
         fontWeight: 700,
-        "& .MuiAvatar-root": {
-          border: "1px solid black",
+        // "& .MuiAvatar-root": {
+        //     border: "1px dashed black",
+        // },
+        "& .MuiSvgIcon-root": {
+            opacity: 0.5,
+            fontSize: 30,
         },
-      },
-      "& .MuiAvatar-root": {
-        backgroundColor: 'transparent',
-        color: "black",
-        overflow: "visible"
-      },
-});
+    },
+    "& .MuiSvgIcon-root": {
+        color: theme.palette.text.primary,
+        fontSize: 30,
+    },
+    "& .MuiAvatar-root": {
+        backgroundColor: "transparent",
+        overflow: "visible",
+    },
+}));
 
 const ListHeader = styled(Typography)(({ theme }) => ({
     padding: "10px 0px 0px 10px",
@@ -92,7 +99,7 @@ const ListHeader = styled(Typography)(({ theme }) => ({
 }));
 
 const StyledListItem = styled(ListItemButton)(({ theme }) => ({
-    margin: "10px 0",
+    margin: "5px 0",
     padding: "10px",
     "&:hover": {
         opacity: 1,
