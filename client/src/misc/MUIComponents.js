@@ -73,17 +73,33 @@ const StyledField = styled(TextField)(({ error }) => ({
 const StyledList = styled(List)(({ theme }) => ({
     "&& .Mui-selected": {
         fontWeight: 700,
-        // "& .MuiAvatar-root": {
-        //     border: "1px dashed black",
-        // },
         "& .MuiSvgIcon-root": {
-            opacity: 0.5,
-            fontSize: 30,
+            color: "purple",
         },
     },
     "& .MuiSvgIcon-root": {
         color: theme.palette.text.primary,
         fontSize: 30,
+        "&:hover": {
+            animation: "bounce 500ms",
+            "@keyframes bounce": {
+                "0%": {
+                    transform: "translateY(0)",
+                },
+                "25%": {
+                    transform: "translateY(-3px)",
+                },
+                "50%": {
+                    transform: "translateY(0px)",
+                },
+                "75%": {
+                    transform: "translateY(-3px)",
+                },
+                "100%": {
+                    transform: "translateY(0)",
+                },
+            },
+        },
     },
     "& .MuiAvatar-root": {
         backgroundColor: "transparent",
@@ -92,7 +108,7 @@ const StyledList = styled(List)(({ theme }) => ({
 }));
 
 const ListHeader = styled(Typography)(({ theme }) => ({
-    padding: "10px 0px 0px 10px",
+    margin: "5%",
     color: theme.palette.text.primary,
     fontWeight: "400",
     paddingLeft: theme.spacing(2),
@@ -100,7 +116,7 @@ const ListHeader = styled(Typography)(({ theme }) => ({
 
 const StyledListItem = styled(ListItemButton)(({ theme }) => ({
     margin: "5px 0",
-    padding: "10px",
+    padding: "8px",
     "&:hover": {
         opacity: 1,
         borderRadius: "30px",

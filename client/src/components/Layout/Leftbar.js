@@ -24,25 +24,15 @@ const Leftbar = () => {
     const user = useSelector((state) => state.auth.user);
     const { mode, toggleColorMode } = useContext(ThemeContext);
 
-    const [open, setOpen] = useState(true);
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const selection = (val) => {
-        if (val === 4 || val === 5) {
-            setSelectedIndex(val);
-            setOpen(false);
-            return;
-        }
-        if (val >= 0) {
-            setSelectedIndex(val);
-            setOpen(true);
-        }
+        setSelectedIndex(val);
         if (val === 6) return toggleColorMode();
         if (val === 7) return logoutHandler();
     };
 
     const logoutHandler = async () => {
-        console.log("logging out");
         // window.open(`http://localhost:8000/auth/logout`, "_self");
     };
 
@@ -52,13 +42,13 @@ const Leftbar = () => {
             {/* {selectedIndex === 5 && <FriendRequests close={() => setSelectedIndex(0)}/>} */}
 
             <StickyContainer>
-                <CustomCollapseTransition in={open}>
+                <CustomCollapseTransition in={![1, 4, 5].includes(selectedIndex)}>
                     <StyledList component="nav">
-                        <StyledListItem selected={selectedIndex === -1} onClick={() => selection(-1)}>
+                        <StyledListItem>
                             <ListItemAvatar>
                                 <Avatar src={user?.photo} />
                             </ListItemAvatar>
-                            {open && <LongTypography variant="subBody">{user.name}</LongTypography>}
+                            <LongTypography variant="subBody">{user.name}</LongTypography>
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 0} onClick={() => selection(0)}>
@@ -67,7 +57,7 @@ const Leftbar = () => {
                                     <HomeRounded />
                                 </Avatar>
                             </ListItemAvatar>
-                            {open && <LongTypography variant="subBody">Home</LongTypography>}
+                            <LongTypography variant="subBody">Home</LongTypography>
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 1} onClick={() => selection(1)}>
@@ -76,7 +66,7 @@ const Leftbar = () => {
                                     <SearchRounded />
                                 </Avatar>
                             </ListItemAvatar>
-                            {open && <LongTypography variant="subBody">Search</LongTypography>}
+                            <LongTypography variant="subBody">Search</LongTypography>
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 2} onClick={() => selection(2)}>
@@ -85,7 +75,7 @@ const Leftbar = () => {
                                     <HistoryRounded />
                                 </Avatar>
                             </ListItemAvatar>
-                            {open && <LongTypography variant="subBody">Your Activity</LongTypography>}
+                            <LongTypography variant="subBody">Your Activity</LongTypography>
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 3} onClick={() => selection(3)}>
@@ -94,7 +84,7 @@ const Leftbar = () => {
                                     <BookmarkRounded />
                                 </Avatar>
                             </ListItemAvatar>
-                            {open && <LongTypography variant="subBody">Saved</LongTypography>}
+                            <LongTypography variant="subBody">Saved</LongTypography>
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 4} onClick={() => selection(4)}>
@@ -105,7 +95,7 @@ const Leftbar = () => {
                                     </StyledBadge>
                                 </Avatar>
                             </ListItemAvatar>
-                            {open && <LongTypography variant="subBody">Notifications</LongTypography>}
+                            <LongTypography variant="subBody">Notifications</LongTypography>
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 5} onClick={() => selection(5)}>
@@ -116,14 +106,14 @@ const Leftbar = () => {
                                     </StyledBadge>
                                 </Avatar>
                             </ListItemAvatar>
-                            {open && <LongTypography variant="subBody">Friend Requests</LongTypography>}
+                            <LongTypography variant="subBody">Friend Requests</LongTypography>
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 6} onClick={() => selection(6)}>
                             <ListItemAvatar>
-                                <Avatar>{mode === "light"? <DarkModeRounded /> : <LightModeRounded />}</Avatar>
+                                <Avatar>{mode === "light" ? <DarkModeRounded /> : <LightModeRounded />}</Avatar>
                             </ListItemAvatar>
-                            {open && <LongTypography variant="subBody">Switch Theme</LongTypography>}
+                            <LongTypography variant="subBody">Switch Theme</LongTypography>
                         </StyledListItem>
 
                         <StyledListItem selected={selectedIndex === 7} onClick={() => selection(7)}>
@@ -132,7 +122,7 @@ const Leftbar = () => {
                                     <LogoutRounded />
                                 </Avatar>
                             </ListItemAvatar>
-                            {open && <LongTypography variant="subBody">Logout</LongTypography>}
+                            <LongTypography variant="subBody">Logout</LongTypography>
                         </StyledListItem>
                     </StyledList>
                     {/* <DiscoverTags /> */}

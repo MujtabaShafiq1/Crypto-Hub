@@ -1,4 +1,4 @@
-import { Avatar, Typography, List, ListItemIcon } from "@mui/material";
+import { Avatar, Typography, List, ListItemIcon, Divider } from "@mui/material";
 import { StyledListItem, StyledStatusBadge, ListHeader } from "../../misc/MUIComponents";
 
 const FriendsStatus = () => {
@@ -58,6 +58,7 @@ const FriendsStatus = () => {
     return (
         <>
             <ListHeader variant="body">Online Friends</ListHeader>
+            <Divider variant="middle" sx={{ opacity: 0.3, backgroundColor: "text.primary" }} />
             <List sx={{ overflow: "auto" }}>
                 {data.map((user) => {
                     return (
