@@ -162,7 +162,7 @@ const SignupForm = () => {
                         </Box>
                     )}
 
-                    <StyledButton type="submit" disabled={disableButton}>
+                    <StyledButton type="submit" disabled={disableButton} error={+(snackbar.type === "error")}>
                         {disableButton ? (
                             <CircularProgress size="3.5vh" sx={{ color: "white" }} />
                         ) : (

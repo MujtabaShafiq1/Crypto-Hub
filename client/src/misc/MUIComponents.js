@@ -36,7 +36,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
 }));
 
-const StyledButton = styled(Button)({
+const StyledButton = styled(Button)(({ error }) => ({
     backgroundColor: "black",
     opacity: "0.7",
     color: "white",
@@ -55,7 +55,25 @@ const StyledButton = styled(Button)({
     ":disabled": {
         color: "white",
     },
-});
+    animation: error && "shake 500ms ease-in-out",
+    "@keyframes shake": {
+        "0%": {
+            transform: "translateX(0)",
+        },
+        "25%": {
+            transform: "translateX(-15px)",
+        },
+        "50%": {
+            transform: "translateX(15px)",
+        },
+        "75%": {
+            transform: "translateX(-15px)",
+        },
+        "100%": {
+            transform: "translateX(0)",
+        },
+    },
+}));
 
 const StyledField = styled(TextField)(({ error }) => ({
     width: "100%",
@@ -69,24 +87,6 @@ const StyledField = styled(TextField)(({ error }) => ({
             border: error && "0.5px solid #red",
         },
     },
-    // animation: "shake 500ms ease-in-out",
-    // "@keyframes shake": {
-    //     "0%": {
-    //         transform: "translateX(0)",
-    //     },
-    //     "25%": {
-    //         transform: "translateX(-5px)",
-    //     },
-    //     "50%": {
-    //         transform: "translateX(5px)",
-    //     },
-    //     "75%": {
-    //         transform: "translateX(-5px)",
-    //     },
-    //     "100%": {
-    //         transform: "translateX(0)",
-    //     },
-    // },
 }));
 
 const StyledList = styled(List)(({ theme }) => ({
