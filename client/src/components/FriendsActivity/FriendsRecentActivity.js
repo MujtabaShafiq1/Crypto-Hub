@@ -1,8 +1,8 @@
-import { Box, Avatar, Typography, Divider, List, ListItemText, ListItemAvatar } from "@mui/material";
-import { ListHeader, StyledListItem } from "../../misc/MUIComponents";
+import { Box, Avatar, Typography, Divider, ListItemText, ListItemAvatar } from "@mui/material";
+import { StyledList, ListHeader, StyledListItem } from "../../misc/MUIComponents";
 import moment from "moment";
 
-const FriendsActivity = () => {
+const FriendsRecentActivity = () => {
     const data = [
         {
             name: "Ali Connors",
@@ -30,7 +30,7 @@ const FriendsActivity = () => {
         <>
             <ListHeader variant="body">Friends Activity</ListHeader>
             <Divider variant="middle" sx={{ opacity: 0.3, backgroundColor: "text.primary" }} />
-            <List sx={{ overflow: "auto", height: "50vh" }}>
+            <StyledList sx={{ height: "50vh" }}>
                 {data.map((activity) => (
                     <Box key={activity.name}>
                         <StyledListItem>
@@ -56,9 +56,9 @@ const FriendsActivity = () => {
                         <Divider variant="inset" component="li" />
                     </Box>
                 ))}
-            </List>
+            </StyledList>
         </>
     );
 };
 
-export default FriendsActivity;
+export default FriendsRecentActivity;

@@ -3,7 +3,7 @@ import { CollapseContainer } from "../../misc/MUIComponents";
 
 const Notifications = ({ open, close }) => {
     return (
-        <CollapseContainer orientation="horizontal" in={open} timeout={500} onClick={close}>
+        <CollapseContainer orientation="horizontal" in={open} timeout={500}>
             <Box color="text.primary">This is a container</Box>
         </CollapseContainer>
     );

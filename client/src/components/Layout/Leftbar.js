@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useSelector } from "react-redux";
 import { ListItemAvatar, Avatar, Box } from "@mui/material";
-import { LongTypography, StickyContainer, StyledBadge, StyledList, StyledListItem } from "../../misc/MUIComponents";
+import { LongTypography, StickyContainer, StyledBadge, StyledNavList, StyledListItem } from "../../misc/MUIComponents";
 import { ThemeContext } from "../../context/ThemeProvider";
 import CustomCollapseTransition from "../UI/CustomCollapseTransition";
 import Notifications from "../Drawers/Notifications";
@@ -40,8 +40,8 @@ const Leftbar = () => {
     return (
         <Box sx={{ width: { xs: "60px", md: "300px", lg: "450px" } }}>
             <StickyContainer>
-                <CustomCollapseTransition in={![1, 4, 5].includes(selectedIndex)} duration={200}>
-                    <StyledList component="nav">
+                <CustomCollapseTransition in={![1, 4, 5].includes(selectedIndex)} duration={500}>
+                    <StyledNavList component="nav">
                         <StyledListItem>
                             <ListItemAvatar>
                                 <Avatar src={user?.photo} />
@@ -122,7 +122,7 @@ const Leftbar = () => {
                             </ListItemAvatar>
                             <LongTypography variant="subBody">Logout</LongTypography>
                         </StyledListItem>
-                    </StyledList>
+                    </StyledNavList>
                     {/* <DiscoverTags /> */}
                 </CustomCollapseTransition>
                 <Box sx={{ position: "relative" }}>

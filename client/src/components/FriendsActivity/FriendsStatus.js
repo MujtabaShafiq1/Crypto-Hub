@@ -1,10 +1,10 @@
-import { Box, Avatar, Typography, List, ListItemIcon, Divider } from "@mui/material";
-import { StyledListItem, StyledStatusBadge, ListHeader, LongTypography } from "../../misc/MUIComponents";
+import { Avatar, Typography, ListItemIcon, Divider } from "@mui/material";
+import { StyledListItem, StyledStatusBadge, StyledList, ListHeader, } from "../../misc/MUIComponents";
 
 const FriendsStatus = () => {
     const data = [
         {
-            name: "MujtabaMujtabaMujtaba",
+            name: "Mujtaba",
             status: true,
             photo: "https://images.pexels.com/photos/2528318/pexels-photo-2528318.jpeg?auto=compress&cs=tinysrgb&w=1600",
         },
@@ -59,7 +59,7 @@ const FriendsStatus = () => {
         <>
             <ListHeader variant="body">Online Friends</ListHeader>
             <Divider variant="middle" sx={{ opacity: 0.3, backgroundColor: "text.primary" }} />
-            <List sx={{ overflow: "auto" }}>
+            <StyledList>
                 {data.map((user) => {
                     return (
                         <StyledListItem key={Math.random()}>
@@ -78,7 +78,7 @@ const FriendsStatus = () => {
                         </StyledListItem>
                     );
                 })}
-            </List>
+            </StyledList>
         </>
     );
 };

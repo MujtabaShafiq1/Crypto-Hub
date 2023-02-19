@@ -19,14 +19,13 @@ const CollapseContainer = styled(Collapse)(({ theme }) => ({
     position: "absolute",
     "& .MuiCollapse-wrapperInner": {
         width: "20vw",
-        borderRight: "1.5px solid rgba(191, 191, 191, 0.2)",
-        borderRadius: "0px 10px 10px 0px",
+        borderRadius: "0px 5px 5px 0px",
         backgroundColor: theme.palette.primary.main,
         [theme.breakpoints.down("lg")]: {
             width: "30vw",
         },
-        [theme.breakpoints.down("md")]: {
-            width: "35vw",
+        [theme.breakpoints.down("sm")]: {
+            width: "100vw",
         },
     },
 }));
@@ -127,6 +126,11 @@ const StyledField = styled(TextField)(({ error }) => ({
 }));
 
 const StyledList = styled(List)(({ theme }) => ({
+   overflow: "auto", 
+   padding: "10px",
+}));
+
+const StyledNavList = styled(List)(({ theme }) => ({
     // [theme.breakpoints.down("sm")]: {
     //     display: "flex",
     // },
@@ -169,8 +173,7 @@ const StyledList = styled(List)(({ theme }) => ({
 const ListHeader = styled(Typography)(({ theme }) => ({
     margin: "5%",
     color: theme.palette.text.primary,
-    fontWeight: "400",
-    paddingLeft: theme.spacing(2),
+    fontWeight: "500",
 }));
 
 const StyledListItem = styled(ListItemButton)(({ theme }) => ({
@@ -223,6 +226,7 @@ export {
     StyledBadge,
     StyledStatusBadge,
     StyledList,
+    StyledNavList,
     ListHeader,
     StyledListItem,
     StyledButton,
