@@ -34,11 +34,11 @@ const Leftbar = () => {
     };
 
     const logoutHandler = async () => {
-        window.open(`http://localhost:8000/auth/logout`, "_self");
+        // window.open(`http://localhost:8000/auth/logout`, "_self");
     };
 
     return (
-        <Box sx={{ width: { xs: "60px", lg: "30%" } }}>
+        <Box sx={{ width: { xs: "60px", md: "300px", lg: "450px" } }}>
             <StickyContainer>
                 <CustomCollapseTransition in={![1, 4, 5].includes(selectedIndex)} duration={200}>
                     <StyledList component="nav">
@@ -127,8 +127,8 @@ const Leftbar = () => {
                 </CustomCollapseTransition>
                 <Box sx={{ position: "relative" }}>
                     <Search open={selectedIndex === 1} close={() => setSelectedIndex(0)} />
-                    {/* <Notifications open={selectedIndex === 4} close={() => setSelectedIndex(0)} />
-                    <FriendRequests open={selectedIndex === 5} close={() => setSelectedIndex(0)} /> */}
+                    <Notifications open={selectedIndex === 4} close={() => setSelectedIndex(0)} />
+                    <FriendRequests open={selectedIndex === 5} close={() => setSelectedIndex(0)} />
                 </Box>
             </StickyContainer>
         </Box>

@@ -5,7 +5,7 @@ const CustomCollapseTransition = ({ children, in: inProp, duration }) => {
     const defaultStyle = {
         transition: `width ${duration}ms ease-in-out`,
         height: "100vh",
-        borderRight: "1.5px solid gray",
+        borderRight: "1.5px solid rgba(191, 191, 191, 1)",
     };
 
     const transitionStyles = {

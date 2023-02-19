@@ -4,7 +4,7 @@ import FriendsStatus from "../FriendsActivity/FriendsStatus";
 
 const Rightbar = () => {
     return (
-        <StickyContainer sx={{ flexDirection: "column", display: { xs: "none", lg: "flex" } }}>
+        <StickyContainer sx={{ flexDirection: "column", display: { xs: "none", lg: "flex" }, width: { lg: "35%" }  }}>
             <FriendsActivity />
             <FriendsStatus />
         </StickyContainer>

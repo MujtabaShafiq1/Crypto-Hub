@@ -1,10 +1,10 @@
-import { Avatar, Typography, List, ListItemIcon, Divider } from "@mui/material";
-import { StyledListItem, StyledStatusBadge, ListHeader } from "../../misc/MUIComponents";
+import { Box, Avatar, Typography, List, ListItemIcon, Divider } from "@mui/material";
+import { StyledListItem, StyledStatusBadge, ListHeader, LongTypography } from "../../misc/MUIComponents";
 
 const FriendsStatus = () => {
     const data = [
         {
-            name: "Mujtaba",
+            name: "MujtabaMujtabaMujtaba",
             status: true,
             photo: "https://images.pexels.com/photos/2528318/pexels-photo-2528318.jpeg?auto=compress&cs=tinysrgb&w=1600",
         },

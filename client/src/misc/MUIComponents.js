@@ -1,4 +1,4 @@
-import { Box, Typography, Grid, Container, Button, Badge, TextField, List, ListItemButton, styled } from "@mui/material";
+import { Box, Typography, Grid, Container, Button, Badge, TextField, List, ListItemButton, Collapse, styled } from "@mui/material";
 import background from "../assets/background.jpg";
 
 const MainContainer = styled(Grid)({
@@ -11,6 +11,25 @@ const MainContainer = styled(Grid)({
     height: "100vh",
     width: "100vw",
 });
+
+const CollapseContainer = styled(Collapse)(({ theme }) => ({
+    top: 0,
+    left: 0,
+    height: "100vh",
+    position: "absolute",
+    "& .MuiCollapse-wrapperInner": {
+        width: "20vw",
+        borderRight: "1.5px solid rgba(191, 191, 191, 0.2)",
+        borderRadius: "0px 10px 10px 0px",
+        backgroundColor: theme.palette.primary.main,
+        [theme.breakpoints.down("lg")]: {
+            width: "30vw",
+        },
+        [theme.breakpoints.down("md")]: {
+            width: "35vw",
+        },
+    },
+}));
 
 const StickyContainer = styled(Box)(({ theme }) => ({
     top: 0,
@@ -108,6 +127,9 @@ const StyledField = styled(TextField)(({ error }) => ({
 }));
 
 const StyledList = styled(List)(({ theme }) => ({
+    // [theme.breakpoints.down("sm")]: {
+    //     display: "flex",
+    // },
     "&& .Mui-selected": {
         fontWeight: 700,
         "& .MuiSvgIcon-root": {
@@ -195,13 +217,14 @@ const FormContainer = styled(Container)(({ theme }) => ({
 export {
     Flexbox,
     LongTypography,
+    MainContainer,
+    CollapseContainer,
     StickyContainer,
     StyledBadge,
     StyledStatusBadge,
     StyledList,
     ListHeader,
     StyledListItem,
-    MainContainer,
     StyledButton,
     FormContainer,
     StyledField,

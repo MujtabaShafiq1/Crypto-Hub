@@ -1,14 +1,11 @@
-import { SwipeableDrawer } from "@mui/material";
+import { Box } from "@mui/material";
+import { CollapseContainer } from "../../misc/MUIComponents";
 
-const Notifications = ({close}) => {
+const Notifications = ({ open, close }) => {
     return (
-        <SwipeableDrawer
-            open={true}
-            onClose={close}
-            anchor="left"
-            disableSwipeToOpen
-            PaperProps={{ sx: { zIndex: 1, width: { xs: "100%", sm: "50%", md: "30%" }, backgroundColor: "primary.light" } }}>
-        </SwipeableDrawer>
+        <CollapseContainer orientation="horizontal" in={open} timeout={500} onClick={close}>
+            <Box color="text.primary">This is a container</Box>
+        </CollapseContainer>
     );
 };
 
