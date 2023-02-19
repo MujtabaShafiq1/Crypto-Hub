@@ -34,7 +34,7 @@ const Leftbar = () => {
     };
 
     const logoutHandler = async () => {
-        window.open(`http://localhost:8000/auth/logout`, "_self");
+        // window.open(`http://localhost:8000/auth/logout`, "_self");
     };
 
     return (

@@ -28,6 +28,9 @@ const theme = (mode) => ({
                 fontSize: 12,
             },
         },
+        info: {
+            fontSize: 12,
+        },
         allVariants: {
             fontFamily: '"Open Sans", sans-serif',
             textTransform: "none",

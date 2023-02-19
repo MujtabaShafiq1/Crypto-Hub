@@ -1,5 +1,13 @@
-import { Box, Avatar, Divider, ListItemText, ListItemAvatar, Button } from "@mui/material";
-import { Flexbox, CollapseContainer, StyledList, ListHeader, StyledListItem, LongTypography } from "../../misc/MUIComponents";
+import { Box, Avatar, Divider, ListItemText, ListItemAvatar } from "@mui/material";
+import {
+    Flexbox,
+    CollapseContainer,
+    StyledList,
+    ListHeader,
+    StyledListItem,
+    LongTypography,
+    ConfirmationButton,
+} from "../../misc/MUIComponents";
 import moment from "moment";
 
 const FriendRequests = ({ open, close }) => {
@@ -60,30 +68,6 @@ const FriendRequests = ({ open, close }) => {
             name: "Sandra Adams",
             photo: "https://images.pexels.com/photos/13131586/pexels-photo-13131586.png?auto=compress&cs=tinysrgb&w=1600&lazy=load",
         },
-        {
-            name: "Alex Collins",
-            photo: "https://images.pexels.com/photos/4823473/pexels-photo-4823473.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-        },
-        {
-            name: "Judy Myers",
-            photo: "https://images.pexels.com/photos/1087735/pexels-photo-1087735.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        },
-        {
-            name: "Ali Connors",
-            photo: "https://images.pexels.com/photos/14968378/pexels-photo-14968378.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-        },
-        {
-            name: "Sandra Adams",
-            photo: "https://images.pexels.com/photos/13131586/pexels-photo-13131586.png?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-        },
-        {
-            name: "Alex Collins",
-            photo: "https://images.pexels.com/photos/4823473/pexels-photo-4823473.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-        },
-        {
-            name: "Judy Myers",
-            photo: "https://images.pexels.com/photos/1087735/pexels-photo-1087735.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        },
     ];
 
     return (
@@ -92,7 +76,7 @@ const FriendRequests = ({ open, close }) => {
                 <ListHeader variant="body">Friends Request</ListHeader>
                 <Divider variant="middle" sx={{ width: "70%", opacity: 0.2, backgroundColor: "text.primary" }} />
             </Flexbox>
-            <StyledList sx={{height: "90vh"}}>
+            <StyledList sx={{ height: "90vh" }}>
                 {data.map((activity) => (
                     <Box key={Math.random()}>
                         <StyledListItem>
@@ -107,14 +91,16 @@ const FriendRequests = ({ open, close }) => {
                                 }
                                 secondary={
                                     <>
-                                        <LongTypography variant="helper" color="text.primary">
+                                        <LongTypography variant="info" color="text.primary">
                                             {moment().fromNow()}
                                         </LongTypography>
                                     </>
                                 }
                             />
-                            <Button sx={{backgroundColor: "blue"}}>Confirm</Button>
-                            <Button sx={{backgroundColor: "gray"}}>Delete</Button>
+                            <Flexbox sx={{ gap: 1 }}>
+                                <ConfirmationButton value="confirm">Confirm</ConfirmationButton>
+                                <ConfirmationButton value="delete">Delete</ConfirmationButton>
+                            </Flexbox>
                         </StyledListItem>
                         <Divider variant="inset" component="li" />
                     </Box>
