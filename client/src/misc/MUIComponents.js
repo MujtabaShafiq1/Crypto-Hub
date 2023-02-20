@@ -147,12 +147,12 @@ const StyledList = styled(List)(({ theme }) => ({
     padding: "8px",
     "& .MuiTypography-root": {
         fontWeight: 400,
-        color: "gray",
+        color: theme.palette.text.primary,
     },
     "&& .Mui-selected": {
         "& .MuiTypography-root": {
-            color: theme.palette.text.primary,
-            fontWeight: 700,
+            color: "gray",
+            fontWeight: 300,
         },
     },
 }));

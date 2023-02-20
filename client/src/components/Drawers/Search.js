@@ -9,6 +9,8 @@ import {
     StyledListButton,
     LongTypography,
 } from "../../misc/MUIComponents";
+
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -23,60 +25,63 @@ const Search = ({ open, close }) => {
 
     return (
         <CollapseContainer orientation="horizontal" in={open} timeout={500}>
-            <CollapseContainer orientation="horizontal" in={open} timeout={500}>
-                <Flexbox sx={{ flexDirection: "column", gap: 1 }}>
-                    <ListHeader variant="body">Search</ListHeader>
-                    <StyledField
-                        variant="outlined"
-                        placeholder="Search"
-                        name="search"
-                        type="text"
-                        size="small"
-                        hiddenLabel
-                        value={searchText}
-                        onChange={searchHandler}
-                        sx={{
-                            width: "95%",
-                            "& .MuiOutlinedInput-notchedOutline": {
-                                border: "none",
-                            },
-                        }}
-                        InputProps={{
-                            sx: { borderRadius: "50px" },
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton>
-                                        <SearchIcon />
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                    <Divider variant="middle" sx={{ width: "70%", opacity: 0.2, backgroundColor: "text.primary" }} />
-                </Flexbox>
-                <StyledList sx={{ height: "90vh" }}>
-                    {data.map((activity) => (
-                        <Box key={Math.random()}>
-                            <ListItem
-                                secondaryAction={
-                                    <IconButton edge="end" aria-label="delete">
-                                        <HighlightOffIcon sx={{ color: "red" }} />
-                                    </IconButton>
-                                }>
-                                <StyledListButton>
-                                    <ListItemAvatar>
-                                        <Avatar src={activity.photo} />
-                                    </ListItemAvatar>
-                                    <LongTypography variant="subBody" color="text.primary">
-                                        {activity.name}
-                                    </LongTypography>
-                                </StyledListButton>
-                            </ListItem>
-                            <Divider variant="inset" component="li" />
-                        </Box>
-                    ))}
-                </StyledList>
-            </CollapseContainer>
+            <Flexbox sx={{ justifyContent: "flex-start", pl: "10px" }}>
+                <ArrowBackIcon sx={{ color: "text.primary", cursor: "pointer" }} onClick={close} />
+                <ListHeader variant="body">Search</ListHeader>
+            </Flexbox>
+            <Divider variant="middle" sx={{ width: "90%", opacity: 0.2, backgroundColor: "text.primary" }} />
+
+            <Flexbox sx={{mt: "3%"}}>
+                <StyledField
+                    variant="outlined"
+                    placeholder="Search"
+                    name="search"
+                    type="text"
+                    size="small"
+                    hiddenLabel
+                    value={searchText}
+                    onChange={searchHandler}
+                    sx={{
+                        width: "90%",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            border: "none",
+                        },
+                    }}
+                    InputProps={{
+                        sx: { borderRadius: "50px" },
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton>
+                                    <SearchIcon />
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
+                />
+            </Flexbox>
+
+            <StyledList sx={{ height: "90vh" }}>
+                {data.map((activity) => (
+                    <Box key={Math.random()}>
+                        <ListItem
+                            secondaryAction={
+                                <IconButton edge="end" aria-label="delete">
+                                    <HighlightOffIcon sx={{ color: "red" }} />
+                                </IconButton>
+                            }>
+                            <StyledListButton>
+                                <ListItemAvatar>
+                                    <Avatar src={activity.photo} />
+                                </ListItemAvatar>
+                                <LongTypography variant="subBody" color="text.primary">
+                                    {activity.name}
+                                </LongTypography>
+                            </StyledListButton>
+                        </ListItem>
+                        <Divider variant="inset" component="li" />
+                    </Box>
+                ))}
+            </StyledList>
         </CollapseContainer>
     );
 };

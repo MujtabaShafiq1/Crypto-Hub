@@ -1,5 +1,6 @@
 import { Box, Avatar, Typography, Divider, ListItemAvatar, ListItem } from "@mui/material";
 import { Flexbox, CollapseContainer, StyledList, ListHeader, StyledListButton } from "../../misc/MUIComponents";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import moment from "moment";
 
 import { notificationsData as data } from "../../utils/mockData";
@@ -7,10 +8,13 @@ import { notificationsData as data } from "../../utils/mockData";
 const Notifications = ({ open, close }) => {
     return (
         <CollapseContainer orientation="horizontal" in={open} timeout={500}>
-            <Flexbox sx={{ flexDirection: "column" }}>
+            
+            <Flexbox sx={{ justifyContent: "flex-start", paddingLeft: "10px" }}>
+                <ArrowBackIcon sx={{ color: "text.primary", cursor: "pointer" }} onClick={close} />
                 <ListHeader variant="body">Notifications</ListHeader>
-                <Divider variant="middle" sx={{ width: "70%", opacity: 0.2, backgroundColor: "text.primary" }} />
             </Flexbox>
+            <Divider variant="middle" sx={{ width: "90%", opacity: 0.2, backgroundColor: "text.primary" }} />
+
             <StyledList sx={{ height: "90vh" }}>
                 {data.map((activity) => (
                     <Box key={Math.random()}>
