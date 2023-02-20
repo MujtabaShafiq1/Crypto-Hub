@@ -12,6 +12,24 @@ const MainContainer = styled(Grid)({
     width: "100vw",
 });
 
+const LeftbarContainer = styled(Box)(({ theme }) => ({
+    top: 0,
+    display: "flex",
+    height: "100vh",
+    position: "sticky",
+    backgroundColor: theme.palette.primary.main,
+    [theme.breakpoints.up("lg")]: {
+        width: "370px",
+    },
+    [theme.breakpoints.down("lg")]: {
+        width: "300px",
+    },
+    [theme.breakpoints.down("md")]: {
+        width: "60px",
+    },
+}));
+
+
 const CollapseContainer = styled(Collapse)(({ theme }) => ({
     top: 0,
     left: 0,
@@ -249,6 +267,7 @@ export {
     Flexbox,
     LongTypography,
     MainContainer,
+    LeftbarContainer,
     CollapseContainer,
     StickyContainer,
     StyledBadge,
