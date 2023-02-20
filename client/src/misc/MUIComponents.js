@@ -97,7 +97,6 @@ const ConfirmationButton = styled(Button)(({ value }) => ({
     backgroundColor: value === "confirm" ? "lightblue" : "lightgray",
     color: value === "confirm" ? "white" : "black",
     borderRadius: "50px",
-    padding: "1px",
     fontSize: "12px",
     ":hover": {
         backgroundColor: value === "confirm" ? "lightblue" : "lightgray",
@@ -142,10 +141,16 @@ const StyledField = styled(TextField)(({ error }) => ({
 
 const StyledList = styled(List)(({ theme }) => ({
     overflow: "auto",
-    padding: "10px",
-    fontWeight: 400,
+    padding: "8px",
+    "& .MuiTypography-root": {
+        fontWeight: 400,
+        color: "gray",
+    },
     "&& .Mui-selected": {
-        fontWeight: 700,
+        "& .MuiTypography-root": {
+            color: theme.palette.text.primary,
+            fontWeight: 700,
+        },
     },
 }));
 
@@ -155,6 +160,8 @@ const StyledNavList = styled(List)(({ theme }) => ({
     // },
     "&& .Mui-selected": {
         fontWeight: 700,
+        borderLeft: "3px solid purple",
+        borderRadius: 0,
         "& .MuiSvgIcon-root": {
             color: "purple",
         },
@@ -195,8 +202,7 @@ const ListHeader = styled(Typography)(({ theme }) => ({
     fontWeight: "500",
 }));
 
-const StyledListItem = styled(ListItemButton)(({ theme }) => ({
-    margin: "5px 0",
+const StyledListButton = styled(ListItemButton)(({ theme }) => ({
     padding: "8px",
     "&:hover": {
         opacity: 1,
@@ -247,7 +253,7 @@ export {
     StyledList,
     StyledNavList,
     ListHeader,
-    StyledListItem,
+    StyledListButton,
     StyledButton,
     ConfirmationButton,
     FormContainer,
