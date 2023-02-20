@@ -107,9 +107,9 @@ const ConfirmationButton = styled(Button)(({ value }) => ({
     },
 }));
 
-const StyledField = styled(TextField)(({ error }) => ({
+const StyledField = styled(TextField)(({ error, theme }) => ({
     width: "100%",
-    input: { color: "black" },
+    input: { color: theme.palette.text.primary },
     "& .MuiOutlinedInput-notchedOutline": {
         border: "0.5px solid black",
         background: "rgb(180, 180, 180, 0.2)",
@@ -132,10 +132,13 @@ const StyledField = styled(TextField)(({ error }) => ({
             },
         },
     },
-    "&.Mui-focused": {
+    "& .Mui-focused": {
         "& .MuiOutlinedInput-notchedOutline": {
             border: error && "0.5px solid #red",
         },
+    },
+    "& .MuiSvgIcon-root": {
+        color: theme.palette.text.primary,
     },
 }));
 
@@ -197,7 +200,7 @@ const StyledNavList = styled(List)(({ theme }) => ({
 }));
 
 const ListHeader = styled(Typography)(({ theme }) => ({
-    margin: "5%",
+    margin: "4%",
     color: theme.palette.text.primary,
     fontWeight: "500",
 }));

@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { Box, Avatar, Divider, IconButton, ListItem, ListItemAvatar } from "@mui/material";
+import { Box, Avatar, Divider, IconButton, ListItem, ListItemAvatar, InputAdornment } from "@mui/material";
 import {
     Flexbox,
-    StyledField,
     CollapseContainer,
+    StyledField,
     StyledList,
     ListHeader,
     StyledListButton,
     LongTypography,
 } from "../../misc/MUIComponents";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import SearchIcon from "@mui/icons-material/Search";
 
 import { searchData as data } from "../../utils/mockData";
 
@@ -23,20 +24,32 @@ const Search = ({ open, close }) => {
     return (
         <CollapseContainer orientation="horizontal" in={open} timeout={500}>
             <CollapseContainer orientation="horizontal" in={open} timeout={500}>
-                <Flexbox sx={{ flexDirection: "column", gap : 1 }}>
+                <Flexbox sx={{ flexDirection: "column", gap: 1 }}>
                     <ListHeader variant="body">Search</ListHeader>
                     <StyledField
                         variant="outlined"
-                        placeholder="Enter Email"
-                        name="email"
+                        placeholder="Search"
+                        name="search"
                         type="text"
                         size="small"
                         hiddenLabel
                         value={searchText}
                         onChange={searchHandler}
+                        sx={{
+                            width: "95%",
+                            "& .MuiOutlinedInput-notchedOutline": {
+                                border: "none",
+                            },
+                        }}
                         InputProps={{
-                            notched: false,
-                            sx: { border: "none" },
+                            sx: { borderRadius: "50px" },
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton>
+                                        <SearchIcon />
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
                         }}
                     />
                     <Divider variant="middle" sx={{ width: "70%", opacity: 0.2, backgroundColor: "text.primary" }} />
