@@ -122,7 +122,7 @@ const Leftbar = () => {
                         <LongTypography variant="subBody">Logout</LongTypography>
                     </StyledListButton>
                 </StyledNavList>
-                {/* <DiscoverTags /> */}
+                <DiscoverTags hide={[1, 4, 5].includes(selectedIndex)}/>
             </CustomCollapseTransition>
             <Box sx={{ position: "relative" }}>
                 <Search open={selectedIndex === 1} close={() => setSelectedIndex(0)} />

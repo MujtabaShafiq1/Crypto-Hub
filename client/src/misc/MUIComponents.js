@@ -27,8 +27,10 @@ const LeftbarContainer = styled(Box)(({ theme }) => ({
     [theme.breakpoints.down("md")]: {
         width: "60px",
     },
+    // [theme.breakpoints.down("sm")]: {
+    //     display: "none"
+    // },
 }));
-
 
 const CollapseContainer = styled(Collapse)(({ theme }) => ({
     top: 0,
@@ -263,12 +265,32 @@ const FormContainer = styled(Container)(({ theme }) => ({
     backdropFilter: "blur(50px)",
 }));
 
+const DiscoverTagsContainer = styled(Box)(({ hide, theme }) => ({
+    display: hide && "none",
+    [theme.breakpoints.down("md")]: {
+        display: "none",
+    },
+}));
+
+const TagsContainer = styled(Box)(({ theme }) => ({
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "left",
+    gap: theme.spacing(2),
+    padding: "10px",
+    height: "40vh",
+    overflow: "auto",
+}));
+
 export {
     Flexbox,
     LongTypography,
     MainContainer,
     LeftbarContainer,
     CollapseContainer,
+    TagsContainer,
+    DiscoverTagsContainer,
     StickyContainer,
     StyledBadge,
     StyledStatusBadge,

@@ -1,37 +1,21 @@
-import { Typography } from "@mui/material";
-import { Flexbox } from "../../misc/MUIComponents";
+import { Flexbox, ListHeader, ConfirmationButton, TagsContainer, DiscoverTagsContainer } from "../../misc/MUIComponents";
+import { formatNumber } from "../../utils/formatNumber";
+import { tagsData as data } from "../../utils/mockData";
 
-const DiscoverTags = () => {
-    const data = [
-        { name: "Youtube", number: 1000000000 },
-        { name: "CSS", number: 500000 },
-        { name: "React", number: 10000 },
-        { name: "Trending", number: 8000 },
-        { name: "Pewdiepie", number: 2000 },
-        { name: "Javascript", number: 1000 },
-        { name: "Gaming", number: 500 },
-        { name: "Chess", number: 350 },
-        { name: "Party", number: 10 },
-        { name: "Youtube", number: 1000000000 },
-        { name: "CSS", number: 500000 },
-        { name: "React", number: 10000 },
-        { name: "Trending", number: 8000 },
-        { name: "Pewdiepie", number: 2000 },
-        { name: "Javascript", number: 1000 },
-        { name: "Gaming", number: 500 },
-        { name: "Chess", number: 350 },
-        { name: "Party", number: 10 },
-    ];
-
+const DiscoverTags = ({ hide }) => {
     return (
-        <>
-            <Flexbox sx={{ flexDirection: "column" }}>
-                <Typography variant="body" sx={{ textAlign: "center" }}>
-                    Discover Tags
-                </Typography>
+        <DiscoverTagsContainer hide={hide}>
+            <Flexbox sx={{ justifyContent: "flex-start", pl: "10px" }}>
+                <ListHeader variant="body">Discover Tags</ListHeader>
             </Flexbox>
-            {/* {data.map((item) => console.log(item))} */}
-        </>
+            <TagsContainer>
+                {data.map((item) => (
+                    <ConfirmationButton sx={{ backgroundColor: "cream" }}>
+                        #{item.name} {formatNumber(item.number)}
+                    </ConfirmationButton>
+                ))}
+            </TagsContainer>
+        </DiscoverTagsContainer>
     );
 };
 

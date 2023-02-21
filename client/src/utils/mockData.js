@@ -265,3 +265,24 @@ export const searchData = [
         photo: "https://images.pexels.com/photos/13131586/pexels-photo-13131586.png?auto=compress&cs=tinysrgb&w=1600&lazy=load",
     },
 ];
+
+export const tagsData = [
+    { name: "Youtube", number: 10123000000 },
+    { name: "CSS", number: 510000 },
+    { name: "React", number: 13000 },
+    { name: "Trending", number: 8400 },
+    { name: "Pewdiepie", number: 2100 },
+    { name: "Javascript", number: 1300 },
+    { name: "Gaming", number: 500 },
+    { name: "Chess", number: 350 },
+    { name: "Party", number: 10 },
+    { name: "Youtube", number: 1000000000 },
+    { name: "CSS", number: 500000 },
+    { name: "React", number: 10000 },
+    { name: "Trending", number: 8000 },
+    { name: "Pewdiepie", number: 2000 },
+    { name: "Javascript", number: 1000 },
+    { name: "Gaming", number: 500 },
+    { name: "Chess", number: 350 },
+    { name: "Party", number: 10 },
+];
