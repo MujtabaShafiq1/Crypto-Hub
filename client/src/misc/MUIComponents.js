@@ -1,4 +1,18 @@
-import { Box, Typography, Grid, Container, Button, Badge, TextField, List, ListItemButton, Collapse, styled } from "@mui/material";
+import {
+    Box,
+    Typography,
+    Grid,
+    Container,
+    Button,
+    Badge,
+    TextField,
+    List,
+    ListItemButton,
+    Collapse,
+    BottomNavigation,
+    BottomNavigationAction,
+    styled,
+} from "@mui/material";
 import background from "../assets/background.jpg";
 
 const MainContainer = styled(Grid)({
@@ -27,9 +41,9 @@ const LeftbarContainer = styled(Box)(({ theme }) => ({
     [theme.breakpoints.down("md")]: {
         width: "60px",
     },
-    // [theme.breakpoints.down("sm")]: {
-    //     display: "none"
-    // },
+    [theme.breakpoints.down("sm")]: {
+        display: "none",
+    },
 }));
 
 const CollapseContainer = styled(Collapse)(({ theme }) => ({
@@ -178,9 +192,6 @@ const StyledList = styled(List)(({ theme }) => ({
 }));
 
 const StyledNavList = styled(List)(({ theme }) => ({
-    // [theme.breakpoints.down("sm")]: {
-    //     display: "flex",
-    // },
     "&& .Mui-selected": {
         fontWeight: 700,
         borderLeft: "3px solid purple",
@@ -281,6 +292,70 @@ const TagsContainer = styled(Box)(({ theme }) => ({
     padding: "10px",
     height: "40vh",
     overflow: "auto",
+    "& Button": {
+        // backgroundColor: theme.palette.primary.main,
+        color: "black",
+        borderRadius: "50px",
+        backgroundColor: "lightgray",
+        opacity: 0.65,
+    },
+}));
+
+// const StyledAppbar = styled(BottomNavigation)(({ theme }) => ({
+//     left: 0,
+//     bottom: 0,
+//     width: "100%",
+//     position: "fixed",
+//     backgroundColor: theme.palette.primary.main,
+//     [theme.breakpoints.up("sm")]: {
+//         display: "none",
+//     },
+// }));
+
+const StyledBottomNavigation = styled(BottomNavigation)(({ theme }) => ({
+    left: 0,
+    bottom: 0,
+    width: "100%",
+    position: "fixed",
+    backgroundColor: theme.palette.primary.main,
+    [theme.breakpoints.up("sm")]: {
+        display: "none",
+    },
+}));
+
+const StyledBottomNavigationAction = styled(BottomNavigationAction)(({ theme }) => ({
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.text.primary,
+    width: "10%",
+    "&.Mui-selected": {
+        color: "purple",
+        borderBottom: "3px solid purple",
+    },
+}));
+
+const ModalContainer = styled(Box)(({ theme }) => ({
+    display: "flex",
+    flexDirection: "column",
+    position: "absolute",
+    top: "45%",
+    left: "50%",
+    padding: "20px",
+    transform: "translate(-50%, -50%)",
+    width: 180,
+    height: 220,
+    backgroundColor: theme.palette.primary.main,
+    boxShadow: 24,
+    border: "none",
+    borderRadius: "20px",
+    gap: theme.spacing(2),
+    "& .MuiTypography-root": {
+        color: theme.palette.text.primary,
+        fontWeight: 700,
+    },
+    "& .MuiSvgIcon-root": {
+        color: theme.palette.text.primary,
+        fontSize: 25,
+    },
 }));
 
 export {
@@ -302,4 +377,7 @@ export {
     ConfirmationButton,
     FormContainer,
     StyledField,
+    ModalContainer,
+    StyledBottomNavigation,
+    StyledBottomNavigationAction,
 };

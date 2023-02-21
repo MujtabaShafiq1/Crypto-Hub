@@ -1,13 +1,13 @@
 import { useState, useContext } from "react";
 import { useSelector } from "react-redux";
-import { Avatar, Box, ListItemAvatar, ListItem } from "@mui/material";
+import { Avatar, Box, ListItemAvatar } from "@mui/material";
 import { LongTypography, LeftbarContainer, StyledBadge, StyledNavList, StyledListButton } from "../../misc/MUIComponents";
 import { ThemeContext } from "../../context/ThemeProvider";
 import CustomCollapseTransition from "../UI/CustomCollapseTransition";
+import DiscoverTags from "../HashTags/DiscoverTags";
 import Notifications from "../Drawers/Notifications";
 import FriendRequests from "../Drawers/FriendRequests";
 import Search from "../Drawers/Search";
-import DiscoverTags from "../HashTags/DiscoverTags";
 
 import {
     HomeRounded,

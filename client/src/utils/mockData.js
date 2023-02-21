@@ -266,6 +266,7 @@ export const searchData = [
     },
 ];
 
+//for tags in discover tags
 export const tagsData = [
     { name: "Youtube", number: 10123000000 },
     { name: "CSS", number: 510000 },

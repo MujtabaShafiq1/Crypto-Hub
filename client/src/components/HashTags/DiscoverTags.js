@@ -1,18 +1,19 @@
-import { Flexbox, ListHeader, ConfirmationButton, TagsContainer, DiscoverTagsContainer } from "../../misc/MUIComponents";
+import { Button } from "@mui/material";
+import { Flexbox, ListHeader, TagsContainer, DiscoverTagsContainer } from "../../misc/MUIComponents";
 import { formatNumber } from "../../utils/formatNumber";
 import { tagsData as data } from "../../utils/mockData";
 
 const DiscoverTags = ({ hide }) => {
     return (
-        <DiscoverTagsContainer hide={hide}>
+        <DiscoverTagsContainer hide={+(hide)}>
             <Flexbox sx={{ justifyContent: "flex-start", pl: "10px" }}>
                 <ListHeader variant="body">Discover Tags</ListHeader>
             </Flexbox>
             <TagsContainer>
                 {data.map((item) => (
-                    <ConfirmationButton sx={{ backgroundColor: "cream" }}>
+                    <Button key={Math.random()}>
                         #{item.name} {formatNumber(item.number)}
-                    </ConfirmationButton>
+                    </Button>
                 ))}
             </TagsContainer>
         </DiscoverTagsContainer>
