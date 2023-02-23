@@ -358,6 +358,29 @@ const ModalContainer = styled(Box)(({ theme }) => ({
     },
 }));
 
+const StoriesContainer = styled(Box)(({ theme }) => ({
+    position: "relative",
+    padding: theme.spacing(1),
+    gap: theme.spacing(1),
+    display: "flex",
+    height: "25vh",
+    overflowX: "scroll",
+    scrollBehavior: "smooth",
+    [theme.breakpoints.up("md")]: {
+        width: "65vw",
+    },
+    [theme.breakpoints.down("md")]: {
+        width: "100vw",
+    },
+}));
+
+const StoryContainer = styled(Box)(({ theme }) => ({
+    flexShrink: 0,
+    position: "relative",
+    width: "180px",
+    borderRadius: "10px",
+}));
+
 export {
     Flexbox,
     LongTypography,
@@ -366,6 +389,8 @@ export {
     CollapseContainer,
     TagsContainer,
     DiscoverTagsContainer,
+    StoriesContainer,
+    StoryContainer,
     StickyContainer,
     StyledBadge,
     StyledStatusBadge,
