@@ -8,7 +8,7 @@ import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 const styles = {
     leftIcon: {
         position: "sticky",
-        left: "0",
+        left: 0,
         top: "50%",
         transform: "translateY(-50%)",
         fontSize: 30,
@@ -16,7 +16,7 @@ const styles = {
     },
     rightIcon: {
         position: "sticky",
-        right: "0",
+        right: 0,
         top: "50%",
         transform: "translateY(-50%)",
         fontSize: 30,
@@ -57,14 +57,12 @@ const Stories = () => {
             <StoriesContainer ref={scrollRef}>
                 <ExpandCircleDownIcon onClick={handleScrollLeft} sx={styles.leftIcon} />
                 {data.map((story) => (
-                    <>
-                        <StoryContainer sx={{ background: `url(${story.photo})` }}>
-                            <Box sx={styles.details}>
-                                <Avatar src={story.photo} />
-                                <Typography variant="helper">{story.name}</Typography>
-                            </Box>
-                        </StoryContainer>
-                    </>
+                    <StoryContainer key={Math.random()} sx={{ background: `url(${story.photo})` }}>
+                        <Box sx={styles.details}>
+                            <Avatar src={story.photo} />
+                            <Typography variant="helper">{story.name}</Typography>
+                        </Box>
+                    </StoryContainer>
                 ))}
                 <ExpandCircleDownIcon onClick={handleScrollRight} sx={styles.rightIcon} />
             </StoriesContainer>

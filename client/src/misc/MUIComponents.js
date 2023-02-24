@@ -26,17 +26,23 @@ const MainContainer = styled(Grid)({
     width: "100vw",
 });
 
+const HomeContainer = styled(Box)(({ theme }) => ({
+    overflow: "auto",
+    height: "300vh",
+    backgroundColor: "lightblue",
+    flex: 5,
+    width: "100%",
+}));
+
 const LeftbarContainer = styled(Box)(({ theme }) => ({
     top: 0,
+    width: "15vw",
     display: "flex",
     height: "100vh",
     position: "sticky",
     backgroundColor: theme.palette.primary.main,
-    [theme.breakpoints.up("lg")]: {
-        width: "370px",
-    },
     [theme.breakpoints.down("lg")]: {
-        width: "300px",
+        width: "220px",
     },
     [theme.breakpoints.down("md")]: {
         width: "60px",
@@ -290,7 +296,7 @@ const TagsContainer = styled(Box)(({ theme }) => ({
     justifyContent: "left",
     gap: theme.spacing(2),
     padding: "10px",
-    height: "40vh",
+    height: "37vh",
     overflow: "auto",
     "& Button": {
         // backgroundColor: theme.palette.primary.main,
@@ -366,12 +372,7 @@ const StoriesContainer = styled(Box)(({ theme }) => ({
     height: "25vh",
     overflowX: "scroll",
     scrollBehavior: "smooth",
-    [theme.breakpoints.up("md")]: {
-        width: "65vw",
-    },
-    [theme.breakpoints.down("md")]: {
-        width: "100vw",
-    },
+    width: "100%",
 }));
 
 const StoryContainer = styled(Box)(({ theme }) => ({
@@ -385,6 +386,7 @@ export {
     Flexbox,
     LongTypography,
     MainContainer,
+    HomeContainer,
     LeftbarContainer,
     CollapseContainer,
     TagsContainer,

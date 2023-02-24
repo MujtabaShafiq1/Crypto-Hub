@@ -72,22 +72,22 @@ export const notificationsData = [
 export const friendsActivityData = [
     {
         name: "Ali Connors",
-        text: " — I'll be in your neighborhood doing errands this…",
+        text: " — Shared a post",
         photo: "https://images.pexels.com/photos/14968378/pexels-photo-14968378.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
     },
     {
         name: "Sandra Adams",
-        text: " — Do you have Paris recommendations? Have you ever…",
+        text: " — Commented on a post",
         photo: "https://images.pexels.com/photos/13131586/pexels-photo-13131586.png?auto=compress&cs=tinysrgb&w=1600&lazy=load",
     },
     {
         name: "Alex Collins",
-        text: " — Wish I could come, but I'm out of town this…",
+        text: " — LUpdated the background picture",
         photo: "https://images.pexels.com/photos/4823473/pexels-photo-4823473.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
     },
     {
         name: "Judy Myers",
-        text: " — Wish I could come, but I'm out of town this…",
+        text: " — Updated the profile picture",
         photo: "https://images.pexels.com/photos/1087735/pexels-photo-1087735.jpeg?auto=compress&cs=tinysrgb&w=1600",
     },
 ];
