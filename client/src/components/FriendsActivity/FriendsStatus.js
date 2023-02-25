@@ -8,10 +8,10 @@ const FriendsStatus = () => {
         <>
             <ListHeader variant="body">Online Friends</ListHeader>
             <Divider variant="middle" sx={{ opacity: 0.3, backgroundColor: "text.primary" }} />
-            <StyledList>
+            <StyledList sx={{ padding: "8px" }}>
                 {data.map((user) => {
                     return (
-                        <ListItem sx={{padding: "0px"}} key={Math.random()}>
+                        <ListItem sx={{ padding: "0px" }} key={Math.random()}>
                             <StyledListButton>
                                 <ListItemIcon>
                                     <StyledStatusBadge

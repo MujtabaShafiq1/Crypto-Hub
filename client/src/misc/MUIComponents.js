@@ -1,3 +1,4 @@
+import background from "../assets/background.jpg";
 import {
     Box,
     Typography,
@@ -13,7 +14,6 @@ import {
     BottomNavigationAction,
     styled,
 } from "@mui/material";
-import background from "../assets/background.jpg";
 
 const MainContainer = styled(Grid)({
     direction: "column",
@@ -36,13 +36,14 @@ const HomeContainer = styled(Box)(({ theme }) => ({
 
 const LeftbarContainer = styled(Box)(({ theme }) => ({
     top: 0,
+    zIndex: 2,
     width: "15vw",
     display: "flex",
     height: "100vh",
     position: "sticky",
     backgroundColor: theme.palette.primary.main,
     [theme.breakpoints.down("lg")]: {
-        width: "220px",
+        width: "200px",
     },
     [theme.breakpoints.down("md")]: {
         width: "60px",
@@ -55,6 +56,7 @@ const LeftbarContainer = styled(Box)(({ theme }) => ({
 const CollapseContainer = styled(Collapse)(({ theme }) => ({
     top: 0,
     left: 0,
+    zIndex: 2,
     height: "100vh",
     position: "absolute",
     "& .MuiCollapse-wrapperInner": {
@@ -184,7 +186,6 @@ const StyledField = styled(TextField)(({ error, theme }) => ({
 
 const StyledList = styled(List)(({ theme }) => ({
     overflow: "auto",
-    padding: "8px",
     "& .MuiTypography-root": {
         fontWeight: 400,
         color: theme.palette.text.primary,
@@ -365,22 +366,27 @@ const ModalContainer = styled(Box)(({ theme }) => ({
 }));
 
 const StoriesContainer = styled(Box)(({ theme }) => ({
-    position: "relative",
     padding: theme.spacing(1),
     gap: theme.spacing(1),
     display: "flex",
-    height: "25vh",
+    // overflow: "hidden",
     overflowX: "scroll",
     scrollBehavior: "smooth",
     width: "100%",
+    position: "relative",
 }));
 
 const StoryContainer = styled(Box)(({ theme }) => ({
+    zIndex: 0,
     flexShrink: 0,
+    cursor: "pointer",
     position: "relative",
-    width: "180px",
     borderRadius: "10px",
+    backgroundSize: "100% 100%",
+    height: "230px",
+    width: "180px",
 }));
+
 
 export {
     Flexbox,

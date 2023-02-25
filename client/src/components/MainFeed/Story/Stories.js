@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { Box, Typography, Avatar } from "@mui/material";
 import { friendsStatusData as data } from "../../../utils/mockData";
 import { StoriesContainer, StoryContainer } from "../../../misc/MUIComponents";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+import ViewStory from "./ViewStory";
 
 // CSS styles
 const styles = {
@@ -10,17 +11,19 @@ const styles = {
         position: "sticky",
         left: 0,
         top: "50%",
-        transform: "translateY(-50%)",
-        fontSize: 30,
+        transform: "translateY(-50%) rotate(90deg)",
+        fontSize: 35,
         zIndex: 1,
+        cursor: "pointer",
     },
     rightIcon: {
         position: "sticky",
-        right: 0,
+        right: 10,
         top: "50%",
-        transform: "translateY(-50%)",
-        fontSize: 30,
+        transform: "translateY(-50%) rotate(-90deg)",
+        fontSize: 35,
         zIndex: 1,
+        cursor: "pointer",
     },
     details: {
         display: "flex",
@@ -37,6 +40,7 @@ const styles = {
 
 const Stories = () => {
     const scrollRef = useRef();
+    const [viewStory, setViewStory] = useState(null);
 
     const handleScrollLeft = () => {
         scrollRef.current.scrollBy({
@@ -54,10 +58,15 @@ const Stories = () => {
 
     return (
         <>
+            {viewStory && <ViewStory index={viewStory} close={() => setViewStory(null)} />}
             <StoriesContainer ref={scrollRef}>
+                {/* <Box sx={{ height: "100%", width: "100%", backgroundColor: "gray" }}/> */}
                 <ExpandCircleDownIcon onClick={handleScrollLeft} sx={styles.leftIcon} />
-                {data.map((story) => (
-                    <StoryContainer key={Math.random()} sx={{ background: `url(${story.photo})` }}>
+                {data.map((story, index) => (
+                    <StoryContainer
+                        key={Math.random()}
+                        sx={{ background: `url(${story.photo}) no-repeat center fixed` }}
+                        onClick={() => setViewStory(index)}>
                         <Box sx={styles.details}>
                             <Avatar src={story.photo} />
                             <Typography variant="helper">{story.name}</Typography>
