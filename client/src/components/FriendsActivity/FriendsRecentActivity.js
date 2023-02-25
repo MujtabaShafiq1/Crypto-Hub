@@ -1,5 +1,5 @@
 import { Box, Avatar, Typography, Divider, ListItemText, ListItemAvatar, ListItem } from "@mui/material";
-import { StyledList, ListHeader, StyledListButton } from "../../misc/MUIComponents";
+import { StyledList, ListHeader, StyledListButton } from "../UI";
 import moment from "moment";
 
 import { friendsActivityData as data } from "../../utils/mockData";

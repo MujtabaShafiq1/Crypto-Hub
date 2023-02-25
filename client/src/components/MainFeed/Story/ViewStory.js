@@ -14,11 +14,10 @@ const styles = {
         border: "none",
     },
     image: {
+        width: "30%",
+        height: "90%",
         objectFit: "cover",
-        objectPosition: "center center",
-        height: "95%",
-        width: "50%",
-        border: "none",
+        borderRadius: "10px",
     },
     leftIcon: {
         left: 0,
@@ -43,6 +42,10 @@ const ViewStory = ({ index, close }) => {
     const previousStory = () => setStoryIndex((prev) => --prev);
 
     setTimeout(() => {
+        if (storyIndex < data.length - 1) {
+            setStoryIndex((prev) => ++prev);
+            return;
+        }
         close();
     }, 1000);
 

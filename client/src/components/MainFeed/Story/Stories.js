@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Box, Typography, Avatar } from "@mui/material";
 import { friendsStatusData as data } from "../../../utils/mockData";
-import { StoriesContainer, StoryContainer } from "../../../misc/MUIComponents";
+import { StoriesContainer, StoryContainer } from "../../UI";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import ViewStory from "./ViewStory";
 
@@ -40,7 +40,7 @@ const styles = {
 
 const Stories = () => {
     const scrollRef = useRef();
-    const [viewStory, setViewStory] = useState(null);
+    const [viewStory, setViewStory] = useState(-1);
 
     const handleScrollLeft = () => {
         scrollRef.current.scrollBy({
@@ -58,15 +58,17 @@ const Stories = () => {
 
     return (
         <>
-            {viewStory && <ViewStory index={viewStory} close={() => setViewStory(null)} />}
+            {viewStory >= 0 && <ViewStory index={viewStory} close={() => setViewStory(-1)} />}
             <StoriesContainer ref={scrollRef}>
                 {/* <Box sx={{ height: "100%", width: "100%", backgroundColor: "gray" }}/> */}
                 <ExpandCircleDownIcon onClick={handleScrollLeft} sx={styles.leftIcon} />
                 {data.map((story, index) => (
-                    <StoryContainer
-                        key={Math.random()}
-                        sx={{ background: `url(${story.photo}) no-repeat center fixed` }}
-                        onClick={() => setViewStory(index)}>
+                    <StoryContainer key={Math.random()} onClick={() => setViewStory(index)}>
+                        <Box
+                            component="img"
+                            src={story.photo}
+                            sx={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "10px" }}
+                        />
                         <Box sx={styles.details}>
                             <Avatar src={story.photo} />
                             <Typography variant="helper">{story.name}</Typography>

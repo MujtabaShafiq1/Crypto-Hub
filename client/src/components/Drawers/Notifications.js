@@ -1,5 +1,5 @@
 import { Box, Avatar, Typography, Divider, ListItemAvatar, ListItem } from "@mui/material";
-import { Flexbox, CollapseContainer, StyledList, ListHeader, StyledListButton } from "../../misc/MUIComponents";
+import { Flexbox, CollapseContainer, StyledList, ListHeader, StyledListButton } from "../UI";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import moment from "moment";
 
@@ -8,7 +8,6 @@ import { notificationsData as data } from "../../utils/mockData";
 const Notifications = ({ open, close }) => {
     return (
         <CollapseContainer orientation="horizontal" in={open} timeout={500}>
-            
             <Flexbox sx={{ justifyContent: "flex-start", paddingLeft: "10px" }}>
                 <ArrowBackIcon sx={{ color: "text.primary", cursor: "pointer" }} onClick={close} />
                 <ListHeader variant="body">Notifications</ListHeader>

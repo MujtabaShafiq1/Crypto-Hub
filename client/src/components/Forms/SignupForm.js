@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff, CancelOutlined } from "@mui/icons-material";
 import { Box, InputAdornment, CircularProgress, Typography, Avatar } from "@mui/material";
-import { Flexbox, StyledButton, StyledField } from "../../misc/MUIComponents";
+import { Flexbox, StyledButton, StyledField } from "../UI";
 import { signupSchema } from "../../utils/validationSchema";
 import CustomSnackbar from "../UI/CustomSnackbar";
 import { useFormik } from "formik";

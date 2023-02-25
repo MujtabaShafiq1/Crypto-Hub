@@ -1,14 +1,6 @@
 import { useState } from "react";
 import { Box, Avatar, Divider, IconButton, ListItem, ListItemAvatar, InputAdornment } from "@mui/material";
-import {
-    Flexbox,
-    CollapseContainer,
-    StyledField,
-    StyledList,
-    ListHeader,
-    StyledListButton,
-    LongTypography,
-} from "../../misc/MUIComponents";
+import { Flexbox, CollapseContainer, StyledField, StyledList, ListHeader, StyledListButton, LongTypography } from "../UI";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -31,7 +23,7 @@ const Search = ({ open, close }) => {
             </Flexbox>
             <Divider variant="middle" sx={{ width: "90%", opacity: 0.2, backgroundColor: "text.primary" }} />
 
-            <Flexbox sx={{mt: "3%"}}>
+            <Flexbox sx={{ mt: "3%" }}>
                 <StyledField
                     variant="outlined"
                     placeholder="Search"

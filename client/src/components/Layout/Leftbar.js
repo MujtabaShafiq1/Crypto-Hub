@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useSelector } from "react-redux";
 import { Avatar, Box, ListItemAvatar } from "@mui/material";
-import { LongTypography, LeftbarContainer, StyledBadge, StyledNavList, StyledListButton } from "../../misc/MUIComponents";
+import { LongTypography, LeftbarContainer, StyledBadge, StyledNavList, StyledListButton } from "../UI";
 import { ThemeContext } from "../../context/ThemeProvider";
 import CustomCollapseTransition from "../UI/CustomCollapseTransition";
 import DiscoverTags from "../HashTags/DiscoverTags";

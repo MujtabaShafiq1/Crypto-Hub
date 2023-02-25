@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { Modal, Typography, Divider } from "@mui/material";
-import { Flexbox, ModalContainer } from "../../misc/MUIComponents";
+import { Flexbox, ModalContainer } from "../UI";
 import { ThemeContext } from "../../context/ThemeProvider";
 import { HistoryRounded, BookmarkRounded, DarkModeRounded, LightModeRounded, LogoutRounded } from "@mui/icons-material";
 
 const NavModal = ({ show, handleClose }) => {
-
     const { mode, toggleColorMode } = useContext(ThemeContext);
 
     const logoutHandler = async () => {

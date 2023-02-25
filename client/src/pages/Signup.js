@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
-import { Flexbox, MainContainer, FormContainer } from "../misc/MUIComponents";
+import { Flexbox, MainContainer, FormContainer } from "../components/UI";
 import SignupForm from "../components/Forms/SignupForm";
 
 const Signup = () => {

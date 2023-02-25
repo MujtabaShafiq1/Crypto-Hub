@@ -1,4 +1,4 @@
-import { StickyContainer } from "../../misc/MUIComponents";
+import { StickyContainer } from "../UI";
 import FriendsRecentActivity from "../FriendsActivity/FriendsRecentActivity";
 import FriendsStatus from "../FriendsActivity/FriendsStatus";
 

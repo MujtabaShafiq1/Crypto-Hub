@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyledBottomNavigation, StyledBottomNavigationAction } from "../../misc/MUIComponents";
+import { StyledBottomNavigation, StyledBottomNavigationAction } from "../UI";
 import { HomeRounded, SearchRounded, PersonAddAlt1Rounded, NotificationsRounded, MoreVert } from "@mui/icons-material";
 import NavModal from "./NavModal";
 import Notifications from "../Drawers/Notifications";

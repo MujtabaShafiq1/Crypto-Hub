@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { HomeContainer } from "../misc/MUIComponents";
+import { HomeContainer } from "../components/UI";
 import Rightbar from "../components/Layout/Rightbar";
 import Stories from "../components/MainFeed/Story/Stories";
 

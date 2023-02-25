@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material";
-import { Flexbox, StyledButton, StyledField } from "../../misc/MUIComponents";
+import { Flexbox, StyledButton, StyledField } from "../UI";
 import CustomSnackbar from "../UI/CustomSnackbar";
 import { loginSchema } from "../../utils/validationSchema";
 import { authActions } from "../../store/authSlice";

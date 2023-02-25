@@ -1,5 +1,5 @@
 import { Avatar, Typography, ListItemIcon, Divider, ListItem } from "@mui/material";
-import { StyledListButton, StyledStatusBadge, StyledList, ListHeader } from "../../misc/MUIComponents";
+import { StyledListButton, StyledStatusBadge, StyledList, ListHeader } from "../UI";
 
 import { friendsStatusData as data } from "../../utils/mockData";
 

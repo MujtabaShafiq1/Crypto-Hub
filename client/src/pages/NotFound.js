@@ -1,4 +1,4 @@
-import { MainContainer } from "../misc/MUIComponents"
+import { MainContainer } from "../components/UI";
 import { Typography } from "@mui/material";
 
 const NotFound = () => {

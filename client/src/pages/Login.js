@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Box, Divider, Typography } from "@mui/material";
-import { Flexbox, MainContainer, FormContainer, StyledButton } from "../misc/MUIComponents";
+import { Flexbox, MainContainer, FormContainer, StyledButton } from "../components/UI";
 import LoginForm from "../components/Forms/LoginForm";
 
 import GithubIcon from "../assets/SocialIcons/github.png";

@@ -1,13 +1,5 @@
 import { Box, Avatar, Divider, ListItem, ListItemText, ListItemAvatar } from "@mui/material";
-import {
-    Flexbox,
-    CollapseContainer,
-    StyledList,
-    ListHeader,
-    StyledListButton,
-    LongTypography,
-    ConfirmationButton,
-} from "../../misc/MUIComponents";
+import { Flexbox, CollapseContainer, StyledList, ListHeader, StyledListButton, LongTypography, ConfirmationButton } from "../UI";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import moment from "moment";
 
@@ -16,7 +8,6 @@ import { FriendRequestsData as data } from "../../utils/mockData";
 const FriendRequests = ({ open, close }) => {
     return (
         <CollapseContainer orientation="horizontal" in={open} timeout={500}>
-           
             <Flexbox sx={{ justifyContent: "flex-start", pl: "10px" }}>
                 <ArrowBackIcon sx={{ color: "text.primary", cursor: "pointer" }} onClick={close} />
                 <ListHeader variant="body">Friends Request</ListHeader>

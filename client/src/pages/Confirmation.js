@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { CancelOutlined, CheckCircleOutlined } from "@mui/icons-material";
-import { Flexbox, MainContainer } from "../misc/MUIComponents";
+import { Flexbox, MainContainer } from "../components/UI";
 import axios from "axios";
 
 const Confirmation = () => {
