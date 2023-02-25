@@ -4,7 +4,7 @@ import { Visibility, VisibilityOff, CancelOutlined } from "@mui/icons-material";
 import { Box, InputAdornment, CircularProgress, Typography, Avatar } from "@mui/material";
 import { Flexbox, StyledButton, StyledField } from "../UI";
 import { signupSchema } from "../../utils/validationSchema";
-import CustomSnackbar from "../UI/CustomSnackbar";
+import CustomSnackbar from "../UI/Snackbar/CustomSnackbar";
 import { useFormik } from "formik";
 import axios from "axios";
 
@@ -18,10 +18,10 @@ const SignupForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            name: "Mujtaba" || "",
-            email: "libawiy840@aosod.com" || "",
-            password: "123123123" || "",
-            confirmedPassword: "123123123" || "",
+            name: "",
+            email: "",
+            password: "",
+            confirmedPassword: "",
         },
         validationSchema: signupSchema,
         onSubmit: (values) => {

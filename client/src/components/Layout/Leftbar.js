@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Avatar, Box, ListItemAvatar } from "@mui/material";
 import { LongTypography, LeftbarContainer, StyledBadge, StyledNavList, StyledListButton } from "../UI";
 import { ThemeContext } from "../../context/ThemeProvider";
-import CustomCollapseTransition from "../UI/CustomCollapseTransition";
+import CustomCollapseTransition from "../UI/Transition/CustomCollapseTransition";
 import DiscoverTags from "../HashTags/DiscoverTags";
 import Notifications from "../Drawers/Notifications";
 import FriendRequests from "../Drawers/FriendRequests";
@@ -40,7 +40,7 @@ const Leftbar = () => {
     return (
         <LeftbarContainer>
             <CustomCollapseTransition in={![1, 4, 5].includes(selectedIndex)} duration={500}>
-                <StyledNavList component="nav"> 
+                <StyledNavList component="nav">
                     <StyledListButton>
                         <ListItemAvatar>
                             <Avatar src={user?.photo} />
@@ -122,7 +122,7 @@ const Leftbar = () => {
                         <LongTypography variant="subBody">Logout</LongTypography>
                     </StyledListButton>
                 </StyledNavList>
-                <DiscoverTags hide={[1, 4, 5].includes(selectedIndex)}/>
+                <DiscoverTags hide={[1, 4, 5].includes(selectedIndex)} />
             </CustomCollapseTransition>
             <Box sx={{ position: "relative" }}>
                 <Search open={selectedIndex === 1} close={() => setSelectedIndex(0)} />

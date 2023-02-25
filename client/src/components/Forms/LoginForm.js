@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material";
 import { Flexbox, StyledButton, StyledField } from "../UI";
-import CustomSnackbar from "../UI/CustomSnackbar";
+import CustomSnackbar from "../UI/Snackbar/CustomSnackbar";
 import { loginSchema } from "../../utils/validationSchema";
 import { authActions } from "../../store/authSlice";
 import { useFormik } from "formik";

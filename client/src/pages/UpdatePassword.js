@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material";
 import { Flexbox, MainContainer, StyledButton, StyledField, FormContainer } from "../components/UI";
-import CustomSnackbar from "../components/UI/CustomSnackbar";
+import CustomSnackbar from "../components/UI/Snackbar/CustomSnackbar";
 import { updatePasswordSchema } from "../utils/validationSchema";
 import { useFormik } from "formik";
 import axios from "axios";
