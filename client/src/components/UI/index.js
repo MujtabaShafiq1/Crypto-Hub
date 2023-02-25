@@ -7,7 +7,7 @@ export { ModalContainer } from "./Containers/ModalContainer";
 export { StickyContainer } from "./Containers/StickyContainer";
 export { CollapseContainer } from "./Containers/CollapseContainer";
 export { LeftbarContainer } from "./Containers/SidebarContainers";
-export { StoriesContainer, StoryContainer } from "./Containers/StoryContainers";
+export { StoriesContainer, StoryContainer, StoryImageContainer } from "./Containers/StoryContainers";
 export { DiscoverTagsContainer, TagsContainer } from "./Containers/DiscoverTagsContainers";
 
 // list
@@ -16,7 +16,7 @@ export { StyledListButton } from "./List/ListButtons";
 export { ListHeader } from "./List/ListHeaders";
 
 // badges
-export { StyledBadge, StyledStatusBadge } from "./Badge/StyledBadges";;
+export { StyledBadge, StyledStatusBadge } from "./Badge/StyledBadges";
 
 // buttons
 export { StyledButton } from "./Buttons/StyledButton";
@@ -31,3 +31,13 @@ export { StyledField } from "./Input/StyledTextField";
 
 // typography
 export { LongTypography } from "./Typography/LongTypography";
+
+// styled icons
+export { StoryLeftIcon, StoryRightIcon } from "./Icons/StyledExpandIcon";
+
+// transitions
+export { Progressbar } from "./Transition/Progressbar";
+
+// modal
+export { StyledModal } from "./Modal/Modal";
+

@@ -1,30 +1,11 @@
 import { useState, useRef } from "react";
 import { Box, Typography, Avatar } from "@mui/material";
 import { friendsStatusData as data } from "../../../utils/mockData";
-import { StoriesContainer, StoryContainer } from "../../UI";
-import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+import { StoriesContainer, StoryContainer, StoryLeftIcon, StoryRightIcon } from "../../UI";
 import ViewStory from "./ViewStory";
 
 // CSS styles
 const styles = {
-    leftIcon: {
-        position: "sticky",
-        left: 0,
-        top: "50%",
-        transform: "translateY(-50%) rotate(90deg)",
-        fontSize: 35,
-        zIndex: 1,
-        cursor: "pointer",
-    },
-    rightIcon: {
-        position: "sticky",
-        right: 10,
-        top: "50%",
-        transform: "translateY(-50%) rotate(-90deg)",
-        fontSize: 35,
-        zIndex: 1,
-        cursor: "pointer",
-    },
     details: {
         display: "flex",
         alignItems: "center",
@@ -61,7 +42,7 @@ const Stories = () => {
             {viewStory >= 0 && <ViewStory index={viewStory} close={() => setViewStory(-1)} />}
             <StoriesContainer ref={scrollRef}>
                 {/* <Box sx={{ height: "100%", width: "100%", backgroundColor: "gray" }}/> */}
-                <ExpandCircleDownIcon onClick={handleScrollLeft} sx={styles.leftIcon} />
+                <StoryLeftIcon onClick={handleScrollLeft} sx={styles.leftIcon} />
                 {data.map((story, index) => (
                     <StoryContainer key={Math.random()} onClick={() => setViewStory(index)}>
                         <Box
@@ -75,7 +56,7 @@ const Stories = () => {
                         </Box>
                     </StoryContainer>
                 ))}
-                <ExpandCircleDownIcon onClick={handleScrollRight} sx={styles.rightIcon} />
+                <StoryRightIcon onClick={handleScrollRight} sx={styles.rightIcon} />
             </StoriesContainer>
         </>
     );

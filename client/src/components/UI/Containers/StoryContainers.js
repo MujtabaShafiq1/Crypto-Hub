@@ -18,6 +18,20 @@ const StoryContainer = styled(Box)(({ theme }) => ({
     position: "relative",
     height: "230px",
     width: "180px",
+    [theme.breakpoints.down("md")]: {
+        height: "180px",
+        width: "120px",
+    },
 }));
 
-export { StoriesContainer, StoryContainer };
+const StoryImageContainer = styled(Box)(({ theme }) => ({
+    width: "30%",
+    height: "90%",
+    objectFit: "cover",
+    borderRadius: "10px",
+    [theme.breakpoints.down("md")]: {
+        width: "90%",
+    },
+}));
+
+export { StoriesContainer, StoryContainer, StoryImageContainer };
