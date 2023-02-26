@@ -7,8 +7,9 @@ export { ModalContainer } from "./Containers/ModalContainer";
 export { StickyContainer } from "./Containers/StickyContainer";
 export { CollapseContainer } from "./Containers/CollapseContainer";
 export { LeftbarContainer } from "./Containers/SidebarContainers";
-export { ViewStoryContainer, ViewStoryDetails, ImageContainer } from "./Containers/ViewStoryContainers";
-export { StoriesContainer, StoryContainer } from "./Containers/StoryContainers";
+export { ImageContainer } from "./Containers/ImageContainer";
+export { ViewStoryContainer, ViewStoryDetails } from "./Containers/ViewStoryContainers";
+export { StoriesContainer, StoryContainer, StoryDetails } from "./Containers/StoryContainers";
 export { DiscoverTagsContainer, TagsContainer } from "./Containers/DiscoverTagsContainers";
 
 // list

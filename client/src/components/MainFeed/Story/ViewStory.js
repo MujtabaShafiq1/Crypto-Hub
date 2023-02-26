@@ -41,7 +41,7 @@ const ViewStory = ({ index, close }) => {
                         </Flexbox>
                         <ViewStoryDetails>
                             <Avatar src={data[storyIndex].photo} />
-                            <Typography sx={{ color: "white", fontWeight: 500 }}>{data[storyIndex].name}</Typography>
+                            <Typography>{data[storyIndex].name}</Typography>
                         </ViewStoryDetails>
                         <ImageContainer component="img" src={data[storyIndex].story} />
                     </ViewStoryContainer>

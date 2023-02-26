@@ -4,6 +4,7 @@ const ViewStoryContainer = styled(Box)(({ theme }) => ({
     width: "30%",
     height: "90%",
     position: "relative",
+    overflow: "hidden",
     borderRadius: "10px",
     [theme.breakpoints.down("md")]: {
         width: "90%",
@@ -16,6 +17,8 @@ const ViewStoryDetails = styled(Box)(({ theme }) => ({
     left: "2%",
     display: "flex",
     alignItems: "center",
+    color: "white",
+    fontWeight: 500,
     gap: theme.spacing(1),
 }));
 
@@ -25,4 +28,4 @@ const ImageContainer = styled(Box)(({ theme }) => ({
     objectFit: "cover",
 }));
 
-export { ViewStoryContainer, ImageContainer , ViewStoryDetails};
+export { ViewStoryContainer, ImageContainer, ViewStoryDetails };
