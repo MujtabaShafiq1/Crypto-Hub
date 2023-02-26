@@ -10,10 +10,19 @@ const ViewStoryContainer = styled(Box)(({ theme }) => ({
     },
 }));
 
+const ViewStoryDetails = styled(Box)(({ theme }) => ({
+    position: "absolute",
+    top: "3%",
+    left: "2%",
+    display: "flex",
+    alignItems: "center",
+    gap: theme.spacing(1),
+}));
+
 const ImageContainer = styled(Box)(({ theme }) => ({
     width: "100%",
     height: "100%",
     objectFit: "cover",
 }));
 
-export { ViewStoryContainer, ImageContainer };
+export { ViewStoryContainer, ImageContainer , ViewStoryDetails};

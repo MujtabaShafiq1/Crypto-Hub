@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { friendsStatusData as data } from "../../../utils/mockData";
+import { Avatar, Typography } from "@mui/material";
+import { storiesData as data } from "../../../utils/mockData";
 import {
-    ImageContainer,
     ViewStoryContainer,
+    ImageContainer,
+    ViewStoryDetails,
     StoryLeftIcon,
     StoryRightIcon,
     Flexbox,
@@ -37,7 +39,11 @@ const ViewStory = ({ index, close }) => {
                                 <Progressbar key={storyIndex} />
                             </ProgressContainer>
                         </Flexbox>
-                        <ImageContainer component="img" src={data[storyIndex].photo} />
+                        <ViewStoryDetails>
+                            <Avatar src={data[storyIndex].photo} />
+                            <Typography sx={{ color: "white", fontWeight: 500 }}>{data[storyIndex].name}</Typography>
+                        </ViewStoryDetails>
+                        <ImageContainer component="img" src={data[storyIndex].story} />
                     </ViewStoryContainer>
                     {storyIndex < data.length - 1 && <StoryRightIcon onClick={nextStory} />}
                 </>

@@ -7,7 +7,7 @@ export { ModalContainer } from "./Containers/ModalContainer";
 export { StickyContainer } from "./Containers/StickyContainer";
 export { CollapseContainer } from "./Containers/CollapseContainer";
 export { LeftbarContainer } from "./Containers/SidebarContainers";
-export { ViewStoryContainer, ImageContainer } from "./Containers/ViewStoryContainers";
+export { ViewStoryContainer, ViewStoryDetails, ImageContainer } from "./Containers/ViewStoryContainers";
 export { StoriesContainer, StoryContainer } from "./Containers/StoryContainers";
 export { DiscoverTagsContainer, TagsContainer } from "./Containers/DiscoverTagsContainers";
 
@@ -41,4 +41,3 @@ export { ProgressContainer, Progressbar } from "./Transition/Progressbar";
 
 // modal
 export { StyledModal } from "./Modal/Modal";
-

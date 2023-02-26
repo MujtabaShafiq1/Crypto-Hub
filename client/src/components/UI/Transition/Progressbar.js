@@ -1,11 +1,12 @@
 import { Box, styled } from "@mui/material";
 
 const ProgressContainer = styled(Box)(({ theme }) => ({
+    display: "block",
     position: "absolute",
     backgroundColor: "lightgray",
     top: "1%",
     width: "98%",
-    height: "5px",
+    height: "3px",
     borderRadius: "50px",
 }));
 

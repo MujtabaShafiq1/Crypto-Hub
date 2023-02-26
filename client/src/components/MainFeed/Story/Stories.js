@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Box, Typography, Avatar } from "@mui/material";
-import { friendsStatusData as data } from "../../../utils/mockData";
+import { storiesData as data } from "../../../utils/mockData";
 import { StoriesContainer, StoryContainer, StoryLeftIcon, StoryRightIcon } from "../../UI";
 import ViewStory from "./ViewStory";
 
@@ -47,7 +47,7 @@ const Stories = () => {
                     <StoryContainer key={Math.random()} onClick={() => setViewStory(index)}>
                         <Box
                             component="img"
-                            src={story.photo}
+                            src={story.story}
                             sx={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "10px" }}
                         />
                         <Box sx={styles.details}>
