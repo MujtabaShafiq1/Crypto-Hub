@@ -24,14 +24,5 @@ const StoryContainer = styled(Box)(({ theme }) => ({
     },
 }));
 
-const StoryImageContainer = styled(Box)(({ theme }) => ({
-    width: "30%",
-    height: "90%",
-    objectFit: "cover",
-    borderRadius: "10px",
-    [theme.breakpoints.down("md")]: {
-        width: "90%",
-    },
-}));
 
-export { StoriesContainer, StoryContainer, StoryImageContainer };
+export { StoriesContainer, StoryContainer };

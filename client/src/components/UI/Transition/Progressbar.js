@@ -1,10 +1,19 @@
 import { Box, styled } from "@mui/material";
 
-const Progressbar = styled(Box)(({ theme }) => ({
-    width: "0%",
-    height: "10px",
+const ProgressContainer = styled(Box)(({ theme }) => ({
     position: "absolute",
     backgroundColor: "lightgray",
+    top: "1%",
+    width: "98%",
+    height: "5px",
+    borderRadius: "50px",
+}));
+
+const Progressbar = styled(Box)(({ theme }) => ({
+    width: "0%",
+    height: "100%",
+    borderRadius: "50px",
+    backgroundColor: "gray",
     animation: "fill-bar 5s linear forwards",
     "@keyframes fill-bar": {
         from: { width: "0%" },
@@ -12,4 +21,4 @@ const Progressbar = styled(Box)(({ theme }) => ({
     },
 }));
 
-export { Progressbar };
+export { ProgressContainer, Progressbar };

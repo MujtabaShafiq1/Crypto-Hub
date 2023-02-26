@@ -1,6 +1,15 @@
 import { useState } from "react";
-import { StoryImageContainer, StoryLeftIcon, StoryRightIcon, Progressbar, StyledModal } from "../../UI";
 import { friendsStatusData as data } from "../../../utils/mockData";
+import {
+    ImageContainer,
+    ViewStoryContainer,
+    StoryLeftIcon,
+    StoryRightIcon,
+    Flexbox,
+    Progressbar,
+    ProgressContainer,
+    StyledModal,
+} from "../../UI";
 
 const ViewStory = ({ index, close }) => {
     const [storyIndex, setStoryIndex] = useState(index);
@@ -14,15 +23,22 @@ const ViewStory = ({ index, close }) => {
             return;
         }
         close();
-    }, 1000);
+    }, 5000);
 
     return (
         <>
             <StyledModal keepMounted open={true} onClose={close}>
                 <>
                     {storyIndex > 0 && <StoryLeftIcon onClick={previousStory} />}
-                    <Progressbar />
-                    <StoryImageContainer component="img" src={data[storyIndex].photo} />
+
+                    <ViewStoryContainer>
+                        <Flexbox>
+                            <ProgressContainer>
+                                <Progressbar key={storyIndex} />
+                            </ProgressContainer>
+                        </Flexbox>
+                        <ImageContainer component="img" src={data[storyIndex].photo} />
+                    </ViewStoryContainer>
                     {storyIndex < data.length - 1 && <StoryRightIcon onClick={nextStory} />}
                 </>
             </StyledModal>
