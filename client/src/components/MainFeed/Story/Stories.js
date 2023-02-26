@@ -1,7 +1,15 @@
 import { useState, useRef } from "react";
-import { Box, Typography, Avatar } from "@mui/material";
+import { Typography, Avatar } from "@mui/material";
 import { storiesData as data } from "../../../utils/mockData";
-import { StoriesContainer, StoryContainer, StoryDetails, ImageContainer, StoryLeftIcon, StoryRightIcon } from "../../UI";
+import {
+    StoriesContainer,
+    StoryAvatarContainer,
+    StoryContainer,
+    StoryDetails,
+    ImageContainer,
+    StoryLeftIcon,
+    StoryRightIcon,
+} from "../../UI";
 import ViewStory from "./ViewStory";
 
 const Stories = () => {
@@ -28,13 +36,19 @@ const Stories = () => {
             <StoriesContainer ref={scrollRef}>
                 <StoryLeftIcon onClick={handleScrollLeft} />
                 {data.map((story, index) => (
-                    <StoryContainer key={Math.random()} onClick={() => setViewStory(index)}>
-                        <ImageContainer component="img" src={story.story} />
-                        <StoryDetails>
+                    <>
+                        <StoryContainer key={Math.random()} onClick={() => setViewStory(index)}>
+                            <ImageContainer component="img" src={story.story} />
+                            <StoryDetails>
+                                <Avatar src={story.photo} />
+                                <Typography variant="helper" color="white">{story.name}</Typography>
+                            </StoryDetails>
+                        </StoryContainer>
+                        <StoryAvatarContainer key={Math.random()} onClick={() => setViewStory(index)}>
                             <Avatar src={story.photo} />
-                            <Typography variant="helper">{story.name}</Typography>
-                        </StoryDetails>
-                    </StoryContainer>
+                            <Typography variant="subBody" color="text.primary">{story.name}</Typography>
+                        </StoryAvatarContainer>
+                    </>
                 ))}
                 <StoryRightIcon onClick={handleScrollRight} />
             </StoriesContainer>

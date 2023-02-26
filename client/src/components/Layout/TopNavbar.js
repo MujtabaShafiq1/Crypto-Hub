@@ -20,7 +20,7 @@ const TopNavbar = () => {
     };
 
     return (
-        <AppBar sx={{ position: "static", display: { sm: "none" } }}>
+        <AppBar sx={{ position: "static", display: { sm: "none" }, backgroundColor: "gray" }}>
             <Toolbar>
                 <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                     <MenuIcon />

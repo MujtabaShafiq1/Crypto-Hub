@@ -9,7 +9,7 @@ export { CollapseContainer } from "./Containers/CollapseContainer";
 export { LeftbarContainer } from "./Containers/SidebarContainers";
 export { ImageContainer } from "./Containers/ImageContainer";
 export { ViewStoryContainer, ViewStoryDetails } from "./Containers/ViewStoryContainers";
-export { StoriesContainer, StoryContainer, StoryDetails } from "./Containers/StoryContainers";
+export { StoriesContainer, StoryAvatarContainer, StoryContainer, StoryDetails } from "./Containers/StoryContainers";
 export { DiscoverTagsContainer, TagsContainer } from "./Containers/DiscoverTagsContainers";
 
 // list

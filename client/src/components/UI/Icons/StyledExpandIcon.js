@@ -9,6 +9,9 @@ const StoryLeftIcon = styled(ExpandCircleDownIcon)(({ theme }) => ({
     fontSize: 35,
     zIndex: 1,
     cursor: "pointer",
+    [theme.breakpoints.down("sm")]: {
+        display: "none"
+    },
 }));
 
 const StoryRightIcon = styled(ExpandCircleDownIcon)(({ theme }) => ({
@@ -19,6 +22,9 @@ const StoryRightIcon = styled(ExpandCircleDownIcon)(({ theme }) => ({
     fontSize: 35,
     zIndex: 1,
     cursor: "pointer",
+    [theme.breakpoints.down("sm")]: {
+        display: "none"
+    },
 }));
 
 export { StoryLeftIcon, StoryRightIcon };

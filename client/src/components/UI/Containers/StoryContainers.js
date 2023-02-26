@@ -28,6 +28,24 @@ const StoryContainer = styled(Box)(({ theme }) => ({
         height: "160px",
         width: "120px",
     },
+    [theme.breakpoints.down("sm")]: {
+        display: "none",
+    },
+}));
+
+const StoryAvatarContainer = styled(Box)(({ theme }) => ({
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: theme.spacing(0.5),
+    padding: theme.spacing(0.5),
+    cursor: "pointer",
+    position: "relative",
+    fontWeight: 500,
+    [theme.breakpoints.up("sm")]: {
+        display: "none",
+    },
 }));
 
 const StoryDetails = styled(Box)(({ theme }) => ({
@@ -46,4 +64,4 @@ const StoryDetails = styled(Box)(({ theme }) => ({
     },
 }));
 
-export { StoriesContainer, StoryContainer, StoryDetails };
+export { StoriesContainer, StoryContainer, StoryAvatarContainer, StoryDetails };
