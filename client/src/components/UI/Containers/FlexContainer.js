@@ -6,4 +6,11 @@ const Flexbox = styled(Box)({
     alignItems: "center",
 });
 
-export { Flexbox };
+const VerticalFlexbox = styled(Box)({
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDireciton: "column",
+});
+
+export { Flexbox, VerticalFlexbox };

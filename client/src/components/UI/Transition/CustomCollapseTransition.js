@@ -7,7 +7,7 @@ const CustomCollapseTransition = ({ children, in: inProp, duration }) => {
         justifyContent: "space-between",
         transition: `width ${duration}ms ease-in-out`,
         height: "100vh",
-        borderRight: "1.5px solid rgba(191, 191, 191, 1)",
+        // borderRight: "1px solid rgba(191, 191, 191, 0.3)",
     };
 
     const transitionStyles = {

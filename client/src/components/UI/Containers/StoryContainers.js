@@ -4,10 +4,9 @@ const StoriesContainer = styled(Box)(({ theme }) => ({
     padding: theme.spacing(1),
     gap: theme.spacing(1),
     display: "flex",
-    // overflow: "hidden",
-    overflowX: "scroll",
+    overflow: "hidden",
+    // overflowX: "scroll",
     scrollBehavior: "smooth",
-    width: "100%",
     position: "relative",
 }));
 

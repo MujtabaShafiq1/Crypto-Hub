@@ -1,13 +1,15 @@
 // containers
-export { Flexbox } from "./Containers/FlexContainer";
+export { Flexbox, VerticalFlexbox } from "./Containers/FlexContainer";
 export { FormContainer } from "./Containers/FormContainer";
-export { HomeContainer } from "./Containers/HomeContainer";
+export { PageContainer } from "./Containers/PageContainer";
 export { MainContainer } from "./Containers/MainContainer";
 export { ModalContainer } from "./Containers/ModalContainer";
 export { StickyContainer } from "./Containers/StickyContainer";
+export { LayoutContainer } from "./Containers/LayoutContainer";
 export { CollapseContainer } from "./Containers/CollapseContainer";
 export { LeftbarContainer } from "./Containers/SidebarContainers";
 export { ImageContainer } from "./Containers/ImageContainer";
+export { UserDetails, BackgroundContainer } from "./Containers/ProfileContainer";
 export { ViewStoryContainer, ViewStoryDetails } from "./Containers/ViewStoryContainers";
 export { StoriesContainer, StoryAvatarContainer, StoryContainer, StoryDetails } from "./Containers/StoryContainers";
 export { DiscoverTagsContainer, TagsContainer } from "./Containers/DiscoverTagsContainers";

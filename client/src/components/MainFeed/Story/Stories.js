@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Typography, Avatar } from "@mui/material";
+import { Box, Typography, Avatar } from "@mui/material";
 import { storiesData as data } from "../../../utils/mockData";
 import {
     StoriesContainer,
@@ -36,19 +36,23 @@ const Stories = () => {
             <StoriesContainer ref={scrollRef}>
                 <StoryLeftIcon onClick={handleScrollLeft} />
                 {data.map((story, index) => (
-                    <>
-                        <StoryContainer key={Math.random()} onClick={() => setViewStory(index)}>
+                    <Box key={Math.random()} onClick={() => setViewStory(index)}>
+                        <StoryContainer>
                             <ImageContainer component="img" src={story.story} />
                             <StoryDetails>
                                 <Avatar src={story.photo} />
-                                <Typography variant="helper" color="white">{story.name}</Typography>
+                                <Typography variant="helper" color="white">
+                                    {story.name}
+                                </Typography>
                             </StoryDetails>
                         </StoryContainer>
-                        <StoryAvatarContainer key={Math.random()} onClick={() => setViewStory(index)}>
+                        <StoryAvatarContainer>
                             <Avatar src={story.photo} />
-                            <Typography variant="subBody" color="text.primary">{story.name}</Typography>
+                            <Typography variant="subBody" color="text.primary">
+                                {story.name}
+                            </Typography>
                         </StoryAvatarContainer>
-                    </>
+                    </Box>
                 ))}
                 <StoryRightIcon onClick={handleScrollRight} />
             </StoriesContainer>

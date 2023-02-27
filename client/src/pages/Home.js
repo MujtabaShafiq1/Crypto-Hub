@@ -1,13 +1,13 @@
-import { HomeContainer } from "../components/UI";
+import { PageContainer } from "../components/UI";
 import Rightbar from "../components/Layout/Rightbar";
 import Stories from "../components/MainFeed/Story/Stories";
 
 const Home = () => {
     return (
         <>
-            <HomeContainer>
+            <PageContainer>
                 <Stories />
-            </HomeContainer>
+            </PageContainer>
             <Rightbar />
         </>
     );

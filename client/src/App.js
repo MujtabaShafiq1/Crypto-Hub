@@ -5,11 +5,12 @@ import { useDispatch } from "react-redux";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
 import Confirmation from "./pages/Confirmation";
 import UpdatePassword from "./pages/UpdatePassword";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/HOC/ProtectedRoute";
-import Layout from "./components/Layout/Layout";
+
 import { getUser } from "./store/authActions";
 
 function App() {
@@ -22,9 +23,8 @@ function App() {
     return (
         <Routes>
             <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<Layout />}>
-                    <Route exact path="/" element={<Home />} />
-                </Route>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/profile/:userId" element={<Profile />} />
             </Route>
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup />} />

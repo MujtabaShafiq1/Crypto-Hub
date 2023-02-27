@@ -4,8 +4,8 @@ const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+// update password and cofirmation on email
 const resetPassword = asyncHandler(async (req, res, next) => {
-    
     const user = await Users.findOne({ where: { userId: req.body.userId } });
     if (!user) return res.status(400).json({ message: "User doesnt exist" });
 
@@ -14,8 +14,8 @@ const resetPassword = asyncHandler(async (req, res, next) => {
     res.status(200).json("Success");
 });
 
+// update password after email redirect
 const updatePassword = asyncHandler(async (req, res, next) => {
-
     const decodedToken = jwt.verify(req.body.token, process.env.JWT_RESET_PASSWORD_KEY);
 
     const user = await Users.findOne({ where: { userId: decodedToken.userId } });
@@ -28,4 +28,12 @@ const updatePassword = asyncHandler(async (req, res, next) => {
     res.status(200).json("Updated");
 });
 
-module.exports = { resetPassword, updatePassword };
+// user details for profile
+const userDetails = asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const user = await Users.findByPk(id);
+    const { password, userId, ...otherDetails } = user.dataValues;
+    res.status(200).json(otherDetails);
+});
+
+module.exports = { resetPassword, updatePassword, userDetails };

@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Avatar, Box, ListItemAvatar } from "@mui/material";
 import { LongTypography, LeftbarContainer, StyledBadge, StyledNavList, StyledListButton } from "../UI";
@@ -34,21 +35,22 @@ const Leftbar = () => {
     };
 
     const logoutHandler = async () => {
-        // window.open(`http://localhost:8000/auth/logout`, "_self");
+        window.open(`http://localhost:8000/auth/logout`, "_self");
     };
 
     return (
         <LeftbarContainer>
             <CustomCollapseTransition in={![1, 4, 5].includes(selectedIndex)} duration={500}>
                 <StyledNavList component="nav">
-                    <StyledListButton>
+                    <StyledListButton component={Link} to={`/profile/${user.id}`} onClick={() => selection(-1)}>
                         <ListItemAvatar>
-                            <Avatar src={user?.photo} />
+                            {/* <Avatar src={user?.photo} /> */}
+                            <Avatar src="https://images.pexels.com/photos/2528318/pexels-photo-2528318.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                         </ListItemAvatar>
                         <LongTypography variant="subBody">{user.name}</LongTypography>
                     </StyledListButton>
 
-                    <StyledListButton selected={selectedIndex === 0} onClick={() => selection(0)}>
+                    <StyledListButton component={Link} to={`/`} selected={selectedIndex === 0} onClick={() => selection(0)}>
                         <ListItemAvatar>
                             <Avatar>
                                 <HomeRounded />
@@ -86,7 +88,7 @@ const Leftbar = () => {
 
                     <StyledListButton selected={selectedIndex === 4} onClick={() => selection(4)}>
                         <ListItemAvatar>
-                            <Avatar>
+                            <Avatar sx={{ overflow: "visible" }}>
                                 <StyledBadge color="error" badgeContent={5} max={999}>
                                     <NotificationsRounded />
                                 </StyledBadge>
@@ -97,7 +99,7 @@ const Leftbar = () => {
 
                     <StyledListButton selected={selectedIndex === 5} onClick={() => selection(5)}>
                         <ListItemAvatar>
-                            <Avatar>
+                            <Avatar sx={{ overflow: "visible" }}>
                                 <StyledBadge color="error" badgeContent={5} max={999}>
                                     <PersonAddAlt1Rounded />
                                 </StyledBadge>

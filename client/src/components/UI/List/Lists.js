@@ -15,6 +15,8 @@ const StyledList = styled(List)(({ theme }) => ({
 }));
 
 const StyledNavList = styled(List)(({ theme }) => ({
+    borderRadius: "5px 30px 30px 5px",
+    backgroundColor: theme.palette.primary.secondary,
     "&& .Mui-selected": {
         fontWeight: 700,
         borderLeft: "3px solid purple",
@@ -49,7 +51,6 @@ const StyledNavList = styled(List)(({ theme }) => ({
     },
     "& .MuiAvatar-root": {
         backgroundColor: "transparent",
-        overflow: "visible",
     },
 }));
 
