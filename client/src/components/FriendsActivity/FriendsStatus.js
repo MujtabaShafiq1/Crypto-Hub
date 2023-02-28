@@ -1,14 +1,13 @@
-import { Avatar, Typography, ListItemIcon, Divider, ListItem } from "@mui/material";
-import { StyledListButton, StyledStatusBadge, StyledList, ListHeader } from "../UI";
+import { Avatar, ListItemIcon, ListItem } from "@mui/material";
+import { ListContainer, StyledListButton, StyledStatusBadge, StyledList, ListHeader, SubText } from "../UI";
 
 import { friendsStatusData as data } from "../../utils/mockData";
 
 const FriendsStatus = () => {
     return (
-        <>
-            <ListHeader variant="body">Online Friends</ListHeader>
-            <Divider variant="middle" sx={{ opacity: 0.3, backgroundColor: "text.primary" }} />
-            <StyledList sx={{ padding: "8px" }}>
+        <ListContainer>
+            <ListHeader>Online Friends</ListHeader>
+            <StyledList sx={{ padding: "8px", height: "40vh" }}>
                 {data.map((user) => {
                     return (
                         <ListItem sx={{ padding: "0px" }} key={Math.random()}>
@@ -22,15 +21,13 @@ const FriendsStatus = () => {
                                         <Avatar src={user?.photo} />
                                     </StyledStatusBadge>
                                 </ListItemIcon>
-                                <Typography variant="subBody" sx={{ color: "text.primary" }}>
-                                    {user.name}
-                                </Typography>
+                                <SubText>{user.name}</SubText>
                             </StyledListButton>
                         </ListItem>
                     );
                 })}
             </StyledList>
-        </>
+        </ListContainer>
     );
 };
 

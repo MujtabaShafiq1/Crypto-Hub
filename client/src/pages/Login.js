@@ -1,6 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { Box, Divider, Typography } from "@mui/material";
-import { Flexbox, MainContainer, FormContainer, StyledButton } from "../components/UI";
+import { Box, Divider } from "@mui/material";
+import {
+    Flexbox,
+    VerticalFlexbox,
+    MainContainer,
+    FormContainer,
+    StyledButton,
+    HeaderText,
+    BodyText,
+    SubText,
+    HelperText,
+} from "../components/UI";
 import LoginForm from "../components/Forms/LoginForm";
 
 import GithubIcon from "../assets/SocialIcons/github.png";
@@ -25,57 +35,48 @@ const Login = () => {
     return (
         <MainContainer container>
             <FormContainer>
-                <Flexbox sx={{ flexDirection: "column", gap: { xs: 1.5, lg: 3 } }}>
-                    <Flexbox sx={{ flexDirection: "column", padding: "5px" }}>
-                        <Typography variant="header" sx={{ fontWeight: 500 }}>
-                            Welcome
-                        </Typography>
-                        <Typography variant="body" sx={{ fontWeight: 500, color: "gray" }}>
-                            login to continue
-                        </Typography>
-                    </Flexbox>
+                <VerticalFlexbox sx={{ gap: { xs: 1.5, lg: 3 } }}>
+                    <VerticalFlexbox sx={{ padding: "5px" }}>
+                        <HeaderText sx={{ color: "black" }}>Welcome</HeaderText>
+                        <BodyText sx={{ fontWeight: 500, color: "gray" }}>login to continue</BodyText>
+                    </VerticalFlexbox>
 
                     <LoginForm />
 
-                    <Flexbox sx={{ gap: 1, flexDirection: { xs: "column", lg: "row" } }}>
-                        <Typography variant="subBody" sx={{ display: { xs: "none", md: "block" } }}>
-                            Dont have an account?{" "}
-                        </Typography>
-                        <Typography
-                            variant="subBody"
+                    <VerticalFlexbox sx={{ gap: 1, flexDirection: { lg: "row" } }}>
+                        <SubText sx={{ display: { xs: "none", md: "block" } }}>Dont have an account? </SubText>
+                        <SubText
                             sx={{ color: { xs: "white", lg: "gray" }, cursor: "pointer", fontWeight: 500 }}
                             onClick={() => navigate("/signup")}>
                             Signup now !
-                        </Typography>
-                    </Flexbox>
+                        </SubText>
+                    </VerticalFlexbox>
 
-                    <Flexbox sx={{ gap: 1, flexDirection: "column", width: "70%" }}>
+                    <VerticalFlexbox sx={{ gap: 1, width: "70%" }}>
                         <Divider orientation="horizontal" sx={{ bgcolor: { xs: "white", lg: "black" }, opacity: "0.3", width: "100%" }} />
-                        <Typography variant="helper" sx={{ color: { xs: "white", lg: "black" } }}>
-                            OR
-                        </Typography>
+                        <HelperText sx={{ color: { xs: "white", lg: "black" } }}>OR</HelperText>
                         <Divider orientation="horizontal" sx={{ bgcolor: { xs: "white", lg: "black" }, opacity: "0.3", width: "100%" }} />
-                    </Flexbox>
-                </Flexbox>
+                    </VerticalFlexbox>
+                </VerticalFlexbox>
 
-                <Flexbox sx={{ flexDirection: "column", gap: 1.5, m: "5%", display: { xs: "none", lg: "flex" } }}>
+                <VerticalFlexbox sx={{ gap: 1.5, m: "5%", display: { xs: "none", lg: "flex" } }}>
                     <StyledButton onClick={github}>
                         <Box component="img" src={GithubIcon} sx={{ width: "8%" }} />
-                        <Typography variant="subBody">Github</Typography>
+                        <SubText sx={{ color: "white" }}>Github</SubText>
                     </StyledButton>
 
                     <StyledButton onClick={google}>
                         <Box component="img" src={GoogleIcon} sx={{ width: "8%" }} />
-                        <Typography variant="subBody">Google</Typography>
+                        <SubText sx={{ color: "white" }}>Google</SubText>
                     </StyledButton>
 
                     <StyledButton onClick={steam}>
                         <Box component="img" src={SteamIcon} sx={{ width: "8%" }} />
-                        <Typography variant="subBody">Steam</Typography>
+                        <SubText sx={{ color: "white" }}>Steam</SubText>
                     </StyledButton>
-                </Flexbox>
+                </VerticalFlexbox>
 
-                <Flexbox sx={{ gap: 5, m: "10%", display: { xs: "flex", lg: "none" } }}>
+                <Flexbox sx={{ gap: 5, m: "10%", display: { lg: "none" } }}>
                     <Box component="img" src={GithubIcon} sx={{ width: { xs: "15%", md: "11%" } }} onClick={github} />
                     <Box component="img" src={GoogleIcon} sx={{ width: { xs: "15%", md: "11%" } }} onClick={google} />
                     <Box component="img" src={SteamIcon} sx={{ width: { xs: "15%", md: "11%" } }} onClick={steam} />

@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { Modal, Typography, Divider } from "@mui/material";
-import { Flexbox, ModalContainer } from "../UI";
+import { Modal, Divider } from "@mui/material";
+import { Flexbox, ModalContainer, BodyText } from "../UI";
 import { ThemeContext } from "../../context/ThemeProvider";
 import { HistoryRounded, BookmarkRounded, DarkModeRounded, LightModeRounded, LogoutRounded } from "@mui/icons-material";
 
@@ -15,25 +15,25 @@ const NavModal = ({ show, handleClose }) => {
         <Modal open={show} onClose={handleClose}>
             <ModalContainer>
                 <Flexbox sx={{ justifyContent: "space-between" }} onClick={toggleColorMode}>
-                    <Typography variant="body">Your Acitivity</Typography>
+                    <BodyText>Your Acitivity</BodyText>
                     <HistoryRounded />
                 </Flexbox>
                 <Divider variant="fullWidth" sx={{ opacity: 0.2, backgroundColor: "text.primary" }} />
 
                 <Flexbox sx={{ justifyContent: "space-between" }} onClick={toggleColorMode}>
-                    <Typography variant="body">Saved</Typography>
+                    <BodyText>Saved</BodyText>
                     <BookmarkRounded />
                 </Flexbox>
                 <Divider variant="fullWidth" sx={{ opacity: 0.2, backgroundColor: "text.primary" }} />
 
                 <Flexbox sx={{ justifyContent: "space-between" }} onClick={toggleColorMode}>
-                    <Typography variant="body">Switch Theme</Typography>
+                    <BodyText>Switch Theme</BodyText>
                     {mode === "light" ? <DarkModeRounded /> : <LightModeRounded />}
                 </Flexbox>
                 <Divider variant="fullWidth" sx={{ opacity: 0.2, backgroundColor: "text.primary" }} />
 
                 <Flexbox sx={{ justifyContent: "space-between" }} onClick={logoutHandler}>
-                    <Typography variant="body">Logout</Typography>
+                    <BodyText>Logout</BodyText>
                     <LogoutRounded />
                 </Flexbox>
                 <Divider variant="fullWidth" sx={{ opacity: 0.2, backgroundColor: "text.primary" }} />

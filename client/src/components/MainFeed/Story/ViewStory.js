@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Avatar, Typography } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { storiesData as data } from "../../../utils/mockData";
 import {
     ViewStoryContainer,
@@ -11,6 +11,7 @@ import {
     Progressbar,
     ProgressContainer,
     StyledModal,
+    SubText,
 } from "../../UI";
 
 const ViewStory = ({ index, close }) => {
@@ -41,7 +42,7 @@ const ViewStory = ({ index, close }) => {
                         </Flexbox>
                         <ViewStoryDetails>
                             <Avatar src={data[storyIndex].photo} />
-                            <Typography>{data[storyIndex].name}</Typography>
+                            <SubText sx={{ color: "white" }}>{data[storyIndex].name}</SubText>
                         </ViewStoryDetails>
                         <ImageContainer component="img" src={data[storyIndex].story} />
                     </ViewStoryContainer>

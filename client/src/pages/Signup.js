@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Typography } from "@mui/material";
-import { Flexbox, MainContainer, FormContainer } from "../components/UI";
+import { Flexbox, VerticalFlexbox, MainContainer, FormContainer, HeaderText, BodyText, SubText } from "../components/UI";
 import SignupForm from "../components/Forms/SignupForm";
 
 const Signup = () => {
@@ -9,30 +8,23 @@ const Signup = () => {
     return (
         <MainContainer container>
             <FormContainer>
-                <Flexbox sx={{ flexDirection: "column", gap: { xs: 1, md: 3 } }}>
-                    <Flexbox sx={{ flexDirection: "column", padding: "5px", gap: 1 }}>
-                        <Typography variant="header" sx={{ fontWeight: 500 }}>
-                            Sign Up
-                        </Typography>
-                        <Typography variant="body" sx={{ fontWeight: 500, color: "gray", display: { xs: "none", md: "block" } }}>
+                <VerticalFlexbox sx={{ gap: { xs: 1, md: 3 } }}>
+                    <VerticalFlexbox sx={{ padding: "5px", gap: 1 }}>
+                        <HeaderText sx={{ color: "black" }}>Sign Up</HeaderText>
+                        <BodyText sx={{ fontWeight: 500, color: "gray", display: { xs: "none", md: "block" } }}>
                             Create an account to continue
-                        </Typography>
-                    </Flexbox>
+                        </BodyText>
+                    </VerticalFlexbox>
 
                     <SignupForm />
 
-                    <Flexbox sx={{ gap: 1, mb: "5%", flexDirection: { xs: "column", md: "row" } }}>
-                        <Typography variant="subBody" sx={{ color: "white", display: { xs: "none", md: "block" } }}>
-                            Already a user?
-                        </Typography>
-                        <Typography
-                            variant="subBody"
-                            sx={{ color: "white", cursor: "pointer", fontWeight: 500 }}
-                            onClick={() => navigate("/login")}>
+                    <Flexbox sx={{ gap: 1, mb: "5%" }}>
+                        <SubText sx={{ color: "white", display: { xs: "none", md: "block" } }}>Already a user?</SubText>
+                        <SubText sx={{ color: "white", cursor: "pointer", fontWeight: 500 }} onClick={() => navigate("/login")}>
                             Login now !
-                        </Typography>
+                        </SubText>
                     </Flexbox>
-                </Flexbox>
+                </VerticalFlexbox>
             </FormContainer>
         </MainContainer>
     );

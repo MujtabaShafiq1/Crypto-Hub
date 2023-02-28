@@ -1,10 +1,10 @@
 import { MainContainer } from "../components/UI";
-import { Typography } from "@mui/material";
+import { HeaderText } from "../components/UI";
 
 const NotFound = () => {
     return (
         <MainContainer container>
-            <Typography variant="header">Page not found</Typography>
+            <HeaderText>Page not found</HeaderText>
         </MainContainer>
     );
 };

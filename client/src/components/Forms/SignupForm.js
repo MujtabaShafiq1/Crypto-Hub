@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff, CancelOutlined } from "@mui/icons-material";
-import { Box, InputAdornment, CircularProgress, Typography, Avatar } from "@mui/material";
-import { Flexbox, StyledButton, StyledField } from "../UI";
+import { Box, InputAdornment, CircularProgress, Avatar } from "@mui/material";
+import { VerticalFlexbox, StyledButton, StyledField, SubText } from "../UI";
 import { signupSchema } from "../../utils/validationSchema";
 import CustomSnackbar from "../UI/Snackbar/CustomSnackbar";
 import { useFormik } from "formik";
@@ -67,7 +67,7 @@ const SignupForm = () => {
             {snackbar.open && <CustomSnackbar snackbar={snackbar} reset={resetSnackbar} />}
 
             <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }}>
-                <Flexbox sx={{ flexDirection: "column", gap: 2 }}>
+                <VerticalFlexbox sx={{ gap: 2 }}>
                     <StyledField
                         variant="outlined"
                         placeholder="Enter Name"
@@ -140,7 +140,7 @@ const SignupForm = () => {
                     />
 
                     <StyledButton variant="contained" component="label" sx={{ width: "100%", bgcolor: "gray", flexDirection: "column" }}>
-                        <Typography variant="subBody">Upload Image</Typography>
+                        <SubText sx={{ color: "white" }}>Upload Image</SubText>
                         <input type="file" hidden onChange={(e) => imageHandler(e.target.files[0])} />
                     </StyledButton>
 
@@ -166,10 +166,10 @@ const SignupForm = () => {
                         {disableButton ? (
                             <CircularProgress size="3.5vh" sx={{ color: "white" }} />
                         ) : (
-                            <Typography variant="subBody">Sign up</Typography>
+                            <SubText sx={{ color: "white" }}>Sign up</SubText>
                         )}
                     </StyledButton>
-                </Flexbox>
+                </VerticalFlexbox>
             </form>
         </>
     );

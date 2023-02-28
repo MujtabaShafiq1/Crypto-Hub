@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material";
-import { Flexbox, StyledButton, StyledField } from "../UI";
+import { Box, InputAdornment, CircularProgress } from "@mui/material";
+import { VerticalFlexbox, SubText, StyledButton, StyledField } from "../UI";
 import CustomSnackbar from "../UI/Snackbar/CustomSnackbar";
 import { loginSchema } from "../../utils/validationSchema";
 import { authActions } from "../../store/authSlice";
@@ -64,7 +64,7 @@ const LoginForm = () => {
             {snackbar.open && <CustomSnackbar snackbar={snackbar} reset={resetSnackbar} />}
 
             <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "90%" }}>
-                <Flexbox sx={{ flexDirection: "column", gap: 2.5 }}>
+                <VerticalFlexbox sx={{ gap: 2.5 }}>
                     <StyledField
                         variant="outlined"
                         placeholder="Enter Email"
@@ -104,18 +104,15 @@ const LoginForm = () => {
                         {disableButton ? (
                             <CircularProgress size="3.5vh" sx={{ color: "white" }} />
                         ) : (
-                            <Typography variant="subBody">Login</Typography>
+                            <SubText sx={{ color: "white" }}>Login</SubText>
                         )}
                     </StyledButton>
-                </Flexbox>
+                </VerticalFlexbox>
             </form>
 
-            <Typography
-                variant="subBody"
-                sx={{ textAlign: "center", color: "gray", fontWeight: 600, cursor: "pointer" }}
-                onClick={forgotPasswordHandler}>
+            <SubText sx={{ textAlign: "center", color: "gray", fontWeight: 600, cursor: "pointer" }} onClick={forgotPasswordHandler}>
                 Forgot Password?
-            </Typography>
+            </SubText>
         </>
     );
 };

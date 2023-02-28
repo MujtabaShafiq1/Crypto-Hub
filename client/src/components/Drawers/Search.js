@@ -19,7 +19,7 @@ const Search = ({ open, close }) => {
         <CollapseContainer orientation="horizontal" in={open} timeout={500}>
             <Flexbox sx={{ justifyContent: "flex-start", pl: "10px" }}>
                 <ArrowBackIcon sx={{ color: "text.primary", cursor: "pointer" }} onClick={close} />
-                <ListHeader variant="body">Search</ListHeader>
+                <ListHeader>Search</ListHeader>
             </Flexbox>
             <Divider variant="middle" sx={{ width: "90%", opacity: 0.2, backgroundColor: "text.primary" }} />
 
@@ -52,7 +52,7 @@ const Search = ({ open, close }) => {
                 />
             </Flexbox>
 
-            <StyledList sx={{ height: "90vh" }}>
+            <StyledList sx={{ height: "85vh" }}>
                 {data.map((activity) => (
                     <Box key={Math.random()}>
                         <ListItem
@@ -65,7 +65,7 @@ const Search = ({ open, close }) => {
                                 <ListItemAvatar>
                                     <Avatar src={activity.photo} />
                                 </ListItemAvatar>
-                                <LongTypography variant="subBody" color="text.primary">
+                                <LongTypography variant="subBody">
                                     {activity.name}
                                 </LongTypography>
                             </StyledListButton>

@@ -4,9 +4,10 @@ const CustomCollapseTransition = ({ children, in: inProp, duration }) => {
     const defaultStyle = {
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
+        gap: 10,
         transition: `width ${duration}ms ease-in-out`,
-        height: "100vh",
+        height: "100%",
         // borderRight: "1px solid rgba(191, 191, 191, 0.3)",
     };
 

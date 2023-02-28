@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Box, Typography, Avatar } from "@mui/material";
+import { Box, Avatar } from "@mui/material";
 import { storiesData as data } from "../../../utils/mockData";
 import {
     StoriesContainer,
@@ -9,6 +9,8 @@ import {
     ImageContainer,
     StoryLeftIcon,
     StoryRightIcon,
+    SubText,
+    HelperText,
 } from "../../UI";
 import ViewStory from "./ViewStory";
 
@@ -41,16 +43,12 @@ const Stories = () => {
                             <ImageContainer component="img" src={story.story} />
                             <StoryDetails>
                                 <Avatar src={story.photo} />
-                                <Typography variant="helper" color="white">
-                                    {story.name}
-                                </Typography>
+                                <HelperText sx={{ color: "white" }}>{story.name}</HelperText>
                             </StoryDetails>
                         </StoryContainer>
                         <StoryAvatarContainer>
                             <Avatar src={story.photo} />
-                            <Typography variant="subBody" color="text.primary">
-                                {story.name}
-                            </Typography>
+                            <SubText>{story.name}</SubText>
                         </StoryAvatarContainer>
                     </Box>
                 ))}

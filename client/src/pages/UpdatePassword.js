@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, InputAdornment, CircularProgress, Typography } from "@mui/material";
-import { Flexbox, MainContainer, StyledButton, StyledField, FormContainer } from "../components/UI";
+import { Box, InputAdornment, CircularProgress } from "@mui/material";
+import { VerticalFlexbox, MainContainer, StyledButton, StyledField, FormContainer, HeaderText, SubText } from "../components/UI";
 import CustomSnackbar from "../components/UI/Snackbar/CustomSnackbar";
 import { updatePasswordSchema } from "../utils/validationSchema";
 import { useFormik } from "formik";
@@ -43,13 +43,13 @@ const UpdatePassword = () => {
             {snackbar.open && <CustomSnackbar snackbar={snackbar} reset={resetSnackbar} />}
 
             <FormContainer sx={{ minHeight: "40%" }}>
-                <Flexbox sx={{ flexDirection: "column", gap: { xs: 2, lg: 3 } }}>
-                    <Typography variant="header" sx={{ fontWeight: 500, mt: "5%", textAlign: "center" }}>
+                <VerticalFlexbox sx={{ gap: { xs: 2, lg: 3 } }}>
+                    <HeaderText variant="header" sx={{ mt: "5%", textAlign: "center" }}>
                         Reset Password
-                    </Typography>
+                    </HeaderText>
 
                     <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }}>
-                        <Flexbox sx={{ flexDirection: "column", gap: 2.5, mb: "5%" }}>
+                        <VerticalFlexbox sx={{ gap: 2.5, mb: "5%" }}>
                             <StyledField
                                 variant="outlined"
                                 placeholder="Enter Password"
@@ -65,7 +65,9 @@ const UpdatePassword = () => {
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
-                                            <Box sx={{ height: 25, width: 25, cursor: "pointer" }} onClick={() => setShowPassword((prev) => !prev)}>
+                                            <Box
+                                                sx={{ height: 25, width: 25, cursor: "pointer" }}
+                                                onClick={() => setShowPassword((prev) => !prev)}>
                                                 {showPassword ? <VisibilityOff /> : <Visibility />}
                                             </Box>
                                         </InputAdornment>
@@ -87,7 +89,9 @@ const UpdatePassword = () => {
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
-                                            <Box sx={{ height: 25, width: 25, cursor: "pointer" }} onClick={() => setShowPassword((prev) => !prev)}>
+                                            <Box
+                                                sx={{ height: 25, width: 25, cursor: "pointer" }}
+                                                onClick={() => setShowPassword((prev) => !prev)}>
                                                 {showPassword ? <VisibilityOff /> : <Visibility />}
                                             </Box>
                                         </InputAdornment>
@@ -95,23 +99,22 @@ const UpdatePassword = () => {
                                 }}
                             />
 
-                            <Typography
-                                variant="subBody"
+                            <SubText
                                 sx={{ color: { xs: "white", lg: "gray" }, fontWeight: 700, cursor: "pointer" }}
                                 onClick={() => navigate("/login")}>
                                 Go back to Login
-                            </Typography>
+                            </SubText>
 
                             <StyledButton type="submit" disabled={disableButton}>
                                 {disableButton ? (
                                     <CircularProgress size="3.5vh" sx={{ color: "white" }} />
                                 ) : (
-                                    <Typography variant="subBody">Reset</Typography>
+                                    <SubText sx={{ color: "white" }}>Reset</SubText>
                                 )}
                             </StyledButton>
-                        </Flexbox>
+                        </VerticalFlexbox>
                     </form>
-                </Flexbox>
+                </VerticalFlexbox>
             </FormContainer>
         </MainContainer>
     );

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Typography } from "@mui/material";
 import { CancelOutlined, CheckCircleOutlined } from "@mui/icons-material";
-import { Flexbox, MainContainer } from "../components/UI";
+import { Flexbox, MainContainer , HeaderText } from "../components/UI";
 import axios from "axios";
 
 const Confirmation = () => {
@@ -28,16 +27,16 @@ const Confirmation = () => {
         <MainContainer container>
             <Flexbox gap={2}>
                 {error.status ? (
-                    <Typography variant="header" sx={{ textAlign: "center", fontWeight: 500 }}>
+                    <HeaderText sx={{ textAlign: "center" }}>
                         Unable to verify account , Reason:{" "}
-                        <Typography variant="header" sx={{ fontWeight: 700, color: "gray" }}>
+                        <HeaderText sx={{ fontWeight: 700, color: "gray" }}>
                             {error.details}
-                        </Typography>
-                    </Typography>
+                        </HeaderText>
+                    </HeaderText>
                 ) : (
-                    <Typography variant="header" sx={{ textAlign: "center", fontWeight: 500 }}>
+                    <HeaderText sx={{ textAlign: "center" }}>
                         Account Verified Successfully
-                    </Typography>
+                    </HeaderText>
                 )}
                 {error.status ? (
                     <CancelOutlined fontSize="large" sx={{ fill: "red" }} />

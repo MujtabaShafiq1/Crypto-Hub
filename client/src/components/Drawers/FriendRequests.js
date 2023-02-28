@@ -10,7 +10,7 @@ const FriendRequests = ({ open, close }) => {
         <CollapseContainer orientation="horizontal" in={open} timeout={500}>
             <Flexbox sx={{ justifyContent: "flex-start", pl: "10px" }}>
                 <ArrowBackIcon sx={{ color: "text.primary", cursor: "pointer" }} onClick={close} />
-                <ListHeader variant="body">Friends Request</ListHeader>
+                <ListHeader>Friends Request</ListHeader>
             </Flexbox>
             <Divider variant="middle" sx={{ width: "90%", opacity: 0.2, backgroundColor: "text.primary" }} />
 
@@ -24,13 +24,13 @@ const FriendRequests = ({ open, close }) => {
                                 </ListItemAvatar>
                                 <ListItemText
                                     primary={
-                                        <LongTypography variant="subBody" color="text.primary">
+                                        <LongTypography variant="subBody">
                                             {activity.name}
                                         </LongTypography>
                                     }
                                     secondary={
                                         <>
-                                            <LongTypography variant="info" color="text.primary">
+                                            <LongTypography variant="info">
                                                 {moment().fromNow()}
                                             </LongTypography>
                                         </>

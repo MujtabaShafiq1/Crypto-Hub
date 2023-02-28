@@ -7,7 +7,7 @@ const DiscoverTags = ({ hide }) => {
     return (
         <DiscoverTagsContainer hide={+hide}>
             <Flexbox sx={{ justifyContent: "flex-start", pl: "10px" }}>
-                <ListHeader variant="body">Discover Tags</ListHeader>
+                <ListHeader>Discover Tags</ListHeader>
             </Flexbox>
             <TagsContainer>
                 {data.map((item) => (

@@ -1,5 +1,5 @@
-import { Box, Avatar, Typography, Divider, ListItemAvatar, ListItem } from "@mui/material";
-import { Flexbox, CollapseContainer, StyledList, ListHeader, StyledListButton } from "../UI";
+import { Box, Avatar, Divider, ListItemAvatar, ListItem } from "@mui/material";
+import { Flexbox, VerticalFlexbox, CollapseContainer, StyledList, ListHeader, StyledListButton, HelperText, InfoText } from "../UI";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import moment from "moment";
 
@@ -10,7 +10,7 @@ const Notifications = ({ open, close }) => {
         <CollapseContainer orientation="horizontal" in={open} timeout={500}>
             <Flexbox sx={{ justifyContent: "flex-start", paddingLeft: "10px" }}>
                 <ArrowBackIcon sx={{ color: "text.primary", cursor: "pointer" }} onClick={close} />
-                <ListHeader variant="body">Notifications</ListHeader>
+                <ListHeader>Notifications</ListHeader>
             </Flexbox>
             <Divider variant="middle" sx={{ width: "90%", opacity: 0.2, backgroundColor: "text.primary" }} />
 
@@ -22,19 +22,11 @@ const Notifications = ({ open, close }) => {
                                 <ListItemAvatar>
                                     <Avatar src={activity.photo} />
                                 </ListItemAvatar>
-                                <Box sx={{ display: "flex", flexDirection: "column" }}>
-                                    <Typography variant="helper" color="text.primary">
-                                        {activity.name}
-                                    </Typography>
-
-                                    <Typography variant="helper" color="text.primary">
-                                        {activity.text}
-                                    </Typography>
-
-                                    <Typography variant="info" color="text.primary">
-                                        {moment().fromNow()}
-                                    </Typography>
-                                </Box>
+                                <VerticalFlexbox sx={{ alignItems: "flex-start" }}>
+                                    <HelperText>{activity.name}</HelperText>
+                                    <HelperText>{activity.text}</HelperText>
+                                    <InfoText>{moment().fromNow()}</InfoText>
+                                </VerticalFlexbox>
                             </StyledListButton>
                         </ListItem>
                         <Divider variant="inset" component="li" />

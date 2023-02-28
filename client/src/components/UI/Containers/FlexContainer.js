@@ -10,7 +10,7 @@ const VerticalFlexbox = styled(Box)({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    flexDireciton: "column",
+    flexDirection: "column",
 });
 
 export { Flexbox, VerticalFlexbox };

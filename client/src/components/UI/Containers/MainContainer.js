@@ -2,6 +2,7 @@ import background from "../../../assets/background.jpg";
 import { Grid, styled } from "@mui/material";
 
 const MainContainer = styled(Grid)({
+    display: "flex",
     direction: "column",
     alignItems: "center",
     justifyContent: "center",

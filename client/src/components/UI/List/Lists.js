@@ -2,6 +2,7 @@ import { List, styled } from "@mui/material";
 
 const StyledList = styled(List)(({ theme }) => ({
     overflow: "auto",
+    height: "100%",
     "& .MuiTypography-root": {
         fontWeight: 400,
         color: theme.palette.text.primary,
