@@ -15,7 +15,7 @@ const ListHeader = styled(Typography)(({ theme }) => ({
 }));
 
 const HeaderText = styled(Typography)(({ theme }) => ({
-    ontWeight: 500,
+    fontWeight: 500,
     color: theme.palette.text.primary,
     fontSize: theme.typography.header.fontSize,
 }));

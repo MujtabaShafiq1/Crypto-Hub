@@ -19,7 +19,9 @@ const FriendsRecentActivity = () => {
                                     primary={<SubText>{activity.name}</SubText>}
                                     secondary={
                                         <>
-                                            <InfoText>{moment().fromNow()}</InfoText>
+                                            <InfoText>
+                                                <span>{moment().fromNow()}</span>
+                                            </InfoText>
                                             <HelperText>{activity.text}</HelperText>
                                         </>
                                     }

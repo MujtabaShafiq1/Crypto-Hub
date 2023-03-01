@@ -20,5 +20,12 @@ module.exports = (sequelize, DataTypes) => {
         },
     })
 
+    Users.associate = (models) => {
+
+        Users.hasMany(models.FriendRequests, { onDelete: "cascade", foreignKey: 'sent_user' });
+        Users.hasMany(models.FriendRequests, { onDelete: "cascade", foreignKey: 'received_user' })
+
+    }
+
     return Users;
 }

@@ -2,19 +2,24 @@ import { Box, styled } from "@mui/material";
 
 const UserDetails = styled(Box)(({ theme }) => ({
     position: "absolute",
-    top: "90%",
-    left: "5%",
+    padding: `${theme.spacing(0)} ${theme.spacing(3)}`,
+    top: "48%",
+    width: "95%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
 }));
 
 const BackgroundContainer = styled(Box)(({ theme }) => ({
-    // position: "relative",
-    // display: "flex",
-    width: "90%",
-    height: "45vh",
-    backgroundColor: "rgba(239, 239, 240, 0.5)",
+    position: "relative",
+    overflow: "hidden",
+    width: "100%",
+    height: "450px",
+    borderRadius: "12px",
+    backgroundColor: theme.palette.primary.secondary,
     [theme.breakpoints.down("sm")]: {
         width: "100%",
-        height: "30vh",
+        height: "300px",
     },
 }));
 

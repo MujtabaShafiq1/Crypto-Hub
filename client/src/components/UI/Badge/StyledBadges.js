@@ -7,6 +7,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
         border: `2px solid ${theme.palette.background.paper}`,
         padding: "0 4px",
         fontSize: "11px",
+        backgroundColor: "purple",
     },
 }));
 
