@@ -1,12 +1,12 @@
 const io = require("socket.io")(8900, { cors: { origin: "http://localhost:3000", credentials: true } });
 const jwt = require("jsonwebtoken");
+const cookieSession = require("cookie-session");
 require("dotenv").config();
 
 const users = new Map();
 
 io.use((socket, next) => {
     const cookies = socket.handshake.headers.cookie.split("; ");
-    console.log(cookies)
     let sessionCookie;
     let sessionSig;
     for (const cookie of cookies) {
@@ -17,16 +17,16 @@ io.use((socket, next) => {
             sessionSig = cookie.split("session.sig=")[1];
         }
     }
-    // const token = cookie.split(";")[0];
-    // const key = cookie.split(";")[1].split("=")[1];
-    // console.log(token, key);
-    console.log(sessionCookie, sessionSig);
-    const user = jwt.verify(sessionCookie, "xyzsession123")
-    // const user = jwt.verify(token, process.env.JWT_KEY);
-    // if (!user.id) return next(new Error("Invalid User"));
-    // users.set(userId, socket.id);
-    // socket.userId = user.id;
-    // next();
+    // const decodedCookie = jwt.decode(sessionCookie, process.env.COOKIE_KEY, { algorithms: ['HS256'] });
+    const decodedCookie = jwt.decode(sessionCookie, sessionSig, { algorithms: ['HS256'] });
+    console.log(decodedCookie)
+
+    // const cookieValue = "your_cookie_session_cookie_here";
+    // const jwtToken = cookieValue.replace("s:", "").split(".")[0];
+
+    // console.log(sessionCookie);
+    // console.log(sessionSig);
+    // const user = jwt.verify(sessionCookie, sessionSig);
 });
 
 io.on("connection", (socket) => {
