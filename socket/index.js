@@ -1,41 +1,37 @@
-const io = require("socket.io")(8900, { cors: { origin: "http://localhost:3000", credentials: true } });
-const jwt = require("jsonwebtoken");
+const io = require("socket.io")(8900, {
+    cors: { origin: "http://localhost:3000", credentials: true },
+});
+
 const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const users = new Map();
 
+// Set up cookie-parser middleware
 io.use((socket, next) => {
-    const cookies = socket.handshake.headers.cookie.split("; ");
-    let sessionCookie;
-    let sessionSig;
-    for (const cookie of cookies) {
-        if (cookie.startsWith("session=")) {
-            sessionCookie = cookie.split("session=")[1];
-        }
-        if (cookie.startsWith("session.sig=")) {
-            sessionSig = cookie.split("session.sig=")[1];
-        }
-    }
-    // const decodedCookie = jwt.decode(sessionCookie, process.env.COOKIE_KEY, { algorithms: ['HS256'] });
-    const decodedCookie = jwt.decode(sessionCookie, sessionSig, { algorithms: ['HS256'] });
-    console.log(decodedCookie)
+    const sessionMiddleware = cookieSession({
+        name: "session",
+        keys: [process.env.COOKIE_KEY],
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    });
 
-    // const cookieValue = "your_cookie_session_cookie_here";
-    // const jwtToken = cookieValue.replace("s:", "").split(".")[0];
-
-    // console.log(sessionCookie);
-    // console.log(sessionSig);
-    // const user = jwt.verify(sessionCookie, sessionSig);
+    sessionMiddleware(socket.request, {}, () => {
+        const session = socket.request.session;
+        if (!session?.passport?.user?.id) return next(new Error("Invalid User"))
+        next();
+    });
 });
 
 io.on("connection", (socket) => {
-    users.set(userId, socket.id);
-    console.log(users);
+    // when user connects to server
+    const id = socket.request.session.passport.user.id;
+    console.log("New socket connection", id);
 
     // when user disconnects from server
     socket.on("disconnect", () => {
-        users.delete(socket.id);
-        socket.broadcast.emit("disconnectedUser", socket.userId);
+        // users.delete(socket.id);
+        console.log("User disconnection");
+        // socket.broadcast.emit("disconnectedUser", socket.id);
     });
 });
