@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Avatar, Box, ListItemAvatar } from "@mui/material";
 import { LongTypography, LeftbarContainer, StyledBadge, StyledNavList, StyledListButton } from "../UI";
 import { ThemeContext } from "../../context/ThemeProvider";
+import { SocketContext } from "../../context/SocketProvider";
 import CustomCollapseTransition from "../UI/Transition/CustomCollapseTransition";
 import DiscoverTags from "../HashTags/DiscoverTags";
 import Notifications from "../Drawers/Notifications";
@@ -24,6 +25,7 @@ import {
 
 const Leftbar = () => {
     const user = useSelector((state) => state.auth.user);
+    const { socket } = useContext(SocketContext);
     const { mode, toggleColorMode } = useContext(ThemeContext);
 
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -36,13 +38,14 @@ const Leftbar = () => {
 
     const logoutHandler = async () => {
         window.open(`http://localhost:8000/auth/logout`, "_self");
+        socket.disconnect()
     };
 
     return (
         <LeftbarContainer>
             <CustomCollapseTransition in={![1, 4, 5].includes(selectedIndex)} duration={500}>
                 <StyledNavList component="nav">
-                    <StyledListButton component={Link} to={`/profile/${user.id}`} onClick={() => selection(-1)}>
+                    <StyledListButton component={Link} to={`/profile/${user.userId}`} onClick={() => selection(-1)}>
                         <ListItemAvatar>
                             {/* <Avatar src={user?.photo} /> */}
                             <Avatar src="https://images.pexels.com/photos/2528318/pexels-photo-2528318.jpeg?auto=compress&cs=tinysrgb&w=1600" />

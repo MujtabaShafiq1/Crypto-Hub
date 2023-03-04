@@ -30,9 +30,9 @@ const updatePassword = asyncHandler(async (req, res, next) => {
 
 // user details for profile
 const userDetails = asyncHandler(async (req, res, next) => {
-    const { id } = req.params;
-    const user = await Users.findByPk(id);
-    const { password, userId, ...otherDetails } = user.dataValues;
+    const { userId } = req.params;
+    const user = await Users.findOne({ where: { userId} });
+    const { id, password, ...otherDetails } = user.dataValues;
     res.status(200).json(otherDetails);
 });
 

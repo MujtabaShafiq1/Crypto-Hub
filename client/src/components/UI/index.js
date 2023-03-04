@@ -24,6 +24,7 @@ export { StyledBadge, StyledStatusBadge } from "./Badge/StyledBadges";
 export { StyledButton } from "./Buttons/StyledButton";
 export { StyledListButton } from "./Buttons/ListButtons";
 export { ConfirmationButton } from "./Buttons/ConfirmationButton";
+export { ProfileButton } from "./Buttons/ProfileButton";
 
 // navigation
 export { StyledAppbar } from "./Navigation/TopNavigation";

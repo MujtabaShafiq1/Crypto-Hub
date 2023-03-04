@@ -3,10 +3,10 @@ import { Box, styled } from "@mui/material";
 const UserDetails = styled(Box)(({ theme }) => ({
     position: "absolute",
     padding: `${theme.spacing(0)} ${theme.spacing(3)}`,
-    top: "48%",
+    top: "55%",
     width: "95%",
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-end",
     justifyContent: "space-between",
 }));
 
@@ -15,11 +15,12 @@ const BackgroundContainer = styled(Box)(({ theme }) => ({
     overflow: "hidden",
     width: "100%",
     height: "450px",
-    borderRadius: "12px",
-    backgroundColor: theme.palette.primary.secondary,
+    borderRadius: "3px",
+    // backgroundColor: theme.palette.primary.secondary,
+    backgroundColor: "orange",
     [theme.breakpoints.down("sm")]: {
         width: "100%",
-        height: "300px",
+        height: "350px",
     },
 }));
 

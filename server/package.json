@@ -24,7 +24,6 @@
         "passport": "^0.5.0",
         "passport-github2": "^0.1.12",
         "passport-google-oauth20": "^2.0.0",
-        "passport-local": "^1.0.0",
         "passport-steam": "^1.0.17",
         "sequelize": "^6.25.3",
         "sequelize-cli": "^6.5.1"

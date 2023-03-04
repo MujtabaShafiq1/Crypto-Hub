@@ -16,7 +16,7 @@ const StyledList = styled(List)(({ theme }) => ({
 }));
 
 const StyledNavList = styled(List)(({ theme }) => ({
-    borderRadius: "5px 30px 30px 5px",
+    borderRadius: "5px",
     backgroundColor: theme.palette.primary.secondary,
     "&& .Mui-selected": {
         fontWeight: 700,

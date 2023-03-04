@@ -1,10 +1,10 @@
 import { Box, styled } from "@mui/material";
 
 const DiscoverTagsContainer = styled(Box)(({ hide, theme }) => ({
-    height: "50%",
+    height: "44%",
     overflow: "hidden",
     display: hide && "none",
-    borderRadius: "5px 30px 30px 5px",
+    borderRadius: "5px",
     backgroundColor: theme.palette.primary.secondary,
     [theme.breakpoints.down("md")]: {
         display: "none",
@@ -19,7 +19,7 @@ const TagsContainer = styled(Box)(({ theme }) => ({
     gap: theme.spacing(1.5),
     padding: theme.spacing(1),
     overflow: "auto",
-    height: "85%",
+    height: "100%",
     "& Button": {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.text.primary,

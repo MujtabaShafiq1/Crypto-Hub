@@ -17,14 +17,12 @@ const FriendsRecentActivity = () => {
                                 </ListItemAvatar>
                                 <ListItemText
                                     primary={<SubText>{activity.name}</SubText>}
-                                    secondary={
-                                        <>
-                                            <InfoText>
-                                                <span>{moment().fromNow()}</span>
-                                            </InfoText>
-                                            <HelperText>{activity.text}</HelperText>
-                                        </>
-                                    }
+                                    // secondary={
+                                    //     <>
+                                    //         <InfoText>{moment().fromNow()}</InfoText>
+                                    //         <HelperText>{activity.text}</HelperText>
+                                    //     </>
+                                    // }
                                 />
                             </StyledListButton>
                         </ListItem>

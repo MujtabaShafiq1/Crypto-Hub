@@ -18,7 +18,15 @@ const app = express();
 app.use(express.json());
 
 // session creation
-app.use(cookieSession({ name: "session", keys: [process.env.COOKIE_KEY], maxAge: 3 * 24 * 60 * 60 * 1000, secure: false }));
+app.use(
+    cookieSession({
+        name: "session",
+        keys: [process.env.COOKIE_KEY],
+        secret: process.env.COOKIE_KEY,
+        maxAge: 3 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+    })
+);
 
 // cross origin
 app.use(cors({ origin: "http://localhost:3000", methods: "GET,POST,PUT,DELETE", credentials: true }));
