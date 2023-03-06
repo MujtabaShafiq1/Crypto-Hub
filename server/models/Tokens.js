@@ -1,5 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-
     const Tokens = sequelize.define("Tokens", {
         userId: {
             type: DataTypes.STRING,
@@ -22,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
             unique: true,
             allowNull: false,
         },
-    })
+    });
 
     return Tokens;
-}
+};

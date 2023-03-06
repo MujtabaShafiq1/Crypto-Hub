@@ -1,5 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-
     const Users = sequelize.define("Users", {
         userId: {
             type: DataTypes.STRING,
@@ -18,14 +17,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
-    })
+    });
 
     Users.associate = (models) => {
-
-        Users.hasMany(models.FriendRequests, { onDelete: "cascade", foreignKey: 'sent_user' });
-        Users.hasMany(models.FriendRequests, { onDelete: "cascade", foreignKey: 'received_user' })
-
-    }
+        Users.hasMany(models.FriendRequests, { onDelete: "cascade", foreignKey: "senderUserId" });
+        Users.hasMany(models.FriendRequests, { onDelete: "cascade", foreignKey: "receiverUserId" });
+    };
 
     return Users;
-}
+};

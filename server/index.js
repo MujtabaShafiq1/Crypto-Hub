@@ -9,9 +9,12 @@ const { errorMiddleware } = require("./middlewares/Error");
 
 const db = require("./models");
 
-const authRouter = require("./routes/auth");
-const tokenRouter = require("./routes/token");
-const userRouter = require("./routes/user");
+const authRouter = require("./routes/Auth");
+const tokenRouter = require("./routes/Token");
+const userRouter = require("./routes/User");
+const profileRouter = require("./routes/Profile");
+const friendRouter = require("./routes/Friend");
+const friendRequestRouter = require("./routes/FriendRequest");
 
 // express
 const app = express();
@@ -37,9 +40,12 @@ app.use(passport.session());
 require("./passport");
 
 // routes
+app.use("/user", userRouter);
 app.use("/auth", authRouter);
 app.use("/token", tokenRouter);
-app.use("/user", userRouter);
+app.use("/profile", profileRouter);
+app.use("/friends", friendRouter);
+app.use("/friendRequests", friendRequestRouter);
 
 //middleware for error
 app.use(errorMiddleware);

@@ -1,5 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-
-    const FriendRequests = sequelize.define("FriendRequests")
+    const FriendRequests = sequelize.define("FriendRequests");
     return FriendRequests;
-}
+};
