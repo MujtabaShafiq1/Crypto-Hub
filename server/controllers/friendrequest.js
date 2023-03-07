@@ -1,34 +1,40 @@
 const { FriendRequests, Users } = require("../models");
 const asyncHandler = require("express-async-handler");
-const crypto = require("crypto-js");
+const { decryptId } = require("../utils/CryptoUtils");
 
-// update password and cofirmation on email
+// send user the friend request
 const addRequest = asyncHandler(async (req, res, next) => {
-    const { sender, receiver } = req.body;
-    const newRequest = { senderUserId: sender, receiverUserId: receiver };
-    await FriendRequests.create(newRequest);
-    res.status(201).json("Friend Request Sent");
+    const senderUserId = decryptId(req.body.sender);
+    const receiverUserId = decryptId(req.body.receiver);
+    const newRequest = await FriendRequests.create({ senderUserId, receiverUserId });
+    res.status(201).json(newRequest.id);
 });
 
 // update password after email redirect
 const deleteRequest = asyncHandler(async (req, res, next) => {
-    const { requestId } = req.params;
-    // await FriendRequests.destory(id);
-    res.status(201).json("Friend Request Deleted");
+    const { id } = req.body
+    await FriendRequests.destory(id);
+    res.status(202).json("Friend Request Deleted");
 });
 
 // get all friend request receive by the user
 const receivedRequests = asyncHandler(async (req, res, next) => {
-    const decryptedId = crypto.AES.decrypt(req.body.id, process.env.CRYPTO_KEY).toString(crypto.enc.Utf8);
-    const user = await FriendRequests.findAll({ where: { receiverUserId: decryptedId }, include: [Users] });
-    res.status(200).json(user.dataValues);
+    const decryptedId = decryptId(req.body.id);
+    const friendRequests = await FriendRequests.findAll({
+        where: { receiverUserId: decryptedId },
+        include: [{ model: Users, as: "sender", attributes: ["name", "photo"] }],
+    });
+    res.status(200).json(friendRequests);
 });
 
 // get all friend request sent by the user
 const sentRequests = asyncHandler(async (req, res, next) => {
-    const decryptedId = crypto.AES.decrypt(req.body.id, process.env.CRYPTO_KEY).toString(crypto.enc.Utf8);
-    const user = await FriendRequests.findAll({ where: { senderUserId: decryptedId }, include: [Users] });
-    res.status(200).json(user.dataValues);
+    const decryptedId = decryptId(req.body.id);
+    const friendRequests = await FriendRequests.findAll({
+        where: { senderUserId: decryptedId },
+        include: [{ model: Users, as: "receiver", attributes: ["name", "photo"] }],
+    });
+    res.status(200).json(friendRequests);
 });
 
 module.exports = { addRequest, deleteRequest, receivedRequests, sentRequests };

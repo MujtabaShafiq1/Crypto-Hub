@@ -1,5 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
     const Tokens = sequelize.define("Tokens", {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
         userId: {
             type: DataTypes.STRING,
             allowNull: false,

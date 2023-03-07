@@ -23,7 +23,7 @@ const tempUser = asyncHandler(async (req, res, next) => {
     sendMail(req.body.email, verificationToken, "verification", "Verify Email on LocalHost");
 
     await Tokens.create(tempUser);
-    res.status(200).send(tempUser);
+    res.status(201).send(tempUser);
 });
 
 module.exports = { tempUser };
