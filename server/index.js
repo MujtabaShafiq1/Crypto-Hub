@@ -1,10 +1,10 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 require("dotenv").config();
 
+const logger = require("./middlewares/Logger");
 const { errorMiddleware } = require("./middlewares/Error");
 
 const db = require("./models");
@@ -53,7 +53,8 @@ app.use(errorMiddleware);
 // Server Port
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, async () => {
-    console.log(`Listening to PORT: ${PORT}`);
+    logger.info(`Server is listening on port ${PORT}`);
+    console.log(`Server is listening on port ${PORT}`);
     await db.sequelize.sync();
     console.log("Database Synced");
 });

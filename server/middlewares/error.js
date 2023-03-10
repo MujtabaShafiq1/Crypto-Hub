@@ -1,3 +1,5 @@
+const logger = require("./Logger");
+
 //creation for error
 const createError = (status, message) => {
     const err = new Error(message);
@@ -9,8 +11,9 @@ const createError = (status, message) => {
 const errorMiddleware = (err, req, res, next) => {
     const errorStatus = err.status || 500;
     const errorMessage = err.message || "Something went wrong";
-    return res.status(errorStatus).send({ status: errorStatus, message: errorMessage })
-}
 
+    logger.error(errorMessage, err);
+    return res.status(errorStatus).send({ status: errorStatus, message: errorMessage });
+};
 
-module.exports = { createError, errorMiddleware }
+module.exports = { createError, errorMiddleware };
