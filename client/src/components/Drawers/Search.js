@@ -23,7 +23,7 @@ const Search = ({ open, close }) => {
             </Flexbox>
             <Divider variant="middle" sx={{ width: "90%", opacity: 0.2, backgroundColor: "text.primary" }} />
 
-            <Flexbox sx={{ mt: "3%" }}>
+            <Flexbox sx={{ m: "3% 0%" }}>
                 <StyledField
                     variant="outlined"
                     placeholder="Search"

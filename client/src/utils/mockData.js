@@ -92,65 +92,6 @@ export const friendsActivityData = [
     },
 ];
 
-//mock data for friend requests
-export const FriendRequestsData = [
-    {
-        name: "Ali Connors",
-        photo: "https://images.pexels.com/photos/14968378/pexels-photo-14968378.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    },
-    {
-        name: "Sandra Adams",
-        photo: "https://images.pexels.com/photos/13131586/pexels-photo-13131586.png?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    },
-    {
-        name: "Alex Collins",
-        photo: "https://images.pexels.com/photos/4823473/pexels-photo-4823473.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    },
-    {
-        name: "Judy Myers",
-        photo: "https://images.pexels.com/photos/1087735/pexels-photo-1087735.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    },
-    {
-        name: "Ali Connors",
-        photo: "https://images.pexels.com/photos/14968378/pexels-photo-14968378.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    },
-    {
-        name: "Sandra Adams",
-        photo: "https://images.pexels.com/photos/13131586/pexels-photo-13131586.png?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    },
-    {
-        name: "Alex Collins",
-        photo: "https://images.pexels.com/photos/4823473/pexels-photo-4823473.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    },
-    {
-        name: "Judy Myers",
-        photo: "https://images.pexels.com/photos/1087735/pexels-photo-1087735.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    },
-    {
-        name: "Ali Connors",
-        photo: "https://images.pexels.com/photos/14968378/pexels-photo-14968378.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    },
-    {
-        name: "Sandra Adams",
-        photo: "https://images.pexels.com/photos/13131586/pexels-photo-13131586.png?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    },
-    {
-        name: "Alex Collins",
-        photo: "https://images.pexels.com/photos/4823473/pexels-photo-4823473.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    },
-    {
-        name: "Judy Myers",
-        photo: "https://images.pexels.com/photos/1087735/pexels-photo-1087735.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    },
-    {
-        name: "Ali Connors",
-        photo: "https://images.pexels.com/photos/14968378/pexels-photo-14968378.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    },
-    {
-        name: "Sandra Adams",
-        photo: "https://images.pexels.com/photos/13131586/pexels-photo-13131586.png?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    },
-];
 
 //mock data for recent friends status
 export const friendsStatusData = [

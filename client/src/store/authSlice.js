@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser } from "./authActions"
+import { getUser } from "./authActions";
 
 const initialState = {
-    user: { userId: null, name: null, photo: null },
+    user: { id: null, userId: null, name: null, photo: null },
     status: null,
     error: null,
-}
+};
 
 const authSlice = createSlice({
     name: "auth",
@@ -19,7 +19,7 @@ const authSlice = createSlice({
     },
     extraReducers: {
         [getUser.pending]: (state, action) => {
-            state = initialState
+            state = initialState;
         },
         [getUser.rejected]: (state, action) => {
             state.error = action.payload;
@@ -29,8 +29,8 @@ const authSlice = createSlice({
             state.user = action.payload;
             state.status = true;
         },
-    }
-})
+    },
+});
 
 export const authActions = authSlice.actions;
 export default authSlice;

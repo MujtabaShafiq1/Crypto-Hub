@@ -16,12 +16,24 @@ const BackgroundContainer = styled(Box)(({ theme }) => ({
     width: "100%",
     height: "450px",
     borderRadius: "3px",
-    // backgroundColor: theme.palette.primary.secondary,
-    backgroundColor: "orange",
+    backgroundColor: theme.palette.primary.secondary,
     [theme.breakpoints.down("sm")]: {
         width: "100%",
         height: "350px",
     },
 }));
 
-export { UserDetails, BackgroundContainer };
+const FriendsContainer = styled(Box)(({ theme }) => ({
+    position: "relative",
+    overflow: "hidden",
+    width: "100%",
+    height: "450px",
+    borderRadius: "3px",
+    backgroundColor: theme.palette.primary.secondary,
+    [theme.breakpoints.down("sm")]: {
+        width: "100%",
+        height: "350px",
+    },
+}));
+
+export { FriendsContainer, UserDetails, BackgroundContainer };

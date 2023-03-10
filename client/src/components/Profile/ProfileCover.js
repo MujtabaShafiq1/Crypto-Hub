@@ -1,14 +1,29 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Box, Avatar } from "@mui/material";
 import { Flexbox, BackgroundContainer, ImageContainer, UserDetails, HeaderText, ProfileButton } from "../UI";
+import axios from "axios";
+import useFetch from "../hooks/useFetch";
 
 const ProfileCover = ({ userDetails }) => {
+
     const user = useSelector((state) => state.auth.user);
+    const [friendRequest, setFriendRequest] = useState(userDetails.request);
+    const { data, fetchData } = useFetch();
 
+    const addFriendHandler = async () => {
+        const body = { sender: user.id, receiver: userDetails.id };
+        fetchData("friendRequests/add", "post", body);
+        setFriendRequest(data);
+    };
 
-    const addFriendHandler = () => {
-        
-    }
+    const confirmRequestHandler = () => {
+        console.log("confirmed");
+    };
+
+    const deleteRequestHandler = async () => {
+        fetchData("friendRequests/delete", "delete", { id: friendRequest.id });
+    };
 
     return (
         <BackgroundContainer>
@@ -29,7 +44,29 @@ const ProfileCover = ({ userDetails }) => {
                         </>
                     ) : (
                         <>
-                            <ProfileButton value="confirm" onClick={addFriendHandler}>Add Friend</ProfileButton>
+                            {friendRequest ? (
+                                <>
+                                    {friendRequest.sender && (
+                                        <ProfileButton value="delete" onClick={deleteRequestHandler}>
+                                            Requested
+                                        </ProfileButton>
+                                    )}
+                                    {friendRequest.receiver && (
+                                        <>
+                                            <ProfileButton value="confirm" onClick={confirmRequestHandler}>
+                                                Confirm
+                                            </ProfileButton>
+                                            <ProfileButton value="delete" onClick={deleteRequestHandler}>
+                                                Delete
+                                            </ProfileButton>
+                                        </>
+                                    )}
+                                </>
+                            ) : (
+                                <ProfileButton value="confirm" onClick={addFriendHandler}>
+                                    Add Friend
+                                </ProfileButton>
+                            )}
                             <ProfileButton value="delete">Follow</ProfileButton>
                         </>
                     )}

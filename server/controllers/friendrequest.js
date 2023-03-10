@@ -12,8 +12,8 @@ const addRequest = asyncHandler(async (req, res, next) => {
 
 // update password after email redirect
 const deleteRequest = asyncHandler(async (req, res, next) => {
-    const { id } = req.body
-    await FriendRequests.destory(id);
+    const { id } = req.body;
+    await FriendRequests.destroy({ where: { id } });
     res.status(202).json("Friend Request Deleted");
 });
 

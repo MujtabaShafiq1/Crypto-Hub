@@ -12,7 +12,7 @@ const Notifications = ({ open, close }) => {
                 <ArrowBackIcon sx={{ color: "text.primary", cursor: "pointer" }} onClick={close} />
                 <ListHeader>Notifications</ListHeader>
             </Flexbox>
-            <Divider variant="middle" sx={{ width: "90%", opacity: 0.2, backgroundColor: "text.primary" }} />
+            <Divider variant="middle" sx={{ width: "90%", opacity: 0.2, mb: "3%", backgroundColor: "text.primary" }} />
 
             <StyledList sx={{ height: "90vh" }}>
                 {data.map((activity) => (
