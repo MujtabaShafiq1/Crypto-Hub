@@ -15,6 +15,13 @@ export class FriendRequestsRepository extends Repository<FriendRequest> {
     );
   }
 
+  async sentRequests(id: string): Promise<FriendRequest[]> {
+    const friendRequests = await this.friendRequestsRepository.find({
+      where: { senderId: id },
+    });
+    return friendRequests;
+  }
+
   async receivedRequests(id: string): Promise<FriendRequest[]> {
     const friendRequests = await this.friendRequestsRepository.find({
       where: { receiverId: id },

@@ -8,13 +8,14 @@ export class FriendRequestsController {
   constructor(private friendRequestService: FriendRequestsService) {}
 
   @Get('/sent/:id')
+  sentRequests(@Param('id') id: string): Promise<FriendRequest[]> {
+    return this.friendRequestService.sentRequests(id);
+  }
+
+  @Get('/received/:id')
   receivedRequests(@Param('id') id: string): Promise<FriendRequest[]> {
     return this.friendRequestService.receivedRequests(id);
   }
-
-  // @Get("/received/:id")
-  // sentRequests()(
-  // )
 
   @Post('/add')
   createFriendRequest(

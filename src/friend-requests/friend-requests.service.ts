@@ -7,6 +7,10 @@ import { FriendRequestsRepository } from './friend-requests.repository';
 export class FriendRequestsService {
   constructor(private friendRequestsRepository: FriendRequestsRepository) {}
 
+  async sentRequests(id: string): Promise<FriendRequest[]> {
+    return this.friendRequestsRepository.sentRequests(id);
+  }
+
   async receivedRequests(id: string): Promise<FriendRequest[]> {
     return this.friendRequestsRepository.receivedRequests(id);
   }

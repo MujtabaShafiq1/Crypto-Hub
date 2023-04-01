@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './config-schema';
 import { FriendRequestsModule } from './friend-requests/friend-requests.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -10,6 +12,8 @@ import { FriendRequestsModule } from './friend-requests/friend-requests.module';
       envFilePath: [`.env.stage.${process.env.STAGE}`],
       validationSchema: configValidationSchema,
     }),
+    AuthModule,
+    UsersModule,
     FriendRequestsModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],

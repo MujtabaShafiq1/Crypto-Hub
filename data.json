@@ -1,0 +1,105 @@
+{
+  "github": {
+    "id": "96123241",
+    "nodeId": "U_kgDOBbq5aQ",
+    "displayName": "Mujtaba Shafiq",
+    "username": "MujtabaShafiq1",
+    "profileUrl": "https://github.com/MujtabaShafiq1",
+    "photos": [
+      { "value": "https://avatars.githubusercontent.com/u/96123241?v=4" }
+    ],
+    "provider": "github",
+    "_raw": "{\"login\":\"MujtabaShafiq1\",\"id\":96123241,\"node_id\":\"U_kgDOBbq5aQ\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/96123241?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/MujtabaShafiq1\",\"html_url\":\"https://github.com/MujtabaShafiq1\",\"followers_url\":\"https://api.github.com/users/MujtabaShafiq1/followers\",\"following_url\":\"https://api.github.com/users/MujtabaShafiq1/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/MujtabaShafiq1/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/MujtabaShafiq1/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/MujtabaShafiq1/subscriptions\",\"organizations_url\":\"https://api.github.com/users/MujtabaShafiq1/orgs\",\"repos_url\":\"https://api.github.com/users/MujtabaShafiq1/repos\",\"events_url\":\"https://api.github.com/users/MujtabaShafiq1/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/MujtabaShafiq1/received_events\",\"type\":\"User\",\"site_admin\":false,\"name\":\"Mujtaba Shafiq\",\"company\":null,\"blog\":\"\",\"location\":null,\"email\":null,\"hireable\":null,\"bio\":\"Undergraduate at SZABIST | FullStack Web App Development\",\"twitter_username\":null,\"public_repos\":14,\"public_gists\":0,\"followers\":2,\"following\":0,\"created_at\":\"2021-12-14T12:54:49Z\",\"updated_at\":\"2023-03-26T11:09:44Z\"}",
+    "_json": {
+      "login": "MujtabaShafiq1",
+      "id": 96123241,
+      "node_id": "U_kgDOBbq5aQ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/96123241?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/MujtabaShafiq1",
+      "html_url": "https://github.com/MujtabaShafiq1",
+      "followers_url": "https://api.github.com/users/MujtabaShafiq1/followers",
+      "following_url": "https://api.github.com/users/MujtabaShafiq1/following{/other_user}",
+      "gists_url": "https://api.github.com/users/MujtabaShafiq1/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/MujtabaShafiq1/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/MujtabaShafiq1/subscriptions",
+      "organizations_url": "https://api.github.com/users/MujtabaShafiq1/orgs",
+      "repos_url": "https://api.github.com/users/MujtabaShafiq1/repos",
+      "events_url": "https://api.github.com/users/MujtabaShafiq1/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/MujtabaShafiq1/received_events",
+      "type": "User",
+      "site_admin": false,
+      "name": "Mujtaba Shafiq",
+      "company": null,
+      "blog": "",
+      "location": null,
+      "email": null,
+      "hireable": null,
+      "bio": "Undergraduate at SZABIST | FullStack Web App Development",
+      "twitter_username": null,
+      "public_repos": 14,
+      "public_gists": 0,
+      "followers": 2,
+      "following": 0,
+      "created_at": "2021-12-14T12:54:49Z",
+      "updated_at": "2023-03-26T11:09:44Z"
+    }
+  },
+  "google": {
+    "id": "106016035086982943655",
+    "displayName": "Mujtaba Shafiq",
+    "name": { "familyName": "Shafiq", "givenName": "Mujtaba" },
+    "emails": [{ "value": "mujtaba.shafiq213@gmail.com", "verified": true }],
+    "photos": [
+      {
+        "value": "https://lh3.googleusercontent.com/a/AGNmyxbnTQ4zzSqweDK1WFT213Wc5sz__CNoEWvc1xrk-g=s96-c"
+      }
+    ],
+    "provider": "google",
+
+    "_json": {
+      "sub": "106016035086982943655",
+      "name": "Mujtaba Shafiq",
+      "given_name": "Mujtaba",
+      "family_name": "Shafiq",
+      "picture": "https://lh3.googleusercontent.com/a/AGNmyxbnTQ4zzSqweDK1WFT213Wc5sz__CNoEWvc1xrk-g=s96-c",
+      "email": "mujtaba.shafiq213@gmail.com",
+      "email_verified": true,
+      "locale": "en"
+    }
+  },
+  "steam": {
+    "provider": "steam",
+    "_json": {
+      "steamid": "76561198373424869",
+      "communityvisibilitystate": 3,
+      "profilestate": 1,
+      "personaname": "Z",
+      "commentpermission": 1,
+      "profileurl": "https://steamcommunity.com/id/WayZ-/",
+      "avatar": "https://avatars.akamai.steamstatic.com/3d2fd909cc3de7f1ab64094c6d47f8ece587ebc9.jpg",
+      "avatarmedium": "https://avatars.akamai.steamstatic.com/3d2fd909cc3de7f1ab64094c6d47f8ece587ebc9_medium.jpg",
+      "avatarfull": "https://avatars.akamai.steamstatic.com/3d2fd909cc3de7f1ab64094c6d47f8ece587ebc9_full.jpg",
+      "avatarhash": "3d2fd909cc3de7f1ab64094c6d47f8ece587ebc9",
+      "personastate": 0,
+      "realname": "Mujtaba",
+      "primaryclanid": "103582791429521408",
+      "timecreated": 1489747285,
+      "personastateflags": 0,
+      "loccountrycode": "ME"
+    },
+    "id": "76561198373424869",
+    "displayName": "Z",
+    "photos": [
+      {
+        "value": "https://avatars.akamai.steamstatic.com/3d2fd909cc3de7f1ab64094c6d47f8ece587ebc9.jpg"
+      },
+      {
+        "value": "https://avatars.akamai.steamstatic.com/3d2fd909cc3de7f1ab64094c6d47f8ece587ebc9_medium.jpg"
+      },
+      {
+        "value": "https://avatars.akamai.steamstatic.com/3d2fd909cc3de7f1ab64094c6d47f8ece587ebc9_full.jpg"
+      }
+    ]
+  }
+}
