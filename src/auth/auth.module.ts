@@ -18,7 +18,7 @@ import { SocialMediaUser } from 'src/users/entities/social-media-user.entity';
 @Module({
   imports: [
     ConfigModule,
-    PassportModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     TypeOrmModule.forFeature([SocialMediaUser]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
@@ -37,6 +37,6 @@ import { SocialMediaUser } from 'src/users/entities/social-media-user.entity';
     JwtStrategy,
     UsersRepository,
   ],
-  exports: [PassportModule, JwtStrategy],
+  exports: [JwtStrategy, PassportModule],
 })
 export class AuthModule {}

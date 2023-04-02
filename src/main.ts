@@ -1,8 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
-import * as session from 'express-session';
-import * as passport from 'passport';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,22 +14,7 @@ async function bootstrap() {
   });
 
   const configService = app.get(ConfigService);
-
-  app.use(
-    session({
-      secret: configService.get('COOKIE_KEY'),
-      saveUninitialized: false,
-      resave: false,
-      cookie: {
-        httpOnly: true,
-        maxAge: 3 * 24 * 60 * 60 * 1000,
-      },
-    }),
-  );
-
-  // initialize passport
-  app.use(passport.initialize());
-  app.use(passport.session());
+  app.use(cookieParser(configService.get('COOKIE_KEY')));
 
   await app.listen(8000);
 }
