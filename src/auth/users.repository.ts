@@ -16,7 +16,7 @@ export class UsersRepository extends Repository<SocialMediaUser> {
     );
   }
 
-  async checkId(id: string): Promise<SocialMediaUser> {
+  async findUser(id: string): Promise<SocialMediaUser> {
     const user = await this.usersRepository.findOne({
       where: { socialMediaId: id },
     });

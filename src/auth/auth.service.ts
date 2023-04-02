@@ -16,16 +16,12 @@ export class AuthService {
     return this.jwtService.sign(payload);
   }
 
-  async signIn(user: RegisterUserDto) {
+  async validateUser(user: RegisterUserDto) {
+    let foundUser = null;
     if (!user) throw new UnauthorizedException();
-    const foundUser = await this.usersRepository.checkId(user.socialMediaId);
-    if (!foundUser) return this.registerUser(user);
-    return this.generateJwt({ id: foundUser.socialMediaId });
-  }
-
-  async registerUser(registerUserDto: RegisterUserDto) {
-    const newUser = this.usersRepository.create(registerUserDto);
-    const user = await this.usersRepository.save(newUser);
-    return this.generateJwt({ id: user.socialMediaId });
+    foundUser = await this.usersRepository.findUser(user.socialMediaId);
+    if (!foundUser) foundUser = await this.usersRepository.registerUser(user);
+    const token = this.generateJwt({ id: foundUser.socialMediaId });
+    return { token: token, user: foundUser };
   }
 }
