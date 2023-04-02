@@ -8,11 +8,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt/jwt-strategy';
+
 import { GoogleStrategy } from './google/google-strategy';
+import { GithubStrategy } from './github/github-strategy';
 
 import { UsersRepository } from './users.repository';
 import { SocialMediaUser } from 'src/users/entities/social-media-user.entity';
-import { SessionSerializer } from './utils/serializer';
 
 @Module({
   imports: [
@@ -32,7 +33,7 @@ import { SessionSerializer } from './utils/serializer';
   providers: [
     AuthService,
     GoogleStrategy,
-    SessionSerializer,
+    GithubStrategy,
     JwtStrategy,
     UsersRepository,
   ],

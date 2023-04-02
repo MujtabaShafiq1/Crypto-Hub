@@ -1,12 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { ConfigService } from '@nestjs/config';
 import * as session from 'express-session';
 import * as passport from 'passport';
-import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  //enable cors
+
+  // enable cors
   app.enableCors({
     allowedHeaders: ['content-type'],
     origin: 'http://localhost:3000',
@@ -21,6 +22,7 @@ async function bootstrap() {
       saveUninitialized: false,
       resave: false,
       cookie: {
+        httpOnly: true,
         maxAge: 3 * 24 * 60 * 60 * 1000,
       },
     }),
@@ -32,4 +34,5 @@ async function bootstrap() {
 
   await app.listen(8000);
 }
+
 bootstrap();

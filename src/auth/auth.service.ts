@@ -21,7 +21,6 @@ export class AuthService {
     if (!user) throw new UnauthorizedException();
     foundUser = await this.usersRepository.findUser(user.socialMediaId);
     if (!foundUser) foundUser = await this.usersRepository.registerUser(user);
-    const token = this.generateJwt({ id: foundUser.socialMediaId });
-    return { token: token, user: foundUser };
+    return this.generateJwt({ id: foundUser.socialMediaId });
   }
 }
