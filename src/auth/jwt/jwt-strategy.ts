@@ -1,21 +1,25 @@
 import { Strategy } from 'passport-jwt';
-import { PassportStrategy } from '@nestjs/passport';
+import { JwtService } from '@nestjs/jwt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { PassportStrategy } from '@nestjs/passport';
 import { UsersRepository } from '../users.repository';
 import { JwtPayload } from './jwt-payload.interface';
 import { SocialMediaUser } from '../../users/entities/social-media-user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(
-    private configService: ConfigService,
+    @InjectRepository(UsersRepository)
     private usersRepository: UsersRepository,
+    private configService: ConfigService,
   ) {
     const extractJwtFromCookie = (req) => {
       let token = null;
       if (req.cookies) {
-        token = req.cookies['access_token'];
+        token = req.signedCookies['access_token'];
+        console.log(token);
       }
       return token;
     };
