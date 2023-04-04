@@ -1,18 +1,18 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class RegisterUserDto {
-  @IsNotEmpty()
-  @IsString()
-  socialMediaId: string;
-
-  @IsString()
-  username: string;
-
+export class RegisterSocialUserDto {
   @IsNotEmpty()
   @IsString()
   name: string;
 
+  @IsNotEmpty()
+  @IsString()
+  username: string;
+
   @IsOptional()
   @IsString()
   avatar?: string;
+
+  @IsBoolean()
+  isLocal: boolean;
 }

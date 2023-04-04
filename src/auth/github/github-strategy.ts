@@ -24,12 +24,12 @@ export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
     profile: any,
     done: VerifyCallback,
   ): Promise<any> {
-    const { id, username, displayName, photos } = profile;
+    const { username, displayName, photos } = profile;
     const user = {
-      socialMediaId: id,
       name: displayName,
       username: username,
       avatar: photos[0].value,
+      isLocal: false,
       accessToken,
       refreshToken,
     };

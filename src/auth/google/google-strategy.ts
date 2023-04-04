@@ -24,12 +24,12 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     profile: any,
     done: VerifyCallback,
   ): Promise<any> {
-    const { id, name, emails, photos } = profile;
+    const { name, emails, photos } = profile;
     const user = {
-      socialMediaId: id,
       name: name.givenName + ' ' + name.familyName,
       username: emails[0].value,
       avatar: photos[0].value,
+      isLocal: false,
       accessToken,
       refreshToken,
     };

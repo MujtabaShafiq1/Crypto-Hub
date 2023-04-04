@@ -1,13 +1,13 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { InternalServerErrorException } from '@nestjs/common/exceptions';
 import { Repository } from 'typeorm';
-import { RegisterUserDto } from './dto/register-social-user-dto';
-import { SocialMediaUser } from '../users/entities/social-media-user.entity';
+import { RegisterSocialUserDto } from './dto/register-social-user-dto';
+import { User } from 'src/users/entities/user.entity';
 
-export class UsersRepository extends Repository<SocialMediaUser> {
+export class UsersRepository extends Repository<User> {
   constructor(
-    @InjectRepository(SocialMediaUser)
-    private usersRepository: Repository<SocialMediaUser>,
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
   ) {
     super(
       usersRepository.target,
@@ -16,18 +16,16 @@ export class UsersRepository extends Repository<SocialMediaUser> {
     );
   }
 
-  async findUser(id: string): Promise<SocialMediaUser> {
+  async findUser(id: string): Promise<User> {
     const user = await this.usersRepository.findOne({
-      where: { socialMediaId: id },
+      where: { username: id },
     });
 
     if (!user) return null;
     return user;
   }
 
-  async registerUser(
-    registerUserDto: RegisterUserDto,
-  ): Promise<SocialMediaUser> {
+  async registerUser(registerUserDto: RegisterSocialUserDto): Promise<User> {
     try {
       const newUser = this.usersRepository.create(registerUserDto);
       await this.usersRepository.save(newUser);

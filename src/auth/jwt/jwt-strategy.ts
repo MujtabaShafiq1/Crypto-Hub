@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { UsersRepository } from '../users.repository';
 import { JwtPayload } from './jwt-payload.interface';
-import { SocialMediaUser } from '../../users/entities/social-media-user.entity';
+import { User } from '../../users/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -31,10 +31,10 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     });
   }
 
-  async validate(payload: JwtPayload): Promise<SocialMediaUser> {
-    const { id } = payload;
+  async validate(payload: JwtPayload): Promise<User> {
+    const { username } = payload;
     const user = await this.usersRepository.findOne({
-      where: { socialMediaId: id },
+      where: { username: username },
     });
     if (!user) throw new UnauthorizedException('Please log in to continue');
     return user;

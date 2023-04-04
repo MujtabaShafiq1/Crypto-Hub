@@ -13,13 +13,14 @@ import { GoogleStrategy } from './google/google-strategy';
 import { GithubStrategy } from './github/github-strategy';
 
 import { UsersRepository } from './users.repository';
-import { SocialMediaUser } from 'src/users/entities/social-media-user.entity';
+import { User } from 'src/users/entities/user.entity';
+import { Credentials } from 'src/users/entities/credentials.entity';
 
 @Module({
   imports: [
     ConfigModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    TypeOrmModule.forFeature([SocialMediaUser]),
+    TypeOrmModule.forFeature([User, Credentials]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
