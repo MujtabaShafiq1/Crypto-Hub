@@ -1,10 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './jwt/jwt-payload.interface';
 import { UnauthorizedException } from '@nestjs/common/exceptions';
-import { RegisterSocialUserDto } from './dto/register-social-user-dto';
 import { UsersRepository } from './users.repository';
-import { InjectRepository } from '@nestjs/typeorm';
+
+// DTOs
+import { RegisterSocialUserDto } from './dto/register-social-user-dto';
+import { RegisterLocalUserDto } from './dto/register-local-user-dto';
 
 @Injectable()
 export class AuthService {
@@ -18,11 +22,16 @@ export class AuthService {
     return this.jwtService.sign(payload);
   }
 
-  async validateUser(user: RegisterSocialUserDto) {
+  async login(user: RegisterLocalUserDto) {}
+
+  async register(user: RegisterLocalUserDto) {}
+
+  async validateSocialUser(user: RegisterSocialUserDto) {
     let foundUser = null;
     if (!user) throw new UnauthorizedException();
     foundUser = await this.usersRepository.findUser(user.username);
-    if (!foundUser) foundUser = await this.usersRepository.registerUser(user);
+    if (!foundUser)
+      foundUser = await this.usersRepository.registerSocialUser(user);
     return this.generateJwt({ username: foundUser.username });
   }
 }

@@ -16,8 +16,18 @@ export class AuthController {
 
   @Get('me')
   @UseGuards(AuthGuard())
-  getMe(@GetUser() user: User) {
+  userCredentials(@GetUser() user: User) {
     return user;
+  }
+
+  @Get('login')
+  login(@Req() req) {
+    this.authService.login(req.body);
+  }
+
+  @Get('register')
+  register(@Req() req) {
+    this.authService.register(req.body);
   }
 
   @Get('logout')
@@ -33,7 +43,7 @@ export class AuthController {
   @Get('google/callback')
   @UseGuards(GoogleAuthGuard)
   async googleAuthRedirect(@Req() req, @Res() res) {
-    const token = await this.authService.validateUser(req.user);
+    const token = await this.authService.validateSocialUser(req.user);
     this.setAccessTokenCookie(res, token);
     return res.redirect('http://localhost:3000');
   }
@@ -45,7 +55,7 @@ export class AuthController {
   @Get('github/callback')
   @UseGuards(GithubAuthGuard)
   async githubAuthRedirect(@Req() req, @Res() res) {
-    const token = await this.authService.validateUser(req.user);
+    const token = await this.authService.validateSocialUser(req.user);
     this.setAccessTokenCookie(res, token);
     return res.redirect('http://localhost:3000');
   }

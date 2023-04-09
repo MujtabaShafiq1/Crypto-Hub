@@ -25,9 +25,9 @@ export class UsersRepository extends Repository<User> {
     return user;
   }
 
-  async registerUser(registerUserDto: RegisterSocialUserDto): Promise<User> {
+  async registerSocialUser(user: RegisterSocialUserDto): Promise<User> {
     try {
-      const newUser = this.usersRepository.create(registerUserDto);
+      const newUser = this.usersRepository.create(user);
       await this.usersRepository.save(newUser);
       return newUser;
     } catch {
