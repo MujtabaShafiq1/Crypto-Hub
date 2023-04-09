@@ -1,8 +1,8 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { InternalServerErrorException } from '@nestjs/common/exceptions';
 import { Repository } from 'typeorm';
+import { InternalServerErrorException } from '@nestjs/common/exceptions';
 import { RegisterSocialUserDto } from './dto/register-social-user-dto';
-import { User } from 'src/users/entities/user.entity';
+import { User } from './entities/user.entity';
 
 export class UsersRepository extends Repository<User> {
   constructor(

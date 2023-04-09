@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
+
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './config-schema';
+
 import { FriendRequestsModule } from './friend-requests/friend-requests.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { TokensModule } from './tokens/tokens.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -14,7 +18,9 @@ import { UsersModule } from './users/users.module';
     }),
     AuthModule,
     UsersModule,
+    MailModule,
     FriendRequestsModule,
+    TokensModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

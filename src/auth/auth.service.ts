@@ -1,20 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UnauthorizedException } from '@nestjs/common/exceptions';
 
+// JWT
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './jwt/jwt-payload.interface';
-import { UnauthorizedException } from '@nestjs/common/exceptions';
-import { UsersRepository } from './users.repository';
+
+// Repositories
+import { UsersRepository } from '../users/users.repository';
 
 // DTOs
-import { RegisterSocialUserDto } from './dto/register-social-user-dto';
-import { RegisterLocalUserDto } from './dto/register-local-user-dto';
+import { RegisterSocialUserDto } from 'src/users/dto/register-social-user-dto';
+import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(UsersRepository)
     private usersRepository: UsersRepository,
+
     private jwtService: JwtService,
   ) {}
 

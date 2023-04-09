@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
-import { UsersRepository } from '../users.repository';
+import { UsersRepository } from '../../users/users.repository';
 import { JwtPayload } from './jwt-payload.interface';
 import { User } from '../../users/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';

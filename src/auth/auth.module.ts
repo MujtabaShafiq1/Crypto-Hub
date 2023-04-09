@@ -9,18 +9,27 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt/jwt-strategy';
 
+// Modules
+import { MailModule } from '../mail/mail.module';
+
+// Strategies
 import { GoogleStrategy } from './google/google-strategy';
 import { GithubStrategy } from './github/github-strategy';
 
-import { UsersRepository } from './users.repository';
-import { User } from 'src/users/entities/user.entity';
-import { Credentials } from 'src/users/entities/credentials.entity';
+// Repositories
+import { UsersRepository } from '../users/users.repository';
+import { TokensRepository } from 'src/tokens/tokens.repository';
+
+// Entities
+import { User } from '../users/entities/user.entity';
+import { Token } from '../tokens/token.entity';
+import { Credentials } from '../users/entities/credentials.entity';
 
 @Module({
   imports: [
     ConfigModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    TypeOrmModule.forFeature([User, Credentials]),
+    TypeOrmModule.forFeature([User, Token, Credentials]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
