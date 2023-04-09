@@ -35,6 +35,7 @@ export class TokensRepository extends Repository<Token> {
   }
 
   async createToken(createTokenDto: CreateTokenDto): Promise<void> {
+    
     const { username, password, ...otherDetails } = createTokenDto;
 
     // Find user with the same username in User entity
@@ -55,9 +56,10 @@ export class TokensRepository extends Repository<Token> {
       token,
       ...otherDetails,
     });
-    await this.tokensRepository.save(newToken);
+    const savedToken = await this.tokensRepository.save(newToken);
 
     // Sending Confirmation email to user
-    await this.mailService.sendUserConfirmation(username, token);
+    if (savedToken)
+      await this.mailService.sendUserConfirmation(username, token);
   }
 }

@@ -11,7 +11,7 @@ export class MailService {
     await this.mailerService.sendMail({
       to: username,
       subject: 'Verify your Email on LocalHost',
-      template: './verification', // Specify the path to the email template file
+      template: './verification',
       context: {
         name: username,
         url,
