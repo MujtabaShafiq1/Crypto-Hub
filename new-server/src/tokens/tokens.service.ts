@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import { CreateTokenDto } from './dto/create-token-dto';
 import { TokensRepository } from './tokens.repository';
 
@@ -8,5 +8,9 @@ export class TokensService {
 
   async createToken(createTokenDto: CreateTokenDto): Promise<void> {
     return this.tokensRepository.createToken(createTokenDto);
+  }
+
+  async deleteToken(@Body() token: string): Promise<void> {
+    return this.tokensRepository.deleteToken(token);
   }
 }

@@ -34,8 +34,11 @@ export class TokensRepository extends Repository<Token> {
     return this.jwtService.sign(payload);
   }
 
+  async deleteToken(token: string): Promise<void> {
+    await this.tokensRepository.delete(token);
+  }
+
   async createToken(createTokenDto: CreateTokenDto): Promise<void> {
-    
     const { username, password, ...otherDetails } = createTokenDto;
 
     // Find user with the same username in User entity

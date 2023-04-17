@@ -1,18 +1,25 @@
 # dependencies
-
 **node_modules
 
+# client
 /client/.pnp
 /client/.pnp.js
-
-# testing
-/client/coverage
 
 # production
 /client/build
 
+# testing
+/client/coverage
+
+
 # misc
 .DS_Store
+
+# env
 **.env
+**.env.stage.dev
+**.env.stage.prod
+
+# config
 server/config/*
 server/logs/*

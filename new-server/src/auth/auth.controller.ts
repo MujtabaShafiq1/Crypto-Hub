@@ -1,4 +1,4 @@
-import { Controller, UseGuards, Get, Req, Res } from '@nestjs/common';
+import { Controller, UseGuards, Get, Post, Req, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { GithubAuthGuard } from './github/github-oauth.guard';
 import { GoogleAuthGuard } from './google/google-oauth.guard';
@@ -22,12 +22,12 @@ export class AuthController {
 
   @Get('login')
   login(@Req() req) {
-    this.authService.login(req.body);
+    return this.authService.login(req.body);
   }
 
-  @Get('register')
+  @Post('register')
   register(@Req() req) {
-    this.authService.register(req.body);
+    return this.authService.register(req.body);
   }
 
   @Get('logout')
