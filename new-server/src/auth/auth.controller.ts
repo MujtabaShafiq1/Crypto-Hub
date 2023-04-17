@@ -1,10 +1,27 @@
-import { Controller, UseGuards, Get, Post, Req, Res } from '@nestjs/common';
+import {
+  Controller,
+  UseGuards,
+  Body,
+  Get,
+  Post,
+  Req,
+  Res,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
+
+// Auth Guard
+import { AuthGuard } from '@nestjs/passport';
 import { GithubAuthGuard } from './github/github-oauth.guard';
 import { GoogleAuthGuard } from './google/google-oauth.guard';
+
+// Entities
 import { User } from 'src/users/entities/user.entity';
+
+// Decorators
 import { GetUser } from './get-user.decorator';
-import { AuthGuard } from '@nestjs/passport';
+
+// DTO
+import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
 
 @Controller('auth')
 export class AuthController {
@@ -25,10 +42,10 @@ export class AuthController {
     return this.authService.login(req.body);
   }
 
-  @Post('register')
-  register(@Req() req) {
-    return this.authService.register(req.body);
-  }
+  // @Post('register')
+  // register(@Body() user: RegisterLocalUserDto) {
+  //   return this.authService.register(user);
+  // }
 
   @Get('logout')
   logout(@Res() res) {

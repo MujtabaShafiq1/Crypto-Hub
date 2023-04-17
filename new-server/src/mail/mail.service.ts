@@ -18,4 +18,29 @@ export class MailService {
       },
     });
   }
+
+  async updatePassword(username: string, token: string) {
+    const url = `http://localhost:3000/reset/${token}`;
+
+    await this.mailerService.sendMail({
+      to: username,
+      subject: 'Update Password on LocalHost',
+      template: './password-reset',
+      context: {
+        name: username,
+        url,
+      },
+    });
+  }
+
+  async accountCreation(username: string) {
+    await this.mailerService.sendMail({
+      to: username,
+      subject: 'Account Creation on LocalHost',
+      template: './account-creation',
+      context: {
+        name: username,
+      },
+    });
+  }
 }

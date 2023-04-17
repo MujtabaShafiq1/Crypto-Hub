@@ -1,9 +1,19 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateTokenDto } from './dto/create-token-dto';
+
+// Exceptions
+import { ConflictException, NotFoundException } from '@nestjs/common';
+
+// Repository
 import { UsersRepository } from '../users/users.repository';
+
+// Entity
 import { Token } from './token.entity';
+
+// DTO
+import { CreateTokenDto } from './dto/create-token-dto';
+import { RegisterTokenDto } from './dto/register-token-dto';
 
 import { MailService } from 'src/mail/mail.service';
 
@@ -32,6 +42,20 @@ export class TokensRepository extends Repository<Token> {
 
   generateJwt(payload: JwtPayload) {
     return this.jwtService.sign(payload);
+  }
+
+  async findToken(token: string): Promise<Token> {
+    const foundToken = await this.tokensRepository
+      .createQueryBuilder('token')
+      .select([
+        'token.name',
+        'token.username',
+        'token.avatar',
+        'token.password',
+      ])
+      .where('token.token LIKE :token', { token: `${token}` })
+      .getOne();
+    return foundToken;
   }
 
   async deleteToken(token: string): Promise<void> {
@@ -64,5 +88,19 @@ export class TokensRepository extends Repository<Token> {
     // Sending Confirmation email to user
     if (savedToken)
       await this.mailService.sendUserConfirmation(username, token);
+  }
+
+  async registerUser(userToken: RegisterTokenDto): Promise<void> {
+    const foundUser = await this.findToken(userToken.token);
+    if (!foundUser) throw new NotFoundException('Invalid Token');
+
+    const user = await this.usersRepository.registerLocalUser({
+      ...foundUser,
+      isLocal: true,
+    });
+
+    if (user) await this.deleteToken(userToken.token);
+
+    await this.mailService.accountCreation(foundUser.name);
   }
 }

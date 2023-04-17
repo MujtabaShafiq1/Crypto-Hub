@@ -2,34 +2,35 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 
-import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from './jwt/jwt-strategy';
+// Services
+import { AuthService } from './auth.service';
+import { ConfigService } from '@nestjs/config';
 
 // Modules
-import { MailModule } from '../mail/mail.module';
+import { ConfigModule } from '@nestjs/config';
+import { MailModule } from 'src/mail/mail.module';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 
 // Strategies
 import { GoogleStrategy } from './google/google-strategy';
 import { GithubStrategy } from './github/github-strategy';
+import { JwtStrategy } from './jwt/jwt-strategy';
 
 // Repositories
 import { UsersRepository } from '../users/users.repository';
-import { TokensRepository } from 'src/tokens/tokens.repository';
 
 // Entities
 import { User } from '../users/entities/user.entity';
-import { Token } from '../tokens/token.entity';
 import { Credentials } from '../users/entities/credentials.entity';
 
 @Module({
   imports: [
+    MailModule,
     ConfigModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    TypeOrmModule.forFeature([User, Token, Credentials]),
+    TypeOrmModule.forFeature([User, Credentials]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

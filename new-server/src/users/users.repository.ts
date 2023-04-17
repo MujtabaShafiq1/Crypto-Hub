@@ -1,6 +1,5 @@
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { InternalServerErrorException } from '@nestjs/common/exceptions';
 
 // Entities
 import { User } from './entities/user.entity';
@@ -35,17 +34,16 @@ export class UsersRepository extends Repository<User> {
     // return user;
   }
 
-  async registerLocalUser(user: RegisterLocalUserDto): Promise<void> {
-    // get token and create user;
+  async registerLocalUser(user: RegisterLocalUserDto): Promise<User> {
+    const { password, ...otherDetails } = user;
+    const newUser = this.usersRepository.create(otherDetails);
+    const savedUser = await this.usersRepository.save(newUser);
+    return savedUser;
   }
 
   async registerSocialUser(user: RegisterSocialUserDto): Promise<User> {
-    try {
-      const newUser = this.usersRepository.create(user);
-      await this.usersRepository.save(newUser);
-      return newUser;
-    } catch {
-      throw new InternalServerErrorException();
-    }
+    const newUser = this.usersRepository.create(user);
+    await this.usersRepository.save(newUser);
+    return newUser;
   }
 }

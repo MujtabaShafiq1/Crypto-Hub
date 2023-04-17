@@ -9,13 +9,13 @@ export class RegisterLocalUserDto {
   @IsString()
   username: string;
 
-  @IsOptional()
-  @IsString()
-  avatar?: string;
-
   @IsNotEmpty()
   @IsString()
   password: string;
+
+  @IsOptional()
+  @IsString()
+  avatar?: string;
 
   @IsBoolean()
   isLocal: boolean;

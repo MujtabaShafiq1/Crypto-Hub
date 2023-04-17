@@ -5,15 +5,18 @@
 /client/.pnp
 /client/.pnp.js
 
+# server
+/new-server/dist
+
 # production
 /client/build
 
 # testing
 /client/coverage
 
-
 # misc
 .DS_Store
+
 
 # env
 **.env
@@ -21,5 +24,5 @@
 **.env.stage.prod
 
 # config
-server/config/*
-server/logs/*
+/new-server/config/*
+/new-server/logs/*

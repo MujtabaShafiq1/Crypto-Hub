@@ -9,6 +9,7 @@ import { JwtPayload } from './jwt/jwt-payload.interface';
 // Repositories
 import { UsersRepository } from '../users/users.repository';
 
+
 // DTOs
 import { LoginUserDto } from 'src/users/dto/login-user-dto';
 import { RegisterSocialUserDto } from 'src/users/dto/register-social-user-dto';
@@ -29,10 +30,6 @@ export class AuthService {
 
   async login(user: LoginUserDto): Promise<void> {
     return this.usersRepository.login(user);
-  }
-
-  async register(user: RegisterLocalUserDto): Promise<void> {
-    return this.usersRepository.registerLocalUser(user);
   }
 
   async validateSocialUser(user: RegisterSocialUserDto) {

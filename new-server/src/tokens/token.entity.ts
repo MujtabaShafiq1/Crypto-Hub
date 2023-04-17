@@ -11,12 +11,12 @@ export class Token {
   @Column()
   username: string;
 
-  @Column()
+  @Column({ type: 'text' })
   password: string;
 
   @Column({ nullable: true })
   avatar?: string;
 
-  @Column()
+  @Column({ type: 'text' })
   token: string;
 }
