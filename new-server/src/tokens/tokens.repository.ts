@@ -6,7 +6,6 @@ import { Repository } from 'typeorm';
 import { ConflictException, NotFoundException } from '@nestjs/common';
 
 // Repository
-import { UsersRepository } from '../users/users.repository';
 
 // Entity
 import { Token } from './token.entity';
@@ -20,6 +19,7 @@ import { MailService } from 'src/mail/mail.service';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from '../auth/jwt/jwt-payload.interface';
 import * as bcrypt from 'bcrypt';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class TokensRepository extends Repository<Token> {
@@ -27,11 +27,9 @@ export class TokensRepository extends Repository<Token> {
     @InjectRepository(Token)
     private tokensRepository: Repository<Token>,
 
-    @InjectRepository(UsersRepository)
-    private usersRepository: UsersRepository,
-
     private jwtService: JwtService,
     private mailService: MailService,
+    private usersService: UsersService,
   ) {
     super(
       tokensRepository.target,
@@ -59,21 +57,23 @@ export class TokensRepository extends Repository<Token> {
   }
 
   async deleteToken(token: string): Promise<void> {
-    await this.tokensRepository.delete(token);
+    await this.tokensRepository
+      .createQueryBuilder('token')
+      .delete()
+      .where('token.token LIKE :token', { token: `${token}` })
+      .execute();
   }
 
   async createToken(createTokenDto: CreateTokenDto): Promise<void> {
     const { username, password, ...otherDetails } = createTokenDto;
 
     // Find user with the same username in User entity
-    const user = await this.usersRepository.findUser(username);
+    const user = await this.usersService.findUser(username);
     if (user) throw new ConflictException('Username already exist');
 
-    // Hash the password and create token in Token entity
+    // Hash the password and token
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Generating token
     const token = this.generateJwt({ username });
 
     // Storing the record
@@ -94,13 +94,13 @@ export class TokensRepository extends Repository<Token> {
     const foundUser = await this.findToken(userToken.token);
     if (!foundUser) throw new NotFoundException('Invalid Token');
 
-    const user = await this.usersRepository.registerLocalUser({
+    const user = await this.usersService.registerLocalUser({
       ...foundUser,
       isLocal: true,
     });
 
     if (user) await this.deleteToken(userToken.token);
 
-    await this.mailService.accountCreation(foundUser.name);
+    await this.mailService.accountCreation(foundUser.username, foundUser.name);
   }
 }

@@ -5,7 +5,7 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-import { Credentials } from './credentials.entity';
+import { Credentials } from '../credentials/credentials.entity';
 
 @Entity()
 export class User {
@@ -15,13 +15,13 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'text' })
   avatar?: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'text' })
   background?: string;
 
   @Column()

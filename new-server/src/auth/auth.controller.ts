@@ -15,7 +15,7 @@ import { GithubAuthGuard } from './github/github-oauth.guard';
 import { GoogleAuthGuard } from './google/google-oauth.guard';
 
 // Entities
-import { User } from 'src/users/entities/user.entity';
+import { User } from '../users/user.entity';
 
 // Decorators
 import { GetUser } from './get-user.decorator';

@@ -1,19 +1,21 @@
 import { Strategy } from 'passport-jwt';
-import { JwtService } from '@nestjs/jwt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { PassportStrategy } from '@nestjs/passport';
-import { UsersRepository } from '../../users/users.repository';
+
 import { JwtPayload } from './jwt-payload.interface';
-import { User } from '../../users/entities/user.entity';
-import { InjectRepository } from '@nestjs/typeorm';
+import { PassportStrategy } from '@nestjs/passport';
+
+// Services
+import { ConfigService } from '@nestjs/config';
+import { UsersService } from 'src/users/users.service';
+
+// Entities
+import { User } from '../../users/user.entity';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(
-    @InjectRepository(UsersRepository)
-    private usersRepository: UsersRepository,
     private configService: ConfigService,
+    private usersService: UsersService,
   ) {
     const extractJwtFromCookie = (req) => {
       let token = null;
@@ -32,10 +34,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   }
 
   async validate(payload: JwtPayload): Promise<User> {
-    const { username } = payload;
-    const user = await this.usersRepository.findOne({
-      where: { username: username },
-    });
+    const user = await this.usersService.findUser(payload.username);
     if (!user) throw new UnauthorizedException('Please log in to continue');
     return user;
   }

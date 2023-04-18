@@ -33,13 +33,13 @@ export class MailService {
     });
   }
 
-  async accountCreation(username: string) {
+  async accountCreation(username: string, name: string) {
     await this.mailerService.sendMail({
       to: username,
       subject: 'Account Creation on LocalHost',
       template: './account-creation',
       context: {
-        name: username,
+        name,
       },
     });
   }

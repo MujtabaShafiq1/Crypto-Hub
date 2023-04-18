@@ -1,27 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { UnauthorizedException } from '@nestjs/common/exceptions';
 
 // JWT
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './jwt/jwt-payload.interface';
 
-// Repositories
-import { UsersRepository } from '../users/users.repository';
-
+// Services
+import { UsersService } from 'src/users/users.service';
 
 // DTOs
 import { LoginUserDto } from 'src/users/dto/login-user-dto';
 import { RegisterSocialUserDto } from 'src/users/dto/register-social-user-dto';
 import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
 
+
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(UsersRepository)
-    private usersRepository: UsersRepository,
-
     private jwtService: JwtService,
+    private usersService: UsersService,
   ) {}
 
   generateJwt(payload: JwtPayload) {
@@ -29,15 +26,15 @@ export class AuthService {
   }
 
   async login(user: LoginUserDto): Promise<void> {
-    return this.usersRepository.login(user);
+    return this.usersService.login(user);
   }
 
   async validateSocialUser(user: RegisterSocialUserDto) {
     let foundUser = null;
     if (!user) throw new UnauthorizedException();
-    foundUser = await this.usersRepository.findUser(user.username);
+    foundUser = await this.usersService.findUser(user.username);
     if (!foundUser)
-      foundUser = await this.usersRepository.registerSocialUser(user);
+      foundUser = await this.usersService.registerSocialUser(user);
     return this.generateJwt({ username: foundUser.username });
   }
 }

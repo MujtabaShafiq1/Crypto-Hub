@@ -8,27 +8,26 @@ import { AuthService } from './auth.service';
 import { ConfigService } from '@nestjs/config';
 
 // Modules
-import { ConfigModule } from '@nestjs/config';
-import { MailModule } from 'src/mail/mail.module';
 import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule } from '@nestjs/config';
+import { MailModule } from '../mail/mail.module';
 import { PassportModule } from '@nestjs/passport';
+import { UsersModule } from '../users/users.module';
 
 // Strategies
 import { GoogleStrategy } from './google/google-strategy';
 import { GithubStrategy } from './github/github-strategy';
 import { JwtStrategy } from './jwt/jwt-strategy';
 
-// Repositories
-import { UsersRepository } from '../users/users.repository';
-
 // Entities
-import { User } from '../users/entities/user.entity';
-import { Credentials } from '../users/entities/credentials.entity';
+import { User } from '../users/user.entity';
+import { Credentials } from '../credentials/credentials.entity';
 
 @Module({
   imports: [
     MailModule,
     ConfigModule,
+    UsersModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     TypeOrmModule.forFeature([User, Credentials]),
     JwtModule.registerAsync({
@@ -41,13 +40,7 @@ import { Credentials } from '../users/entities/credentials.entity';
     }),
   ],
   controllers: [AuthController],
-  providers: [
-    AuthService,
-    GoogleStrategy,
-    GithubStrategy,
-    JwtStrategy,
-    UsersRepository,
-  ],
+  providers: [AuthService, GoogleStrategy, GithubStrategy, JwtStrategy],
   exports: [JwtStrategy, PassportModule],
 })
 export class AuthModule {}
