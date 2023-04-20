@@ -34,7 +34,7 @@ const SignupForm = () => {
             const { confirmedPassword, ...otherDetails } = data;
             const user = { file, ...otherDetails };
             setDisableButton(true);
-            await axios.post(`http://localhost:8000/token`, user);
+            await axios.post(`http://localhost:8000/auth/token`, user);
             setSnackbar({ open: true, details: `Verify email at ${data.email}`, type: "success" });
             setTimeout(() => {
                 navigate("/login", { state: { email: data.email } });

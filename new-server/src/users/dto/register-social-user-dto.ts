@@ -14,5 +14,5 @@ export class RegisterSocialUserDto {
   avatar?: string;
 
   @IsBoolean()
-  isLocal: boolean;
+  isLocal?: boolean = false;
 }

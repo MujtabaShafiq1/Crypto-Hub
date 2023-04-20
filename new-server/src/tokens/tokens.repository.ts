@@ -1,25 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { NotFoundException } from '@nestjs/common/exceptions';
 import { Repository } from 'typeorm';
 
-// Exceptions
-import { ConflictException, NotFoundException } from '@nestjs/common';
-
-// Repository
+import { JwtService } from '@nestjs/jwt';
+import { JwtPayload } from '../auth/jwt/jwt-payload.interface';
+import * as bcrypt from 'bcrypt';
 
 // Entity
 import { Token } from './token.entity';
 
 // DTO
-import { CreateTokenDto } from './dto/create-token-dto';
-import { RegisterTokenDto } from './dto/register-token-dto';
-
-import { MailService } from 'src/mail/mail.service';
-
-import { JwtService } from '@nestjs/jwt';
-import { JwtPayload } from '../auth/jwt/jwt-payload.interface';
-import * as bcrypt from 'bcrypt';
-import { UsersService } from 'src/users/users.service';
+import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
+import { UserTokenDto } from 'src/users/dto/user-token.dto';
 
 @Injectable()
 export class TokensRepository extends Repository<Token> {
@@ -28,8 +21,6 @@ export class TokensRepository extends Repository<Token> {
     private tokensRepository: Repository<Token>,
 
     private jwtService: JwtService,
-    private mailService: MailService,
-    private usersService: UsersService,
   ) {
     super(
       tokensRepository.target,
@@ -42,7 +33,8 @@ export class TokensRepository extends Repository<Token> {
     return this.jwtService.sign(payload);
   }
 
-  async findToken(token: string): Promise<Token> {
+  // find token
+  async findToken(userToken: UserTokenDto): Promise<Token> {
     const foundToken = await this.tokensRepository
       .createQueryBuilder('token')
       .select([
@@ -51,25 +43,23 @@ export class TokensRepository extends Repository<Token> {
         'token.avatar',
         'token.password',
       ])
-      .where('token.token LIKE :token', { token: `${token}` })
+      .where('token.token LIKE :token', { token: `${userToken.token}` })
       .getOne();
     return foundToken;
   }
 
-  async deleteToken(token: string): Promise<void> {
+  // delete token
+  async deleteToken(userToken: UserTokenDto): Promise<void> {
     await this.tokensRepository
       .createQueryBuilder('token')
       .delete()
-      .where('token.token LIKE :token', { token: `${token}` })
+      .where('token.token LIKE :token', { token: `${userToken.token}` })
       .execute();
   }
 
-  async createToken(createTokenDto: CreateTokenDto): Promise<void> {
-    const { username, password, ...otherDetails } = createTokenDto;
-
-    // Find user with the same username in User entity
-    const user = await this.usersService.findUser(username);
-    if (user) throw new ConflictException('Username already exist');
+  // create token
+  async createToken(user: RegisterLocalUserDto): Promise<Token> {
+    const { username, password, ...otherDetails } = user;
 
     // Hash the password and token
     const salt = await bcrypt.genSalt(10);
@@ -84,23 +74,14 @@ export class TokensRepository extends Repository<Token> {
       ...otherDetails,
     });
     const savedToken = await this.tokensRepository.save(newToken);
-
-    // Sending Confirmation email to user
-    if (savedToken)
-      await this.mailService.sendUserConfirmation(username, token);
+    return savedToken;
   }
 
-  async registerUser(userToken: RegisterTokenDto): Promise<void> {
-    const foundUser = await this.findToken(userToken.token);
+  // verify token
+  async verifyToken(userToken: UserTokenDto): Promise<Token> {
+    // verify token as well here
+    const foundUser = await this.findToken(userToken);
     if (!foundUser) throw new NotFoundException('Invalid Token');
-
-    const user = await this.usersService.registerLocalUser({
-      ...foundUser,
-      isLocal: true,
-    });
-
-    if (user) await this.deleteToken(userToken.token);
-
-    await this.mailService.accountCreation(foundUser.username, foundUser.name);
+    return foundUser;
   }
 }

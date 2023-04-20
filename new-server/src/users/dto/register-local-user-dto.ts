@@ -18,5 +18,5 @@ export class RegisterLocalUserDto {
   avatar?: string;
 
   @IsBoolean()
-  isLocal: boolean;
+  isLocal?: boolean = true;
 }

@@ -13,6 +13,8 @@ import { ConfigModule } from '@nestjs/config';
 import { MailModule } from '../mail/mail.module';
 import { PassportModule } from '@nestjs/passport';
 import { UsersModule } from '../users/users.module';
+import { TokensModule } from 'src/tokens/tokens.module';
+import { CredentialsModule } from 'src/credentials/credentials.module';
 
 // Strategies
 import { GoogleStrategy } from './google/google-strategy';
@@ -28,6 +30,8 @@ import { Credentials } from '../credentials/credentials.entity';
     MailModule,
     ConfigModule,
     UsersModule,
+    TokensModule,
+    CredentialsModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     TypeOrmModule.forFeature([User, Credentials]),
     JwtModule.registerAsync({

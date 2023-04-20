@@ -21,7 +21,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       let token = null;
       if (req.cookies) {
         token = req.signedCookies['access_token'];
-        console.log(token);
       }
       return token;
     };

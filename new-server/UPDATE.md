@@ -1,4 +1,9 @@
 # Current Issues
 
 - Style issues with handlebars
-- Default value when creating account in DTO
+- Tokens clean up service
+
+# TODO 
+
+## Auth
+- Create Session

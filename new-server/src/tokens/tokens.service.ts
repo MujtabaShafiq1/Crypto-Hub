@@ -3,26 +3,26 @@ import { TokensRepository } from './tokens.repository';
 import { Token } from './token.entity';
 
 // DTO
-import { CreateTokenDto } from './dto/create-token-dto';
-import { RegisterTokenDto } from './dto/register-token-dto';
+import { UserTokenDto } from 'src/users/dto/user-token.dto';
+import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
 
 @Injectable()
 export class TokensService {
   constructor(private tokensRepository: TokensRepository) {}
 
-  async findToken(token: string): Promise<Token> {
-    return this.tokensRepository.findToken(token);
+  async findToken(userToken: UserTokenDto): Promise<Token> {
+    return this.tokensRepository.findToken(userToken);
   }
 
-  async createToken(createTokenDto: CreateTokenDto): Promise<void> {
-    return this.tokensRepository.createToken(createTokenDto);
+  async createToken(user: RegisterLocalUserDto): Promise<Token> {
+    return this.tokensRepository.createToken(user);
   }
 
-  async deleteToken(token: string): Promise<void> {
-    return this.tokensRepository.deleteToken(token);
+  async deleteToken(userToken: UserTokenDto): Promise<void> {
+    return this.tokensRepository.deleteToken(userToken);
   }
 
-  async registerUser(userToken: RegisterTokenDto): Promise<void> {
-    return this.tokensRepository.registerUser(userToken);
+  async verifyToken(user: UserTokenDto): Promise<Token> {
+    return this.tokensRepository.verifyToken(user);
   }
 }

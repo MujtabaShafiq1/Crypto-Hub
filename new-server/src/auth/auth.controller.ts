@@ -22,6 +22,7 @@ import { GetUser } from './get-user.decorator';
 
 // DTO
 import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
+import { UserTokenDto } from 'src/users/dto/user-token.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -37,15 +38,20 @@ export class AuthController {
     return user;
   }
 
-  @Get('login')
+  @Post('login')
   login(@Req() req) {
     return this.authService.login(req.body);
   }
 
-  // @Post('register')
-  // register(@Body() user: RegisterLocalUserDto) {
-  //   return this.authService.register(user);
-  // }
+  @Post('register')
+  register(@Body() userToken: UserTokenDto) {
+    return this.authService.signUp(userToken);
+  }
+
+  @Post('token')
+  token(@Body() user: RegisterLocalUserDto) {
+    return this.authService.token(user);
+  }
 
   @Get('logout')
   logout(@Res() res) {

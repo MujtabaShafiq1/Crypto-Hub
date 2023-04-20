@@ -29,7 +29,6 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       name: name.givenName + ' ' + name.familyName,
       username: emails[0].value,
       avatar: photos[0].value,
-      isLocal: false,
       accessToken,
       refreshToken,
     };

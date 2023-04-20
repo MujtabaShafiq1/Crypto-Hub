@@ -1,10 +1,6 @@
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-
-// Entities
 import { Credentials } from '../credentials/credentials.entity';
-
-// DTO
 import { CredentialsDto } from 'src/credentials/dto/credentials-dto';
 
 export class CredentialsRepository extends Repository<Credentials> {
