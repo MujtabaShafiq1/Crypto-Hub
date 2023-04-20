@@ -1,15 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { plainToClass } from 'class-transformer';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, VerifyCallback } from 'passport-github';
-import { AuthService } from '../auth.service';
+import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
 
 @Injectable()
 export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
-  constructor(
-    private authService: AuthService,
-    private configService: ConfigService,
-  ) {
+  constructor(private configService: ConfigService) {
     super({
       clientID: configService.get('GITHUB_CLIENT_ID'),
       clientSecret: configService.get('GITHUB_CLIENT_SECRET'),
@@ -29,9 +27,8 @@ export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
       name: displayName,
       username: username,
       avatar: photos[0].value,
-      accessToken,
-      refreshToken,
     };
-    done(null, user);
+    const userDetails = plainToClass(RegisterLocalUserDto, user);
+    done(null, userDetails);
   }
 }

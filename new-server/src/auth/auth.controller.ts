@@ -21,8 +21,10 @@ import { User } from '../users/user.entity';
 import { GetUser } from './get-user.decorator';
 
 // DTO
-import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
 import { UserTokenDto } from 'src/users/dto/user-token.dto';
+import { LoginUserDto } from 'src/users/dto/login-user-dto';
+import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
+import { RegisterSocialUserDto } from 'src/users/dto/register-social-user-dto';
 
 @Controller('auth')
 export class AuthController {
@@ -39,8 +41,8 @@ export class AuthController {
   }
 
   @Post('login')
-  login(@Req() req) {
-    return this.authService.login(req.body);
+  login(@Body() user: LoginUserDto) {
+    return this.authService.login(user);
   }
 
   @Post('register')
