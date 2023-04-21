@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { plainToClass } from 'class-transformer';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, VerifyCallback } from 'passport-github';
-import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
+import { RegisterSocialUserDto } from 'src/users/dto/register-social-user-dto';
 
 @Injectable()
 export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
@@ -28,7 +28,7 @@ export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
       username: username,
       avatar: photos[0].value,
     };
-    const userDetails = plainToClass(RegisterLocalUserDto, user);
+    const userDetails = plainToClass(RegisterSocialUserDto, user);
     done(null, userDetails);
   }
 }

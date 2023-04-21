@@ -24,7 +24,6 @@ import { GetUser } from './get-user.decorator';
 import { UserTokenDto } from 'src/users/dto/user-token.dto';
 import { LoginUserDto } from 'src/users/dto/login-user-dto';
 import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
-import { RegisterSocialUserDto } from 'src/users/dto/register-social-user-dto';
 
 @Controller('auth')
 export class AuthController {

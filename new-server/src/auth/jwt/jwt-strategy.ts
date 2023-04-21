@@ -18,7 +18,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     private usersService: UsersService,
   ) {
     const extractJwtFromCookie = (req) => {
-      let token = null;
+      let token: string = null;
       if (req.cookies) {
         token = req.signedCookies['access_token'];
       }
@@ -33,7 +33,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   }
 
   async validate(payload: JwtPayload): Promise<User> {
-    const user = await this.usersService.findUser(payload.username);
+    const user: User = await this.usersService.findUser(payload.username);
     if (!user) throw new UnauthorizedException('Please log in to continue');
     return user;
   }

@@ -31,7 +31,7 @@ export class UsersRepository extends Repository<User> {
 
   // find user
   async findUser(id: string): Promise<User> {
-    const user = await this.usersRepository.findOne({
+    const user: User = await this.usersRepository.findOne({
       where: { username: id },
     });
 
@@ -41,22 +41,27 @@ export class UsersRepository extends Repository<User> {
 
   // find user with credentials
   async findUserWithCredentials(id: string): Promise<User> {
-    const user = await this.usersRepository
+    const user: User = await this.usersRepository
       .createQueryBuilder('user')
-      .leftJoinAndSelect('user.credentials', 'credentials')
       .where('user.username = :id', { id })
+      .andWhere('user.isLocal = :isLocal', { isLocal: true })
+      .leftJoinAndSelect('user.credentials', 'credentials')
       .getOne();
+
     if (!user) return null;
     return user;
   }
 
   // login user
   async login(user: LoginUserDto): Promise<User> {
-    const foundUser = await this.findUserWithCredentials(user.username);
+    const foundUser: User = await this.findUserWithCredentials(user.username);
     if (!foundUser) throw new NotFoundException('User not found');
 
     const { password } = foundUser.credentials;
-    const validPassword = await bcrypt.compare(user.password, password);
+    const validPassword: boolean = await bcrypt.compare(
+      user.password,
+      password,
+    );
     if (!validPassword) throw new UnauthorizedException('Incorrect Password');
 
     return foundUser;
@@ -67,7 +72,7 @@ export class UsersRepository extends Repository<User> {
     user: RegisterLocalUserDto,
     credentials: Credentials,
   ): Promise<void> {
-    const newUser = this.usersRepository.create({
+    const newUser: User = this.usersRepository.create({
       ...user,
       credentials,
     });
@@ -76,11 +81,11 @@ export class UsersRepository extends Repository<User> {
 
   // register user
   async registerSocialUser(user: RegisterSocialUserDto): Promise<User> {
-    const foundUser = await this.findUser(user.username);
+    const foundUser: User = await this.findUser(user.username);
     if (foundUser) return foundUser;
 
-    const newUser = this.usersRepository.create(user);
-    const savedUser = await this.usersRepository.save(newUser);
+    const newUser: User = this.usersRepository.create(user);
+    const savedUser: User = await this.usersRepository.save(newUser);
     return savedUser;
   }
 }

@@ -26,7 +26,7 @@ export class TokensService {
   async verifyToken(userToken: UserTokenDto): Promise<Token> {
     try {
       this.jwtService.verify(userToken.token);
-      const foundUser = await this.tokensRepository.findToken(userToken);
+      const foundUser: Token = await this.tokensRepository.findToken(userToken);
       if (!foundUser) throw new NotFoundException('Invalid Token');
       return foundUser;
     } catch (e) {
@@ -36,8 +36,8 @@ export class TokensService {
 
   async createToken(user: RegisterLocalUserDto): Promise<Token> {
     // Hash the password and token
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(user.password, salt);
+    const salt: string = await bcrypt.genSalt(10);
+    const hashedPassword: string = await bcrypt.hash(user.password, salt);
 
     const payload: JwtPayload = { username: user.username };
 

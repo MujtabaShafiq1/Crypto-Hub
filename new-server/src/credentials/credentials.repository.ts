@@ -16,7 +16,8 @@ export class CredentialsRepository extends Repository<Credentials> {
   }
 
   async saveCredentials(credentialsDto: CredentialsDto): Promise<Credentials> {
-    const newCredentials = this.credentialsRepository.create(credentialsDto);
+    const newCredentials: Credentials =
+      this.credentialsRepository.create(credentialsDto);
     await this.credentialsRepository.save(newCredentials);
     return newCredentials;
   }

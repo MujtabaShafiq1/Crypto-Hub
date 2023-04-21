@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { configValidationSchema } from './config-schema';
+import { configValidationSchema } from './utils/config-schema';
 
+// Modules
 import { FriendRequestsModule } from './friend-requests/friend-requests.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';

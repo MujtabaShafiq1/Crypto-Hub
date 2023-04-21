@@ -24,7 +24,7 @@ export class TokensRepository extends Repository<Token> {
 
   // find token
   async findToken(userToken: UserTokenDto): Promise<Token> {
-    const foundToken = await this.tokensRepository
+    const foundToken: Token = await this.tokensRepository
       .createQueryBuilder('token')
       .select([
         'token.name',
@@ -42,8 +42,8 @@ export class TokensRepository extends Repository<Token> {
     user: RegisterLocalUserDto,
     token: UserTokenDto,
   ): Promise<Token> {
-    const newToken = this.tokensRepository.create({ ...user, ...token });
-    const savedToken = await this.tokensRepository.save(newToken);
+    const newToken: Token = this.tokensRepository.create({ ...user, ...token });
+    const savedToken: Token = await this.tokensRepository.save(newToken);
     return savedToken;
   }
 

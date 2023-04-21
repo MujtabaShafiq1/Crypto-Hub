@@ -18,6 +18,11 @@ import { RegisterSocialUserDto } from 'src/users/dto/register-social-user-dto';
 import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
 import { UserTokenDto } from 'src/users/dto/user-token.dto';
 
+// Entities
+import { User } from '../users/user.entity';
+import { Token } from '../tokens/token.entity';
+import { Credentials } from '../credentials/credentials.entity';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -34,29 +39,27 @@ export class AuthService {
 
   // creating unverified user
   async token(user: RegisterLocalUserDto): Promise<void> {
-    const foundUser = await this.usersService.findUser(user.username);
+    const foundUser: User = await this.usersService.findUser(user.username);
     if (foundUser) throw new ConflictException('Username already exist');
-    const savedToken = await this.tokensService.createToken(user);
+    const savedToken: Token = await this.tokensService.createToken(user);
     await this.mailService.sendUserConfirmation(user.username, savedToken);
   }
 
   // login in local user
   async login(user: LoginUserDto): Promise<string> {
-    const newUser = await this.usersService.login(user);
+    const newUser: User = await this.usersService.login(user);
     return this.generateJwt({ username: newUser.username });
   }
 
   // signup user
   async signUp(userToken: UserTokenDto): Promise<void> {
-    const foundUser = await this.tokensService.verifyToken(userToken);
+    const foundUser: Token = await this.tokensService.verifyToken(userToken);
 
     const { username, password } = foundUser;
     const userDetails = plainToClass(RegisterLocalUserDto, foundUser);
 
-    const savedCredentials = await this.credentialsService.saveCredentials({
-      username,
-      password,
-    });
+    const savedCredentials: Credentials =
+      await this.credentialsService.saveCredentials({ username, password });
     await this.usersService.registerLocalUser(userDetails, savedCredentials);
     await this.mailService.accountCreation(foundUser.username, foundUser.name);
     await this.tokensService.deleteToken(userToken);
@@ -64,7 +67,7 @@ export class AuthService {
 
   // signup social user
   async validateSocialUser(user: RegisterSocialUserDto): Promise<string> {
-    const newUser = await this.usersService.registerSocialUser(user);
+    const newUser: User = await this.usersService.registerSocialUser(user);
     return this.generateJwt({ username: newUser.username });
   }
 }

@@ -1,15 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { plainToClass } from 'class-transformer';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, VerifyCallback } from 'passport-google-oauth20';
-import { AuthService } from '../auth.service';
+import { RegisterSocialUserDto } from 'src/users/dto/register-social-user-dto';
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
-  constructor(
-    private authService: AuthService,
-    private configService: ConfigService,
-  ) {
+  constructor(private configService: ConfigService) {
     super({
       clientID: configService.get('GOOGLE_CLIENT_ID'),
       clientSecret: configService.get('GOOGLE_CLIENT_SECRET'),
@@ -29,9 +27,8 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       name: name.givenName + ' ' + name.familyName,
       username: emails[0].value,
       avatar: photos[0].value,
-      accessToken,
-      refreshToken,
     };
-    done(null, user);
+    const userDetails = plainToClass(RegisterSocialUserDto, user);
+    done(null, userDetails);
   }
 }
