@@ -12,9 +12,9 @@ import { join } from 'path';
       inject: [ConfigService],
       useFactory: async (config: ConfigService) => ({
         transport: {
-          host: config.get('MAIL_HOST'),
-          port: config.get('MAIL_PORT'),
-          secure: config.get('MAIL_SECURE'),
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
           auth: {
             user: config.get('MAIL_USER'),
             pass: config.get('MAIL_PASS'),

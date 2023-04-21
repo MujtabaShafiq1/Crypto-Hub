@@ -1,9 +1,6 @@
 # Current Issues
 
-- Style issues with handlebars
-- Tokens clean up service
+# TODO
 
-# TODO 
-
-## Auth
-- Create Session
+- create validation pipes for DB , mail and other services
+- create Session
