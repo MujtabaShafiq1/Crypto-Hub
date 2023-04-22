@@ -9,5 +9,6 @@ import { FriendRequestsRepository } from './friend-requests.repository';
   imports: [TypeOrmModule.forFeature([FriendRequest])],
   controllers: [FriendRequestsController],
   providers: [FriendRequestsService, FriendRequestsRepository],
+  exports: [FriendRequestsService],
 })
 export class FriendRequestsModule {}

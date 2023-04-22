@@ -2,9 +2,10 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToOne,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
+
 import { Credentials } from '../credentials/credentials.entity';
 
 @Entity()

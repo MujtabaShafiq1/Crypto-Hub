@@ -26,7 +26,8 @@ export class FriendRequestsController {
     );
   }
 
-  // @Delete("/:id")
-  // getFriendRequests()(
-  // )
+  @Delete('/:id')
+  getFriendRequests(@Param('id') id: string): Promise<void> {
+    return this.friendRequestService.deleteRequest(id);
+  }
 }

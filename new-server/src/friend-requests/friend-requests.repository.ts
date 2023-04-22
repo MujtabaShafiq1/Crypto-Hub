@@ -15,32 +15,40 @@ export class FriendRequestsRepository extends Repository<FriendRequest> {
     );
   }
 
-  async sentRequests(id: string): Promise<FriendRequest[]> {
-    const friendRequests = await this.friendRequestsRepository.find({
-      where: { senderId: id },
-    });
+  async sentRequests(username: string): Promise<FriendRequest[]> {
+    const friendRequests = await this.friendRequestsRepository
+      .createQueryBuilder('friendRequest')
+      .leftJoinAndSelect('friendRequest.receiver', 'sender')
+      .where('friendRequest.receiver.name = :username', { username })
+      .getMany();
     return friendRequests;
   }
 
-  async receivedRequests(id: string): Promise<FriendRequest[]> {
-    const friendRequests = await this.friendRequestsRepository.find({
-      where: { receiverId: id },
-    });
+  async receivedRequests(username: string): Promise<FriendRequest[]> {
+    const friendRequests = await this.friendRequestsRepository
+      .createQueryBuilder('friendRequest')
+      .where('friendRequest.receiverId = :username', { username })
+      .leftJoinAndSelect(
+        'friendRequest.sender',
+        'user',
+        'user.username = friendRequest.senderId',
+      )
+      .getMany();
     return friendRequests;
   }
 
   async createFriendRequest(
-    createFriendRequestDto: CreateFriendRequestDto,
+    createRequest: CreateFriendRequestDto,
   ): Promise<FriendRequest> {
-    const { senderId, receiverId } = createFriendRequestDto;
-    const friendRequest = this.friendRequestsRepository.create({
-      senderId,
-      receiverId,
-    });
-    await this.friendRequestsRepository.save(friendRequest);
-    return friendRequest;
+    const friendRequest = this.create(createRequest);
+    return this.save(friendRequest);
+  }
+
+  async deleteRequest(id: string): Promise<void> {
+    await this.friendRequestsRepository
+      .createQueryBuilder('friendRequest')
+      .delete()
+      .where('friendRequest.id = :id', { id: id })
+      .execute();
   }
 }
-
-// npm i typeorm@0.3.12 @nestjs/typeorm@9.0.1
-// npm i typeorm@0.2.45 @nestjs/typeorm@8.0.0

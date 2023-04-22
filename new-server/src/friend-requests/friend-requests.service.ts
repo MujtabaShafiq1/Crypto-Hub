@@ -22,4 +22,8 @@ export class FriendRequestsService {
       createFriendRequestDto,
     );
   }
+
+  async deleteRequest(id: string): Promise<void> {
+    this.friendRequestsRepository.deleteRequest(id);
+  }
 }
