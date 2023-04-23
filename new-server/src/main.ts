@@ -1,8 +1,9 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { TransformInterceptor } from './transform.interceptor';
+import { AppModule } from './app.module';
+import { logger } from './middlewares/app.log';
 import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
@@ -20,7 +21,9 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.useGlobalInterceptors(new TransformInterceptor());
 
-  await app.listen(8000);
+  const PORT = 8000;
+  await app.listen(PORT);
+  logger.info(`Server started on port ${PORT}`);
 }
 
 bootstrap();

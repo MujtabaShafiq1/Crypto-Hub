@@ -6,5 +6,6 @@
 
 # TODO
 
-- create validation pipes for DB , mail and other services
-- create Session
+- add global error handler
+- add logger for global error
+- add redis
