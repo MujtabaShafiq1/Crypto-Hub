@@ -1,18 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFriendRequestDto } from './dto/create-friend-request-dto';
-import { FriendRequest } from './friend-request.entity';
 import { FriendRequestsRepository } from './friend-requests.repository';
+
+// Entities
+import { FriendRequest } from './friend-request.entity';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class FriendRequestsService {
   constructor(private friendRequestsRepository: FriendRequestsRepository) {}
 
-  async sentRequests(id: string): Promise<FriendRequest[]> {
-    return this.friendRequestsRepository.sentRequests(id);
+  async sentRequests(user: User): Promise<FriendRequest[]> {
+    return this.friendRequestsRepository.sentRequests(user.username);
   }
 
-  async receivedRequests(id: string): Promise<FriendRequest[]> {
-    return this.friendRequestsRepository.receivedRequests(id);
+  async receivedRequests(user: User): Promise<FriendRequest[]> {
+    return this.friendRequestsRepository.receivedRequests(user.username);
   }
 
   async createFriendRequest(
@@ -23,7 +26,7 @@ export class FriendRequestsService {
     );
   }
 
-  async deleteRequest(id: string): Promise<void> {
-    this.friendRequestsRepository.deleteRequest(id);
+  async deleteRequest(user: User, id: string): Promise<void> {
+    this.friendRequestsRepository.deleteRequest(user.username, id);
   }
 }

@@ -39,7 +39,7 @@ import { Credentials } from '../credentials/credentials.entity';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get('JWT_SECRET'),
-        signOptions: { expiresIn: 3600 },
+        signOptions: { expiresIn: '3d' },
       }),
     }),
   ],

@@ -29,7 +29,7 @@ import { RegisterLocalUserDto } from 'src/users/dto/register-local-user-dto';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  private setAccessTokenCookie(res, token) {
+  private setAccessTokenCookie(res, token: string) {
     res.cookie('access_token', token, { signed: true, httpOnly: true });
   }
 
@@ -40,8 +40,10 @@ export class AuthController {
   }
 
   @Post('login')
-  login(@Body() user: LoginUserDto) {
-    return this.authService.login(user);
+  async login(@Body() user: LoginUserDto, @Res() res) {
+    const token: string = await this.authService.login(user);
+    this.setAccessTokenCookie(res, token);
+    res.redirect('http://localhost:3000/');
   }
 
   @Post('register')

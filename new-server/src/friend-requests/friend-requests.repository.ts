@@ -17,23 +17,21 @@ export class FriendRequestsRepository extends Repository<FriendRequest> {
 
   async sentRequests(username: string): Promise<FriendRequest[]> {
     const friendRequests = await this.friendRequestsRepository
-      .createQueryBuilder('friendRequest')
-      .leftJoinAndSelect('friendRequest.receiver', 'sender')
-      .where('friendRequest.receiver.name = :username', { username })
-      .getMany();
+      .createQueryBuilder('request')
+      .where('request.senderId = :username', { username })
+      .leftJoinAndSelect('User', 'user', 'user.username = request.receiverId')
+      .select(['request', 'user.name', 'user.username', 'user.avatar'])
+      .execute();
     return friendRequests;
   }
 
   async receivedRequests(username: string): Promise<FriendRequest[]> {
     const friendRequests = await this.friendRequestsRepository
-      .createQueryBuilder('friendRequest')
-      .where('friendRequest.receiverId = :username', { username })
-      .leftJoinAndSelect(
-        'friendRequest.sender',
-        'user',
-        'user.username = friendRequest.senderId',
-      )
-      .getMany();
+      .createQueryBuilder('request')
+      .where('request.senderId = :username', { username })
+      .leftJoinAndSelect('User', 'user', 'user.username = request.senderId')
+      .select(['request', 'user.name', 'user.username', 'user.avatar'])
+      .execute();
     return friendRequests;
   }
 
@@ -44,7 +42,7 @@ export class FriendRequestsRepository extends Repository<FriendRequest> {
     return this.save(friendRequest);
   }
 
-  async deleteRequest(id: string): Promise<void> {
+  async deleteRequest(username: string, id: string): Promise<void> {
     await this.friendRequestsRepository
       .createQueryBuilder('friendRequest')
       .delete()

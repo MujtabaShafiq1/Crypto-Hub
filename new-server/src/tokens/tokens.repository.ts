@@ -26,12 +26,7 @@ export class TokensRepository extends Repository<Token> {
   async findToken(userToken: UserTokenDto): Promise<Token> {
     const foundToken: Token = await this.tokensRepository
       .createQueryBuilder('token')
-      .select([
-        'token.name',
-        'token.username',
-        'token.avatar',
-        'token.password',
-      ])
+      .addSelect('token.password')
       .where('token.token LIKE :token', { token: `${userToken.token}` })
       .getOne();
     return foundToken;

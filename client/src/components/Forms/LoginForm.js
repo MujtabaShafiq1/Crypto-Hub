@@ -21,7 +21,7 @@ const LoginForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            email: location.state?.email || "",
+            username: location.state?.email || "",
             password: "",
         },
         validationSchema: loginSchema,
@@ -44,12 +44,12 @@ const LoginForm = () => {
 
     const forgotPasswordHandler = async () => {
         try {
-            if (formik.values.email.length > 0 && !Boolean(formik.errors.email)) {
-                await axios.post(`http://localhost:8000/user/reset/password`, { userId: formik.values.email });
+            if (formik.values.username.length > 0 && !Boolean(formik.errors.username)) {
+                await axios.post(`http://localhost:8000/user/reset/password`, { userId: formik.values.username });
                 setSnackbar({ open: true, details: `Password reset request sent`, type: "info" });
                 return;
             }
-            setSnackbar({ open: true, details: `Please provide email`, type: "error" });
+            setSnackbar({ open: true, details: `Please provide username`, type: "error" });
         } catch (e) {
             setSnackbar({ open: true, details: e.response?.data?.message, type: "error" });
         }
@@ -67,15 +67,15 @@ const LoginForm = () => {
                 <VerticalFlexbox sx={{ gap: 2.5 }}>
                     <StyledField
                         variant="outlined"
-                        placeholder="Enter Email"
-                        name="email"
+                        placeholder="Enter Username"
+                        name="username"
                         type="text"
                         size="small"
                         hiddenLabel
-                        value={formik.values.email}
+                        value={formik.values.username}
                         onChange={formik.handleChange}
-                        helperText={formik.touched.email && formik.errors.email}
-                        error={formik.touched.email && Boolean(formik.errors.email)}
+                        helperText={formik.touched.username && formik.errors.username}
+                        error={formik.touched.username && Boolean(formik.errors.username)}
                     />
 
                     <StyledField
