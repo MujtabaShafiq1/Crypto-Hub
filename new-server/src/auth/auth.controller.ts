@@ -43,7 +43,7 @@ export class AuthController {
   async login(@Body() user: LoginUserDto, @Res() res) {
     const token: string = await this.authService.login(user);
     this.setAccessTokenCookie(res, token);
-    res.redirect('http://localhost:3000/');
+    res.end();
   }
 
   @Post('register')

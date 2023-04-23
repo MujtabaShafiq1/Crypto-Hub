@@ -21,6 +21,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.useGlobalInterceptors(new TransformInterceptor());
 
+  // server start
   const PORT = 8000;
   await app.listen(PORT);
   logger.info(`Server started on port ${PORT}`);

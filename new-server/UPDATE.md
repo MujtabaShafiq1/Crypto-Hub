@@ -5,7 +5,4 @@
 - friend request delete
 
 # TODO
-
-- add global error handler
-- add logger for global error
 - add redis

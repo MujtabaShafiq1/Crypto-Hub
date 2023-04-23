@@ -47,8 +47,8 @@ export class AuthService {
 
   // login in local user
   async login(user: LoginUserDto): Promise<string> {
-    const newUser: User = await this.usersService.login(user);
-    return this.generateJwt({ username: newUser.username });
+    const foundUser: User = await this.usersService.login(user);
+    return this.generateJwt({ username: foundUser.username });
   }
 
   // signup user

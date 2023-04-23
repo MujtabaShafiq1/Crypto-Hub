@@ -4,6 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './utils/config-schema';
 
+// Exception Handler
+import { APP_FILTER } from '@nestjs/core';
+import { GlobalExceptionFilter } from './middlewares/global-exception.filter';
+
 // Modules
 import { FriendRequestsModule } from './friend-requests/friend-requests.module';
 import { AuthModule } from './auth/auth.module';
@@ -38,6 +42,12 @@ import { CredentialsModule } from './credentials/credentials.module';
         synchronize: true,
       }),
     }),
+  ],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: GlobalExceptionFilter,
+    },
   ],
 })
 export class AppModule {}
