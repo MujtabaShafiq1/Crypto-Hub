@@ -4,6 +4,8 @@ import {
   Column,
   JoinColumn,
   OneToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 import { Credentials } from '../credentials/credentials.entity';
@@ -33,4 +35,10 @@ export class User {
   })
   @JoinColumn()
   credentials: Credentials;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }
