@@ -8,6 +8,10 @@ import { configValidationSchema } from './utils/config-schema';
 import { APP_FILTER } from '@nestjs/core';
 import { GlobalExceptionFilter } from './middlewares/global-exception.filter';
 
+// Cache Handler
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
+
 // Modules
 import { FriendRequestsModule } from './friend-requests/friend-requests.module';
 import { AuthModule } from './auth/auth.module';
@@ -15,6 +19,7 @@ import { UsersModule } from './users/users.module';
 import { TokensModule } from './tokens/tokens.module';
 import { MailModule } from './mail/mail.module';
 import { CredentialsModule } from './credentials/credentials.module';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [
@@ -22,6 +27,7 @@ import { CredentialsModule } from './credentials/credentials.module';
       envFilePath: [`.env.stage.${process.env.STAGE}`],
       validationSchema: configValidationSchema,
     }),
+    CacheModule.register(),
     MailModule,
     AuthModule,
     UsersModule,
@@ -42,11 +48,16 @@ import { CredentialsModule } from './credentials/credentials.module';
         synchronize: true,
       }),
     }),
+    RedisModule,
   ],
   providers: [
     {
       provide: APP_FILTER,
       useClass: GlobalExceptionFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheInterceptor,
     },
   ],
 })

@@ -22,7 +22,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor());
 
   // server start
-  const PORT = 8000;
+  const PORT = configService.get('SERVER_PORT');
   await app.listen(PORT);
   logger.info(`Server started on port ${PORT}`);
 }
