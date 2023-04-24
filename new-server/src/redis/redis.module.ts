@@ -13,9 +13,9 @@ import { RedisCacheService } from './redis.service';
         const store = await redisStore({
           socket: {
             host: configService.get('REDIS_HOST'),
-            port: configService.get('REDIS_PORT'),
+            port: +configService.get('REDIS_PORT'),
           },
-          ttl: 600,
+          ttl: 10,
         });
         return {
           store: () => store,

@@ -1,19 +1,11 @@
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import * as bcrypt from 'bcrypt';
-
-// Exceptions
-import {
-  NotFoundException,
-  UnauthorizedException,
-} from '@nestjs/common/exceptions';
 
 // Entities
 import { User } from './user.entity';
 import { Credentials } from 'src/credentials/credentials.entity';
 
 // DTO
-import { LoginUserDto } from './dto/login-user-dto';
 import { RegisterLocalUserDto } from './dto/register-local-user-dto';
 import { RegisterSocialUserDto } from './dto/register-social-user-dto';
 
@@ -50,21 +42,6 @@ export class UsersRepository extends Repository<User> {
 
     if (!user) return null;
     return user;
-  }
-
-  // login user
-  async login(user: LoginUserDto): Promise<User> {
-    const foundUser: User = await this.findUserWithCredentials(user.username);
-    if (!foundUser) throw new NotFoundException('User not found');
-
-    const { password } = foundUser.credentials;
-    const validPassword: boolean = await bcrypt.compare(
-      user.password,
-      password,
-    );
-    if (!validPassword) throw new UnauthorizedException('Incorrect Password');
-
-    return foundUser;
   }
 
   // register local user

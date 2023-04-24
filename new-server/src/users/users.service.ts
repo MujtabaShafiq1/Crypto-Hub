@@ -1,6 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsersRepository } from './users.repository';
+import * as bcrypt from 'bcrypt';
+
+// Exceptions
+import {
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common/exceptions';
 
 // Entity
 import { User } from './user.entity';
@@ -23,7 +30,19 @@ export class UsersService {
   }
 
   async login(user: LoginUserDto): Promise<User> {
-    return this.usersRepository.login(user);
+    const foundUser: User = await this.usersRepository.findUserWithCredentials(
+      user.username,
+    );
+    if (!foundUser) throw new NotFoundException('User not found');
+
+    const { password } = foundUser.credentials;
+    const validPassword: boolean = await bcrypt.compare(
+      user.password,
+      password,
+    );
+    if (!validPassword) throw new UnauthorizedException('Incorrect Password');
+
+    return foundUser;
   }
 
   async registerLocalUser(

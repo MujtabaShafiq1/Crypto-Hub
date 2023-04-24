@@ -10,7 +10,7 @@ import { GlobalExceptionFilter } from './middlewares/global-exception.filter';
 
 // Cache Handler
 import { APP_INTERCEPTOR } from '@nestjs/core';
-import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 // Modules
 import { FriendRequestsModule } from './friend-requests/friend-requests.module';
@@ -27,7 +27,7 @@ import { RedisModule } from './redis/redis.module';
       envFilePath: [`.env.stage.${process.env.STAGE}`],
       validationSchema: configValidationSchema,
     }),
-    CacheModule.register(),
+    RedisModule,
     MailModule,
     AuthModule,
     UsersModule,
@@ -48,7 +48,6 @@ import { RedisModule } from './redis/redis.module';
         synchronize: true,
       }),
     }),
-    RedisModule,
   ],
   providers: [
     {

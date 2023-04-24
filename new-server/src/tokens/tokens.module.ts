@@ -21,7 +21,6 @@ import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
-    ConfigModule,
     MailModule,
     UsersModule,
     CredentialsModule,
