@@ -1,5 +1,4 @@
 import { Controller, Get, Post, Delete, Body, Param } from '@nestjs/common';
-import { CreateFriendRequestDto } from './dto/create-friend-request-dto';
 import { FriendRequestsService } from './friend-requests.service';
 
 import { AuthGuard } from '@nestjs/passport';
@@ -9,6 +8,10 @@ import { GetUser } from 'src/auth/get-user.decorator';
 // Entities
 import { FriendRequest } from './friend-request.entity';
 import { User } from 'src/users/user.entity';
+
+// DTO
+import { plainToClass } from 'class-transformer';
+import { CreateFriendRequestDto } from './dto/create-friend-request-dto';
 
 @Controller('friend-requests')
 @UseGuards(AuthGuard())
@@ -28,11 +31,13 @@ export class FriendRequestsController {
   @Post('/add')
   createFriendRequest(
     @GetUser() user: User,
-    @Body() createFriendRequestDto: CreateFriendRequestDto,
+    @Body('receiverId') receiverId: string,
   ): Promise<FriendRequest> {
-    return this.friendRequestService.createFriendRequest(
-      createFriendRequestDto,
-    );
+    const newRequest = plainToClass(CreateFriendRequestDto, {
+      senderId: user.username,
+      receiverId,
+    });
+    return this.friendRequestService.createFriendRequest(newRequest);
   }
 
   @Delete('/:id')

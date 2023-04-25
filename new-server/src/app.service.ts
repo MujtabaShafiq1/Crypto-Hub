@@ -10,8 +10,14 @@ export class AppService {
     await this.cacheManager.set('cached_item', { key: 32 });
     await this.cacheManager.del('cached_item');
     await this.cacheManager.reset();
-    const cachedItem = await this.cacheManager.get('cached_item');
-    console.log(cachedItem);
+
+    const keys = await this.cacheManager.store.keys();
+    const allData: { [key: string]: any } = {};
+    for (const key of keys) {
+      allData[key] = await this.cacheManager.get(key);
+    }
+    console.log(allData);
+
     return 'Hello World!';
   }
 }

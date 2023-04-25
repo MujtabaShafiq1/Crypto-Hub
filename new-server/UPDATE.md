@@ -1,8 +1,11 @@
 # Current Issues
 
 - user login issue 
-- friend request add (re-check)
 - friend request delete
+- auto delete tokens cron job
 
 # TODO
-- add redis
+- add clustering
+- user reset password and update password
+- add redis with multi user cache
+- add mysql to docker

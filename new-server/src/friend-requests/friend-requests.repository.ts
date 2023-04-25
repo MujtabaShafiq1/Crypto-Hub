@@ -1,4 +1,5 @@
 import { InjectRepository } from '@nestjs/typeorm';
+import { UnauthorizedException } from '@nestjs/common/exceptions';
 import { Repository } from 'typeorm';
 import { CreateFriendRequestDto } from './dto/create-friend-request-dto';
 import { FriendRequest } from './friend-request.entity';
@@ -19,19 +20,36 @@ export class FriendRequestsRepository extends Repository<FriendRequest> {
     const friendRequests = await this.friendRequestsRepository
       .createQueryBuilder('request')
       .where('request.senderId = :username', { username })
-      .leftJoinAndSelect('User', 'user', 'user.username = request.receiverId')
-      .select(['request', 'user.name', 'user.username', 'user.avatar'])
-      .execute();
+      .leftJoinAndMapOne(
+        'request.receiverId', // the property name to map the joined entity to
+        'User', // the entity to join with
+        'receiver', // the alias to use for the joined entity
+        'receiver.username = request.receiverId', // the join condition
+      )
+      .select([
+        'request',
+        'receiver.name',
+        'receiver.username',
+        'receiver.avatar',
+      ])
+      .getMany();
+
     return friendRequests;
   }
 
   async receivedRequests(username: string): Promise<FriendRequest[]> {
     const friendRequests = await this.friendRequestsRepository
       .createQueryBuilder('request')
-      .where('request.senderId = :username', { username })
-      .leftJoinAndSelect('User', 'user', 'user.username = request.senderId')
-      .select(['request', 'user.name', 'user.username', 'user.avatar'])
-      .execute();
+      .where('request.receiverId = :username', { username })
+      .leftJoinAndMapOne(
+        'request.senderId', // the property name to map the joined entity to
+        'User', // the entity to join with
+        'sender', // the alias to use for the joined entity
+        'sender.username = request.senderId', // the join condition
+      )
+      .select(['request', 'sender.name', 'sender.username', 'sender.avatar'])
+      .getMany();
+
     return friendRequests;
   }
 
@@ -43,10 +61,19 @@ export class FriendRequestsRepository extends Repository<FriendRequest> {
   }
 
   async deleteRequest(username: string, id: string): Promise<void> {
-    await this.friendRequestsRepository
-      .createQueryBuilder('friendRequest')
+    const result = await this.friendRequestsRepository
+      .createQueryBuilder('request')
       .delete()
-      .where('friendRequest.id = :id', { id: id })
+      .where('id = :id', { id })
+      .andWhere('(senderId = :username OR receiverId = :username)', {
+        username,
+      })
       .execute();
+
+    // if (result.affected === 0) {
+    //   throw new UnauthorizedException(
+    //     `${username}:  not authorized to delete this friend request.`,
+    //   );
+    // }
   }
 }

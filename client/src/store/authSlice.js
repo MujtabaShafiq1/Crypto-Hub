@@ -3,7 +3,7 @@ import { getUser } from "./authActions";
 
 const initialState = {
     user: { id: null, userId: null, name: null, photo: null },
-    status: null,
+    status: false,
     error: null,
 };
 

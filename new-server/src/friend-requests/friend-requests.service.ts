@@ -19,11 +19,9 @@ export class FriendRequestsService {
   }
 
   async createFriendRequest(
-    createFriendRequestDto: CreateFriendRequestDto,
+    createRequest: CreateFriendRequestDto,
   ): Promise<FriendRequest> {
-    return this.friendRequestsRepository.createFriendRequest(
-      createFriendRequestDto,
-    );
+    return this.friendRequestsRepository.createFriendRequest(createRequest);
   }
 
   async deleteRequest(user: User, id: string): Promise<void> {
