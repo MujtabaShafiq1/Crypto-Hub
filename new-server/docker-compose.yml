@@ -7,6 +7,18 @@ services:
     volumes:
       - redis:/data
 
+  mysql:
+    container_name: database
+    image: mysql
+    restart: always
+    command: mysqld --bind-address=0.0.0.0 --skip-networking=0 --default-authentication-plugin=caching_sha2_password
+    environment:
+        MYSQL_ROOT_PASSWORD: example
+    ports:
+      - 3306:3306
+    volumes:
+      - G:/MySQL-Data/MySQL Server 8.0/Docker-Data:/var/lib/mysql:rw
+
 volumes:
   redis:
     driver: local
