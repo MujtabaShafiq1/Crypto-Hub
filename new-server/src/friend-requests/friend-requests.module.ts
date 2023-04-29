@@ -5,9 +5,10 @@ import { FriendRequestsService } from './friend-requests.service';
 import { FriendRequestsController } from './friend-requests.controller';
 import { FriendRequestsRepository } from './friend-requests.repository';
 import { FriendRequest } from './friend-request.entity';
+import { RedisModule } from 'src/redis/redis.module';
 
 @Module({
-  imports: [AuthModule, TypeOrmModule.forFeature([FriendRequest])],
+  imports: [AuthModule, RedisModule, TypeOrmModule.forFeature([FriendRequest])],
   controllers: [FriendRequestsController],
   providers: [FriendRequestsService, FriendRequestsRepository],
   exports: [FriendRequestsService],

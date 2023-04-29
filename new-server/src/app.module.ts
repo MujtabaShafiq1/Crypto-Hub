@@ -11,8 +11,8 @@ import { APP_FILTER } from '@nestjs/core';
 import { GlobalExceptionFilter } from './middlewares/global-exception.filter';
 
 // Cache Handler
-import { APP_INTERCEPTOR } from '@nestjs/core';
-import { CacheInterceptor } from '@nestjs/cache-manager';
+// import { APP_INTERCEPTOR } from '@nestjs/core';
+// import { CacheInterceptor } from '@nestjs/cache-manager';
 
 // Modules
 import { FriendRequestsModule } from './friend-requests/friend-requests.module';
@@ -57,10 +57,6 @@ import { RedisModule } from './redis/redis.module';
     {
       provide: APP_FILTER,
       useClass: GlobalExceptionFilter,
-    },
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: CacheInterceptor,
     },
   ],
 })

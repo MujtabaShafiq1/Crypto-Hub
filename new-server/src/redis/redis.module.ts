@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-redis-store';
-import { RedisCacheService } from './redis.service';
+import { RedisService } from './redis.service';
 import { logger } from 'src/middlewares/app.log';
 
 @Module({
@@ -25,8 +25,8 @@ import { logger } from 'src/middlewares/app.log';
       },
     }),
   ],
-  providers: [RedisCacheService],
-  exports: [CacheModule],
+  providers: [RedisService],
+  exports: [RedisService],
 })
 export class RedisModule {
   constructor() {
