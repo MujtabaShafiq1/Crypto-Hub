@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Delete, Body, Param } from '@nestjs/common';
 import { FriendRequestsService } from './friend-requests.service';
+import { CacheKey } from '@nestjs/cache-manager';
 
 import { AuthGuard } from '@nestjs/passport';
 import { UseGuards } from '@nestjs/common/decorators';
@@ -20,12 +21,12 @@ export class FriendRequestsController {
 
   @Get('/sent')
   sentRequests(@GetUser() user: User): Promise<FriendRequest[]> {
-    return this.friendRequestService.sentRequests(user);
+    return this.friendRequestService.sentRequests(user.username);
   }
 
   @Get('/received')
   receivedRequests(@GetUser() user: User): Promise<FriendRequest[]> {
-    return this.friendRequestService.receivedRequests(user);
+    return this.friendRequestService.receivedRequests(user.username);
   }
 
   @Post('/add')
@@ -45,6 +46,6 @@ export class FriendRequestsController {
     @GetUser() user: User,
     @Param('id') id: string,
   ): Promise<void> {
-    return this.friendRequestService.deleteRequest(user, id);
+    return this.friendRequestService.deleteRequest(user.username, id);
   }
 }
