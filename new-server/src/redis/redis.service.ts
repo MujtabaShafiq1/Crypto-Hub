@@ -8,6 +8,7 @@ export class RedisService {
 
   async getValue(username: string, key: string) {
     const value: string = await this.cacheManager.get(username);
+    this.allKeys()
     if (!value) return null;
     const result = JSON.parse(value);
     return result[key];
@@ -23,5 +24,29 @@ export class RedisService {
 
   async delValue(username: string): Promise<void> {
     await this.cacheManager.del(username);
+  }
+
+  // remove later
+  async allKeys() {
+    const keys = await this.cacheManager.store.keys();
+    const allData: { [key: string]: any } = {};
+    for (const key of keys) {
+      allData[key] = await this.cacheManager.get(key);
+    }
+    console.log(allData);
+  }
+
+  async getCachedValue(
+    username: string,
+    key: string,
+    fetchValue: () => Promise<any>,
+  ): Promise<any> {
+    let value = await this.getValue(username, key);
+    if (!value) {
+      value = await fetchValue();
+      await this.setValue(username, key, value);
+      console.log('Setting value in the cache');
+    }
+    return value;
   }
 }

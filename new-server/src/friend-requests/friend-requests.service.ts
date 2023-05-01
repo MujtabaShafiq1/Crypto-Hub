@@ -17,42 +17,24 @@ export class FriendRequestsService {
 
   // sent request
   async sentRequests(username: string): Promise<FriendRequest[]> {
-    let friendRequests = await this.redisService.getValue(
+    return await this.redisService.getCachedValue(
       username,
-      `sent-request`,
+      'sent-request',
+      async () => {
+        return await this.friendRequestsRepository.sentRequests(username);
+      },
     );
-
-    if (!friendRequests) {
-      friendRequests = await this.friendRequestsRepository.sentRequests(
-        username,
-      );
-      await this.redisService.setValue(
-        username,
-        `sent-request`,
-        friendRequests,
-      );
-    }
-    return friendRequests;
   }
 
   // received request
   async receivedRequests(username: string): Promise<FriendRequest[]> {
-    let friendRequests = await this.redisService.getValue(
+    return await this.redisService.getCachedValue(
       username,
-      `received-request`,
+      'received-request',
+      async () => {
+        return await this.friendRequestsRepository.receivedRequests(username);
+      },
     );
-
-    if (!friendRequests) {
-      friendRequests = await this.friendRequestsRepository.receivedRequests(
-        username,
-      );
-      await this.redisService.setValue(
-        username,
-        `received-request`,
-        friendRequests,
-      );
-    }
-    return friendRequests;
   }
 
   // create new request
