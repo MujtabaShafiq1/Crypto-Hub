@@ -1,10 +1,11 @@
 import { Controller, Get, Post, Delete, Body, Param } from '@nestjs/common';
 import { FriendRequestsService } from './friend-requests.service';
-import { CacheKey } from '@nestjs/cache-manager';
 
 import { AuthGuard } from '@nestjs/passport';
 import { UseGuards } from '@nestjs/common/decorators';
-import { GetUser } from 'src/auth/get-user.decorator';
+
+// Decorators
+import { GetUser } from 'src/decorators/get-user.decorator';
 
 // Entities
 import { FriendRequest } from './friend-request.entity';

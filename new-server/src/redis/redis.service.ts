@@ -7,27 +7,21 @@ export class RedisService {
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
   async getValue(username: string, key: string) {
-    console.log(`Getting ${key} from redis store`);
-    this.allKeys();
-    return await this.cacheManager.get(key);
+    const value: string = await this.cacheManager.get(username);
+    if (!value) return null;
+    const result = JSON.parse(value);
+    return result[key];
   }
 
   async setValue(username: string, key: string, value: any): Promise<void> {
-    const data = { [key]: value };
-    console.log(`Setting ${data} in redis store`);
-    await this.cacheManager.set(username, data);
+    const existingData: string = await this.cacheManager.get(username);
+    let userData = {};
+    if (existingData) userData = JSON.parse(existingData);
+    userData[key] = value;
+    await this.cacheManager.set(username, JSON.stringify(userData));
   }
 
   async delValue(username: string): Promise<void> {
     await this.cacheManager.del(username);
-  }
-
-  async allKeys() {
-    const keys = await this.cacheManager.store.keys();
-    const allData: { [key: string]: any } = {};
-    for (const key of keys) {
-      allData[key] = await this.cacheManager.get(key);
-    }
-    console.log(allData);
   }
 }

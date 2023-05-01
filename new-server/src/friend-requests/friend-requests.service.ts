@@ -19,7 +19,7 @@ export class FriendRequestsService {
   async sentRequests(username: string): Promise<FriendRequest[]> {
     let friendRequests = await this.redisService.getValue(
       username,
-      `friend-request`,
+      `sent-request`,
     );
 
     if (!friendRequests) {
@@ -28,18 +28,31 @@ export class FriendRequestsService {
       );
       await this.redisService.setValue(
         username,
-        `friend-request`,
+        `sent-request`,
         friendRequests,
       );
     }
-
-    const newFriendRequests = Object.values(friendRequests);
-    return newFriendRequests;
+    return friendRequests;
   }
 
   // received request
   async receivedRequests(username: string): Promise<FriendRequest[]> {
-    return this.friendRequestsRepository.receivedRequests(username);
+    let friendRequests = await this.redisService.getValue(
+      username,
+      `received-request`,
+    );
+
+    if (!friendRequests) {
+      friendRequests = await this.friendRequestsRepository.receivedRequests(
+        username,
+      );
+      await this.redisService.setValue(
+        username,
+        `received-request`,
+        friendRequests,
+      );
+    }
+    return friendRequests;
   }
 
   // create new request

@@ -1,5 +1,4 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { UnauthorizedException } from '@nestjs/common/exceptions';
 import { Repository } from 'typeorm';
 import { CreateFriendRequestDto } from './dto/create-friend-request-dto';
 import { FriendRequest } from './friend-request.entity';

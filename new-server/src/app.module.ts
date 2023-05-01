@@ -10,10 +10,6 @@ import { configValidationSchema } from './utils/config-schema';
 import { APP_FILTER } from '@nestjs/core';
 import { GlobalExceptionFilter } from './middlewares/global-exception.filter';
 
-// Cache Handler
-// import { APP_INTERCEPTOR } from '@nestjs/core';
-// import { CacheInterceptor } from '@nestjs/cache-manager';
-
 // Modules
 import { FriendRequestsModule } from './friend-requests/friend-requests.module';
 import { AuthModule } from './auth/auth.module';

@@ -18,7 +18,7 @@ import { GoogleAuthGuard } from './google/google-oauth.guard';
 import { User } from '../users/user.entity';
 
 // Decorators
-import { GetUser } from './get-user.decorator';
+import { GetUser } from '../decorators/get-user.decorator';
 
 // DTO
 import { UserTokenDto } from 'src/users/dto/user-token.dto';
