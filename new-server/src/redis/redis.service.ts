@@ -8,7 +8,7 @@ export class RedisService {
 
   async getValue(username: string, key: string) {
     const value: string = await this.cacheManager.get(username);
-    this.allKeys()
+    this.allKeys();
     if (!value) return null;
     const result = JSON.parse(value);
     return result[key];
@@ -45,7 +45,6 @@ export class RedisService {
     if (!value) {
       value = await fetchValue();
       await this.setValue(username, key, value);
-      console.log('Setting value in the cache');
     }
     return value;
   }

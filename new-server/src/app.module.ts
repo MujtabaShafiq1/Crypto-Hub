@@ -3,7 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './utils/config-schema';
 
 // Exception Handler
@@ -11,6 +10,8 @@ import { APP_FILTER } from '@nestjs/core';
 import { GlobalExceptionFilter } from './middlewares/global-exception.filter';
 
 // Modules
+import { ScheduleModule } from '@nestjs/schedule';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { FriendRequestsModule } from './friend-requests/friend-requests.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
@@ -25,6 +26,7 @@ import { RedisModule } from './redis/redis.module';
       envFilePath: [`.env.stage.${process.env.STAGE}`],
       validationSchema: configValidationSchema,
     }),
+    ScheduleModule.forRoot(),
     RedisModule,
     MailModule,
     AuthModule,

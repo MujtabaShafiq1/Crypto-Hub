@@ -50,4 +50,12 @@ export class TokensRepository extends Repository<Token> {
       .where('token.token LIKE :token', { token: `${userToken.token}` })
       .execute();
   }
+
+  async deleteExpiredTokens(): Promise<void> {
+    const threeDaysAgo = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000); // calculate date 3 days ago
+    await this.createQueryBuilder()
+      .delete()
+      .where('created_at <= :date', { date: threeDaysAgo })
+      .execute();
+  }
 }
