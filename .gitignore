@@ -4,9 +4,8 @@
 # client
 /client/.pnp
 /client/.pnp.js
-
-# server
-/new-server/dist
+/client/.next/
+/client/out/
 
 # production
 /client/build
@@ -14,11 +13,17 @@
 # testing
 /client/coverage
 
+# vercel
+/client/vercel
+
+# server
+/server/dist
+
 # misc
-.DS_Store
+**DS_Store
 
 # logs
-/new-server/logs/*
+/server/logs/*
 
 # env
 **.env
@@ -27,5 +32,4 @@
 **.env.docker
 
 # config
-/new-server/config/*
-/new-server/logs/*
+/server/config/*

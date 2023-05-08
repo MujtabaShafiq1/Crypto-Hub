@@ -1,8 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit"
-import authSlice from "./authSlice"
+import { createWrapper } from "next-redux-wrapper";
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "./authSlice";
 
-const store = configureStore({
-    reducer: { auth: authSlice.reducer }
-})
+export const store = configureStore({
+  reducer: { auth: authReducer },
+});
 
-export default store;
+export const wrapper = createWrapper(makeStore);
