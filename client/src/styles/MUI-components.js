@@ -17,7 +17,6 @@ import {
   styled,
 } from "@mui/material";
 
-import background from "../assets/background.jpg";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 
 // Text
@@ -87,6 +86,18 @@ export const StyledBottomNavigationAction = styled(BottomNavigationAction)(({ th
 
 // Container
 
+export const MainContainer = styled(Grid)({
+  display: "flex",
+  direction: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundImage: `url(/assets/background.jpg)`,
+  backgroundSize: "cover",
+  backgroundPosition: "0% 65%",
+  height: "100vh",
+  width: "100vw",
+});
+
 export const Flexbox = styled(Box)({
   display: "flex",
   justifyContent: "center",
@@ -106,18 +117,6 @@ export const LayoutContainer = styled(Box)(({ theme }) => ({
     display: "flex",
   },
 }));
-
-export const MainContainer = styled(Grid)({
-  display: "flex",
-  direction: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundImage: `url(${background})`,
-  backgroundSize: "cover",
-  backgroundPosition: "0% 65%",
-  height: "100vh",
-  width: "100vw",
-});
 
 export const CollapseContainer = styled(Collapse)(({ theme }) => ({
   top: 0,

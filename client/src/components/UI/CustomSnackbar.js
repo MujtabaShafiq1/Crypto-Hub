@@ -16,7 +16,7 @@ const CustomSnackbar = ({snackbar, reset}) => {
             onClose={reset}
             anchorOrigin={{ vertical: "top", horizontal: "center" }}>
             <Alert severity={snackbar.type}>
-                {snackbar.details}
+                {snackbar.details || "Server is down , please try again later"}
             </Alert>
         </Snackbar>
     );

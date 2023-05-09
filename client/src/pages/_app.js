@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Provider } from "react-redux";
 import { ThemeContextProvider } from "../context/ThemeProvider";
 import { wrapper, store } from "../store/index";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -16,4 +17,5 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default wrapper.withRedux(MyApp);
+// export default wrapper.withRedux(MyApp);
+export default MyApp;

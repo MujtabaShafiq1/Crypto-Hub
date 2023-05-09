@@ -22,8 +22,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     logger.error(error.message, error);
 
     response.status(status).json({
-      message: 'Something went wrong',
-      error: error.message,
+      message: error.message || 'Something went wrong',
     });
   }
 }

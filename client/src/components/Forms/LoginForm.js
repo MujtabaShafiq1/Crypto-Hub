@@ -5,12 +5,12 @@ import { useFormik } from "formik";
 import axios from "axios";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, InputAdornment, CircularProgress } from "@mui/material";
-import { VerticalFlexbox, SubText, StyledButton, StyledField } from "../UI";
-import CustomSnackbar from "../UI/Snackbar/CustomSnackbar";
+import { Box, InputAdornment } from "@mui/material";
+import { VerticalFlexbox, SubText, StyledButton, StyledField } from "../../styles/MUI-components";
+import CustomSnackbar from "../UI/CustomSnackbar";
 
 import { loginSchema } from "../../utils/validationSchema";
-import { authActions } from "../../store/authSlice";
+import { getUser } from "../../store/authActions";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -21,42 +21,43 @@ const LoginForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      username: location.state?.email || "",
+      username: router.query?.username || "",
       password: "",
     },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, { setSubmitting }) => {
+      setSubmitting(true);
       loginHandler(values);
+      setSubmitting(false);
     },
   });
 
   const loginHandler = async (data) => {
     try {
-      setDisableButton(true);
       const response = await axios.post(`http://localhost:8000/auth/login`, data, {
         withCredentials: true,
       });
-      dispatch(authActions.login(response.data));
-      router.push('/')
+      dispatch(getUser(response.data));
+      router.push("/");
     } catch (e) {
-      setDisableButton(false);
-      setSnackbar({ open: true, details: e.response.data.message, type: "error" });
+      setSnackbar({ open: true, details: e?.response?.data?.message, type: "error" });
     }
   };
 
   const forgotPasswordHandler = async () => {
-    try {
-      if (formik.values.username.length > 0 && !Boolean(formik.errors.username)) {
-        await axios.post(`http://localhost:8000/user/reset/password`, {
-          userId: formik.values.username,
-        });
-        setSnackbar({ open: true, details: `Password reset request sent`, type: "info" });
-        return;
-      }
-      setSnackbar({ open: true, details: `Please provide username`, type: "error" });
-    } catch (e) {
-      setSnackbar({ open: true, details: e.response?.data?.message, type: "error" });
-    }
+    console.log("reset password");
+    // try {
+    //   if (formik.values.username.length > 0 && !Boolean(formik.errors.username)) {
+    //     await axios.post(`http://localhost:8000/user/reset/password`, {
+    //       userId: formik.values.username,
+    //     });
+    //     setSnackbar({ open: true, details: `Password reset request sent`, type: "info" });
+    //     return;
+    //   }
+    //   setSnackbar({ open: true, details: `Please provide username`, type: "error" });
+    // } catch (e) {
+    //   setSnackbar({ open: true, details: e.response?.data?.message, type: "error" });
+    // }
   };
 
   const resetSnackbar = () => {
@@ -106,12 +107,11 @@ const LoginForm = () => {
             }}
           />
 
-          <StyledButton type="submit" disabled={disableButton} error={+(snackbar.type === "error")}>
-            {disableButton ? (
-              <CircularProgress size="3.5vh" sx={{ color: "white" }} />
-            ) : (
-              <SubText sx={{ color: "white" }}>Login</SubText>
-            )}
+          <StyledButton
+            disabled={formik.isSubmitting}
+            type="submit"
+            error={+(snackbar.type === "error")}>
+            <SubText sx={{ color: "white" }}>Login</SubText>
           </StyledButton>
         </VerticalFlexbox>
       </form>
