@@ -16,24 +16,27 @@ const authSlice = createSlice({
   reducers: {
     logout: () => initialState,
   },
-  extraReducers: {
-    [HYDRATE]: (state, action) => {
-      return {
-        ...state,
-        ...action.payload,
-      };
-    },
-    [getUser.pending]: (state, action) => {
-      state = initialState;
-    },
-    [getUser.rejected]: (state, action) => {
-      state = initialState;
-    },
-    [getUser.fulfilled]: (state, action) => {
-      state.user = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(HYDRATE, (state, action) => {
+        return {
+          ...state,
+          ...action.payload,
+        };
+      })
+      .addCase(getUser.pending, (state, action) => {
+        state.user = initialState;
+      })
+      .addCase(getUser.rejected, (state, action) => {
+        state.user = initialState;
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+      });
   },
 });
+
+export const selectUserState = (state) => state.auth.user;
 
 export const authActions = authSlice.actions;
 export default authSlice;
