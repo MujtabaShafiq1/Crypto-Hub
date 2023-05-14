@@ -25,7 +25,7 @@ const authSlice = createSlice({
         };
       })
       .addCase(getUser.pending, (state, action) => {
-        state.user = initialState;
+        state = initialState;
       })
       .addCase(getUser.rejected, (state, action) => {
         state.user = initialState;

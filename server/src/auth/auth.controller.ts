@@ -59,7 +59,8 @@ export class AuthController {
   @Get('logout')
   logout(@Res() res) {
     res.clearCookie('access_token');
-    return res.redirect('http://localhost:3000/login');
+    return res.send({});
+    // return res.redirect('http://localhost:3000/login');
   }
 
   @Get('google')

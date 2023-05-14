@@ -37,8 +37,9 @@ const LoginForm = () => {
       const response = await axios.post(`http://localhost:8000/auth/login`, data, {
         withCredentials: true,
       });
-      dispatch(getUser(response.data));
-      router.push("/");
+      dispatch(getUser(response.data)).then(() => {
+        router.push("/", null, { shallow: true });
+      });
     } catch (e) {
       setSnackbar({ open: true, details: e?.response?.data?.message, type: "error" });
     }

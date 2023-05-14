@@ -1,10 +1,12 @@
 import Head from "next/head";
 import axios from "axios";
+import ProtectedPage from "../components/HOC/ProtectedPage";
 
 const HomePage = () => {
 
   const logoutHandler = async () => {
-    await axios.get("http://localhost:8000/auth/logout", { withCredentials: true });
+    console.log("logging out")
+    // await axios.get("http://localhost:8000/auth/logout", { withCredentials: true });
   };
 
   return (
@@ -19,4 +21,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default ProtectedPage(HomePage);
