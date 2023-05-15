@@ -1,12 +1,15 @@
 import Head from "next/head";
-import axios from "axios";
 import ProtectedPage from "../components/HOC/ProtectedPage";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 const HomePage = () => {
+  const router = useRouter();
 
-  const logoutHandler = async () => {
-    console.log("logging out")
-    // await axios.get("http://localhost:8000/auth/logout", { withCredentials: true });
+  const logoutHandler = () => {
+    axios.get("http://localhost:8000/auth/logout", { withCredentials: true }).then(() => {
+      router.push("/login");
+    });
   };
 
   return (
