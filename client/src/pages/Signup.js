@@ -6,10 +6,9 @@ import {
   VerticalFlexbox,
   MainContainer,
   FormContainer,
-  HeaderText,
-  BodyText,
-  SubText,
-} from "../styles/MUI-components";
+  ResponsiveText,
+  BoldText,
+} from "../styles/global-components";
 import SignupForm from "../components/Forms/SignupForm";
 
 const Signup = () => {
@@ -23,23 +22,24 @@ const Signup = () => {
         <FormContainer>
           <VerticalFlexbox sx={{ gap: { xs: 1, md: 3 } }}>
             <VerticalFlexbox sx={{ padding: "5px", gap: 1 }}>
-              <HeaderText sx={{ color: "black" }}>Sign Up</HeaderText>
-              <BodyText
-                sx={{ fontWeight: 500, color: "gray", display: { xs: "none", md: "block" } }}>
+              <ResponsiveText variant="header" color="static.primary">
+                Sign Up
+              </ResponsiveText>
+              <BoldText variant="mainBody" hide="true">
                 Create an account to continue
-              </BodyText>
+              </BoldText>
             </VerticalFlexbox>
 
             <SignupForm />
 
             <Flexbox sx={{ gap: 1, mb: "5%" }}>
-              <SubText sx={{ color: "white", display: { xs: "none", md: "block" } }}>
+              <ResponsiveText color="static.secondary" hide="true">
                 Already a user?
-              </SubText>
+              </ResponsiveText>
               <Link href="/login" style={{ textDecoration: "none" }}>
-                <SubText sx={{ color: "white", cursor: "pointer", fontWeight: 500 }}>
+                <BoldText color="static.secondary" sx={{ cursor: "pointer" }}>
                   Login now !
-                </SubText>
+                </BoldText>
               </Link>
             </Flexbox>
           </VerticalFlexbox>

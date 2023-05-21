@@ -19,46 +19,56 @@ import {
 
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 
+const baseFontSizes = {
+  header: {
+    default: "2rem",
+    small: "1.5rem",
+  },
+  mainBody: {
+    default: "1.125rem",
+    small: "1rem",
+  },
+  body: {
+    default: "1rem",
+    small: "0.875rem",
+  },
+  helper: {
+    default: "0.875rem",
+    small: "0.75rem",
+  },
+};
+
 // Text
 
-export const LongTypography = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.primary,
+export const ResponsiveText = styled(Typography)(({ variant = "body", hide, color, theme }) => ({
+  fontSize: baseFontSizes[variant].default,
+  [theme.breakpoints.down("sm")]: {
+    fontSize: baseFontSizes[variant].small || baseFontSizes[variant].default,
+    display: hide && "none",
+  },
+  color: !color && theme.palette.text.primary,
+}));
+
+export const LongTypography = styled(ResponsiveText)({
   overflow: "hidden",
   whiteSpace: "nowrap",
   textOverflow: "ellipsis",
-}));
+});
 
-export const ListHeader = styled(Typography)(({ theme }) => ({
+export const CenterText = styled(ResponsiveText)({
+  textAlign: "center",
+});
+
+export const BoldText = styled(ResponsiveText)({
+  fontWeight: 500,
+});
+
+export const CenterTextBold = styled(BoldText)({
+  textAlign: "center",
+});
+
+export const ListHeader = styled(ResponsiveText)(({ theme }) => ({
   padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
-  color: theme.palette.text.primary,
-  fontWeight: 500,
-  fontSize: theme.typography.body.fontSize,
-}));
-
-export const HeaderText = styled(Typography)(({ theme }) => ({
-  fontWeight: 500,
-  color: theme.palette.text.primary,
-  fontSize: theme.typography.header.fontSize,
-}));
-
-export const BodyText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  fontSize: theme.typography.body.fontSize,
-}));
-
-export const SubText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  fontSize: theme.typography.subBody.fontSize,
-}));
-
-export const HelperText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  fontSize: theme.typography.helper.fontSize,
-}));
-
-export const InfoText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  fontSize: theme.typography.helper.fontSize,
 }));
 
 // Navigation
@@ -68,14 +78,14 @@ export const StyledBottomNavigation = styled(BottomNavigation)(({ theme }) => ({
   bottom: 0,
   width: "100%",
   position: "fixed",
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.main.primary,
   [theme.breakpoints.up("sm")]: {
     display: "none",
   },
 }));
 
 export const StyledBottomNavigationAction = styled(BottomNavigationAction)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.main.primary,
   color: theme.palette.text.primary,
   width: "10%",
   "&.Mui-selected": {
@@ -86,11 +96,15 @@ export const StyledBottomNavigationAction = styled(BottomNavigationAction)(({ th
 
 // Container
 
-export const MainContainer = styled(Grid)({
+const BaseFlexbox = {
   display: "flex",
-  direction: "column",
-  alignItems: "center",
   justifyContent: "center",
+  alignItems: "center",
+};
+
+export const MainContainer = styled(Grid)({
+  ...BaseFlexbox,
+  flexDirection: "column",
   backgroundImage: `url(/assets/background.jpg)`,
   backgroundSize: "cover",
   backgroundPosition: "0% 65%",
@@ -98,21 +112,14 @@ export const MainContainer = styled(Grid)({
   width: "100vw",
 });
 
-export const Flexbox = styled(Box)({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-});
+export const Flexbox = styled(Box)(BaseFlexbox);
 
-export const VerticalFlexbox = styled(Box)({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+export const VerticalFlexbox = styled(Flexbox)({
   flexDirection: "column",
 });
 
 export const LayoutContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.main.primary,
   [theme.breakpoints.up("sm")]: {
     display: "flex",
   },
@@ -128,7 +135,7 @@ export const CollapseContainer = styled(Collapse)(({ theme }) => ({
     width: "20vw",
     borderRadius: "0px 10px 10px 0px",
     borderRight: "1px solid rgba(191, 191, 191, 0.5)",
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.main.primary,
     [theme.breakpoints.down("lg")]: {
       width: "30vw",
     },
@@ -145,7 +152,7 @@ export const DiscoverTagsContainer = styled(Box)(({ hide, theme }) => ({
   overflow: "hidden",
   display: hide && "none",
   borderRadius: "5px",
-  backgroundColor: theme.palette.primary.secondary,
+  backgroundColor: theme.palette.main.secondary,
   [theme.breakpoints.down("md")]: {
     display: "none",
   },
@@ -161,35 +168,18 @@ export const TagsContainer = styled(Box)(({ theme }) => ({
   overflow: "auto",
   height: "100%",
   "& Button": {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.main.primary,
     color: theme.palette.text.primary,
     borderRadius: "50px",
     opacity: 0.8,
   },
 }));
 
-export const FormContainer = styled(Container)(({ theme }) => ({
-  width: "27%",
-  minHeight: "55%",
-  borderRadius: "10px",
-  boxShadow: "10px 0px 10px 5px rgb( 180, 180, 180, 0.4)",
-  [theme.breakpoints.down("lg")]: {
-    width: "35%",
-  },
-  [theme.breakpoints.down("md")]: {
-    width: "50%",
-  },
-  [theme.breakpoints.down("sm")]: {
-    width: "70%",
-  },
-  backdropFilter: "blur(50px)",
-}));
-
 export const ListContainer = styled(Box)(({ hide, theme }) => ({
   margin: theme.spacing(1),
   padding: theme.spacing(1),
   borderRadius: "5px",
-  backgroundColor: theme.palette.primary.secondary,
+  backgroundColor: theme.palette.main.secondary,
   height: "100%",
 }));
 
@@ -203,7 +193,7 @@ export const ModalContainer = styled(Box)(({ theme }) => ({
   transform: "translate(-50%, -50%)",
   width: 180,
   height: 220,
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.main.primary,
   boxShadow: 24,
   border: "none",
   borderRadius: "20px",
@@ -219,20 +209,20 @@ export const ModalContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const PageContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.main.primary,
   height: "100vh",
   overflow: "auto",
   flex: 5,
 }));
 
 export const UserDetails = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "flex-end",
+  justifyContent: "space-between",
   position: "absolute",
   padding: `${theme.spacing(0)} ${theme.spacing(3)}`,
   top: "55%",
   width: "95%",
-  display: "flex",
-  alignItems: "flex-end",
-  justifyContent: "space-between",
 }));
 
 export const BackgroundContainer = styled(Box)(({ theme }) => ({
@@ -241,7 +231,7 @@ export const BackgroundContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "450px",
   borderRadius: "3px",
-  backgroundColor: theme.palette.primary.secondary,
+  backgroundColor: theme.palette.main.secondary,
   [theme.breakpoints.down("sm")]: {
     width: "100%",
     height: "350px",
@@ -254,7 +244,7 @@ export const FriendsContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "450px",
   borderRadius: "3px",
-  backgroundColor: theme.palette.primary.secondary,
+  backgroundColor: theme.palette.main.secondary,
   [theme.breakpoints.down("sm")]: {
     width: "100%",
     height: "350px",
@@ -268,7 +258,7 @@ export const LeftbarContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   height: "100vh",
   position: "sticky",
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.main.primary,
   [theme.breakpoints.down("lg")]: {
     width: "200px",
   },
@@ -287,7 +277,7 @@ export const RightbarContainer = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   height: "100vh",
   position: "sticky",
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.main.primary,
   [theme.breakpoints.down("md")]: {
     display: "none",
   },
@@ -324,11 +314,7 @@ export const StoryContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const StoryAvatarContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
+export const StoryAvatarContainer = styled(VerticalFlexbox)(({ theme }) => ({
   gap: theme.spacing(0.5),
   padding: theme.spacing(0.5),
   cursor: "pointer",
@@ -339,10 +325,7 @@ export const StoryAvatarContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const StoryDetails = styled(Box)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+export const StoryDetails = styled(Flexbox)(({ theme }) => ({
   gap: theme.spacing(1),
   position: "absolute",
   top: "75%",
@@ -367,11 +350,11 @@ export const ViewStoryContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const ViewStoryDetails = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
   position: "absolute",
   top: "3%",
   left: "2%",
-  display: "flex",
-  alignItems: "center",
   color: "white",
   fontWeight: 500,
   gap: theme.spacing(1),
@@ -433,7 +416,6 @@ export const ProfileButton = styled(Button)(({ value, theme }) => ({
   color: value === "confirm" ? "white" : "black",
   borderRadius: "25px",
   padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
-  fontSize: theme.typography.body.fontSize,
   ":hover": {
     backgroundColor: value === "confirm" ? "lightblue" : "lightgray",
     cursor: "pointer",
@@ -442,13 +424,11 @@ export const ProfileButton = styled(Button)(({ value, theme }) => ({
   },
 }));
 
-export const StyledButton = styled(Button)(({ error }) => ({
+export const StyledButton = styled(Button)(({ error, theme }) => ({
+  ...BaseFlexbox,
   backgroundColor: "black",
-  opacity: "0.7",
+  opacity: 0.7,
   color: "white",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
   width: "60%",
   padding: "8px",
   borderRadius: "5px",
@@ -459,7 +439,7 @@ export const StyledButton = styled(Button)(({ error }) => ({
     opacity: 1,
   },
   ":disabled": {
-    color: "white",
+    cursor: "disable",
   },
   animation: error && "shake 500ms ease-in-out",
   "@keyframes shake": {
@@ -564,7 +544,7 @@ export const StyledList = styled(List)(({ theme }) => ({
 
 export const StyledNavList = styled(List)(({ theme }) => ({
   borderRadius: "5px",
-  backgroundColor: theme.palette.primary.secondary,
+  backgroundColor: theme.palette.main.secondary,
   "&& .Mui-selected": {
     fontWeight: 700,
     borderLeft: "3px solid purple",
@@ -605,9 +585,7 @@ export const StyledNavList = styled(List)(({ theme }) => ({
 // Modal
 
 export const StyledModal = styled(Modal)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+  ...BaseFlexbox,
   backgroundColor: "rgba(0,0,0,0.5)",
   height: "100%",
   width: "100%",
@@ -630,7 +608,7 @@ export const CustomSnackbar = ({ snackbar, reset }) => {
       }}
       onClose={reset}
       anchorOrigin={{ vertical: "top", horizontal: "center" }}>
-      <Alert severity={snackbar.type}>{snackbar.details}</Alert>
+      <Alert severity={snackbar.type}>{snackbar.details || "Server is down , please try again later"}</Alert>
     </Snackbar>
   );
 };

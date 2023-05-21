@@ -5,8 +5,13 @@ import axios from "axios";
 
 import { Visibility, VisibilityOff, CancelOutlined } from "@mui/icons-material";
 import { Box, InputAdornment, Avatar } from "@mui/material";
-import { VerticalFlexbox, StyledButton, StyledField, SubText } from "../../styles/MUI-components";
-import CustomSnackbar from "../UI/CustomSnackbar";
+import {
+  VerticalFlexbox,
+  StyledButton,
+  StyledField,
+  ResponsiveText,
+  CustomSnackbar,
+} from "../../styles/global-components";
 
 import { signupSchema } from "../../utils/validationSchema";
 
@@ -19,10 +24,10 @@ const SignupForm = () => {
 
   const formik = useFormik({
     initialValues: {
-        name: "",
-        username: "",
-        password: "",
-        confirmedPassword: "",
+      name: "",
+      username: "",
+      password: "",
+      confirmedPassword: "",
     },
     validationSchema: signupSchema,
     onSubmit: (values, { setSubmitting }) => {
@@ -187,7 +192,7 @@ const SignupForm = () => {
             type="submit"
             disabled={formik.isSubmitting}
             error={+(snackbar.type === "error")}>
-            <SubText sx={{ color: "white" }}>Sign up</SubText>
+            <ResponsiveText color="static.secondary">Sign up</ResponsiveText>
           </StyledButton>
         </VerticalFlexbox>
       </form>

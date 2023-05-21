@@ -6,8 +6,13 @@ import axios from "axios";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Box, InputAdornment } from "@mui/material";
-import { VerticalFlexbox, SubText, StyledButton, StyledField } from "../../styles/MUI-components";
-import CustomSnackbar from "../UI/CustomSnackbar";
+import {
+  VerticalFlexbox,
+  ResponsiveText,
+  StyledButton,
+  StyledField,
+  CustomSnackbar,
+} from "../../styles/global-components";
 
 import { loginSchema } from "../../utils/validationSchema";
 import { getUser } from "../../store/authActions";
@@ -112,16 +117,18 @@ const LoginForm = () => {
             disabled={formik.isSubmitting}
             type="submit"
             error={+(snackbar.type === "error")}>
-            <SubText sx={{ color: "white" }}>Login</SubText>
+            <ResponsiveText color="static.secondary">Login</ResponsiveText>
           </StyledButton>
         </VerticalFlexbox>
       </form>
 
-      <SubText
-        sx={{ textAlign: "center", color: "gray", fontWeight: 600, cursor: "pointer" }}
+      <ResponsiveText
+        variant="body"
+        color="static.other"
+        sx={{ textAlign: "center", cursor: "pointer" }}
         onClick={forgotPasswordHandler}>
         Forgot Password?
-      </SubText>
+      </ResponsiveText>
     </>
   );
 };
