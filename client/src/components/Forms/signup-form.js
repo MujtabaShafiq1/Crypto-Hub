@@ -3,15 +3,11 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import axios from "axios";
 
-import { Visibility, VisibilityOff, CancelOutlined } from "@mui/icons-material";
-import { Box, InputAdornment, Avatar } from "@mui/material";
-import {
-  VerticalFlexbox,
-  StyledButton,
-  StyledField,
-  ResponsiveText,
-  CustomSnackbar,
-} from "../../styles/global-components";
+// MUI Components
+import * as Styled from "./form-components";
+import * as MStyled from "../../styles/global-components";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { InputAdornment } from "@mui/material";
 
 import { signupSchema } from "../../utils/validationSchema";
 
@@ -62,10 +58,7 @@ const SignupForm = () => {
     data.append("file", file);
     data.append("upload_preset", "social-media");
     data.append("cloud_name", "dkai1pma6");
-    const response = await axios.post(
-      `https://api.cloudinary.com/v1_1/dkai1pma6/image/upload`,
-      data
-    );
+    const response = await axios.post(`https://api.cloudinary.com/v1_1/dkai1pma6/image/upload`, data);
     return response.data.url.toString();
   };
 
@@ -75,11 +68,11 @@ const SignupForm = () => {
 
   return (
     <>
-      {snackbar.open && <CustomSnackbar snackbar={snackbar} reset={resetSnackbar} />}
+      {snackbar.open && <MStyled.CustomSnackbar snackbar={snackbar} reset={resetSnackbar} />}
 
-      <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "80%" }}>
-        <VerticalFlexbox sx={{ gap: 2 }}>
-          <StyledField
+      <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "90%" }}>
+        <MStyled.VerticalFlexbox sx={{ gap: 2 }}>
+          <Styled.InputField
             variant="outlined"
             placeholder="Enter Name"
             name="name"
@@ -92,7 +85,7 @@ const SignupForm = () => {
             error={formik.touched.name && Boolean(formik.errors.name)}
           />
 
-          <StyledField
+          <Styled.InputField
             variant="outlined"
             placeholder="Enter Email"
             name="username"
@@ -105,7 +98,7 @@ const SignupForm = () => {
             error={formik.touched.username && Boolean(formik.errors.username)}
           />
 
-          <StyledField
+          <Styled.InputField
             variant="outlined"
             placeholder="Enter Password"
             id="password"
@@ -120,17 +113,15 @@ const SignupForm = () => {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Box
-                    sx={{ height: 25, width: 25, cursor: "pointer" }}
-                    onClick={() => setShowPassword((prev) => !prev)}>
+                  <Styled.ImageBox onClick={() => setShowPassword((prev) => !prev)}>
                     {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </Box>
+                  </Styled.ImageBox>
                 </InputAdornment>
               ),
             }}
           />
 
-          <StyledField
+          <Styled.InputField
             variant="outlined"
             placeholder="Confirm Password"
             name="confirmedPassword"
@@ -144,57 +135,30 @@ const SignupForm = () => {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Box
-                    sx={{ height: 25, width: 25, cursor: "pointer" }}
-                    onClick={() => setShowPassword((prev) => !prev)}>
+                  <Styled.ImageBox onClick={() => setShowPassword((prev) => !prev)}>
                     {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </Box>
+                  </Styled.ImageBox>
                 </InputAdornment>
               ),
             }}
           />
 
-          <StyledButton
-            variant="contained"
-            component="label"
-            sx={{ width: "100%", bgcolor: "gray", flexDirection: "column" }}>
-            <SubText sx={{ color: "white" }}>Upload Image</SubText>
-            <input
-              type="file"
-              accept="image/*"
-              hidden
-              onChange={(e) => setFile(e.target.files[0])}
-            />
-          </StyledButton>
+          <Styled.StyledButton variant="contained" component="label">
+            <MStyled.ResponsiveText color="static.secondary">Upload Image</MStyled.ResponsiveText>
+            <input type="file" accept="image/*" hidden onChange={(e) => setFile(e.target.files[0])} />
+          </Styled.StyledButton>
 
           {file && (
-            <Box display="flex" justifyContent="center">
-              <Avatar
-                src={URL.createObjectURL(file)}
-                sx={{ width: { xs: 50, md: 150 }, height: { xs: 50, md: 150 } }}
-              />
-              <CancelOutlined
-                onClick={() => setFile(null)}
-                sx={{
-                  color: "red",
-                  position: "absolute",
-                  left: "60%",
-                  padding: "2px",
-                  borderRadius: "50px",
-                  opacity: 0.4,
-                  cursor: "pointer",
-                }}
-              />
-            </Box>
+            <MStyled.Flexbox>
+              <Styled.ImagePreview src={URL.createObjectURL(file)} />
+              <Styled.CancelIcon onClick={() => setFile(null)} />
+            </MStyled.Flexbox>
           )}
 
-          <StyledButton
-            type="submit"
-            disabled={formik.isSubmitting}
-            error={+(snackbar.type === "error")}>
-            <ResponsiveText color="static.secondary">Sign up</ResponsiveText>
-          </StyledButton>
-        </VerticalFlexbox>
+          <Styled.StyledButton type="submit" disabled={formik.isSubmitting} error={+(snackbar.type === "error")}>
+            <MStyled.ResponsiveText color="static.secondary">Sign up</MStyled.ResponsiveText>
+          </Styled.StyledButton>
+        </MStyled.VerticalFlexbox>
       </form>
     </>
   );

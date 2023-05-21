@@ -1,15 +1,12 @@
 import Link from "next/link";
 import Head from "next/head";
 
-import {
-  Flexbox,
-  VerticalFlexbox,
-  MainContainer,
-  FormContainer,
-  ResponsiveText,
-  BoldText,
-} from "../styles/global-components";
-import SignupForm from "../components/Forms/SignupForm";
+// MUI Components
+import * as MStyled from "../styles/global-components";
+import * as Styled from "../styles/pages-components/signup-components";
+
+// Components
+import SignupForm from "../components/Forms/signup-form";
 
 const Signup = () => {
   return (
@@ -18,33 +15,31 @@ const Signup = () => {
         <title>Login</title>
         <meta name="description" content="Crypto Hub Signup" />
       </Head>
-      <MainContainer container>
-        <FormContainer>
-          <VerticalFlexbox sx={{ gap: { xs: 1, md: 3 } }}>
-            <VerticalFlexbox sx={{ padding: "5px", gap: 1 }}>
-              <ResponsiveText variant="header" color="static.primary">
+      <MStyled.MainContainer container>
+        <Styled.SignUpFormContainer>
+          <MStyled.VerticalFlexbox sx={{ gap: { xs: 1.5, lg: 3 } }}>
+            <MStyled.VerticalFlexbox sx={{ padding: "5px", gap: 1 }}>
+              <MStyled.CenterTextBold variant="header" color="static.primary">
                 Sign Up
-              </ResponsiveText>
-              <BoldText variant="mainBody" hide="true">
+              </MStyled.CenterTextBold>
+              <MStyled.CenterTextBold variant="mainBody" color="static.other">
                 Create an account to continue
-              </BoldText>
-            </VerticalFlexbox>
+              </MStyled.CenterTextBold>
+            </MStyled.VerticalFlexbox>
 
             <SignupForm />
 
-            <Flexbox sx={{ gap: 1, mb: "5%" }}>
-              <ResponsiveText color="static.secondary" hide="true">
-                Already a user?
-              </ResponsiveText>
+            <Styled.LoginTextContainer>
+              <MStyled.ResponsiveText color="static.secondary" hide="true">Already a user?</MStyled.ResponsiveText>
               <Link href="/login" style={{ textDecoration: "none" }}>
-                <BoldText color="static.secondary" sx={{ cursor: "pointer" }}>
+                <MStyled.BoldText color="static.other" sx={{ cursor: "pointer" }}>
                   Login now !
-                </BoldText>
+                </MStyled.BoldText>
               </Link>
-            </Flexbox>
-          </VerticalFlexbox>
-        </FormContainer>
-      </MainContainer>
+            </Styled.LoginTextContainer>
+          </MStyled.VerticalFlexbox>
+        </Styled.SignUpFormContainer>
+      </MStyled.MainContainer>
     </>
   );
 };

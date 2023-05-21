@@ -1,8 +1,7 @@
-import { Box, Container, Divider, Button, styled } from "@mui/material";
-import { Flexbox, ResponsiveText, VerticalFlexbox } from "../global-components";
+import { Box, Container, Divider, styled } from "@mui/material";
+import { Flexbox, VerticalFlexbox } from "../global-components";
 
 export const ImageBox = styled(Box)(({ theme }) => ({
-  cursor: "pointer",
   width: "37px",
   [theme.breakpoints.down("md")]: {
     width: "30px",
@@ -37,6 +36,7 @@ export const ImagesContainer = styled(Flexbox)(({ theme }) => ({
     alignItems: "center",
     flexDirection: "column",
     gap: `${theme.spacing(1.2)} ${theme.spacing(0)}`,
+    cursor: "pointer",
   },
 }));
 

@@ -6,7 +6,7 @@ import * as MStyled from "../styles/global-components";
 import * as Styled from "../styles/pages-components/login-components";
 
 // Components
-import LoginForm from "../components/Forms/LoginForm";
+import LoginForm from "../components/Forms/login-form";
 
 const LoginPage = () => {
   const github = () => {
@@ -60,20 +60,20 @@ const LoginPage = () => {
           </MStyled.VerticalFlexbox>
 
           <Styled.ImagesContainer>
-            <div>
-              <Styled.ImageBox component="img" src="/assets/SocialIcons/github.png" onClick={github} />
+            <div onClick={github}>
+              <Styled.ImageBox component="img" src="/assets/SocialIcons/github.png" />
               <MStyled.ResponsiveText color="static.secondary" hide="true">
                 Github
               </MStyled.ResponsiveText>
             </div>
-            <div>
-              <Styled.ImageBox component="img" src="/assets/SocialIcons/google.png" onClick={google} />
+            <div onClick={google}>
+              <Styled.ImageBox component="img" src="/assets/SocialIcons/google.png" />
               <MStyled.ResponsiveText color="static.secondary" hide="true">
                 Google
               </MStyled.ResponsiveText>
             </div>
-            <div>
-              <Styled.ImageBox component="img" src="/assets/SocialIcons/steam.png" onClick={steam} />
+            <div onClick={steam}>
+              <Styled.ImageBox component="img" src="/assets/SocialIcons/steam.png" />
               <MStyled.ResponsiveText color="static.secondary" hide="true">
                 Steam
               </MStyled.ResponsiveText>

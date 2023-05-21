@@ -4,15 +4,11 @@ import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import axios from "axios";
 
+// MUI Components
+import * as Styled from "./form-components";
+import * as MStyled from "../../styles/global-components";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, InputAdornment } from "@mui/material";
-import {
-  VerticalFlexbox,
-  ResponsiveText,
-  StyledButton,
-  StyledField,
-  CustomSnackbar,
-} from "../../styles/global-components";
+import { InputAdornment } from "@mui/material";
 
 import { loginSchema } from "../../utils/validationSchema";
 import { getUser } from "../../store/authActions";
@@ -52,18 +48,6 @@ const LoginForm = () => {
 
   const forgotPasswordHandler = async () => {
     console.log("reset password");
-    // try {
-    //   if (formik.values.username.length > 0 && !Boolean(formik.errors.username)) {
-    //     await axios.post(`http://localhost:8000/user/reset/password`, {
-    //       userId: formik.values.username,
-    //     });
-    //     setSnackbar({ open: true, details: `Password reset request sent`, type: "info" });
-    //     return;
-    //   }
-    //   setSnackbar({ open: true, details: `Please provide username`, type: "error" });
-    // } catch (e) {
-    //   setSnackbar({ open: true, details: e.response?.data?.message, type: "error" });
-    // }
   };
 
   const resetSnackbar = () => {
@@ -72,11 +56,11 @@ const LoginForm = () => {
 
   return (
     <>
-      {snackbar.open && <CustomSnackbar snackbar={snackbar} reset={resetSnackbar} />}
+      {snackbar.open && <MStyled.CustomSnackbar snackbar={snackbar} reset={resetSnackbar} />}
 
       <form onSubmit={formik.handleSubmit} autoComplete="off" style={{ width: "90%" }}>
-        <VerticalFlexbox sx={{ gap: 2.5 }}>
-          <StyledField
+        <MStyled.VerticalFlexbox sx={{ gap: 2 }}>
+          <Styled.InputField
             variant="outlined"
             placeholder="Enter Username"
             name="username"
@@ -89,7 +73,7 @@ const LoginForm = () => {
             error={formik.touched.username && Boolean(formik.errors.username)}
           />
 
-          <StyledField
+          <Styled.InputField
             variant="outlined"
             placeholder="Enter Password"
             name="password"
@@ -103,32 +87,27 @@ const LoginForm = () => {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Box
-                    sx={{ height: 25, width: 25, cursor: "pointer" }}
-                    onClick={() => setShowPassword((prev) => !prev)}>
+                  <Styled.ImageBox onClick={() => setShowPassword((prev) => !prev)}>
                     {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </Box>
+                  </Styled.ImageBox>
                 </InputAdornment>
               ),
             }}
           />
 
-          <StyledButton
-            disabled={formik.isSubmitting}
-            type="submit"
-            error={+(snackbar.type === "error")}>
-            <ResponsiveText color="static.secondary">Login</ResponsiveText>
-          </StyledButton>
-        </VerticalFlexbox>
+          <Styled.StyledButton disabled={formik.isSubmitting} type="submit">
+            <MStyled.ResponsiveText color="static.secondary">Login</MStyled.ResponsiveText>
+          </Styled.StyledButton>
+        </MStyled.VerticalFlexbox>
       </form>
 
-      <ResponsiveText
+      <MStyled.CenterText
         variant="body"
         color="static.other"
-        sx={{ textAlign: "center", cursor: "pointer" }}
+        sx={{ cursor: "pointer" }}
         onClick={forgotPasswordHandler}>
         Forgot Password?
-      </ResponsiveText>
+      </MStyled.CenterText>
     </>
   );
 };

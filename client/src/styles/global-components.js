@@ -1,6 +1,5 @@
 import {
   Box,
-  Container,
   Typography,
   Alert,
   Snackbar,
@@ -424,43 +423,6 @@ export const ProfileButton = styled(Button)(({ value, theme }) => ({
   },
 }));
 
-export const StyledButton = styled(Button)(({ error, theme }) => ({
-  ...BaseFlexbox,
-  backgroundColor: "black",
-  opacity: 0.7,
-  color: "white",
-  width: "60%",
-  padding: "8px",
-  borderRadius: "5px",
-  gap: 10,
-  ":hover": {
-    backgroundColor: "black",
-    cursor: "pointer",
-    opacity: 1,
-  },
-  ":disabled": {
-    cursor: "disable",
-  },
-  animation: error && "shake 500ms ease-in-out",
-  "@keyframes shake": {
-    "0%": {
-      transform: "translateX(0)",
-    },
-    "25%": {
-      transform: "translateX(-15px)",
-    },
-    "50%": {
-      transform: "translateX(15px)",
-    },
-    "75%": {
-      transform: "translateX(-15px)",
-    },
-    "100%": {
-      transform: "translateX(0)",
-    },
-  },
-}));
-
 // Icons
 
 export const StoryLeftIcon = styled(ExpandCircleDownIcon)(({ theme }) => ({
@@ -489,42 +451,6 @@ export const StoryRightIcon = styled(ExpandCircleDownIcon)(({ theme }) => ({
   },
 }));
 
-// Fields
-
-export const StyledField = styled(TextField)(({ error, theme }) => ({
-  width: "100%",
-  input: { color: theme.palette.text.primary },
-  "& .MuiOutlinedInput-notchedOutline": {
-    border: "0.5px solid black",
-    background: "rgb(180, 180, 180, 0.2)",
-    animation: error && "shake 500ms ease-in-out",
-    "@keyframes shake": {
-      "0%": {
-        transform: "translateX(0)",
-      },
-      "25%": {
-        transform: "translateX(-5px)",
-      },
-      "50%": {
-        transform: "translateX(5px)",
-      },
-      "75%": {
-        transform: "translateX(-5px)",
-      },
-      "100%": {
-        transform: "translateX(0)",
-      },
-    },
-  },
-  "& .Mui-focused": {
-    "& .MuiOutlinedInput-notchedOutline": {
-      border: error && "0.5px solid #red",
-    },
-  },
-  "& .MuiSvgIcon-root": {
-    color: theme.palette.text.primary,
-  },
-}));
 
 // List
 
