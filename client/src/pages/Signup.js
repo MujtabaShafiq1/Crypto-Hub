@@ -1,12 +1,10 @@
 import Link from "next/link";
 import Head from "next/head";
 
-// MUI Components
-import * as MStyled from "../styles/global-components";
-import * as Styled from "../styles/pages-components/signup-components";
-
 // Components
 import SignupForm from "../components/Forms/signup-form";
+import * as MStyled from "../styles/global-components";
+import * as Styled from "../styles/pages-components/signup-components";
 
 const Signup = () => {
   return (
@@ -15,7 +13,7 @@ const Signup = () => {
         <title>Login</title>
         <meta name="description" content="Crypto Hub Signup" />
       </Head>
-      <MStyled.MainContainer container>
+      <MStyled.ImageContainer container>
         <Styled.SignUpFormContainer>
           <MStyled.VerticalFlexbox sx={{ gap: { xs: 1.5, lg: 3 } }}>
             <MStyled.VerticalFlexbox sx={{ padding: "5px", gap: 1 }}>
@@ -30,7 +28,9 @@ const Signup = () => {
             <SignupForm />
 
             <Styled.LoginTextContainer>
-              <MStyled.ResponsiveText color="static.secondary" hide="true">Already a user?</MStyled.ResponsiveText>
+              <MStyled.ResponsiveText color="static.secondary" hide="true">
+                Already a user?
+              </MStyled.ResponsiveText>
               <Link href="/login" style={{ textDecoration: "none" }}>
                 <MStyled.BoldText color="static.other" sx={{ cursor: "pointer" }}>
                   Login now !
@@ -39,7 +39,7 @@ const Signup = () => {
             </Styled.LoginTextContainer>
           </MStyled.VerticalFlexbox>
         </Styled.SignUpFormContainer>
-      </MStyled.MainContainer>
+      </MStyled.ImageContainer>
     </>
   );
 };

@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { ThemeContextProvider } from "../context/ThemeProvider";
+import { ThemeContextProvider } from "../context/theme-provider";
 import { wrapper } from "../store/index";
-import { getUser } from "../store/authActions";
+import { getUser } from "../store/auth-actions";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {

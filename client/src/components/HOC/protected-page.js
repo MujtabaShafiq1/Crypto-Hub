@@ -1,4 +1,4 @@
-import { selectUserState } from "../../store/authSlice";
+import { selectUserState } from "../../store/auth-slice";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";

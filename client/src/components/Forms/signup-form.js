@@ -3,13 +3,13 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import axios from "axios";
 
-// MUI Components
+// Components
 import * as Styled from "./form-components";
 import * as MStyled from "../../styles/global-components";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { InputAdornment } from "@mui/material";
 
-import { signupSchema } from "../../utils/validationSchema";
+import { signupSchema } from "../../utils/validation-schema";
 
 const SignupForm = () => {
   const router = useRouter();

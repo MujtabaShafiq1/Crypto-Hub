@@ -1,12 +1,10 @@
 import Link from "next/link";
 import Head from "next/head";
 
-// MUI Components
-import * as MStyled from "../styles/global-components";
-import * as Styled from "../styles/pages-components/login-components";
-
 // Components
 import LoginForm from "../components/Forms/login-form";
+import * as MStyled from "../styles/global-components";
+import * as Styled from "../styles/pages-components/login-components";
 
 const LoginPage = () => {
   const github = () => {
@@ -27,7 +25,7 @@ const LoginPage = () => {
         <title>Login</title>
         <meta name="description" content="Crypto Hub Login" />
       </Head>
-      <MStyled.MainContainer container>
+      <MStyled.ImageContainer container>
         <Styled.LoginFormContainer>
           <MStyled.VerticalFlexbox sx={{ gap: { xs: 1.5, lg: 3 } }}>
             <MStyled.VerticalFlexbox sx={{ padding: "5px", gap: 1 }}>
@@ -80,7 +78,7 @@ const LoginPage = () => {
             </div>
           </Styled.ImagesContainer>
         </Styled.LoginFormContainer>
-      </MStyled.MainContainer>
+      </MStyled.ImageContainer>
     </>
   );
 };

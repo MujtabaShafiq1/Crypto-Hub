@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import axios from "axios";
 
-// MUI Components
+// Components
 import * as Styled from "./form-components";
 import * as MStyled from "../../styles/global-components";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { InputAdornment } from "@mui/material";
 
-import { loginSchema } from "../../utils/validationSchema";
-import { getUser } from "../../store/authActions";
+import { loginSchema } from "../../utils/validation-schema";
+import { getUser } from "../../store/auth-actions";
 
 const LoginForm = () => {
   const router = useRouter();

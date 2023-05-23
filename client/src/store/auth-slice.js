@@ -1,6 +1,6 @@
 import { HYDRATE } from "next-redux-wrapper";
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser } from "./authActions";
+import { getUser } from "./auth-actions";
 
 const initialState = {
   user: {

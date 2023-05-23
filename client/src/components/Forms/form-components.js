@@ -1,6 +1,5 @@
 import { Avatar, Box, Button, TextField, styled } from "@mui/material";
 import { CancelOutlined } from "@mui/icons-material";
-import { Flexbox } from "../../styles/global-components";
 
 export const ImagePreview = styled(Avatar)(({ theme }) => ({
   width: "150px",
