@@ -8,8 +8,6 @@ export const DrawerContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const Container = styled(Box)(({ theme }) => ({
-  top: 0,
-  left: 0,
   position: "sticky",
   width: "250px",
   height: "100vh",
@@ -17,6 +15,10 @@ export const Container = styled(Box)(({ theme }) => ({
   zIndex: 2,
   backgroundColor: theme.palette.main.primary,
   transition: "0.5s all ease-in-out",
+  [theme.breakpoints.up("lg")]: {
+    top: 0,
+    left: 0,
+  },
   [theme.breakpoints.down("lg")]: {
     width: "210px",
   },
@@ -24,6 +26,7 @@ export const Container = styled(Box)(({ theme }) => ({
     width: "60px",
   },
   [theme.breakpoints.down("sm")]: {
+    bottom: 0,
     height: "50px",
     width: "100%",
   },

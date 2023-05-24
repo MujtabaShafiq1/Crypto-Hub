@@ -87,7 +87,9 @@ export const VerticalFlexbox = styled(Flexbox)({
 export const MainContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.main.primary,
   height: "300vh",
-  flex: 5,
+  [theme.breakpoints.up("sm")]: {
+    flex: 5,
+  },
 }));
 
 export const ImageContainer = styled(Grid)({
@@ -101,14 +103,17 @@ export const ImageContainer = styled(Grid)({
 });
 
 export const Drawer = styled(Box)(({ open, duration, theme }) => ({
-  top: 0,
-  left: 0,
   position: "absolute",
   height: "100%",
   backgroundColor: "orange",
   overflow: "hidden",
   width: open ? "25vw" : "0vw",
+  zIndex: 2,
   transition: `width ${duration}ms ease-in-out`,
+  [theme.breakpoints.up("lg")]: {
+   top: 0,
+   left: 0,
+  },
   [theme.breakpoints.down("lg")]: {
     width: open ? "30vw" : "0vw",
   },
@@ -117,6 +122,8 @@ export const Drawer = styled(Box)(({ open, duration, theme }) => ({
   },
   [theme.breakpoints.down("sm")]: {
     height: "100vh",
+    bottom: 0,
+    right: 0,
     width: open ? "100vw" : "0vw",
   },
 }));
