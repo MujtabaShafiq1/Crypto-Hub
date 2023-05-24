@@ -9,7 +9,7 @@ const Notifications = ({ open, close }) => {
   }, [open]);
 
   return (
-    <MStyled.Drawer open={open} duration={open ? 1200 : 500} onClick={close}>
+    <MStyled.Drawer open={open} duration={open ? 1000 : 500} onClick={close}>
       <h1>Notifications</h1>
     </MStyled.Drawer>
   );

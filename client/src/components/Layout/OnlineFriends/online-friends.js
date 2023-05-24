@@ -13,6 +13,7 @@ const OnlineFriends = () => {
 
   return (
     <Styled.FriendsList>
+      <Styled.ListHeader variant="subHeader">Online Friends</Styled.ListHeader>
       {data.map((user) => {
         return (
           <Styled.ListButton key={Math.random()}>

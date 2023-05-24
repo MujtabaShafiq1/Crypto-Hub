@@ -1,5 +1,32 @@
 import { Box, List, ListItemButton, ListItemIcon, styled } from "@mui/material";
-import { LongText } from "../../../styles/global-components";
+import { Flexbox, LongText, Logo } from "../../../styles/global-components";
+
+// LOGO
+
+export const NavLogo = styled(Logo)(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    display: "none",
+  },
+}));
+
+export const LogoContainer = styled(Flexbox)(({ theme }) => ({
+  width: "90%",
+  margin: "auto",
+  justifyContent: "space-evenly",
+  padding: `${theme.spacing(1.3)} ${theme.spacing(0)}`,
+  [theme.breakpoints.down("sm")]: {
+    display: "none",
+  },
+}));
+
+export const LogoText = styled(LongText)(({ hide, theme }) => ({
+  fontWeight: "500",
+  fontSize: "1.75rem",
+  display: hide && "none",
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
+}));
 
 export const DrawerContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
@@ -84,8 +111,9 @@ export const ListText = styled(LongText)(({ hide, theme }) => ({
   },
 }));
 
-export const ListButton = styled(ListItemButton)(({ hide, collapse, theme }) => ({
-  padding: "0.65rem 0rem",
+export const ListButton = styled(ListItemButton)(({ collapse, theme }) => ({
+  padding: "1rem 0rem",
+  margin: "0.85rem 0rem",
   justifyContent: collapse && "center",
   "&:hover": {
     opacity: 1,
@@ -98,7 +126,6 @@ export const ListButton = styled(ListItemButton)(({ hide, collapse, theme }) => 
     padding: "0.3rem 0rem",
     alignItems: "center",
     justifyContent: "center",
-    display: hide ? "none" : "flex",
   },
 }));
 
