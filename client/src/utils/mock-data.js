@@ -138,6 +138,47 @@ export const friendsStatusData = [
     status: false,
     photo: "https://images.pexels.com/photos/1087735/pexels-photo-1087735.jpeg?auto=compress&cs=tinysrgb&w=1600",
   },
+  {
+    id: Math.random(),
+    name: "Mujtaba",
+    status: true,
+    photo: "https://images.pexels.com/photos/2528318/pexels-photo-2528318.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    id: Math.random(),
+    name: "Ali",
+    status: false,
+    photo: "https://images.pexels.com/photos/2528408/pexels-photo-2528408.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    id: Math.random(),
+    name: "Nasir",
+    status: true,
+    photo: "https://images.pexels.com/photos/2528252/pexels-photo-2528252.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Zawat",
+    status: true,
+    photo: "https://images.pexels.com/photos/2541879/pexels-photo-2541879.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    id: Math.random(),
+    name: "Mujtaba",
+    status: true,
+    photo: "https://images.pexels.com/photos/2524369/pexels-photo-2524369.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    id: Math.random(),
+    name: "Ali",
+    status: false,
+    photo: "https://images.pexels.com/photos/2524371/pexels-photo-2524371.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    id: Math.random(),
+    name: "Nasir",
+    status: true,
+    photo: "https://images.pexels.com/photos/2524366/pexels-photo-2524366.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
 ];
 
 //mock data for recent friends activity

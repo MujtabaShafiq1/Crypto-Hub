@@ -5,4 +5,20 @@ export const LayoutContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
     display: "flex",
   },
+  [theme.breakpoints.down("sm")]: {
+    // reverse
+  },
+}));
+
+export const FriendsContainer = styled(Box)(({ theme }) => ({
+  top: 0,
+  zIndex: 0,
+  position: "sticky",
+  height: "100vh",
+  width: "300px",
+  backgroundColor: theme.palette.main.secondary,
+  transition: "0.5s all ease-in-out",
+  [theme.breakpoints.down("lg")]: {
+    width: "75px",
+  },
 }));

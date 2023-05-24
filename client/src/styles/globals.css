@@ -5,8 +5,7 @@
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -24,5 +23,5 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: gray;
+  background: rgba(105, 105, 105, 0.75);
 }

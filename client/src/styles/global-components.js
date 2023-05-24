@@ -86,9 +86,8 @@ export const VerticalFlexbox = styled(Flexbox)({
 
 export const MainContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.main.primary,
-  width: "100%",
-  height: "100vh",
-  overflow: "auto",
+  height: "300vh",
+  flex: 5,
 }));
 
 export const ImageContainer = styled(Grid)({
@@ -101,6 +100,27 @@ export const ImageContainer = styled(Grid)({
   width: "100vw",
 });
 
+export const Drawer = styled(Box)(({ open, duration, theme }) => ({
+  top: 0,
+  left: 0,
+  position: "absolute",
+  height: "100%",
+  backgroundColor: "orange",
+  overflow: "hidden",
+  width: open ? "25vw" : "0vw",
+  transition: `width ${duration}ms ease-in-out`,
+  [theme.breakpoints.down("lg")]: {
+    width: open ? "30vw" : "0vw",
+  },
+  [theme.breakpoints.down("md")]: {
+    width: open ? "45vw" : "0vw",
+  },
+  [theme.breakpoints.down("sm")]: {
+    height: "100vh",
+    width: open ? "100vw" : "0vw",
+  },
+}));
+
 // LOGO
 
 export const Logo = styled(AcUnit)(({ theme }) => ({
@@ -108,13 +128,19 @@ export const Logo = styled(AcUnit)(({ theme }) => ({
   width: 40,
   cursor: "pointer",
   fill: theme.palette.text.primary,
+  [theme.breakpoints.down("sm")]: {
+    display: "none",
+  },
 }));
 
 export const LogoContainer = styled(Flexbox)(({ theme }) => ({
   width: "90%",
   margin: "auto",
   justifyContent: "space-evenly",
-  padding: `${theme.spacing(1.5)} ${theme.spacing(0)}`,
+  padding: `${theme.spacing(1.3)} ${theme.spacing(0)}`,
+  [theme.breakpoints.down("sm")]: {
+    display: "none",
+  },
 }));
 
 export const LogoText = styled(LongText)(({ hide, theme }) => ({

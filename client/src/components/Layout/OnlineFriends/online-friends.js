@@ -9,27 +9,27 @@ import * as MStyled from "../../../styles/global-components";
 const OnlineFriends = () => {
   const router = useRouter();
 
+  console.log("loading");
+
   return (
-    <Styled.Container>
-      <Styled.NavList component="nav">
-        {data.map((user) => {
-          return (
-            <Styled.ListButton key={user.id}>
-              <Styled.ListIcon>
-                <MStyled.StatusBadge
-                  overlap="circular"
-                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                  variant="dot"
-                  show={+user.status}>
-                  <Styled.UserAvatar src={user?.photo} />
-                </MStyled.StatusBadge>
-              </Styled.ListIcon>
-              <Styled.ListText>{user.name}</Styled.ListText>
-            </Styled.ListButton>
-          );
-        })}
-      </Styled.NavList>
-    </Styled.Container>
+    <Styled.FriendsList>
+      {data.map((user) => {
+        return (
+          <Styled.ListButton key={Math.random()}>
+            <Styled.ListIcon>
+              <MStyled.StatusBadge
+                overlap="circular"
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                variant="dot"
+                show={+user.status}>
+                <MStyled.UserAvatar src={user?.photo} />
+              </MStyled.StatusBadge>
+            </Styled.ListIcon>
+            <Styled.ListText variant="mainBody">{user.name}</Styled.ListText>
+          </Styled.ListButton>
+        );
+      })}
+    </Styled.FriendsList>
   );
 };
 

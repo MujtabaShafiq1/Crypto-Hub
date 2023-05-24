@@ -1,37 +1,12 @@
-import { Box, List, ListItemButton, ListItemIcon, styled } from "@mui/material";
+import { List, ListItemButton, ListItemIcon, styled } from "@mui/material";
 import { LongText } from "../../../styles/global-components";
 
-export const ListText = styled(LongText)(({ hide, theme }) => ({
-  fontSize: "1.1rem",
-  display: hide && "none",
-  [theme.breakpoints.down("md")]: {
-    display: "none",
-  },
-}));
-
-export const Container = styled(Box)(({ theme }) => ({
-  top: 0,
-  zIndex: 0,
-  position: "sticky",
-  height: "100vh",
-  width: "300px",
-  backgroundColor: theme.palette.main.primary,
-  transition: "0.5s all ease-in-out",
-  [theme.breakpoints.down("lg")]: {
-    width: "250px",
-  },
-  [theme.breakpoints.down("md")]: {
-    width: "60px",
-  },
-  [theme.breakpoints.down("sm")]: {
-    display: "none",
-  },
-}));
-
-export const NavList = styled(List)(({ theme }) => ({
+export const FriendsList = styled(List)(({ theme }) => ({
+  overflow: "auto",
   borderRadius: "5px",
   margin: "auto",
-  height: "93%",
+  height: "100%",
+  width: "100%",
 }));
 
 export const ListButton = styled(ListItemButton)(({ hide, theme }) => ({
@@ -41,10 +16,15 @@ export const ListButton = styled(ListItemButton)(({ hide, theme }) => ({
   "&:hover": {
     opacity: 1,
     cursor: "pointer",
-    borderRight: "2px solid purple",
   },
 }));
 
 export const ListIcon = styled(ListItemIcon)(({ theme }) => ({
   justifyContent: "center",
+}));
+
+export const ListText = styled(LongText)(({ theme }) => ({
+  [theme.breakpoints.down("lg")]: {
+    display: "none",
+  },
 }));
