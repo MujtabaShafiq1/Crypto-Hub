@@ -13,6 +13,7 @@ import FriendRequests from "../../Drawers/FriendRequests/friend-requests";
 import NavigationModal from "./Modal/navigation-modal";
 
 import * as Styled from "./navigation-components";
+import * as MStyled from "../../../styles/global-components";
 
 import {
   MoreVert,
@@ -23,7 +24,7 @@ import {
   NotificationsRounded,
   PersonAddAlt1Rounded,
 } from "@mui/icons-material";
-import { Box, useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 const Navigation = () => {
   const [selectedVal, setSelectedVal] = useState("home");
@@ -31,18 +32,18 @@ const Navigation = () => {
   const router = useRouter();
   const user = useSelector(selectUserState);
 
-  const moreOptionsRender = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const smRender = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
-  const drawerItems = ["search", "notifications", "requests"];
   const actionItems = ["more"];
+  const drawerItems = ["search", "notifications", "requests"];
 
   const navListItems = [
-    { id: "home", text: "Home", icon: <HomeRounded /> },
-    { id: "crypto", text: "Crypto", icon: <CurrencyBitcoin /> },
+    { id: "home", text: "Home", icon: <HomeRounded />, hide: true },
+    { id: "crypto", text: "Crypto", icon: <CurrencyBitcoin />, hide: true },
     { id: drawerItems[0], text: "Search", icon: <SearchRounded /> },
     { id: drawerItems[1], text: "Notifications", icon: <NotificationsRounded /> },
     { id: drawerItems[2], text: "Friend Requests", icon: <PersonAddAlt1Rounded /> },
-    { id: actionItems[0], text: "More", icon: moreOptionsRender ? <MoreVert /> : <MenuRounded /> },
+    { id: actionItems[0], text: "More", icon: smRender ? <MoreVert /> : <MenuRounded />, hide: true },
   ];
 
   const resetSelect = () => {
@@ -59,27 +60,18 @@ const Navigation = () => {
 
   return (
     <>
-      <Box
-        sx={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          height: "50px",
-          backgroundColor: "orange",
-          width: "100%",
-          display: { sm: "none" },
-        }}></Box>
       <Styled.Container>
         <Styled.CollapseContainer open={+isShrinked()} duration={500} collapsedsize="60px">
-          <Styled.LogoContainer>
-            <Styled.NavLogo />
-            <Styled.LogoText hide={+isShrinked()}>Crypto Hub</Styled.LogoText>
-          </Styled.LogoContainer>
+          <MStyled.LogoContainer>
+            <MStyled.Logo />
+            <MStyled.LogoText hide={+isShrinked()}>Crypto Hub</MStyled.LogoText>
+          </MStyled.LogoContainer>
 
           <Styled.NavList component="nav">
             {navListItems.map((item) => {
               return (
                 <Styled.ListButton
+                  hide={item?.hide?.toString()}
                   collapse={+isShrinked()}
                   key={item.id}
                   selected={selectedVal.includes(item.id)}
@@ -100,6 +92,18 @@ const Navigation = () => {
         </Styled.DrawerContainer>
       </Styled.Container>
       {actionItems[0].includes(selectedVal) && <NavigationModal reset={resetSelect} />}
+      {smRender && (
+        <Styled.BottomContainer>
+          {navListItems.map(
+            (item) =>
+              item.hide && (
+                <Styled.BottomIcon active={+(selectedVal === item.id)} key={item.id} onClick={() => selection(item.id)}>
+                  {item.icon}
+                </Styled.BottomIcon>
+              )
+          )}
+        </Styled.BottomContainer>
+      )}
     </>
   );
 };

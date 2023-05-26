@@ -40,11 +40,11 @@ const NavigationModal = ({ reset }) => {
         {moreItems.map((item) => {
           return (
             <>
-              <Styled.ModalItem onClick={item?.action}>
+              <Styled.ModalItem key={item.id} onClick={item?.action}>
                 <MStyled.ResponsiveText variant="mainBody">{item.text}</MStyled.ResponsiveText>
                 {item.icon}
               </Styled.ModalItem>
-              <Styled.ModalDivider />
+              <Styled.ModalDivider key={item.id}/>
             </>
           );
         })}

@@ -1,32 +1,5 @@
-import { Box, List, ListItemButton, ListItemIcon, styled } from "@mui/material";
-import { Flexbox, LongText, Logo } from "../../../styles/global-components";
-
-// LOGO
-
-export const NavLogo = styled(Logo)(({ theme }) => ({
-  [theme.breakpoints.down("sm")]: {
-    display: "none",
-  },
-}));
-
-export const LogoContainer = styled(Flexbox)(({ theme }) => ({
-  width: "90%",
-  margin: "auto",
-  justifyContent: "space-evenly",
-  padding: `${theme.spacing(1.3)} ${theme.spacing(0)}`,
-  [theme.breakpoints.down("sm")]: {
-    display: "none",
-  },
-}));
-
-export const LogoText = styled(LongText)(({ hide, theme }) => ({
-  fontWeight: "500",
-  fontSize: "1.75rem",
-  display: hide && "none",
-  [theme.breakpoints.down("md")]: {
-    display: "none",
-  },
-}));
+import { Box, List, ListItemButton, ListItemIcon, useScrollTrigger, styled } from "@mui/material";
+import { Flexbox, LongText } from "../../../styles/global-components";
 
 export const DrawerContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
@@ -34,32 +7,36 @@ export const DrawerContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const Container = styled(Box)(({ theme }) => ({
-  position: "sticky",
-  width: "250px",
-  height: "100vh",
-  display: "flex",
-  zIndex: 2,
-  backgroundColor: theme.palette.main.primary,
-  transition: "0.5s all ease-in-out",
-  [theme.breakpoints.up("lg")]: {
+export const Container = styled(Box)(({ theme }) => {
+  const trigger = useScrollTrigger();
+  console.log(trigger)
+  return {
+    position: "sticky",
+    width: "250px",
+    height: "100vh",
+    display: "flex",
+    zIndex: 2,
     top: 0,
     left: 0,
-  },
-  [theme.breakpoints.down("lg")]: {
-    width: "210px",
-  },
-  [theme.breakpoints.down("md")]: {
-    width: "60px",
-  },
-  [theme.breakpoints.down("sm")]: {
-    bottom: 0,
-    height: "50px",
-    width: "100%",
-  },
-}));
+    backgroundColor: theme.palette.main.primary,
+    transition: "0.5s all ease-in-out",
+    [theme.breakpoints.down("lg")]: {
+      width: "210px",
+    },
+    [theme.breakpoints.down("md")]: {
+      width: "60px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      position: "fixed",
+      marginBottom: "65px",
+      height: "65px",
+      width: "100%",
+      display: trigger ? "none" : "flex",
+    },
+  };
+});
 
-export const CollapseContainer = styled(Box)(({ open, duration, collapsedsize, theme }) => ({
+export const CollapseContainer = styled(Box)(({ open, duration, collapsedsize, trigger, theme }) => ({
   transition: `width ${duration}ms ease-in-out`,
   height: "100%",
   backgroundColor: theme.palette.main.secondary,
@@ -67,7 +44,7 @@ export const CollapseContainer = styled(Box)(({ open, duration, collapsedsize, t
   [theme.breakpoints.down("sm")]: {
     width: "100%",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
   },
 }));
@@ -99,8 +76,13 @@ export const NavList = styled(List)(({ theme }) => ({
   },
   [theme.breakpoints.down("sm")]: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
+    width: "40%",
+    margin: "auto 0",
+    "& .MuiSvgIcon-root": {
+      fontSize: "1.5rem",
+    },
   },
 }));
 
@@ -111,7 +93,7 @@ export const ListText = styled(LongText)(({ hide, theme }) => ({
   },
 }));
 
-export const ListButton = styled(ListItemButton)(({ collapse, theme }) => ({
+export const ListButton = styled(ListItemButton)(({ hide, collapse, theme }) => ({
   padding: "1rem 0rem",
   margin: "0.85rem 0rem",
   justifyContent: collapse && "center",
@@ -123,13 +105,35 @@ export const ListButton = styled(ListItemButton)(({ collapse, theme }) => ({
     },
   },
   [theme.breakpoints.down("sm")]: {
-    padding: "0.3rem 0rem",
+    padding: 0,
+    margin: 0,
     alignItems: "center",
     justifyContent: "center",
+    display: hide && "none",
   },
 }));
 
 export const ListIcon = styled(ListItemIcon)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
+}));
+
+export const BottomContainer = styled(Flexbox)(({ theme }) => ({
+  position: "fixed",
+  bottom: 0,
+  left: 0,
+  height: "50px",
+  backgroundColor: theme.palette.main.secondary,
+  width: "100%",
+  justifyContent: "space-evenly",
+  [theme.breakpoints.up("sm")]: {
+    display: "none",
+  },
+}));
+
+export const BottomIcon = styled(Box)(({ active, theme }) => ({
+  "& .MuiSvgIcon-root": {
+    fill: active ? "purple" : theme.palette.text.primary,
+    fontSize: "1.5rem",
+  },
 }));

@@ -4,7 +4,7 @@ export const LayoutContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.main.primary,
   display: "flex",
   [theme.breakpoints.down("sm")]: {
-    flexDirection: "column-reverse",
+    flexDirection: "column",
   },
 }));
 

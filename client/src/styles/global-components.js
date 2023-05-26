@@ -88,16 +88,20 @@ export const VerticalFlexbox = styled(Flexbox)({
   flexDirection: "column",
 });
 
-export const MainContainer = styled(Box)(({ theme }) => ({
-  height: "300vh",
-  backgroundColor: theme.palette.main.primary,
-  [theme.breakpoints.up("sm")]: {
-    flex: 5,
-  },
-  [theme.breakpoints.down("sm")]: {
-    marginTop: `50px`,
-  },
-}));
+export const MainContainer = styled(Box)(({ theme }) => {
+
+  return {
+    height: "300vh",
+    backgroundColor: theme.palette.main.primary,
+    [theme.breakpoints.up("sm")]: {
+      flex: 5,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: `65px`,
+      marginBottom: `50px`,
+    },
+  };
+});
 
 export const ImageContainer = styled(Grid)({
   ...BaseFlexbox,
@@ -110,6 +114,8 @@ export const ImageContainer = styled(Grid)({
 });
 
 export const Drawer = styled(Box)(({ open, duration, theme }) => ({
+  top: 0,
+  left: 0,
   position: "absolute",
   height: "100%",
   backgroundColor: "orange",
@@ -117,10 +123,6 @@ export const Drawer = styled(Box)(({ open, duration, theme }) => ({
   width: open ? "25vw" : "0vw",
   zIndex: 2,
   transition: `width ${duration}ms ease-in-out`,
-  [theme.breakpoints.up("lg")]: {
-    top: 0,
-    left: 0,
-  },
   [theme.breakpoints.down("lg")]: {
     width: open ? "30vw" : "0vw",
   },
@@ -129,8 +131,6 @@ export const Drawer = styled(Box)(({ open, duration, theme }) => ({
   },
   [theme.breakpoints.down("sm")]: {
     height: "100vh",
-    bottom: 0,
-    right: 0,
     width: open ? "100vw" : "0vw",
   },
 }));
@@ -142,6 +142,42 @@ export const Logo = styled(AcUnit)(({ theme }) => ({
   width: 40,
   cursor: "pointer",
   fill: theme.palette.text.primary,
+  [theme.breakpoints.down("sm")]: {
+    height: 32,
+    width: 32,
+  },
+}));
+
+export const LogoContainer = styled(Flexbox)(({ theme }) => ({
+  width: "100%",
+  margin: "auto",
+  justifyContent: "space-evenly",
+  padding: `${theme.spacing(1.3)} ${theme.spacing(0)}`,
+  [theme.breakpoints.down("sm")]: {
+    justifyContent: "flex-start",
+    width: "auto",
+    padding: 0,
+    width: "50%",
+    margin: 0,
+    gap: theme.spacing(1),
+  },
+}));
+
+export const LogoText = styled(LongText)(({ hide, theme }) => ({
+  fontWeight: "500",
+  fontSize: "1.75rem",
+  fontFamily: "Cursive",
+  display: hide && "none",
+  [theme.breakpoints.down("lg")]: {
+    fontSize: "1.65rem",
+  },
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
+  [theme.breakpoints.down("sm")]: {
+    display: "block",
+    fontSize: "1.3rem",
+  },
 }));
 
 // Snackbar
